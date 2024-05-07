@@ -14,7 +14,7 @@ export const en = defineConfig({
         ],
       },
       {
-        text: 'networking',
+        text: 'Networking',
         link: '/en/guide/networking',
         items: [
           { text: 'Two Node', link: '/en//guide/network/two-node-networking' },

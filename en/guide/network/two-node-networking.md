@@ -80,6 +80,8 @@ nodea <-----> nodeb
    | :----------- | :------- | :--- | :----- | :-------- | :------- | :------- | :----------- | :------- | :-------- |
    | 10.144.144.1 | abc-dec  | 1    | 3.452  | 0         | 17.33kB  | 20.42kB  | udp          | FullCone | 390879727 |
 
+   Use easytier-cli to view routing information in the subnet
+
    ```sh
    easytier-cli route
    ```

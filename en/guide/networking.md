@@ -1,6 +1,6 @@
 # Networking
 
-::: tip tips
+::: warning tips
 The following text only describes the use of the command-line tool; the GUI program can be configured by referring to the following concepts.
 :::
 

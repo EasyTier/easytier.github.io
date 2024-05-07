@@ -2,8 +2,6 @@
 
 一个简单、安全、去中心化的内网穿透 VPN 组网方案，使用 Rust 语言和 Tokio 框架实现。
 
-![alt text](/assets/image-6.png)![alt text](/assets/image-7.png)
-
 ## 特点
 
 - **去中心化**：无需依赖中心化服务，节点平等且独立。
@@ -17,3 +15,9 @@
 - **TCP 支持**：在 UDP 受限的情况下，通过并发 TCP 链接提供可靠的数据传输，优化性能。
 - **高可用性**：支持多路径和在检测到高丢包率或网络错误时切换到健康路径。
 - **IPV6 支持**：支持利用 IPV6 组网。
+
+## GUI
+
+![alt text](/assets/image-6.png)
+
+![alt text](/assets/image-7.png)
