@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /guide/installation
+      link: /guide/introduction
     - theme: alt
       text: 在 Github 上查看
       link: https://github.com/KKRainbow/EasyTier
