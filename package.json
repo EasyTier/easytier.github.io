@@ -14,6 +14,8 @@
     "@antfu/eslint-config": "^2.16.2",
     "eslint": "^9.2.0",
     "eslint-plugin-format": "^0.1.1",
-    "vitepress": "^1.1.4"
+    "mermaid": "^10.9.0",
+    "vitepress": "^1.1.4",
+    "vitepress-plugin-mermaid": "^2.0.16"
   }
 }

@@ -1,9 +1,9 @@
-import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
 import { en } from './en'
 import { cn } from './cn'
 
-export default defineConfig({
+export default withMermaid({
   title: 'Easytier',
   base: '/easytier-doc/',
   locales: {
