@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: Easytier
+  name: EasyTier
   text: 由 Rust 和 Tokio 驱动
   tagline: 一个简单、安全、去中心化的内网穿透 VPN 组网方案
   actions:

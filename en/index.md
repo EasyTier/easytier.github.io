@@ -3,12 +3,12 @@
 layout: home
 
 hero:
-  name: Easytier
+  name: EasyTier
   text: implemented using Rust language and Tokio framework
   tagline: A simple, secure, decentralized VPN mesh network solution
   actions:
     - theme: brand
-      text: Quickstart
+      text: Quick start
       link: /en/guide/introduction
     - theme: alt
       text: Github

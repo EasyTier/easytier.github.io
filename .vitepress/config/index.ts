@@ -4,7 +4,7 @@ import { en } from './en'
 import { cn } from './cn'
 
 export default withMermaid({
-  title: 'Easytier',
+  title: 'EasyTier',
   base: '/easytier-doc/',
   lastUpdated: true,
   locales: {
