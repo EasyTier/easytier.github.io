@@ -2,7 +2,7 @@
 
 Based on the two-node networking example just now, if more nodes need to join the virtual network, you can use the following command.
 
-```
+```sh
 sudo easytier-core --ipv4 10.144.144.2 --peers udp://22.1.1.1:11010
 ```
 

@@ -32,7 +32,10 @@ sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24
    ```sh
    easytier-cli route
    ```
-   ![alt text](/assets/image-3.png)
+   | ipv4         | hostname | proxy_cidrs | next_hop_ipv4 | next_hop_hostname | next_hop_lat | cost |
+   | :----------- | :------- | :---------- | :------------ | :---------------- | :----------- | :--- |
+   | 10.144.144.1 | abc-dec  | 10.1.1.0/24 | DIRECT        |                   | 3.25         | 1    |
+
 
 2. 测试节点 A 是否可访问被代理子网下的节点
 

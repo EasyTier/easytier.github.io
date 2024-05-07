@@ -26,14 +26,14 @@ To enable an iPhone to access the EasyTier network through Node A, the following
 
 Include the --vpn-portal parameter in the easytier-core command on Node A to specify the port that the WireGuard service listens on and the subnet used by the WireGuard network.
 
-```
+```sh
 # The following parameters mean: listen on port 0.0.0.0:11013, and use the 10.14.14.0/24 subnet for WireGuard
 sudo easytier-core --ipv4 10.144.144.1 --vpn-portal wg://0.0.0.0:11013/10.14.14.0/24
 ```
 
 After successfully starting easytier-core, use easytier-cli to obtain the WireGuard client configuration.
 
-```
+```sh
 $> easytier-cli vpn-portal
 portal_name: wireguard
 
