@@ -5,6 +5,9 @@ export const en = defineConfig({
   description: 'a simple, safe and decentralized VPN networking solution implemented with the Rust language and Tokio framework.',
 
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
     sidebar: [
       {
         text: 'Getting Started',
@@ -34,5 +37,9 @@ export const en = defineConfig({
         ],
       },
     ],
+    footer: {
+      message: 'Released under the Apache License 2.0.',
+      copyright: 'Copyright © 2024-present EasyTier',
+    },
   },
 })
