@@ -6,16 +6,16 @@
 flowchart LR
 
 subgraph 节点 A IP 22.1.1.1
-nodea[EasyTier\n10.144.144.1]
+nodeA[EasyTier\n10.144.144.1]
 end
 
 subgraph 节点 B
-nodeb[EasyTier\n10.144.144.2]
+nodeB[EasyTier\n10.144.144.2]
 end
 
 id1[[10.1.1.0/24]]
 
-nodea <--> nodeb <-.-> id1
+nodeA <--> nodeB <-.-> id1
 
 ```
 
