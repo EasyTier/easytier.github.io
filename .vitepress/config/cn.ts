@@ -41,6 +41,10 @@ export const cn = defineConfig({
       message: '基于 Apache License 2.0 许可发布',
       copyright: '版权所有 © 2024-present EasyTier',
     },
+    editLink: {
+      pattern: 'https://github.com/m1m1sha/easytier-doc/edit/main/:path',
+      text: '在 GitHub 上编辑此页面',
+    },
     docFooter: {
       prev: '上一页',
       next: '下一页',
@@ -58,5 +62,6 @@ export const cn = defineConfig({
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
+
   },
 })

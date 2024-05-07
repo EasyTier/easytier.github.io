@@ -41,5 +41,9 @@ export const en = defineConfig({
       message: 'Released under the Apache License 2.0.',
       copyright: 'Copyright © 2024-present EasyTier',
     },
+    editLink: {
+      pattern: 'https://github.com/m1m1sha/easytier-doc/edit/main/:path',
+      text: 'Edit this page on GitHub',
+    },
   },
 })
