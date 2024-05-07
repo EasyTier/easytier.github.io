@@ -11,7 +11,7 @@ export const en = defineConfig({
         items: [
           { text: 'Introduction', link: '/en/guide/introduction' },
           { text: 'installation', link: '/en/guide/installation' },
-        ]
+        ],
       },
       {
         text: 'networking',
@@ -23,7 +23,7 @@ export const en = defineConfig({
           { text: 'Without Public IP', link: '/en//guide/network/networking-without-public-ip' },
           { text: 'Use WireGuard Client', link: '/en//guide/network/use-easytier-with-wirefuard-client' },
           { text: 'Other Configurations', link: '/en//guide/network/configurations' },
-        ]
+        ],
       },
       {
         items: [
@@ -31,8 +31,8 @@ export const en = defineConfig({
           { text: 'Community and Contribution', link: '/en/guide/community-and-contribution' },
           { text: 'License', link: '/en/guide/license' },
           { text: 'Contact', link: '/en/guide/contact' },
-        ]
-      }
-    ]
-  }
+        ],
+      },
+    ],
+  },
 })

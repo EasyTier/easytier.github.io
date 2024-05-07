@@ -1,10 +1,10 @@
 # Networking without Public IP
 
-EasyTier supports networking using shared public nodes. The currently deployed shared public node is 
+EasyTier supports networking using shared public nodes. The currently deployed shared public node is
 
-``tcp://easytier.public.kkrainbow.top:11010``
+`tcp://easytier.public.kkrainbow.top:11010`
 
-When using shared nodes, each node entering the network needs to provide the same ``--network-name`` and ``--network-secret`` parameters as the unique identifier of the network.
+When using shared nodes, each node entering the network needs to provide the same `--network-name` and `--network-secret` parameters as the unique identifier of the network.
 
 Taking two nodes as an example, Node A executes:
 

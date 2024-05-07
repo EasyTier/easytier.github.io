@@ -6,9 +6,11 @@
 2. **Install via crates.io**
 
    ::: code-group
+
    ```sh [cargo]
    cargo install easytier
    ```
+
    :::
 
 3. **Install from source code**

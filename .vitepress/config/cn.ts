@@ -12,7 +12,7 @@ export const cn = defineConfig({
         items: [
           { text: '简介', link: '/guide/introduction' },
           { text: '安装', link: '/guide/installation' },
-        ]
+        ],
       },
       {
         text: '组网',
@@ -24,7 +24,7 @@ export const cn = defineConfig({
           { text: '无公网IP', link: '/guide/network/networking-without-public-ip' },
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wirefuard-client' },
           { text: '其他配置', link: '/guide/network/configurations' },
-        ]
+        ],
       },
       {
         items: [
@@ -32,8 +32,8 @@ export const cn = defineConfig({
           { text: '社区和贡献', link: '/guide/community-and-contribution' },
           { text: '许可证', link: '/guide/license' },
           { text: '联系方式', link: '/guide/contact' },
-        ]
+        ],
       },
-    ]
-  }
+    ],
+  },
 })

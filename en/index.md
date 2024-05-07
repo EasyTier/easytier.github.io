@@ -32,4 +32,3 @@ features:
   - title: Smart Routing
     details: Selects links based on traffic to reduce latency and increase throughput.
 ---
-

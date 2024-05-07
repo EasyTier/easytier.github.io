@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+
 import { en } from './en'
 import { cn } from './cn'
 

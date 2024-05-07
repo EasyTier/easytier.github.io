@@ -32,10 +32,10 @@ Subnet proxy information will automatically sync to each node in the virtual net
    ```sh
    easytier-cli route
    ```
+
    | ipv4         | hostname | proxy_cidrs | next_hop_ipv4 | next_hop_hostname | next_hop_lat | cost |
    | :----------- | :------- | :---------- | :------------ | :---------------- | :----------- | :--- |
    | 10.144.144.1 | abc-dec  | 10.1.1.0/24 | DIRECT        |                   | 3.25         | 1    |
-
 
 2. Test whether Node A can access nodes under the proxied subnet
 

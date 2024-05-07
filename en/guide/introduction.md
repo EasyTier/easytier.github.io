@@ -5,7 +5,7 @@ EasyTier is a simple, safe and decentralized VPN networking solution implemented
 ![alt text](/assets/image-5.png)![alt text](/assets/image-4.png)
 
 ## Features
- 
+
 - **Decentralized**: No need to rely on centralized services, nodes are equal and independent.
 - **Safe**: Use WireGuard protocol to encrypt data.
 - **High Performance**: Full-link zero-copy, with performance comparable to mainstream networking software.
