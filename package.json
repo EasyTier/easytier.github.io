@@ -1,14 +1,19 @@
 {
   "name": "easytier-doc",
+  "type": "module",
   "version": "0.0.0",
   "description": "",
-  "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.16.2",
+    "eslint": "^9.2.0",
+    "eslint-plugin-format": "^0.1.1",
     "vitepress": "^1.1.4"
   }
 }

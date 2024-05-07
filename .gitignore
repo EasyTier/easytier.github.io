@@ -5,6 +5,8 @@
 .temp
 .vite_opt_cache
 .vscode
+!.vscode/settings.json
+!.vscode/extensions.json
 dist
 cache
 temp
