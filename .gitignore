@@ -9,3 +9,4 @@ dist
 cache
 temp
 node_modules
+.vitepress/cache
