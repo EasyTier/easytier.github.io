@@ -22,8 +22,13 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
 
     sidebar: [
-      { text: '简介', link: '/guide/introduction' },
-      { text: '安装', link: '/guide/installation' },
+      {
+      text: '开始',
+        items: [
+          { text: '简介', link: '/guide/introduction' },
+          { text: '安装', link: '/guide/installation' },
+        ]
+      },
       {
         text: '组网',
         link: '/guide/networking',
