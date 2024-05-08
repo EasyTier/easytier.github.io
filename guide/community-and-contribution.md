@@ -3,3 +3,13 @@
 我们欢迎并鼓励社区贡献！如果你想参与进来，请提交 [GitHub PR](https://github.com/KKRainbow/EasyTier/pulls)。
 
 详细的贡献指南可以在 [Contributing](https://github.com/KKRainbow/EasyTier/blob/main/CONTRIBUTING.md) 中找到。
+
+## Star 历史
+
+<a href="https://star-history.com/#KKRainbow/EasyTier&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=KKRainbow/EasyTier&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=KKRainbow/EasyTier&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=KKRainbow/EasyTier&type=Date" />
+ </picture>
+</a>
