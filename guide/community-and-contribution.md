@@ -1,3 +1,7 @@
+<script setup>
+import StarHistory from '../.vitepress/components/starHistory.vue'
+</script>
+
 # 社区和贡献
 
 我们欢迎并鼓励社区贡献！如果你想参与进来，请提交 [GitHub PR](https://github.com/EasyTier/EasyTier/pulls)。
@@ -6,10 +10,4 @@
 
 ## Star 历史
 
-<a href="https://star-history.com/#EasyTier/EasyTier&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=EasyTier/EasyTier&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=EasyTier/EasyTier&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=EasyTier/EasyTier&type=Date" />
- </picture>
-</a>
+<StarHistory repo="EasyTier/EasyTier" type="Timeline" />
