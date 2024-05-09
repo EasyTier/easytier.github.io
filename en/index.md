@@ -12,7 +12,7 @@ hero:
       link: /en/guide/introduction
     - theme: alt
       text: Github
-      link: https://github.com/KKRainbow/EasyTier
+      link: https://github.com/EasyTier/EasyTier
 
 features:
   - title: Decentralized

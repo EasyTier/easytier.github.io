@@ -12,7 +12,7 @@ hero:
       link: /guide/introduction
     - theme: alt
       text: 在 Github 上查看
-      link: https://github.com/KKRainbow/EasyTier
+      link: https://github.com/EasyTier/EasyTier
 
 features:
   - title: 去中心化

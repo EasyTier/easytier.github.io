@@ -1,1 +1,1 @@
-[简体中文](https://github.com/KKRainbow/EasyTier/README_CN.md) | [English](https://github.com/KKRainbow/EasyTier/README.md)
+[简体中文](https://github.com/EasyTier/EasyTier/README_CN.md) | [English](https://github.com/EasyTier/EasyTier/README.md)

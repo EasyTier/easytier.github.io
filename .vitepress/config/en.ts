@@ -20,12 +20,12 @@ export const en = defineConfig({
         text: 'Networking',
         link: '/en/guide/networking',
         items: [
-          { text: 'Two Node', link: '/en//guide/network/two-node-networking' },
-          { text: 'Multi Node', link: '/en//guide/network/multi-node-networking' },
-          { text: 'Subnet Proxy', link: '/en//guide/network/point-to-networking' },
-          { text: 'Without Public IP', link: '/en//guide/network/networking-without-public-ip' },
-          { text: 'Use WireGuard Client', link: '/en//guide/network/use-easytier-with-wirefuard-client' },
-          { text: 'Other Configurations', link: '/en//guide/network/configurations' },
+          { text: 'Two Node', link: '/en/guide/network/two-node-networking' },
+          { text: 'Multi Node', link: '/en/guide/network/multi-node-networking' },
+          { text: 'Subnet Proxy', link: '/en/guide/network/point-to-networking' },
+          { text: 'Without Public IP', link: '/en/guide/network/networking-without-public-ip' },
+          { text: 'Use WireGuard Client', link: '/en/guide/network/use-easytier-with-wirefuard-client' },
+          { text: 'Other Configurations', link: '/en/guide/network/configurations' },
         ],
       },
       {
@@ -42,7 +42,7 @@ export const en = defineConfig({
       copyright: 'Copyright © 2024-present EasyTier',
     },
     editLink: {
-      pattern: 'https://github.com/m1m1sha/easytier-doc/edit/dev/:path',
+      pattern: 'https://github.com/EasyTier/easytier-doc/edit/dev/:path',
       text: 'Edit this page on GitHub',
     },
   },
