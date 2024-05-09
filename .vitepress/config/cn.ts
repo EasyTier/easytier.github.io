@@ -17,7 +17,7 @@ export const cn = defineConfig({
         ],
       },
       {
-        text: '组网',
+        text: '命令行工具组网',
         link: '/guide/networking',
         items: [
           { text: '双节点', link: '/guide/network/two-node-networking' },
@@ -26,6 +26,16 @@ export const cn = defineConfig({
           { text: '无公网IP', link: '/guide/network/networking-without-public-ip' },
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wirefuard-client' },
           { text: '其他配置', link: '/guide/network/configurations' },
+        ],
+      },
+      {
+        text: '图形界面 GUI 组网',
+        link: 'guide/gui/index',
+        items: [
+          { text: '公共服务器组网', link: '/guide/gui/basic' },
+          { text: '手动组网', link: '/guide/gui/manual' },
+          { text: 'WireGuard 接入', link: '/guide/gui/vpn_portal' },
+          { text: '子网代理', link: '/guide/gui/subnet_proxy' },
         ],
       },
       {
