@@ -5,9 +5,6 @@ export const en = defineConfig({
   description: 'a simple, safe and decentralized VPN networking solution implemented with the Rust language and Tokio framework.',
 
   themeConfig: {
-    search: {
-      provider: 'local',
-    },
     sidebar: [
       {
         text: 'Getting Started',
