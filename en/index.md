@@ -13,6 +13,12 @@ hero:
     - theme: alt
       text: Github
       link: https://github.com/EasyTier/EasyTier
+    - theme: alt
+      text: Enhance documents
+      link: https://github.com/EasyTier/EasyTier-doc/compare
+    - theme: alt
+      text: Contribute
+      link: https://github.com/EasyTier/EasyTier/issues
 
 features:
   - title: Decentralized

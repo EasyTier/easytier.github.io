@@ -13,6 +13,12 @@ hero:
     - theme: alt
       text: 在 Github 上查看
       link: https://github.com/EasyTier/EasyTier
+    - theme: alt
+      text: 协助改进或翻译文档
+      link: https://github.com/EasyTier/EasyTier-doc/compare
+    - theme: alt
+      text: 参与开发
+      link: https://github.com/EasyTier/EasyTier/issues
 
 features:
   - title: 去中心化
