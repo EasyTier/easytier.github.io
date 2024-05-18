@@ -15,7 +15,7 @@ hero:
       link: https://github.com/EasyTier/EasyTier
     - theme: alt
       text: Enhance documents
-      link: https://github.com/EasyTier/EasyTier-doc/compare
+      link: https://github.com/EasyTier/easytier.github.io/compare
     - theme: alt
       text: Contribute
       link: https://github.com/EasyTier/EasyTier/issues

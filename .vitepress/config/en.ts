@@ -39,7 +39,7 @@ export const en = defineConfig({
       copyright: 'Copyright © 2024-present EasyTier',
     },
     editLink: {
-      pattern: 'https://github.com/EasyTier/easytier-doc/edit/dev/:path',
+      pattern: 'https://github.com/EasyTier/easytier.github.io/edit/dev/:path',
       text: 'Edit this page on GitHub',
     },
   },

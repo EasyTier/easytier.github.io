@@ -5,7 +5,7 @@ import { cn, cnSearch } from './cn'
 
 export default withMermaid({
   title: 'EasyTier',
-  base: '/easytier-doc/',
+  base: '/',
   lastUpdated: true,
   themeConfig: {
     search: {
