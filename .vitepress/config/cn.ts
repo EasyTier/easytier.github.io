@@ -49,7 +49,7 @@ export const cn = defineConfig({
       copyright: '版权所有 © 2024-present EasyTier',
     },
     editLink: {
-      pattern: 'https://github.com/EasyTier/easytier-doc/edit/dev/:path',
+      pattern: 'https://github.com/EasyTier/easytier.github.io/edit/dev/:path',
       text: '在 GitHub 上编辑此页面',
     },
     docFooter: {
