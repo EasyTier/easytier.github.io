@@ -34,8 +34,6 @@
                   - TZ=Asia/Shanghai
                   - WATCHTOWER_NO_STARTUP_MESSAGE
             image: containrrr/watchtower
-            networks:
-                  - 1panel-network
             restart: always
             volumes:
                   - /var/run/docker.sock:/var/run/docker.sock
