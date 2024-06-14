@@ -22,6 +22,7 @@ export const cn = defineConfig({
           { text: '子网代理（点对网）', link: '/guide/network/point-to-networking' },
           { text: '无公网IP', link: '/guide/network/networking-without-public-ip' },
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wirefuard-client' },
+          { text: '注册为windows服务(开机自启)', link: '/guide/network/Install-as-a-Windows-service' },
           { text: '其他配置', link: '/guide/network/configurations' },
         ],
       },
