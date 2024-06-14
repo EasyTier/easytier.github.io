@@ -22,6 +22,7 @@ export const en = defineConfig({
           { text: 'Subnet Proxy', link: '/en/guide/network/point-to-networking' },
           { text: 'Without Public IP', link: '/en/guide/network/networking-without-public-ip' },
           { text: 'Use WireGuard Client', link: '/en/guide/network/use-easytier-with-wirefuard-client' },
+          { text: 'Installing as a Windows Service (Auto-Start on Boot)', link: '/en/guide/network/install-as-a-windows-service' },
           { text: 'Other Configurations', link: '/en/guide/network/configurations' },
         ],
       },
