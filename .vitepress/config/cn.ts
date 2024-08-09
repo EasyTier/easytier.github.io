@@ -38,6 +38,7 @@ export const cn = defineConfig({
       },
       {
         items: [
+          { text: '性能测试', link: '/guide/perf' },
           { text: '路线图', link: '/guide/roadmap' },
           { text: '社区和贡献', link: '/guide/community-and-contribution' },
           { text: '许可证', link: '/guide/license' },
