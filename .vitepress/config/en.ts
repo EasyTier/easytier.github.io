@@ -23,6 +23,7 @@ export const en = defineConfig({
           { text: 'Without Public IP', link: '/en/guide/network/networking-without-public-ip' },
           { text: 'Use WireGuard Client', link: '/en/guide/network/use-easytier-with-wirefuard-client' },
           { text: 'Installing as a Windows Service (Auto-Start on Boot)', link: '/en/guide/network/install-as-a-windows-service' },
+          { text: 'Installing as a Linux Systemd Service', link: '/en/guide/network/install-as-a-systemd-service' },
           { text: 'Other Configurations', link: '/en/guide/network/configurations' },
         ],
       },
