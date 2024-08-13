@@ -24,6 +24,7 @@ export const en = defineConfig({
           { text: 'Use WireGuard Client', link: '/en/guide/network/use-easytier-with-wirefuard-client' },
           { text: 'Installing as a Windows Service (Auto-Start on Boot)', link: '/en/guide/network/install-as-a-windows-service' },
           { text: 'Other Configurations', link: '/en/guide/network/configurations' },
+          { text: 'Configuration File', link: '/en/guide/network/config-file' },
         ],
       },
       {

@@ -2,6 +2,8 @@
 
 支持使用 -c 参数指定配置文件路径。
 
+注意：配置文件的优先级更高，当运行时指定了配置文件，则命令行中除 -c 的其他参数将被忽略，只对配置文件生效。
+
 ```sh
 ./easytier-core -c ./config.yaml
 ```
@@ -39,7 +41,7 @@ exit_nodes = [
 rpc_portal = "127.0.0.1:15888"
 
 [network_identity]
-# 网络名词，用于标识 VPN 网络
+# 网络名称，用于标识 VPN 网络
 network_name = ""
 # 网络密钥，用于验证此节点属于 VPN 网络
 network_secret = ""
