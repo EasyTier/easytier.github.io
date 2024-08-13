@@ -24,6 +24,7 @@ export const cn = defineConfig({
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wirefuard-client' },
           { text: '注册为windows服务(开机自启)', link: '/guide/network/install-as-a-windows-service' },
           { text: '其他配置', link: '/guide/network/configurations' },
+          { text: '配置文件', link: '/guide/network/config-file' },
         ],
       },
       {
