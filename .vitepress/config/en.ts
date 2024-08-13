@@ -25,6 +25,7 @@ export const en = defineConfig({
           { text: 'Installing as a Windows Service (Auto-Start on Boot)', link: '/en/guide/network/install-as-a-windows-service' },
           { text: 'Installing as a Linux Systemd Service', link: '/en/guide/network/install-as-a-systemd-service' },
           { text: 'Other Configurations', link: '/en/guide/network/configurations' },
+          { text: 'Configuration File', link: '/en/guide/network/config-file' },
         ],
       },
       {
