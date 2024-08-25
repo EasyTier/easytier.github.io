@@ -7,7 +7,7 @@ EasyTier is a simple, safe and decentralized VPN networking solution implemented
 - **Decentralized**: No need to rely on centralized services, nodes are equal and independent.
 - **Safe**: Use WireGuard protocol to encrypt data.
 - **High Performance**: Full-link zero-copy, with performance comparable to mainstream networking software.
-- **Cross-platform**: Supports MacOS/Linux/Windows, will support IOS and Android in the future. The executable file is statically linked, making deployment simple.
+- **Cross-platform**: Supports MacOS/Linux/Windows/FreeBSD/Android, will support IOS in the future. The executable file is statically linked, making deployment simple.
 - **Networking without public IP**: Supports networking using shared public nodes, refer to [Configuration Guide](/guide/network/networking-without-public-ip)
 - **NAT traversal**: Supports UDP-based NAT traversal, able to establish stable connections even in complex network environments.
 - **Subnet Proxy (Point-to-Network)**: Nodes can expose accessible network segments as proxies to the VPN subnet, allowing other nodes to access these subnets through the node.

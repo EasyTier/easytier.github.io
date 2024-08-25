@@ -28,7 +28,7 @@ features:
   - title: High Performance
     details: Full-link zero-copy, with performance comparable to mainstream networking software.
   - title: Cross-platform
-    details: Supports MacOS/Linux/Windows, will support IOS and Android in the future. The executable file is statically linked, making deployment simple.
+    details: Supports MacOS/Linux/Windows/FreeBSD/Android, will support IOS in the future. The executable file is statically linked, making deployment simple.
   - title: Networking without public IP
     details: Supports networking using shared public nodes, refer to Configuration Guide
   - title: NAT traversal

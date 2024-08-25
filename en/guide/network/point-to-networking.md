@@ -43,4 +43,18 @@ Subnet proxy information will automatically sync to each node in the virtual net
    ping 10.1.1.2
    ```
 
+## Manually Specifying Routes
+
+By default, when a node in the virtual network is configured with a subnet proxy, the subnet proxy's segment is synchronized to all nodes within the virtual network, and a route is automatically generated to handle packets destined for these segments via the virtual network.
+
+This simplifies networking in most cases, but in some scenarios, users may not want EasyTier to automatically configure routes on the node. Users can manually configure the traffic that needs to be forwarded to the virtual network using the `--manual-routes` parameter.
+
+After using `--manual-routes`, only the segments configured with this parameter will enter the virtual network. If the list after this parameter is empty, EasyTier will not process any traffic for non-virtual network segments.
+
+## Firewall
+
+Since proxy traffic requires the use of the system's network stack, the subnet proxy needs to disable the firewall on the virtual network card (this applies to both Linux and Windows).
+
+If it is not possible to disable the firewall, you can try using the user-space network stack for the subnet proxy, which can eliminate the need to configure the firewall. Simply add the `--use-smoltcp` parameter when starting EasyTier.
+
 ---
