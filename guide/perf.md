@@ -1,11 +1,11 @@
 # 性能测试
 
-参与测试的软件及其版本：
+参与测试的软件及其版本（为避嫌 + 公平待遇，用“某”代替）：
 
 | 软件名   | 版本   | 链接                                 |
 | -------- | ------ | ------------------------------------ |
 | EasyTier | 1.2.1  | https://github.com/EasyTier/EasyTier |
-| VNT      | 1.2.13 | https://github.com/vnt-dev/vnt/      |
+| 某组网工具 A      | 2024.7 月版本 | |
 
 待测：
 
@@ -34,8 +34,8 @@
 |   EasyTier    |   TCP 无加密    |          1.31 / 1.41          |
 |   EasyTier    | TCP AES-128-GCM |          1.42 / 1.41          |
 |               |                 |                               |
-|      VNT      |   UDP 无加密    |          1.10 / 1.11          |
-|      VNT      | UDP AES-128-GCM |          0.93 / 0.98          |
+|      某组网工具 A      |   UDP 无加密    |          1.10 / 1.11          |
+|      某组网工具 A      | UDP AES-128-GCM |          0.93 / 0.98          |
 
 ## 复现方式
 
@@ -129,20 +129,20 @@ ip netns exec green easytier-core -i 10.126.126.3 -p tcp://192.168.0.2:11010 --m
 ip netns exec green iperf3 -c 10.126.126.2
 ```
 
-### VNT
+### 某组网工具 A
 
 #### UDP 无加密 
 
 ```bash
-ip netns exec red vnt-cli -k iperf -s 8.134.146.7:29872 --ip 10.26.0.2
-ip netns exec green vnt-cli -k iperf -s 8.134.146.7:29872 --ip 10.26.0.3
+ip netns exec red xxx -k iperf -s 8.134.146.7:29872 --ip 10.26.0.2
+ip netns exec green xxx -k iperf -s 8.134.146.7:29872 --ip 10.26.0.3
 ip netns exec green iperf3 -c 10.26.0.2
 ```
 
 #### UDP 带加密 
 
 ```bash
-ip netns exec red vnt-cli -k iperf -s 8.134.146.7:29872 -w 1234 --ip 10.26.0.2
-ip netns exec green vnt-cli -k iperf -s 8.134.146.7:29872 -w 1234 --ip 10.26.0.3
+ip netns exec red xxx -k iperf -s 8.134.146.7:29872 -w 1234 --ip 10.26.0.2
+ip netns exec green xxx -k iperf -s 8.134.146.7:29872 -w 1234 --ip 10.26.0.3
 ip netns exec green iperf3 -c 10.26.0.2
 ```
