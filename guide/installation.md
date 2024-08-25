@@ -74,3 +74,15 @@ A: win7 需要是 SP1 及以上, 并且需要安装 [KB3063858](https://www.micr
 Q: Linux 命令行帮助是英文，如何调整为中文。
 
 A: 需要设置环境变量 LANG=zh_CN，命令： `export LANG=zh_CN`
+
+## 问题 3
+
+Q: 启动后提示 TunError
+
+A: 确认 TUN 驱动已经被正确加载，并且 `/dev/net/tun` 文件存在，如果使用 Docker，需要确保开启了特权模式。Linux TUN 驱动加载方法为：
+
+```bash
+modprobe tun
+mkdir /dev/net
+sudo mknod /dev/net/tun c 10 200
+```
