@@ -37,7 +37,7 @@ features:
     details: 根据流量智能选择链路，减少延迟，提高吞吐量。
   - title: 跨平台
     details: |
-      支持 MacOS/Linux/Windows/Android 等系统。未来将支持 IOS。
+      支持 MacOS/Linux/Windows/FreeBSD/Android 等系统。未来将支持 IOS。
       </br>
       支持 MIPS、ARM 等硬件架构。
       </br>
