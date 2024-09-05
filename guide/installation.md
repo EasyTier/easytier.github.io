@@ -16,7 +16,7 @@
 3. **通过源码安装**
    ::: code-group
    ```sh [cargo]
-   cargo install --git https://github.com/EasyTier/EasyTier.git
+   cargo install --git https://github.com/EasyTier/EasyTier.git easytier
    ```
    :::
 
