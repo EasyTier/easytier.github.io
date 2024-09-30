@@ -30,7 +30,7 @@ id2 -.无需 EasyTier 访问对方子网.-> id1
 节点 A
 ```bash
 # 启动 EasyTier 并代理 192.168.1.0/24 网段，并使用公共服务器帮助组网
-easytier-core -i 10.144.144.1 -n 192.168.1.0/24 -p tcp://easytier.public.kkrainbow.top:11010 --network-name n2n_test
+easytier-core -i 10.144.144.1 -n 192.168.1.0/24 -p tcp://public.easytier.top:11010 --network-name n2n_test
 
 # 允许网关转发流量，并配置防火墙允许转发流量
 sysctl -w net.ipv4.ip_forward=1
@@ -41,5 +41,5 @@ iptables -A FORWARD -d 192.168.1.0/24 -j ACCEPT
 节点 B
 ```bash
 # 启动 EasyTier 并代理 10.1.1.0/24 网段，并使用公共服务器帮助组网
-easytier-core -i 10.144.144.2 -n 10.1.1.0/24 -p tcp://easytier.public.kkrainbow.top:11010 --network-name n2n_test
+easytier-core -i 10.144.144.2 -n 10.1.1.0/24 -p tcp://public.easytier.top:11010 --network-name n2n_test
 ```
