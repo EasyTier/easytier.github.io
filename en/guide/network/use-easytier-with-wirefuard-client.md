@@ -1,6 +1,6 @@
 # Use EasyTier with WireGuard Client
 
-EasyTier can be used as a WireGuard server to allow any device with WireGuard client installed to access the EasyTier network. For platforms currently unsupported by EasyTier (such as iOS, Android, etc.), this method can be used to connect to the EasyTier network.
+EasyTier can be used as a WireGuard server to allow any device with WireGuard client installed to access the EasyTier network. For platforms currently unsupported by EasyTier (such as iOS), this method can be used to connect to the EasyTier network.
 
 Assuming the network topology is as follows:
 
