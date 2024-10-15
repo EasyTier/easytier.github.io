@@ -60,6 +60,13 @@ cidr = "10.0.1.0/24"
 [[proxy_network]]
 cidr = "10.0.2.0/24"
 
+#wg配置信息
+[vpn_portal_config]
+#VPN客户端所在的网段，下面为示例
+client_cidr = "10.14.14.0/24"
+#wg所监听的端口(请勿和listeners的wg冲突)
+wireguard_listen = "0.0.0.0:11012"
+
 [flags]
 # 连接到对等节点使用的默认协议
 default_protocol = "tcp"
