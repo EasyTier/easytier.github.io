@@ -28,6 +28,7 @@ export const en = defineConfig({
           { text: 'Self-hosted public server', link: '/en/guide/network/host-public-server' },
           { text: 'Installing as a Windows service (Auto start on boot)', link: '/en/guide/network/install-as-a-windows-service' },
           { text: 'Installing as a Linux systemd service', link: '/en/guide/network/install-as-a-systemd-service' },
+          { text: 'Installing as a macOS service', link: '/en/guide/network/install-as-a-macos-service' },
           { text: 'Other configurations', link: '/en/guide/network/configurations' },
           { text: 'Configuration file', link: '/en/guide/network/config-file' },
         ],

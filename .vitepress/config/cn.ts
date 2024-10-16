@@ -28,6 +28,7 @@ export const cn = defineConfig({
           { text: '自建公共服务器', link: '/guide/network/host-public-server' },
           { text: '安装为 Windows 服务（开机自启）', link: '/guide/network/install-as-a-windows-service' },
           { text: '安装为 Linux systemd 服务', link: '/guide/network/install-as-a-systemd-service' },
+          { text: '安装为 macOS 服务', link: '/guide/network/install-as-a-macos-service' },
           { text: '其他配置', link: '/guide/network/configurations' },
           { text: '配置文件', link: '/guide/network/config-file' },
         ],
