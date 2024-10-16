@@ -27,7 +27,7 @@ sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24
 
 Subnet proxy information will automatically sync to each node in the virtual network, and each node will automatically configure the corresponding route. Node A can check whether the subnet proxy is effective through the following command.
 
-1. Check whether the routing information has beensynchronized, the proxy_cidrs column shows the proxied subnets.
+1. Check whether the routing information has been synchronized, the proxy_cidrs column shows the proxied subnets.
 
    ```sh
    easytier-cli route
