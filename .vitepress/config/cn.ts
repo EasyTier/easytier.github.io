@@ -22,7 +22,7 @@ export const cn = defineConfig({
           { text: '子网代理（点对网）', link: '/guide/network/point-to-networking' },
           { text: '网对网', link: '/guide/network/network-to-network' },
           { text: '无公网IP', link: '/guide/network/networking-without-public-ip' },
-          { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wirefuard-client' },
+          { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wireguard-client' },
           { text: 'SOCKS5', link: '/guide/network/socks5' },
           { text: '无 TUN 模式 （免 Root 权限）', link: '/guide/network/no-root' },
           { text: '自建公共服务器', link: '/guide/network/host-public-server' },

@@ -22,7 +22,7 @@ export const en = defineConfig({
           { text: 'Subnet Proxy', link: '/en/guide/network/point-to-networking' },
           { text: 'Network to Network', link: '/en/guide/network/network-to-network' },
           { text: 'Without Public IP', link: '/en/guide/network/networking-without-public-ip' },
-          { text: 'Use WireGuard Client', link: '/en/guide/network/use-easytier-with-wirefuard-client' },
+          { text: 'Use WireGuard client', link: '/en/guide/network/use-easytier-with-wireguard-client' },
           { text: 'SOCKS5', link: '/en/guide/network/socks5' },
           { text: 'No TUN Mode (No Root Permission Required', link: '/en/guide/network/no-root' },
           { text: 'Self-Hosted Public Server', link: '/en/guide/network/host-public-server' },
