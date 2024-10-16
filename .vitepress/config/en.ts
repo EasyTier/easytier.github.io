@@ -23,7 +23,7 @@ export const en = defineConfig({
           { text: 'Network to network', link: '/en/guide/network/network-to-network' },
           { text: 'Without public IP', link: '/en/guide/network/networking-without-public-ip' },
           { text: 'Use WireGuard client', link: '/en/guide/network/use-easytier-with-wireguard-client' },
-          { text: 'Socks5', link: '/en/guide/network/socks5' },
+          { text: 'SOCKS5', link: '/en/guide/network/socks5' },
           { text: 'No TUN mode (rootless)', link: '/en/guide/network/no-root' },
           { text: 'Self-hosted public server', link: '/en/guide/network/host-public-server' },
           { text: 'Installing as a Windows service (Auto start on boot)', link: '/en/guide/network/install-as-a-windows-service' },
