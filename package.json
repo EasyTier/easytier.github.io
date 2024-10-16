@@ -16,6 +16,6 @@
     "eslint-plugin-format": "^0.1.2",
     "mermaid": "^10.9.1",
     "vitepress": "^1.4.1",
-    "vitepress-plugin-mermaid": "^2.0.16"
+    "vitepress-plugin-mermaid": "^2.0.17"
   }
 }
