@@ -5,14 +5,14 @@ Supports specifying the configuration file path using the -c parameter.
 Note: The configuration file has a higher priority. When a configuration file is specified at runtime, all command line parameters except for -c will be ignored and only the configuration file will take effect.
 
 ```sh
-./easytier-core -c ./config.yaml
+./easytier-core -c ./config.toml
 ```
 
 You can run `./easytier-core` directly without using any parameters to obtain the minimal configuration file. By running the command with parameters, you can get a configuration file corresponding to those parameters. The configuration file will be printed on the command line, and you can manually copy the relevant configuration and save it as a TOML file.
 
 Below is an example of a configuration file along with annotations for various configuration options.
 
-```yaml
+```toml
 # instance name to identify this vpn node in same machine
 instance_name = ""
 # Hostname, used to identify the hostname of this device

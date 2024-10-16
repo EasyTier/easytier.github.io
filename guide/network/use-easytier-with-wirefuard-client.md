@@ -1,6 +1,6 @@
 # 使用 WireGuard 客户端接入
 
-EasyTier 可以用作 WireGuard 服务端，让任意安装了 WireGuard 客户端的设备访问 EasyTier 网络。对于目前 EasyTier 不支持的平台 （如 iOS、Android 等），可以使用这种方式接入 EasyTier 网络。
+EasyTier 可以用作 WireGuard 服务端，让任意安装了 WireGuard 客户端的设备访问 EasyTier 网络。对于目前 EasyTier 不支持的平台 （如 iOS），可以使用这种方式接入 EasyTier 网络。
 
 假设网络拓扑如下：
 
