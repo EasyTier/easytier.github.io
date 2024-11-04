@@ -41,6 +41,7 @@ export const cn = defineConfig({
           { text: '手动组网', link: '/guide/gui/manual' },
           { text: 'WireGuard 接入', link: '/guide/gui/vpn_portal' },
           { text: '子网代理', link: '/guide/gui/subnet_proxy' },
+          { text: 'EasyTier 管理器', link: '/guide/gui/easytier-manager' },
         ],
       },
       {
