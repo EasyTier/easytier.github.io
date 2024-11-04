@@ -60,6 +60,13 @@ cidr = "10.0.1.0/24"
 [[proxy_network]]
 cidr = "10.0.2.0/24"
 
+#wg configuration information
+[vpn_portal_config]
+#The subnet where the VPN client is located, as shown in the example below.
+client_cidr = "10.14.14.0/24"
+#The port that wg listens to (please do not conflict with the listeners' wg).
+wireguard_listen = "0.0.0.0:11012"
+
 [flags]
 # default protocol to use when connecting to peers
 default_protocol = "tcp"
