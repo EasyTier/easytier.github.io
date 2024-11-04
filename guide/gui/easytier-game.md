@@ -23,7 +23,7 @@ Releases： [https://github.com/EasyTier/EasytierGame/releases](https://github.c
 - 高级选项里有一些特殊配置，可以自行选择
 ![game-step4](/assets/game-step4.png)
 
-- 如果还是无法满足您的需求，可以使用配置文件进行启动，具体如何配置，可以查看文档[配置文件](http://localhost:5173/guide/network/config-file.html)
+- 如果还是无法满足您的需求，可以使用配置文件进行启动，具体如何配置，可以查看文档[配置文件](/guide/network/config-file.html)
 ![game-step5](/assets/game-step5.png)
 
 - easytier内核升级后，可以点击更新插件按钮就可以进行更新，但是需要出国，如果无法更新，可以在群里获取
