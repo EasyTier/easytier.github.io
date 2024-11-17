@@ -13,13 +13,13 @@
 下面是一个配置文件的示例以及各种配置项的注解。
 
 ```yaml
-# 实例名称，用于在同一台机器上标识此 VPN 节点
+# 实例名称，用于在同一台机器上标识此节点
 instance_name = ""
 # 主机名，用于标识此设备的主机名
 hostname = ""
-# 实例 ID，一般为 UUID，在同一个 VPN 网络中唯一
+# 实例 ID，一般为 UUID，在同一个虚拟网络中唯一
 instance_id = ""
-# 此 VPN 节点的 IPv4 地址，如果为空，则此节点将仅转发数据包，不会创建 TUN 设备
+# 此节点的虚拟网 IPv4 地址，如果为空，则此节点将仅转发数据包，不会创建 TUN 设备
 ipv4 = ""
 # 由 Easytier 自动确定并设置IP地址，默认从10.0.0.1开始。警告：在使用 DHCP 时，如果网络中出现 IP 冲突，IP 将自动更改
 dhcp = false
@@ -41,9 +41,9 @@ exit_nodes = [
 rpc_portal = "127.0.0.1:15888"
 
 [network_identity]
-# 网络名称，用于标识 VPN 网络
+# 网络名称，用于标识虚拟网络
 network_name = ""
-# 网络密钥，用于验证此节点属于 VPN 网络
+# 网络密钥，用于验证此节点属于虚拟网络
 network_secret = ""
 
 # 这里是对等连接节点配置，可以多段配置
@@ -60,9 +60,9 @@ cidr = "10.0.1.0/24"
 [[proxy_network]]
 cidr = "10.0.2.0/24"
 
-#wg配置信息
+# WireGuard 配置信息
 [vpn_portal_config]
-#VPN客户端所在的网段，下面为示例
+# WireGuard 客户端所在的网段，下面为示例
 client_cidr = "10.14.14.0/24"
 #wg所监听的端口(请勿和listeners的wg冲突)
 wireguard_listen = "0.0.0.0:11012"

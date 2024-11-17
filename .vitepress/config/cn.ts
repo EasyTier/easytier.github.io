@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export const cn = defineConfig({
   lang: 'cn',
-  description: '一个简单、安全、去中心化的内网穿透 VPN 组网方案，使用 Rust 语言和 Tokio 框架实现',
+  description: '一个简单、安全、去中心化的内网穿透 SD-WAN 异地组网方案，使用 Rust 语言和 Tokio 框架实现',
 
   themeConfig: {
     sidebar: [
@@ -42,7 +42,7 @@ export const cn = defineConfig({
           { text: 'WireGuard 接入', link: '/guide/gui/vpn_portal' },
           { text: '子网代理', link: '/guide/gui/subnet_proxy' },
           { text: 'EasyTier 管理器', link: '/guide/gui/easytier-manager' },
-          { text: 'EasyTier游戏联机启动器', link: '/guide/gui/easytier-game' },
+          { text: 'EasyTier 游戏联机启动器', link: '/guide/gui/easytier-game' },
         ],
       },
       {
@@ -60,7 +60,7 @@ export const cn = defineConfig({
       copyright: '版权所有 © 2024-present EasyTier',
     },
     editLink: {
-      pattern: 'https://github.com/EasyTier/easytier.github.io/edit/dev/:path',
+      pattern: 'https://github.com/EasyTier/easytier.github.io/edit/main/:path',
       text: '在 GitHub 上编辑此页面',
     },
     docFooter: {

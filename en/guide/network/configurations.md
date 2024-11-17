@@ -3,7 +3,7 @@
 You can use `easytier-core --help` to view all configuration items
 
 ```sh
-A full meshed p2p VPN, connecting all your devices in one network with one command.
+A full meshed p2p networking tool, connecting all your devices in one network with one command.
 
 Usage: easytier-core [OPTIONS]
 
@@ -11,11 +11,11 @@ Options:
   -c, --config-file <CONFIG_FILE>
           path to the config file, NOTE: if this is set, all other options will be ignored
       --network-name <NETWORK_NAME>
-          network name to identify this vpn network [default: default]
+          network name to identify this virtual network [default: default]
       --network-secret <NETWORK_SECRET>
-          network secret to verify this node belongs to the vpn network [default: ]
+          network secret to verify this node belongs to the virtual network [default: ]
   -i, --ipv4 <IPV4>
-          ipv4 address of this vpn node, if empty, this node will only forward packets and no TUN device will be
+          ipv4 address of this node, if empty, this node will only forward packets and no TUN device will be
           created
   -d, --dhcp
           automatically determine and set IP address by Easytier, and the
@@ -27,7 +27,7 @@ Options:
   -e, --external-node <EXTERNAL_NODE>
           use a public shared node to discover peers
   -n, --proxy-networks <PROXY_NETWORKS>
-          export local networks to other peers in the vpn
+          export local networks to other peers in the virtual network
   -r, --rpc-portal <RPC_PORTAL>
           rpc portal address to listen for management. 0 means random
           port, 12345 means listen on 12345 of localhost, 0.0.0.0:12345 means
@@ -51,12 +51,11 @@ Options:
       --hostname <HOSTNAME>
           host name to identify this device
   -m, --instance-name <INSTANCE_NAME>
-          instance name to identify this vpn node in same machine [default: default]
+          instance name to identify this node in same machine [default: default]
       --vpn-portal <VPN_PORTAL>
-          url that defines the vpn portal, allow other vpn clients to connect.
-          example: wg://0.0.0.0:11010/10.14.14.0/24, means the vpn portal is a wireguard server listening on
-          vpn.example.com:11010,
-          and the vpn client is in network of 10.14.14.0/24
+          url that defines the portal, allow other kinds of clients to connect.
+          example: wg://0.0.0.0:11010/10.14.14.0/24, means the portal is a wireguard server listening on
+          0.0.0.0:11010, and the wireguard client is in network of 10.14.14.0/24
       --default-protocol <DEFAULT_PROTOCOL>
           default protocol to use when connecting to peers
   -u, --disable-encryption

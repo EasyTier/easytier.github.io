@@ -65,4 +65,7 @@
     "yaml",
     "toml"
   ],
+  "cSpell.words": [
+    "easytier"
+  ],
 }

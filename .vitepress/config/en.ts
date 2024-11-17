@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export const en = defineConfig({
   lang: 'en',
-  description: 'A simple, safe and decentralized VPN networking solution implemented with the Rust language and Tokio framework',
+  description: 'A simple, safe and decentralized SD-WAN networking solution implemented with the Rust language and Tokio framework',
 
   themeConfig: {
     sidebar: [
@@ -47,7 +47,7 @@ export const en = defineConfig({
       copyright: 'Copyright © 2024-present EasyTier',
     },
     editLink: {
-      pattern: 'https://github.com/EasyTier/easytier.github.io/edit/dev/:path',
+      pattern: 'https://github.com/EasyTier/easytier.github.io/main/dev/:path',
       text: 'Edit this page on GitHub',
     },
   },
