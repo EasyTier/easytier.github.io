@@ -5,7 +5,7 @@ layout: home
 hero:
   name: EasyTier
   text: implemented using Rust language and Tokio framework
-  tagline: A simple, secure, decentralized VPN mesh network solution
+  tagline: A simple, secure, decentralized SD-WAN mesh networking solution
   actions:
     - theme: brand
       text: Quick start
@@ -34,7 +34,7 @@ features:
   - title: NAT traversal
     details: Supports UDP-based NAT traversal, able to establish stable connections even in complex network environments.
   - title: Subnet Proxy (Point-to-Network)
-    details: Nodes can expose accessible network segments as proxies to the VPN subnet, allowing other nodes to access these subnets through the node.
+    details: Nodes can expose accessible network segments as proxies to the virtual network, allowing other nodes to access these subnets through the node.
   - title: Smart Routing
     details: Selects links based on traffic to reduce latency and increase throughput.
 ---

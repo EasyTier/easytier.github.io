@@ -1,6 +1,6 @@
 # Configuration File
 
-Supports specifying the configuration file path using the -c parameter. 
+Supports specifying the configuration file path using the -c parameter.
 
 Note: The configuration file has a higher priority. When a configuration file is specified at runtime, all command line parameters except for -c will be ignored and only the configuration file will take effect.
 
@@ -13,37 +13,36 @@ You can run `./easytier-core` directly without using any parameters to obtain th
 Below is an example of a configuration file along with annotations for various configuration options.
 
 ```toml
-# instance name to identify this vpn node in same machine
+# instance name to identify this node in same machine
 instance_name = ""
 # Hostname, used to identify the hostname of this device
 hostname = ""
-# Instance ID, usually a UUID, unique within the same VPN network
+# Instance ID, usually a UUID, unique within the same network
 instance_id = ""
-# The IPv4 address of this VPN node. If left empty, this node will only forward packets and will not create a TUN device
+# The IPv4 address of this node. If left empty, this node will only forward packets and will not create a TUN device
 ipv4 = ""
-# Automatically determined and assigned IP address by Easytier, starting from 10.0.0.1 by default. Warning: When using DHCP, if an IP conflict occurs within the network, the IP address will be automatically changed.
+# Automatically determined and assigned IP address by EasyTier, starting from 10.0.0.1 by default. Warning: When using DHCP, if an IP conflict occurs within the network, the IP address will be automatically changed.
 dhcp = false
 
 # List of listeners, used for accepting connections
 listeners = [
-"tcp://0.0.0.0:11010",
-"udp://0.0.0.0:11010",
-"wg://0.0.0.0:11011",
-"ws://0.0.0.0:11011/",
-"wss://0.0.0.0:11012/",
+  "tcp://0.0.0.0:11010",
+  "udp://0.0.0.0:11010",
+  "wg://0.0.0.0:11011",
+  "ws://0.0.0.0:11011/",
+  "wss://0.0.0.0:11012/",
 ]
 
 # List of exit nodes
-exit_nodes = [
-]
+exit_nodes = []
 
 # Rpc portal address to listen for management
 rpc_portal = "127.0.0.1:15888"
 
 [network_identity]
-# network name to identify this vpn network
+# network name to identify this virtual network
 network_name = ""
-# network secret to verify this node belongs to the vpn network
+# network secret to verify this node belongs to the virtual network
 network_secret = ""
 
 # This is the configuration for peer connection nodes, allowing multiple entries to support multiple peer connections
@@ -60,11 +59,11 @@ cidr = "10.0.1.0/24"
 [[proxy_network]]
 cidr = "10.0.2.0/24"
 
-#wg configuration information
+# wg configuration information
 [vpn_portal_config]
-#The subnet where the VPN client is located, as shown in the example below.
+# The subnet where the wg client is located, as shown in the example below.
 client_cidr = "10.14.14.0/24"
-#The port that wg listens to (please do not conflict with the listeners' wg).
+# The port that wg listens to (please do not conflict with the listeners' wg).
 wireguard_listen = "0.0.0.0:11012"
 
 [flags]

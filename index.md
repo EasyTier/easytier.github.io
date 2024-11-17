@@ -5,7 +5,7 @@ layout: home
 hero:
   name: EasyTier
   text: 由 Rust 和 Tokio 驱动
-  tagline: 一个简单、安全、去中心化的内网穿透 VPN 组网方案
+  tagline: 一个简单、安全、去中心化的内网穿透 SD-WAN 异地组网方案
   actions:
     - theme: brand
       text: 快速开始
@@ -32,7 +32,7 @@ features:
   - title: NAT 穿透
     details: 支持基于 UDP 的 NAT 穿透，即使在复杂的网络环境下也能建立稳定的连接。
   - title: 子网代理（点对网）
-    details: 节点可以将可访问的网段作为代理暴露给 VPN 子网，允许其他节点通过该节点访问这些子网。
+    details: 节点可以将其可访问的网段转发到虚拟网，允许其他节点通过该节点访问这些子网。
   - title: 智能路由
     details: 根据流量智能选择链路，减少延迟，提高吞吐量。
   - title: 跨平台
