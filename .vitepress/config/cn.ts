@@ -55,9 +55,15 @@ export const cn = defineConfig({
         ],
       },
     ],
+    nav: [
+      { text: '进入 Web 控制台', link: 'https://easytier.cn/web' },
+    ],
     footer: {
       message: '基于 Apache License 2.0 许可发布',
-      copyright: '版权所有 © 2024-present EasyTier',
+      copyright: '版权所有 © 2024-present EasyTier | '
+      + '<a href="https://beian.miit.gov.cn/">'
+      + '<img src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="ICP 备案" style="width: 16px; height: 16px; display: inline-block; margin-bottom: -4px;">'
+      + '浙ICP备2024137671号-1</a>',
     },
     editLink: {
       pattern: 'https://github.com/EasyTier/easytier.github.io/edit/main/:path',

@@ -45,3 +45,21 @@ features:
   - title: GUI 支持
     details: 可通过图形界面使用，方便快捷。
 ---
+
+## 相关链接
+
+- [社区文档](https://doc.oee.icu)：由社区志愿者维护，白话版 EasyTier 的使用指南，实时更新。
+- [公共服务器节点列表](https://easytier.gd.nkbpal.cn/status/easytier)：由社区志愿者维护，提供公共服务器节点列表及状态查询。
+- QQ 群：[949700262](https://qm.qq.com/q/wFoTUChqZW)
+- Telegram：https://t.me/easytier
+
+## 赞助
+
+如果您觉得 EasyTier 对您有所帮助，欢迎赞助我们。
+
+软件的开发和维护需要大量的时间和精力，您的赞助将帮助我们更好地维护和改进 EasyTier。
+
+<div align="center">
+  <img src="/assets/weixin.png" alt="微信" width="300" style="display: inline-block" />
+  <img src="/assets/zhifubao.png" alt="支付宝" width="300" style="display: inline-block; margin-left: 2em"/>
+</div>
