@@ -38,3 +38,9 @@ features:
   - title: Smart Routing
     details: Selects links based on traffic to reduce latency and increase throughput.
 ---
+
+## Links
+
+- [Public server node list](https://easytier.gd.nkbpal.cn/status/easytier)：Maintained by community volunteers, providing a list of public server nodes and status queries.
+- Telegram：https://t.me/easytier
+- QQ Group：[949700262](https://qm.qq.com/q/wFoTUChqZW)
