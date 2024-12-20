@@ -69,4 +69,8 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 .VPSwitchAppearance .check {
   transform: none !important;
 }
+
+footer.VPFooter {
+  display: block !important;
+}
 </style>
