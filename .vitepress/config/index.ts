@@ -1,7 +1,7 @@
 import { withMermaid } from 'vitepress-plugin-mermaid'
 
-import { en } from './en'
 import { cn, cnSearch } from './cn'
+import { en } from './en'
 
 export default withMermaid({
   title: 'EasyTier',
