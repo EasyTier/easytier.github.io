@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ShareButton } from '@theojs/lumen'
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+
 import { h, nextTick, provide } from 'vue'
 
 const { isDark } = useData()
@@ -38,10 +40,14 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     },
   )
 })
+
+const Layout = h(DefaultTheme.Layout, null, {
+  'aside-outline-before': () => h(ShareButton),
+})
 </script>
 
 <template>
-  <DefaultTheme.Layout />
+  <Layout />
 </template>
 
 <style>
