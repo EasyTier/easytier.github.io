@@ -1,6 +1,6 @@
 import taskLists from 'markdown-it-task-lists'
-
 import { withMermaid } from 'vitepress-plugin-mermaid'
+
 import { cn, cnSearch } from './cn'
 
 import { en } from './en'
@@ -30,6 +30,11 @@ export default withMermaid({
   markdown: {
     config: (md) => {
       md.use(taskLists)
+    },
+  },
+  vue: {
+    template: {
+      compilerOptions: { isCustomElement: tag => tag === 'iconify-icon' },
     },
   },
 })

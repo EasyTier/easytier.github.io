@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ShareButton } from '@theojs/lumen'
+import { ShareButton, Twikoo } from '@theojs/lumen'
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 
 import { h, nextTick, provide } from 'vue'
+
+import { Twikoo_Data } from '../data/Twikoo'
 
 const { isDark } = useData()
 
@@ -43,6 +45,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 const Layout = h(DefaultTheme.Layout, null, {
   'aside-outline-before': () => h(ShareButton),
+  'doc-after': () => h(Twikoo, { Twikoo_Data }),
 })
 </script>
 
