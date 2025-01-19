@@ -8,29 +8,21 @@
 
 2. **通过 crates.io 安装**
 
-   ::: code-group
-
    ```sh [cargo]
    cargo install easytier
    ```
-
-   :::
 
 3. **DockerHub**
 
    [DockerHub 镜像地址](https://hub.docker.com/layers/easytier/easytier)
 
-   ::: code-group
-
    ```sh [docker]
    docker pull easytier/easytier:latest
    ```
 
-   :::
-
 4. **通过Docker Compose安装**
 
-   ::: code-group
+   ::: details docker-compose.yml
 
    ```yaml [docker-compose.yml]
    version: '3.8'
@@ -71,13 +63,10 @@
    ```
 
 6. **通过源码安装**
-   ::: code-group
 
    ```sh [cargo]
    cargo install --git https://github.com/EasyTier/EasyTier.git easytier
    ```
-
-   :::
 
 ## 第三方工具
 

@@ -37,4 +37,7 @@ export default withMermaid({
       compilerOptions: { isCustomElement: tag => tag === 'iconify-icon' },
     },
   },
+  sitemap: {
+    hostname: 'https://easytier.cn',
+  },
 })

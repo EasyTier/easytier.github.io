@@ -7,8 +7,8 @@ hero:
   text: 由 Rust 和 Tokio 驱动
   tagline: ✨ 一个简单、安全、去中心化的异地组网方案
   image:
-    light: '/assets/gui-config-light.png'
-    dark: '/assets/gui-config-dark.png'
+    light: '/gui-config-light.png'
+    dark: '/gui-config-dark.png'
     alt: 'Easytier GUI 配置界面'
   actions:
     - theme: brand
@@ -19,7 +19,7 @@ hero:
       link: /guide/download
     - theme: alt
       text: Web 控制台
-      link: /web
+      link: https://easytier.cn/web
     - theme: sponsor
       text: 💚 赞助
       link: /#sponsor

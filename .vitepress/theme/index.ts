@@ -6,6 +6,7 @@ import DefaultTheme from 'vitepress/theme'
 import Layout from './layout.vue'
 
 import '@theojs/lumen/theme'
+import '@theojs/lumen/doc-blocks-border'
 
 export default {
   extends: DefaultTheme,
