@@ -8,7 +8,7 @@ export default withMermaid({
   base: '/',
   lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/assets/easytier.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/easytier.png' }],
   ],
   themeConfig: {
     logo: '/easytier.png',

@@ -6,11 +6,11 @@
 flowchart LR
 
 subgraph 节点 A IP 22.1.1.1
-nodeA[EasyTier\n10.144.144.1]
+nodeA[EasyTier</br>10.144.144.1]
 end
 
 subgraph 节点 B
-nodeB[EasyTier\n10.144.144.2]
+nodeB[EasyTier</br>10.144.144.2]
 end
 
 id1[[10.1.1.0/24]]
@@ -42,6 +42,15 @@ sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24
    ```sh
    ping 10.1.1.2
    ```
+
+::: warning 提示
+子网代理的 -n 参数可以多次指定，以代理多个子网；也可以将掩码设置为 32 以代理单个 IP 地址。
+
+```sh
+easytier-core -n 10.1.1.0/24 -n 10.2.0.0/16 -n 10.3.3.3/32
+```
+
+:::
 
 ## 手工指定路由
 
