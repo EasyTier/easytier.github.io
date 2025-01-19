@@ -16,7 +16,19 @@
 
    :::
 
-3. **通过Docker Compose安装**
+3. **DockerHub**
+
+   [DockerHub 镜像地址](https://hub.docker.com/layers/easytier/easytier)
+
+   ::: code-group
+
+   ```sh [docker]
+   docker pull easytier/easytier:latest
+   ```
+
+   :::
+
+4. **通过Docker Compose安装**
 
    ::: code-group
 
@@ -52,13 +64,13 @@
 
    :::
 
-4. **一键安装脚本 （仅 Linux）**
+5. **一键安装脚本 （仅 Linux）**
 
    ```bash
    wget -O /tmp/easytier.sh "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.sh" && bash /tmp/easytier.sh install
    ```
 
-5. **通过源码安装**
+6. **通过源码安装**
    ::: code-group
 
    ```sh [cargo]
@@ -66,6 +78,12 @@
    ```
 
    :::
+
+## 第三方工具
+
+- [EasyTier Game ( Windows )](/guide/gui/easytier-game)
+- [EasyTier Manager ( Windows )](/guide/gui/easytier-manager)
+- [luci-app-easytier ( OpenWrt )](https://github.com/EasyTier/luci-app-easytier)
 
 ## 常见问题 {#faq}
 

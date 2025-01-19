@@ -29,6 +29,7 @@ export const cn = defineConfig({
             { text: '无 TUN 模式（免 Root 权限）', link: '/guide/network/no-root' },
             { text: 'SOCKS5', link: '/guide/network/socks5' },
             { text: '搭建共享节点', link: '/guide/network/host-public-server' },
+            { text: '改善 P2P', link: '/guide/network/p2p-optimize' },
           ] },
           { text: '开机自启（注册服务）', collapsed: true, items: [
             { text: '安装为 Windows 服务', link: '/guide/network/install-as-a-windows-service' },

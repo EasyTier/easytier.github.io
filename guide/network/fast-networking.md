@@ -162,3 +162,19 @@ nodeC <-----> nodeA
 nodeB <-----> nodeD
 
 ```
+
+## 同时加入多个虚拟网
+
+EasyTier 支持在同一个设备上同时运行多个进程，每个进程启动时使用不同参数即可加入不同的虚拟网。
+需要注意，多个虚拟网的虚拟 IP 网段不应该重叠，否则会导致路由冲突。
+
+另外，多开 EasyTier 时，需要指定不同的监听器端口，否则会导致端口冲突。
+
+比如可以使用如下命令启动两个 EasyTier 进程：
+
+```sh
+sudo easytier-core --network-name net1 -p tcp://public.easytier.cn:11010 -l 11010
+sudo easytier-core --network-name net2 -p tcp://public.easytier.cn:11010 -l 21010
+```
+
+> `-l` 代表指定监听器端口。

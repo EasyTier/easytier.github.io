@@ -1,6 +1,8 @@
-import { withMermaid } from 'vitepress-plugin-mermaid'
+import taskLists from 'markdown-it-task-lists'
 
+import { withMermaid } from 'vitepress-plugin-mermaid'
 import { cn, cnSearch } from './cn'
+
 import { en } from './en'
 
 export default withMermaid({
@@ -25,9 +27,9 @@ export default withMermaid({
     root: { label: '简体中文', ...cn },
     en: { label: 'English', ...en },
   },
-  ignoreDeadLinks: [
-    (url) => {
-      return url.toLowerCase().startsWith('/web')
+  markdown: {
+    config: (md) => {
+      md.use(taskLists)
     },
-  ],
+  },
 })

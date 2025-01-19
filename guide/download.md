@@ -199,11 +199,3 @@ function renderUrlTmpl(url_tmpl: string): string {
 </tr>
 
 </table>
-
-## 注意事项
-
-## 第三方工具
-
-- EasyTier Game
-- EasyTier Manager
-- luci-app-easytier
