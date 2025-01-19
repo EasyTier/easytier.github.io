@@ -25,4 +25,9 @@ export default withMermaid({
     root: { label: '简体中文', ...cn },
     en: { label: 'English', ...en },
   },
+  ignoreDeadLinks: [
+    (url) => {
+      return url.toLowerCase().startsWith('/web')
+    },
+  ],
 })
