@@ -12,6 +12,8 @@ export default withMermaid({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/easytier.png' }],
+    // bing webmaster: <meta name="msvalidate.01" content="C6CB41F1DA6096106497701D002B19AD" />
+    ['meta', { name: 'msvalidate.01', content: 'C6CB41F1DA6096106497701D002B19AD' }],
   ],
   themeConfig: {
     logo: '/easytier.png',
