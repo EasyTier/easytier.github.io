@@ -1,3 +1,4 @@
+import fs from 'node:fs'
 import { defineConfig } from 'vitepress'
 
 export const cn = defineConfig({
@@ -9,7 +10,8 @@ export const cn = defineConfig({
       {
         text: '开始',
         items: [
-          { text: '简介', link: '/guide/introduction' },
+          { text: '功能简介', link: '/guide/introduction' },
+          { text: '下载', link: '/guide/download' },
           { text: '安装', link: '/guide/installation' },
         ],
       },
@@ -17,18 +19,23 @@ export const cn = defineConfig({
         text: '命令行工具组网',
         link: '/guide/networking',
         items: [
-          { text: '双节点', link: '/guide/network/two-node-networking' },
-          { text: '多节点', link: '/guide/network/multi-node-networking' },
-          { text: '子网代理（点对网）', link: '/guide/network/point-to-networking' },
-          { text: '网对网', link: '/guide/network/network-to-network' },
-          { text: '无公网 IP', link: '/guide/network/networking-without-public-ip' },
+          { text: '快速组网', link: '/guide/network/fast-networking' },
+          { text: '去中心组网', link: '/guide/network/decentralized-networking' },
+          { text: '使用 Web 控制台组网', link: '/guide/network/web-console' },
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wireguard-client' },
-          { text: 'SOCKS5', link: '/guide/network/socks5' },
-          { text: '无 TUN 模式（免 Root 权限）', link: '/guide/network/no-root' },
-          { text: '自建公共服务器', link: '/guide/network/host-public-server' },
-          { text: '安装为 Windows 服务（开机自启）', link: '/guide/network/install-as-a-windows-service' },
-          { text: '安装为 Linux systemd 服务', link: '/guide/network/install-as-a-systemd-service' },
-          { text: '安装为 macOS 服务', link: '/guide/network/install-as-a-macos-service' },
+          { text: '子网代理（点对网）', link: '/guide/network/point-to-networking' },
+          { text: '高级功能', collapsed: true, items: [
+            { text: '网对网', link: '/guide/network/network-to-network' },
+            { text: '无 TUN 模式（免 Root 权限）', link: '/guide/network/no-root' },
+            { text: 'SOCKS5', link: '/guide/network/socks5' },
+            { text: '搭建共享节点', link: '/guide/network/host-public-server' },
+            { text: '改善 P2P', link: '/guide/network/p2p-optimize' },
+          ] },
+          { text: '开机自启（注册服务）', collapsed: true, items: [
+            { text: '安装为 Windows 服务', link: '/guide/network/install-as-a-windows-service' },
+            { text: '安装为 Linux systemd 服务', link: '/guide/network/install-as-a-systemd-service' },
+            { text: '安装为 macOS 服务', link: '/guide/network/install-as-a-macos-service' },
+          ] },
           { text: '其他配置', link: '/guide/network/configurations' },
           { text: '配置文件', link: '/guide/network/config-file' },
         ],
@@ -56,14 +63,25 @@ export const cn = defineConfig({
       },
     ],
     nav: [
-      { text: '进入 Web 控制台', link: 'https://easytier.cn/web' },
+      {
+        text: '<iconify-icon icon="fa6-solid:gears" style="margin-right:0.25rem;color:#3498db;"></iconify-icon>Web 控制台',
+        link: 'https://easytier.cn/web',
+      },
+      {
+        text: '<iconify-icon icon="fa6-solid:bug" style="margin-right:0.25rem;color:#FF4500;" alt="bug"></iconify-icon>提交反馈',
+        link: 'https://github.com/EasyTier/EasyTier/issues',
+      },
+      {
+        text: '<iconify-icon icon="fa6-solid:clipboard-list" style="margin-right:0.25rem;color:#FF6347;" alt="clipboard"></iconify-icon>变更日志',
+        link: 'https://github.com/EasyTier/EasyTier/releases',
+      },
     ],
     footer: {
       message: '基于 Apache License 2.0 许可发布',
       copyright: '版权所有 © 2024-present EasyTier | '
-      + '<a href="https://beian.miit.gov.cn/">'
-      + '<img src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="ICP 备案" style="width: 16px; height: 16px; display: inline-block; margin-bottom: -4px;">'
-      + '浙ICP备2024137671号-1</a>',
+        + '<a href="https://beian.miit.gov.cn/">'
+        + '<img src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="ICP 备案" style="width: 16px; height: 16px; display: inline-block; margin-bottom: -4px;">'
+        + '浙ICP备2024137671号-1</a>',
     },
     editLink: {
       pattern: 'https://github.com/EasyTier/easytier.github.io/edit/main/:path',

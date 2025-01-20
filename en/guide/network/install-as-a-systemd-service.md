@@ -1,8 +1,8 @@
-# Installing as a Linux Systemd Service
+# Install the Service as a Linux Systemd Service
 
-On Linux distributions that support systemd, you can configure the service to start automatically with the system by following these steps:
+On Linux distributions that support systemd, you can configure the service to start with the system by following these steps:
 
-1. Create a new service file at `/etc/systemd/system/easytier.service` and modify the command line parameters after `ExecStart` as needed.
+1. Create a new service file `/etc/systemd/system/easytier.service` and modify the command line parameters after `ExecStart` as needed.
 
 ```shell
 [Unit]
@@ -31,4 +31,4 @@ systemctl start easytier.service
 systemctl stop easytier.service
 ```
 
-Please note that using the `systemctl` command instead of the `service` command is the more modern approach, and it is recommended to use it on systems that support systemd.
+Please note that using the `systemctl` command instead of the `service` command is a more modern approach and is recommended on systems that support systemd.

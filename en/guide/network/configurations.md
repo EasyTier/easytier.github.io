@@ -1,93 +1,88 @@
-# Configurations
+# Complete Configuration Options
 
-You can use `easytier-core --help` to view all configuration items
+You can use `easytier-core --help` to view all configuration options.
 
-```sh
-A full meshed p2p networking tool, connecting all your devices in one network with one command.
+## Basic Settings
 
-Usage: easytier-core [OPTIONS]
+- **Startup and Version**
 
-Options:
-  -c, --config-file <CONFIG_FILE>
-          path to the config file, NOTE: if this is set, all other options will be ignored
-      --network-name <NETWORK_NAME>
-          network name to identify this virtual network [default: default]
-      --network-secret <NETWORK_SECRET>
-          network secret to verify this node belongs to the virtual network [default: ]
-  -i, --ipv4 <IPV4>
-          ipv4 address of this node, if empty, this node will only forward packets and no TUN device will be
-          created
-  -d, --dhcp
-          automatically determine and set IP address by Easytier, and the
-          IP address starts from 10.0.0.1 by default. Warning, if there is an IP
-          conflict in the network when using DHCP, the IP will be automatically
-          changed.
-  -p, --peers [<PEERS>...]
-          peers to connect initially
-  -e, --external-node <EXTERNAL_NODE>
-          use a public shared node to discover peers
-  -n, --proxy-networks <PROXY_NETWORKS>
-          export local networks to other peers in the virtual network
-  -r, --rpc-portal <RPC_PORTAL>
-          rpc portal address to listen for management. 0 means random
-          port, 12345 means listen on 12345 of localhost, 0.0.0.0:12345 means
-          listen on 12345 of all interfaces. default is 0 and will try 15888 first [default: 0]
-  -l, --listeners [<LISTENERS>...]
-          listeners to accept connections, allow format:
-          a port number: 11010, means tcp/udp will listen on 11010, ws/wss will listen on 11010 and 11011, wg will
-          listen on 11011
-          url: tcp://0.0.0.0:11010, tcp can be tcp, udp, ring, wg, ws, wss,
-          proto:port: wg:11011, means listen on 11011 with wireguard protocol
-          url and proto:port can occur multiple times.
-                       [default: 11010]
-      --no-listener
-          do not listen on any port, only connect to peers
-      --console-log-level <CONSOLE_LOG_LEVEL>
-          console log level [possible values: trace, debug, info, warn, error, off]
-      --file-log-level <FILE_LOG_LEVEL>
-          file log level [possible values: trace, debug, info, warn, error, off]
-      --file-log-dir <FILE_LOG_DIR>
-          directory to store log files
-      --hostname <HOSTNAME>
-          host name to identify this device
-  -m, --instance-name <INSTANCE_NAME>
-          instance name to identify this node in same machine [default: default]
-      --vpn-portal <VPN_PORTAL>
-          url that defines the portal, allow other kinds of clients to connect.
-          example: wg://0.0.0.0:11010/10.14.14.0/24, means the portal is a wireguard server listening on
-          0.0.0.0:11010, and the wireguard client is in network of 10.14.14.0/24
-      --default-protocol <DEFAULT_PROTOCOL>
-          default protocol to use when connecting to peers
-  -u, --disable-encryption
-          disable encryption for peers communication, default is false, must be same with peers
-      --multi-thread
-          use multi-thread runtime, default is single-thread
-      --disable-ipv6
-          do not use ipv6
-      --dev-name <DEV_NAME>
-          optional tun interface name
-      --mtu <MTU>
-          mtu of the TUN device, default is 1420 for non-encryption, 1400 for encryption
-      --latency-first
-          latency first mode, will try to relay traffic with lowest latency path, default is using shortest path
-      --exit-nodes [<EXIT_NODES>...]
-          exit nodes to forward all traffic to, a virtual ipv4 address, priority is determined by the order of the
-          list
-      --enable-exit-node
-          allow this node to be an exit node, default is false
-      --no-tun
-          do not create TUN device, can use subnet proxy to access node
-      --use-smoltcp
-          enable smoltcp stack for subnet proxy
-      --manual-routes [<MANUAL_ROUTES>...]
-          assign routes cidr manually, will disable subnet proxy and
-          wireguard routes propogated from peers. e.g.: 192.168.0.0/16
-      --relay-network-whitelist [<RELAY_NETWORK_WHITELIST>...]
-          only relay traffic of whitelisted networks, input is a wildcard
-          string, e.g.: '*' (all networks), 'def*' (network prefixed with def), can specify multiple networks
-          disable relay if arg is empty. default is allowing all networks
-  -h, --help
-          Print help
-  -V, --version
-          Print version
-```
+  - `-h, --help`: Print help information.
+  - `-V, --version`: Print version information.
+
+- **Configuration File**
+
+  - `-c, --config-file <CONFIG_FILE>`: Path to the configuration file. If this option is set, all other options will be ignored.
+
+- **Instance Identification**
+  - `--hostname <HOSTNAME>`: Hostname to identify this device.
+  - `-m, --instance-name <INSTANCE_NAME>`: Instance name, default is `default`.
+
+## Network Configuration
+
+- **Server and Network**
+
+  - `-w, --config-server <CONFIG_SERVER>`: Configuration server address.
+  - `--network-name <NETWORK_NAME>`: Network name, default is `default`.
+  - `--network-secret <NETWORK_SECRET>`: Network secret, default is empty.
+
+- **IP Configuration**
+  - `-i, --ipv4 <IPV4>`: IPv4 address of this node, empty means only forwarding packets.
+  - `-d, --dhcp`: Automatically set IP address, default starts from 10.0.0.1.
+  - `--dev-name <DEV_NAME>`: Optional TUN interface name.
+  - `--mtu <MTU>`: MTU of the TUN device, default is 1380 for non-encrypted, 1360 for encrypted.
+
+## Connection Management
+
+- **Listeners and Portals**
+
+  - `-l, --listeners [<LISTENERS>...]`: Listeners to accept connections.
+  - `--mapped-listeners [<MAPPED_LISTENERS>...]`: Specify public addresses for listeners.
+  - `--no-listener`: Do not listen on any port.
+  - `--vpn-portal <VPN_PORTAL>`: Define the URL of the VPN portal.
+  - `--rpc-portal <RPC_PORTAL>`: Management RPC portal address, default is 15888.
+
+- **Nodes and Routing**
+  - `-p, --peers [<PEERS>...]`: Initial peers to connect to.
+  - `-e, --external-node <EXTERNAL_NODE>`: Use public shared nodes to discover peers.
+  - `--exit-nodes [<EXIT_NODES>...]`: Exit nodes to forward all traffic.
+  - `--enable-exit-node`: Allow this node to become an exit node.
+  - `--manual-routes [<MANUAL_ROUTES>...]`: Manually assign route CIDR.
+  - `--relay-network-whitelist [<RELAY_NETWORK_WHITELIST>...]`: Only forward traffic for whitelisted networks.
+
+## Logging and Debugging
+
+- **Log Level**
+
+  - `--console-log-level <CONSOLE_LOG_LEVEL>`: Console log level.
+  - `--file-log-level <FILE_LOG_LEVEL>`: File log level.
+
+- **Log Storage**
+  - `--file-log-dir <FILE_LOG_DIR>`: Directory to store log files.
+
+## Advanced Features
+
+- **Performance Optimization**
+
+  - `--latency-first`: Latency first mode.
+  - `--multi-thread`: Run with multi-threading.
+  - `--disable-udp-hole-punching`: Disable UDP hole punching.
+
+- **Security and Privacy**
+
+  - `-u, --disable-encryption`: Disable encryption, default is false.
+  - `--disable-ipv6`: Do not use IPv6.
+  - `--compression <COMPRESSION>`: Compression algorithm to use, default is `none`.
+
+- **Proxy and Forwarding**
+
+  - `--proxy-networks <PROXY_NETWORKS>`: Export local networks to other peers.
+  - `--socks5 <SOCKS5>`: Enable socks5 server.
+  - `--ipv6-listener <IPV6_LISTENER>`: IPv6 listener URL.
+  - `--no-tun`: Do not create TUN device.
+  - `--use-smoltcp`: Enable smoltcp stack.
+  - `--bind-device <BIND_DEVICE>`: Bind socket to physical device.
+  - `--relay-all-peer-rpc`: Forward all peer RPC packets.
+
+- **Communication Restrictions**
+  - `--disable-p2p`: Disable P2P communication.
+  - `--no-tun`: Do not create TUN device to use subnet proxy to access nodes.

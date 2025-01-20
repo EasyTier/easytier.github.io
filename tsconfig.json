@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ESNext",
     "jsx": "preserve",
     "baseUrl": ".",
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "paths": {
       "@theme/*": [
@@ -14,11 +14,11 @@
     "allowJs": true,
     "strict": true,
     "outDir": "dist",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
   "include": [
     "env.d.ts",
-    "src/**/*",
     ".vitepress/**/*"
   ]
 }

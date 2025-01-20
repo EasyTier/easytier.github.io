@@ -1,0 +1,3 @@
+[submodule ".vitepress/third_party/lumen"]
+	path = .vitepress/third_party/lumen
+	url = https://github.com/KKRainbow/lumen.git

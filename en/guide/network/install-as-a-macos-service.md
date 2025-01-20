@@ -1,18 +1,18 @@
-# Installing as macOS service
+# Install as a macOS Service
 
-Download and install [serviceman](https://webinstall.dev/serviceman)
+Download and install [serviceman](https://webinstall.dev/serviceman).
 
-Open terminal and run the following commands to register easytier service:
+Open Terminal and run the following commands to register the service:
 
 ```bash
-# Start easytier with configuration file
+# Register the easytier service using a configuration file
 sudo serviceman add -name easytier -system \
 --workdir /var/log/easytier \
 -groupname wheel -username root \
 -cap-net-bind \
 -- easytier-core -c ~/.config/easytier.toml
 
-# or you can register easytier service without configuration
+# Register the easytier service without using a configuration file
 sudo serviceman add -name easytier -system \
 --workdir /var/log/easytier \
 -groupname wheel -username root \
@@ -20,13 +20,13 @@ sudo serviceman add -name easytier -system \
 -- easytier-core --ipv4 x.x.x.x --network-name xxx --network-secret yyy --peers tcp://peer_host:11010
 ```
 
-Start easytier service：
+Start the easytier service:
 
 ```bash
 sudo serviceman start easytier
 ```
 
-Stop easytier service:
+Stop the easytier service:
 
 ```bash
 sudo serviceman stop easytier

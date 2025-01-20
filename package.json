@@ -10,12 +10,17 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "dependencies": {
+    "@theojs/lumen": "workspace:*",
+    "typescript": "^5.7.3"
+  },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.25.1",
-    "eslint": "^9.12.0",
-    "eslint-plugin-format": "^0.1.2",
-    "mermaid": "^10.9.1",
-    "vitepress": "^1.4.1",
-    "vitepress-plugin-mermaid": "^2.0.17"
+    "@antfu/eslint-config": "3.14.0",
+    "eslint": "9.18.0",
+    "eslint-plugin-format": "1.0.1",
+    "markdown-it-task-lists": "2.1.1",
+    "mermaid": "11.4.1",
+    "vitepress": "1.5.0",
+    "vitepress-plugin-mermaid": "2.0.17"
   }
 }
