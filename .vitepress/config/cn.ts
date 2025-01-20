@@ -96,7 +96,7 @@ export const cn = defineConfig({
         icon: {
           svg: '<iconify-icon icon="twemoji:red-heart" style="font-size:1.2em" alt="Github Sponsors"></iconify-icon>',
         },
-        link: '#sponsor',
+        link: '/#sponsor',
       },
     ],
     footer: {
