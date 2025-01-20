@@ -126,7 +126,7 @@ footer.VPFooter {
 .download-link-span {
   display: inline-block;
   margin: 0.1rem;
-  color: #666;
+  color: #666 !important;
   border: 1px solid #666;
   padding: 0.1rem 0.3rem;
   background-color: #f0f0f0;

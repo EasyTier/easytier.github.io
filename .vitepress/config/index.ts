@@ -1,3 +1,4 @@
+// @ts-expect-error ignore next line
 import taskLists from 'markdown-it-task-lists'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 
@@ -22,6 +23,29 @@ export default withMermaid({
         },
       },
     },
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/EasyTier/Easytier',
+        ariaLabel: 'Github',
+      },
+      {
+        icon: 'gmail',
+        link: 'mailto:sunsijie@buaa.edu.cn',
+        ariaLabel: 'Email',
+      },
+      {
+        icon: 'qq',
+        link: 'https://qm.qq.com/q/wFoTUChqZW',
+        ariaLabel: 'qq',
+      },
+      {
+        icon: {
+          svg: '<iconify-icon icon="twemoji:red-heart" style="font-size:1.2em" alt="Github Sponsors"></iconify-icon>',
+        },
+        link: '/#sponsor',
+      },
+    ],
   },
   locales: {
     root: { label: '简体中文', ...cn },

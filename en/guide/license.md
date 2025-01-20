@@ -1,3 +1,3 @@
-# License
+# 许可证
 
-EasyTier is released under the [Apache License 2.0](https://github.com/EasyTier/EasyTier/blob/main/LICENSE).
+EasyTier 基于 [Apache License 2.0](https://github.com/EasyTier/EasyTier/blob/main/LICENSE) 许可发布。

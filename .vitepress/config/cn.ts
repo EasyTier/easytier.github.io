@@ -76,29 +76,6 @@ export const cn = defineConfig({
         link: 'https://github.com/EasyTier/EasyTier/releases',
       },
     ],
-    socialLinks: [
-      {
-        icon: 'github',
-        link: 'https://github.com/EasyTier/Easytier',
-        ariaLabel: 'Github',
-      },
-      {
-        icon: 'gmail',
-        link: 'mailto:sunsijie@buaa.edu.cn',
-        ariaLabel: 'Email',
-      },
-      {
-        icon: 'qq',
-        link: 'https://qm.qq.com/q/wFoTUChqZW',
-        ariaLabel: 'qq',
-      },
-      {
-        icon: {
-          svg: '<iconify-icon icon="twemoji:red-heart" style="font-size:1.2em" alt="Github Sponsors"></iconify-icon>',
-        },
-        link: '/#sponsor',
-      },
-    ],
     footer: {
       message: '基于 Apache License 2.0 许可发布',
       copyright: '版权所有 © 2024-present EasyTier | '
