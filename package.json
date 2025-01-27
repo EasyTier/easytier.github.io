@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "3.14.0",
-    "eslint": "9.18.0",
+    "eslint": "9.19.0",
     "eslint-plugin-format": "1.0.1",
     "markdown-it-task-lists": "2.1.1",
     "mermaid": "11.4.1",
