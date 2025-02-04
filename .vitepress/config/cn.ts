@@ -24,6 +24,7 @@ export const cn = defineConfig({
           { text: '使用 Web 控制台组网', link: '/guide/network/web-console' },
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wireguard-client' },
           { text: '子网代理（点对网）', link: '/guide/network/point-to-networking' },
+          { text: '带宽延迟优化（KCP 代理）', link: '/guide/network/kcp-proxy' },
           { text: '高级功能', collapsed: true, items: [
             { text: '网对网', link: '/guide/network/network-to-network' },
             { text: '无 TUN 模式（免 Root 权限）', link: '/guide/network/no-root' },

@@ -7,14 +7,14 @@ EasyTier 可以用作 WireGuard 服务端，让任意安装了 WireGuard 客户�
 ```mermaid
 flowchart LR
 
-ios[[iPhone \n 安装 WireGuard]]
+ios[[iPhone </br> 安装 WireGuard]]
 
 subgraph 节点 A IP 22.1.1.1
-nodea[EasyTier\n10.144.144.1]
+nodea[EasyTier</br>10.144.144.1]
 end
 
 subgraph 节点 B
-nodeb[EasyTier\n10.144.144.2]
+nodeb[EasyTier</br>10.144.144.2]
 end
 
 id1[[10.1.1.0/24]]

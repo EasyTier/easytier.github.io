@@ -7,14 +7,14 @@ Assume the network topology is as follows:
 ```mermaid
 flowchart LR
 
-ios[[iPhone \n with WireGuard installed]]
+ios[[iPhone </br> with WireGuard installed]]
 
 subgraph Node A IP 22.1.1.1
-nodea[EasyTier\n10.144.144.1]
+nodea[EasyTier</br>10.144.144.1]
 end
 
 subgraph Node B
-nodeb[EasyTier\n10.144.144.2]
+nodeb[EasyTier</br>10.144.144.2]
 end
 
 id1[[10.1.1.0/24]]
