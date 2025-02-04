@@ -15,10 +15,10 @@ easytier-core -l 'tcp://[::]:12345' -l 'udp://[::]:12345'
 
 ## 指定公网 IP 和端口
 
-某些情况下，节点拥有公网的 IP 和 端口，但 EasyTier 无法正确识别 (比如 NAT 主机)，可以使用 `--mapped_listeners` 配置公网 IP 和端口。 例如：
+某些情况下，节点拥有公网的 IP 和 端口，但 EasyTier 无法正确识别 (比如 NAT 主机)，可以使用 `--mapped-listeners` 配置公网 IP 和端口。 例如：
 
 ```sh
-easytier-core --mapped_listeners tcp://8.8.8.8:12345 -l tcp://0.0.0.0:11010
+easytier-core --mapped-listeners tcp://8.8.8.8:12345 -l tcp://0.0.0.0:11010
 ```
 
 该 EasyTier 实例监听本地的 11010 TCP 端口，且该端口被映射到公网的 12345 端口。其他节点会尝试连接到公网的 12345 端口。
