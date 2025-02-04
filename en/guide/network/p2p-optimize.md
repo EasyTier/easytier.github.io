@@ -15,10 +15,10 @@ easytier-core -l 'tcp://[::]:12345' -l 'udp://[::]:12345'
 
 ## Specify Public IP and Port
 
-In some cases, the node has a public IP and port, but EasyTier cannot correctly identify them (e.g., NAT host). You can use the `--mapped_listeners` option to configure the public IP and port. For example:
+In some cases, the node has a public IP and port, but EasyTier cannot correctly identify them (e.g., NAT host). You can use the `--mapped-listeners` option to configure the public IP and port. For example:
 
 ```sh
-easytier-core --mapped_listeners tcp://8.8.8.8:12345 -l tcp://0.0.0.0:11010
+easytier-core --mapped-listeners tcp://8.8.8.8:12345 -l tcp://0.0.0.0:11010
 ```
 
 This EasyTier instance listens on the local 11010 TCP port, and this port is mapped to the public 12345 port. Other nodes will try to connect to the public 12345 port.
