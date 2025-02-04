@@ -37,7 +37,7 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-x86_64-v{}.zip'
         },
-        comment: "Windows 7 需要是 SP1 及以上, 并且需要安装 KB3063858、KB4474419 这两个补丁"
+        comment: "支持 Windows 8 及以上版本，Windows 7 仅支持 EasyTier v2.1.2 以下版本。"
     },
     {
         os: "Windows",
@@ -48,6 +48,17 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-arm64-v{}.zip'
         },
+    },
+    {
+        os: 'Windows 7',
+        arch: 'x86_64',
+        gui_pkg_tmpl: {
+            "exe": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-gui_2.1.2_x64-setup.exe'
+        },
+        cli_pkg_tmpl: {
+            "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-windows-x86_64-v2.1.2.zip'
+        },
+        comment: "Windows 7 需要是 SP1 及以上, 并且需要安装 KB3063858、KB4474419 这两个补丁。此版本为 EasyTier v2.1.2 版本。"
     },
     {
         os: "Linux",
@@ -168,11 +179,13 @@ function renderUrlTmpl(url_tmpl: string): string {
 <table>
 
 <thead>
-<td> 操作系统 </td>
-<td> 硬件架构 </td>
-<td> 图形界面程序 GUI </td>
-<td> 命令行程序 CLI </td>
-<td> 注意事项 </td>
+<tr>
+<th> 操作系统 </th>
+<th> 硬件架构 </th>
+<th> 图形界面程序 GUI </th>
+<th> 命令行程序 CLI </th>
+<th> 注意事项 </th>
+</tr>
 </thead>
 
 <tr v-for="pkg in packages" v-show="(!filter_os || pkg.os === filter_os) && (!filter_arch || pkg.arch === filter_arch)">

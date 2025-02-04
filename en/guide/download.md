@@ -37,7 +37,7 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-x86_64-v{}.zip'
         },
-        comment: "Windows 7 requires SP1 or above, and the installation of KB3063858 and KB4474419 patches"
+        comment: "Support Windows 8 and above, Windows 7 only supports EasyTier v2.1.2 and below."
     },
     {
         os: "Windows",
@@ -48,6 +48,17 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-arm64-v{}.zip'
         },
+    },
+    {
+        os: 'Windows 7',
+        arch: 'x86_64',
+        gui_pkg_tmpl: {
+            "exe": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-gui_2.1.2_x64-setup.exe'
+        },
+        cli_pkg_tmpl: {
+            "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-windows-x86_64-v2.1.2.zip'
+        },
+        comment: "Windows 7 needs to be SP1 and above, and you need to install the two patches KB3063858 and KB4474419. This version is EasyTier v2.1.2."
     },
     {
         os: "Linux",
@@ -168,11 +179,13 @@ The command line program package includes three executables:
 <table>
 
 <thead>
-<td> Operating System </td>
-<td> Hardware Architecture </td>
-<td> GUI Program </td>
-<td> CLI Program </td>
-<td> Notes </td>
+<tr>
+<th> Operating System </th>
+<th> Hardware Architecture </th>
+<th> GUI Program </th>
+<th> CLI Program </th>
+<th> Notes </th>
+</tr>
 </thead>
 
 <tr v-for="pkg in packages" v-show="(!filter_os || pkg.os === filter_os) && (!filter_arch || pkg.arch === filter_arch)">
