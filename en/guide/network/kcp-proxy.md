@@ -32,6 +32,8 @@ To proxy TCP traffic on Node A to the KCP protocol, simply start EasyTier on Nod
 
 The KCP proxy ensures version compatibility by automatically reverting to the TCP protocol if it detects that the counterpart node does not support the KCP proxy.
 
+By default, the KCP proxy uses the kernel's network stack, which may not work correctly due to system firewall settings. You can try using the `--use-smoltcp` parameter to switch to the user-space network stack.
+
 ## Disabling KCP Input
 
 If you do not want traffic destined for a specific node to use the KCP protocol, start EasyTier on the target node with the `--disable-kcp-input` parameter.
