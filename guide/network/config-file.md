@@ -13,3 +13,7 @@ easytier-core -c ./config.yaml
 使用参数运行可以获得对应参数的配置文件。配置文件会打印在命令行中，可以手动复制对应配置保存为toml文件即可。
 
 在不使用参数的情况下直接运行 `easytier-core` 可以获得最小配置文件。
+
+## 配置文件生成工具
+
+官网提供了配置文件生成工具，可以通过访问 <a href="https://easytier.cn/web/index.html#config_generator">配置文件生成工具</a> 来生成配置文件。

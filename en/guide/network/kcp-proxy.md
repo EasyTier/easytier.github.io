@@ -39,3 +39,21 @@ By default, the KCP proxy uses the kernel's network stack, which may not work co
 If you do not want traffic destined for a specific node to use the KCP protocol, start EasyTier on the target node with the `--disable-kcp-input` parameter.
 
 For example, if you do not want Node B to receive KCP traffic, start EasyTier on Node B with the `--disable-kcp-input` parameter. In this case, even if Node A has enabled the KCP proxy, the traffic from Node A to Node B will continue to use the TCP protocol.
+
+## Checking KCP Proxy Status
+
+You can check the status of KCP proxy connections using the EasyTier CLI tool.
+
+```bash
+$ easytier-cli proxy
+
+┌────────────────────┬───────────────────┬─────────────────────────┬───────────┬────────────────┐
+│ src                │ dst               │ start_time              │ state     │ transport_type │
+├────────────────────┼───────────────────┼─────────────────────────┼───────────┼────────────────┤
+│ 10.126.126.7:51838 │ 10.147.223.128:22 │ 2025-02-07 10:39:08 UTC │ Connected │ Tcp            │
+├────────────────────┼───────────────────┼─────────────────────────┼───────────┼────────────────┤
+│ 0.0.0.0:0          │ 10.147.223.1:80   │ 2025-02-07 10:41:28 UTC │ Connected │ Kcp            │
+├────────────────────┼───────────────────┼─────────────────────────┼───────────┼────────────────┤
+│ 0.0.0.0:0          │ 10.147.223.1:80   │ 2025-02-07 10:41:18 UTC │ Connected │ Kcp            │
+└────────────────────┴───────────────────┴─────────────────────────┴───────────┴────────────────┘
+```
