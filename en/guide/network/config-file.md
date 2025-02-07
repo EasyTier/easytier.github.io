@@ -13,3 +13,7 @@ Note: The configuration file has a higher priority. When a configuration file is
 Running with parameters can generate a configuration file with the corresponding parameters. The configuration file will be printed in the command line, and you can manually copy and save it as a toml file.
 
 Running `easytier-core` directly without parameters will generate the minimal configuration file.
+
+## Configuration File Generator
+
+The official website provides a configuration file generator, which you can access via <a href="https://easytier.cn/web/index.html#config_generator">Configuration File Generator</a> to generate configuration files.
