@@ -16,4 +16,4 @@ Running `easytier-core` directly without parameters will generate the minimal co
 
 ## Configuration File Generator
 
-The official website provides a configuration file generator, which you can access via <a href="https://easytier.cn/web/index.html#config_generator">Configuration File Generator</a> to generate configuration files.
+The official website provides a configuration file generator, which you can access via <a target="_blank" href="https://easytier.cn/web/index.html#config_generator">Configuration File Generator</a> to generate configuration files.

@@ -1,7 +1,5 @@
 # KCP Proxy
 
-EasyTier is a remote networking software that uses a TUN device to create a virtual network and transmits data between nodes via the UDP protocol.
-
 EasyTier typically uses the UDP protocol to transmit IP packets within the virtual network. However, some ISPs restrict UDP, which can lead to high packet loss and affect TCP performance within the virtual network.
 
 To address this issue, EasyTier provides a KCP proxy feature that can proxy TCP connections in the virtual network and convert them to KCP for transmission. Thanks to KCP's more aggressive retransmission mechanism, it effectively reduces packet loss and improves TCP transmission speeds within the virtual network.
@@ -39,6 +37,10 @@ By default, the KCP proxy uses the kernel's network stack, which may not work co
 If you do not want traffic destined for a specific node to use the KCP protocol, start EasyTier on the target node with the `--disable-kcp-input` parameter.
 
 For example, if you do not want Node B to receive KCP traffic, start EasyTier on Node B with the `--disable-kcp-input` parameter. In this case, even if Node A has enabled the KCP proxy, the traffic from Node A to Node B will continue to use the TCP protocol.
+
+## Subnet-to-Subnet KCP Support
+
+If Node A is a router, and the subnet under A needs to access other EasyTier nodes or other proxied subnets, it can also use the KCP proxy. However, Node A must use the user-space network stack by specifying the `--use-smoltcp` parameter. Otherwise, the TCP protocol will still be used.
 
 ## Checking KCP Proxy Status
 
