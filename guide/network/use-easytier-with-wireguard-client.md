@@ -44,7 +44,7 @@ Address = 10.14.14.0/24 # should assign an ip from this cidr manually
 
 [Peer]
 PublicKey = zhrZQg4QdPZs8CajT3r4fmzcNsWpBL9ImQCUsnlXyGM=
-AllowedIPs = 192.168.80.0/20,10.147.223.0/24,10.144.144.0/24
+AllowedIPs = 192.168.80.0/20,10.147.223.0/24,10.144.144.0/24 # if subnet proxy enabled, subnet cidr should also add here
 Endpoint = 0.0.0.0:11013 # should be the public ip of the easytier server
 
 connected_clients:
