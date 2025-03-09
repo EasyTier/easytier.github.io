@@ -74,4 +74,12 @@ Currently, the `--use-smoltcp` parameter only affects the TCP protocol. UDP and 
 
 :::
 
+## Disabling Built-in NAT
+
+By default, the built-in NAT is enabled in the subnet proxy, which handles packet forwarding in user space. This allows non-gateway devices to act as subnet entry points while circumventing the limitations on packet forwarding across different operating systems.
+
+If Easytier is operating on a gateway device, users can use the --proxy-forward-by-system parameter to delegate the forwarding of subnet proxy packets to the system kernel, in which case the built-in NAT will be disabled.
+
+It is important to note that when this option is enabled, the packet forwarding of the subnet proxy will rely entirely on the operating system. Therefore, please ensure that the operating system's firewall, forwarding rules, routing rules, and other configurations are correctly set up.
+
 ---
