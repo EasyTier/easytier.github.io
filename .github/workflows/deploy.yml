@@ -53,6 +53,19 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .vitepress/dist
+      - name: Upload OSS
+        uses: Menci/upload-to-oss@main
+        with:
+          access-key-id: ${{ secrets.ALIYUN_OSS_ACCESS_ID }}
+          access-key-secret: ${{ secrets.ALIYUN_OSS_ACCESS_KEY }}
+          endpoint: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
+          bucket: ${{ secrets.ALIYUN_OSS_BUCKET }}
+          local-path: .vitepress/dist
+          remote-path: /
+          no-delete-remote-files: false
+          retry: 5
+          delay-html-file-upload: true
+
 
   # 部署工作
   deploy:

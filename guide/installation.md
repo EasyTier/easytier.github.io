@@ -17,7 +17,11 @@
    [DockerHub 镜像地址](https://hub.docker.com/layers/easytier/easytier)
 
    ```sh [docker]
+   # docker.io 镜像
    docker pull easytier/easytier:latest
+
+   # 国内用户可以使用 DaoCloud 镜像
+   docker pull m.daocloud.io/docker.io/easytier/easytier:latest
    ```
 
 4. **通过Docker Compose安装**
@@ -50,7 +54,7 @@
          - /etc/easytier:/root
        environment:
          - TZ=Asia/Shanghai
-       image: easytier/easytier:latest
+       image: easytier/easytier:latest # 国内用户可以使用 m.daocloud.io/docker.io/easytier/easytier:latest
        command: -i <ip> --network-name <用户> --network-secret <密码> -p tcp://<服务器地址>:11010
    ```
 
