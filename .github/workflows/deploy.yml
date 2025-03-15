@@ -43,6 +43,24 @@ jobs:
         with:
           node-version: 21
           cache: pnpm # 或 pnpm / yarn
+
+      - name: Clone EasyTier
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+        with:
+          depth: 1
+          branch: 'main'
+          owner: 'EasyTier'
+          repository: 'EasyTier'
+      - name: Build EasyTier Web
+        run: |
+          cd EasyTier
+          pnpm -r install
+          pnpm -r build
+          cd ..
+          mkdir -p public/web
+          cp EasyTier/easytier-web/frontend/dist/index.html public/web/index.html
+          rm -rf EasyTier
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
@@ -54,6 +72,7 @@ jobs:
         with:
           path: .vitepress/dist
       - name: Upload OSS
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: Menci/upload-to-oss@main
         with:
           access-key-id: ${{ secrets.ALIYUN_OSS_ACCESS_ID }}
