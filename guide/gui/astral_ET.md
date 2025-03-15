@@ -3,7 +3,11 @@
 [![GitHub](https://img.shields.io/badge/GitHub-AstralET-blue)](https://github.com/ldoubil/astral)
 
 ## 预览
-
+![manage-step1](/assets/AstralET1.png)
+![manage-step1](/assets/AstralET2.png)
+![manage-step1](/assets/AstralET3.png)
+![manage-step1](/assets/AstralET4.png)
+![manage-step1](/assets/AstralET5.png)
 
 ## 使用教程
 
@@ -11,17 +15,14 @@
    前往 [GitHub 项目页面](https://github.com/ldoubil/astral) 下载最新版本的 AstralET。
 
 2. ​**启动应用**  
-   安装完成后，启动 AstralET。界面简洁直观，无需复杂配置。
+   安装完成后，启动 AstralET。
 
-3. ​**创建或加入游戏房间**  
-   - ​**创建房间**：点击“创建房间”按钮，设置房间名称和密码（可选）。  
-   - ​**加入房间**：输入房间ID和密码（如有），点击“加入房间”。
+3. ​**开始联机**  
+   - ​修改你喜欢的名字和房间密码,然后点击开始即可(如果无法获取到IP尝试管理员启动或者看看防火墙-后期更新会解决这个问题)。
 
-4. ​**开始联机**  
-   成功连接后，即可与好友畅享游戏联机乐趣。
-
-5. ​**关闭应用**  
-   联机结束后，直接关闭应用即可，不会保留任何后台进程。
+4. ​**没有第四步了**
+   - 剩下的功能我相信你一看就懂.  
+   
 
 ## 介绍
 
