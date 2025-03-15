@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import { defineConfig } from 'vitepress'
 
 export const en = defineConfig({
+  title: 'EasyTier - A Simple, Secure, Decentralized SD-WAN Solution',
   lang: 'en',
   description: 'A simple, secure, decentralized SD-WAN solution for intranet penetration, implemented using Rust and the Tokio framework',
 
