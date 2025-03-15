@@ -7,15 +7,21 @@ import { cn, cnSearch } from './cn'
 import { en } from './en'
 
 export default withMermaid({
-  title: 'EasyTier',
   base: '/',
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/easytier.png' }],
-    // bing webmaster: <meta name="msvalidate.01" content="C6CB41F1DA6096106497701D002B19AD" />
     ['meta', { name: 'msvalidate.01', content: 'C6CB41F1DA6096106497701D002B19AD' }],
+    ['meta', { name: 'author', content: 'EasyTier' }],
+    ['meta', { name: 'keywords', content: 'easytier,SD-WAN,networking' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'EasyTier' }],
+    ['meta', { property: 'og:description', content: 'EasyTier official' }],
+    ['meta', { property: 'og:image', content: 'https://easytier.cn/easytier.png' }],
+    ['link', { rel: 'canonical', href: 'https://easytier.cn' }],
   ],
   themeConfig: {
+    siteTitle: 'EasyTier',
     logo: '/easytier.png',
     search: {
       provider: 'local',

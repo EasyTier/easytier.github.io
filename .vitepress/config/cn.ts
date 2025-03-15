@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import { defineConfig } from 'vitepress'
 
 export const cn = defineConfig({
+  title: 'EasyTier - 简单、安全、去中心化的异地组网方案',
   lang: 'cn',
   description: '一个简单、安全、去中心化的内网穿透 SD-WAN 异地组网方案，使用 Rust 语言和 Tokio 框架实现',
 
