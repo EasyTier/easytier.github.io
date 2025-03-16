@@ -25,11 +25,11 @@
 
 ## Introduction
 
-AstralET is a lightweight game connection tool developed based on ​**Flutter** and ​**easytier**, aiming to provide players with a simple and efficient connection experience.
+AstralET is a lightweight game connection tool developed based on ​**Flutter** and ​**EasyTier**, aiming to provide players with a simple and efficient connection experience.
 
 ## Features
 
-- ​**Built-in easytier**: Easytier is directly compiled into AstralET, no additional installation required, and no background processes are retained.  
+- ​**Built-in EasyTier**: EasyTier is directly compiled into AstralET, no additional installation required, and no background processes are retained.  
 - ​**Ready to Use**: Start the application when connecting and close it after finishing, simple and convenient.  
 - ​**Active Maintenance**: The author actively updates, fixing issues and optimizing features at any time (a result of working while browsing the web).
 
