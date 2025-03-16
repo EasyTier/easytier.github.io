@@ -51,7 +51,7 @@ export const en = defineConfig({
           { text: 'Subnet Proxy', link: '/en/guide/gui/subnet_proxy' },
           { text: 'EasyTier Manager', link: '/en/guide/gui/easytier-manager' },
           { text: 'EasyTier Game Launcher', link: '/en/guide/gui/easytier-game' },
-          { text: 'AstralET Game Connection Tool', link: 'en/guide/gui/astral_ET' },
+          { text: 'AstralET Game Connection Tool', link: '/en/guide/gui/astral_ET' },
         ],
       },
       {
