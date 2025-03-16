@@ -52,6 +52,7 @@ export const cn = defineConfig({
           { text: '子网代理', link: '/guide/gui/subnet_proxy' },
           { text: 'EasyTier 管理器', link: '/guide/gui/easytier-manager' },
           { text: 'EasyTier 游戏联机启动器', link: '/guide/gui/easytier-game' },
+          { text: 'AstralET 游戏联机工具', link: '/guide/gui/astral_ET.md' },
         ],
       },
       {
