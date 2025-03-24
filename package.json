@@ -19,7 +19,7 @@
     "eslint": "9.18.0",
     "eslint-plugin-format": "1.0.1",
     "markdown-it-task-lists": "2.1.1",
-    "mermaid": "11.4.1",
+    "mermaid": "11.5.0",
     "vitepress": "1.5.0",
     "vitepress-plugin-mermaid": "2.0.17"
   }
