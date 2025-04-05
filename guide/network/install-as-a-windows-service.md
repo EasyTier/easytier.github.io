@@ -6,106 +6,187 @@
 
 ## 一、前期准备
 
+**下载 easytier 应用**：
+
+找到最新版本的`easytier-windows-x86_64-v2.2.0.zip`文件下载链接，将其下载到本地。
+
+下载完成后，将该压缩包解压到本地目录，比如`D:\EasyTier`。
+
 **下载 NSSM**：
 
 打开浏览器，访问 NSSM 官网 \[[ht](https://nssm.cc/download)[tps:/](https://nssm.cc/download)[/nssm](https://nssm.cc/download)[.cc/d](https://nssm.cc/download)[ownlo](https://nssm.cc/download)[ad](https://nssm.cc/download)]。
 
 在官网页面中找到适用于你系统的版本（通常是最新版本），点击下载链接将其下载到本地。
 
-下载完成后，将压缩包解压到你指定的本地目录，例如`D:\NSSM`。
+下载完成后，将压缩包中的`nssm.exe`解压到`EasyTier`所在的本地目录，例如`D:\EasyTier`。
 
-**下载 easytier 应用**：
+**创建脚本工具**
 
-找到最新版本的`easytier-windows-x86_64-v2.2.0.zip`文件下载链接，将其下载到本地。
+在`EasyTier`所在的本地目录创建`install.cmd`文件并写入以下内容：
 
-下载完成后，将该压缩包解压到本地目录，比如`D:\Program Files\EasyTier`。
+```Batch
+@echo off
+chcp 65001 >nul
+setlocal enabledelayedexpansion
 
-## 二、安装为 Windows 服务
+:: 检查管理员权限
+fltmc >nul 2>&1 || (
+    echo 请使用管理员权限运行！
+    pause
+    exit /b
+)
 
-**打开命令提示符或 PowerShell**：
+:: 交互式输入配置
+echo 正在创建EasyTier服务配置...
 
-按下`Win + R`组合键，打开 “运行” 对话框。
+set /p SERVICE_NAME=请输入服务名称(默认EasyTierService): 
+if "%SERVICE_NAME%"=="" set SERVICE_NAME=EasyTierService
 
-在对话框中输入`cmd`（打开命令提示符）或`powershell`（打开 PowerShell），然后点击 “确定” 按钮。
+set /p DEV_NAME=请输入设备名称(默认EasyTierNET): 
+if "%DEV_NAME%"=="" set DEV_NAME=EasyTierNET
 
-**切换到 NSSM 解压目录**：
+:network_input
+set /p NETWORK_NAME=请输入网络名称(必填): 
+if "%NETWORK_NAME%"=="" (
+    echo 错误：网络名称不能为空
+    goto network_input
+)
 
-在命令提示符或 PowerShell 中，使用`cd`命令切换到 NSSM 解压后的目录。例如，如果 NSSM 解压到了`D:\NSSM`，则输入`cd D:\NSSM`，然后按下回车键。
+:secret_input
+set /p NETWORK_SECRET=请输入网络密钥(必填): 
+if "%NETWORK_SECRET%"=="" (
+    echo 错误：网络密钥不能为空
+    goto secret_input
+)
 
-**安装服务**：
+set /p PEERS=请输入中继节点(多个节点用英文逗号[,]分隔，默认tcp://public.easytier.cn:11010,udp://public.easytier.cn:11010): 
+if "%PEERS%"=="" set PEERS=tcp://public.easytier.cn:11010,udp://public.easytier.cn:11010
 
-在命令提示符或 PowerShell 中输入`nssm.exe install easytier_service`，然后按下回车键。此时会弹出一个 NSSM 配置窗口。
+:: 可选功能配置
+set OPTIONS=
+set /p ENABLE_LATENCY=是否启用低延迟优先模式[Y/n]: 
+if /i "!ENABLE_LATENCY!"=="Y" set OPTIONS=!OPTIONS! --latency-first
 
-## 三、配置服务参数
+set /p ENABLE_MULTI_THREAD=是否启用多线程模式[Y/n]: 
+if /i "!ENABLE_MULTI_THREAD!"=="Y" set OPTIONS=!OPTIONS! --multi-thread
 
-**设置 Path**：
+set /p ENABLE_KCP=是否启用KCP代理[Y/n]: 
+if /i "!ENABLE_KCP!"=="Y" set OPTIONS=!OPTIONS! --enable-kcp-proxy
 
-在 NSSM 配置窗口中，找到 “Path” 字段。
+set /p ENABLE_PROXY=是否启用系统代理转发[Y/n]: 
+if /i "!ENABLE_PROXY!"=="Y" set OPTIONS=!OPTIONS! --proxy-forward-by-system
 
-将`easytier-core.exe`的完整路径填入该字段。例如，如果`easytier-core.exe`位于`D:\Program Files\EasyTier`目录下，则填写`D:\Program Files\EasyTier\easytier-core.exe`。
+:: 转换PEERS为nssm需要的格式
+set PEERS_PARAMS=
+for %%p in (%PEERS%) do (
+    set PEERS_PARAMS=!PEERS_PARAMS! --peers %%p
+)
 
-**设置 Startup directory**：
+:: 安装服务
+echo 正在安装服务 %SERVICE_NAME%...
+"%~dp0nssm.exe" install %SERVICE_NAME% "easytier-core.exe"
+"%~dp0nssm.exe" set %SERVICE_NAME% AppParameters "-d --dev-name %DEV_NAME% --no-listener !OPTIONS! --network-name %NETWORK_NAME% --network-secret %NETWORK_SECRET% %PEERS_PARAMS%"
 
-找到 “Startup directory” 字段。
+:: 设置服务描述
+"%~dp0nssm.exe" set %SERVICE_NAME% Description "EasyTier 核心服务"
 
-填入`easytier-core.exe`所在的目录，即`D:\Program Files\EasyTier`。
+:: 设置工作目录为当前目录
+"%~dp0nssm.exe" set %SERVICE_NAME% AppDirectory %~dp0
 
-**设置 Arguments**：
+:: 设置服务启动类型为自动
+"%~dp0nssm.exe" set %SERVICE_NAME% Start SERVICE_AUTO_START
 
-在 “Arguments” 字段中，填入你需要的启动参数。例如`-i 10.10.10.2 --network-name easytier --network-secret easytier --peers tcp://public.easytier.top:11010`。这些参数根据你的实际需求进行配置。
+:: 启动服务
+echo 正在启动服务 %SERVICE_NAME%...
+"%~dp0nssm.exe" start %SERVICE_NAME%
 
-![easytier nssm](/assets/win-service.png)
+echo 服务 %SERVICE_NAME% 安装完成
 
-**保存配置并关闭窗口**：
+:: 保存服务名称供卸载脚本使用
+echo %SERVICE_NAME% > "%~dp0service_name.txt"
 
-完成上述参数设置后，点击 NSSM 配置窗口中的 “Edit service” 按钮，保存配置并关闭窗口。此时，`easytier_service`服务已经安装并配置完成。
+:: 显示节点信息
+"%~dp0easytier-cli.exe" node
+pause
+```
 
-## 四、删除服务
+在`EasyTier`所在的本地目录创建`uninstall.cmd`文件并写入以下内容：
 
-如果需要删除已安装的服务，可以按照以下步骤操作：
+```Batch
+@echo off
+chcp 65001 >nul
+setlocal
 
-**打开命令提示符或 PowerShell**：
+:: 检查管理员权限
+fltmc >nul 2>&1 || (
+    echo 请使用管理员权限运行！
+    pause
+    exit /b
+)
 
-按下`Win + R`组合键，打开 “运行” 对话框。
+:: 检查服务名称文件是否存在
+if not exist "%~dp0service_name.txt" (
+    echo 错误：找不到service_name.txt文件！
+    echo 请检查是否正确安装。
+    pause
+    exit /b 1
+)
 
-在对话框中输入`cmd`（打开命令提示符）或`powershell`（打开 PowerShell），然后点击 “确定” 按钮。
+:: 读取服务名称
+set /p SERVICE_NAME=<"%~dp0service_name.txt"
 
-**切换到 NSSM 解压目录**：
+:: 停止并删除服务
+echo 正在停止服务 %SERVICE_NAME%...
+"%~dp0nssm.exe" stop %SERVICE_NAME%
+"%~dp0nssm.exe" remove %SERVICE_NAME% confirm
 
-使用`cd`命令切换到 NSSM 解压后的目录。例如，如果 NSSM 解压到了`D:\NSSM`，则输入`cd D:\NSSM`，然后按下回车键。
+echo 服务 %SERVICE_NAME% 已卸载
+pause
 
-**删除服务**：
+```
 
-在命令提示符或 PowerShell 中输入`nssm.exe remove easytier_service`，然后按下回车键。根据提示完成服务的删除操作。
+## 二、准备工作
 
-## 五、查看连接情况
+1. 确保当前目录下包含以下文件：
+   - `easytier-core.exe` (核心程序)
+   - `easytier-cli.exe` (命令行工具)
+   - `nssm.exe` (服务管理工具)
+   - `install.cmd` (安装脚本)
+   - `uninstall.cmd` (卸载脚本)
 
-为了方便执行`easytier-cli.exe`查看连接情况，可以采用以下两种方法：
+2. 建议将整个文件夹放在固定位置。
 
-**注册到环境变量**：
+## 三、安装服务
 
-右键点击 “此电脑”，选择 “属性”。
+1. **以管理员身份**运行`install.cmd`
+2. 按照提示输入配置信息：
+   - 服务名称 (默认: EasyTierService)
+   - STUN设备名称 (默认: EasyTierNET)
+   - 网络名称 (必填)
+   - 网络密钥 (必填)
+   - 中继节点 (默认: tcp://public.easytier.cn:11010,udp://public.easytier.cn:11010)
+3. 选择可选功能：
+   - 低延迟优先模式
+   - 多线程模式  
+   - KCP代理
+   - 系统代理转发
+4. 安装完成后会自动启动服务。
 
-在弹出的窗口中，点击左侧的 “高级系统设置”。
+## 四、卸载服务
 
-在 “系统属性” 窗口中，点击 “高级” 选项卡，然后点击 “环境变量” 按钮。
+1. **以管理员身份**运行`uninstall.cmd`
+2. 脚本会自动停止并删除服务
 
-在 “环境变量” 窗口中，找到 “系统变量” 下的 “Path” 变量，点击 “编辑”。
+## 五、注意事项
 
-在弹出的 “编辑环境变量” 窗口中，点击 “新建”，然后将`easytier-cli.exe`所在的目录路径添加进去。例如，如果`easytier-cli.exe`位于`D:\Program Files\EasyTier`目录下，则添加`D:\Program Files\EasyTier`。
+1. 安装/卸载必须使用管理员权限
+2. 安装后不要移动程序文件位置
+3. 服务配置保存在`service_name.txt`中，请不要手动修改
 
-点击 “确定” 按钮保存设置，关闭所有窗口。
+## 六、常见问题
 
-**存放到指定目录**：
+**Q: 如何修改服务配置？**
+A: 先卸载服务，然后重新安装
 
-将`easytier-cli.exe`文件复制到`C:\Users\Administrator`目录下（`Administrator`请替换为你自己的 Windows 用户名）。
 
-打开任意一个命令提示符或 PowerShell 窗口，输入`easytier-cli.exe peer`，按下回车键即可查看连接情况。
-
-## 六、注意事项
-
-注册成服务后，程序（指`easytier-core.exe`）不能随意修改、删除或移动。如果需要进行这些操作，需要先删除服务，然后重新注册或修改 Windows 注册表。
-
-在配置服务参数时，确保参数的正确性，否则可能导致服务无法正常启动。
-
-在设置环境变量时，要小心操作，避免误删或误改其他重要的环境变量。
+> 提示：所有操作必须在EasyTier程序所在目录进行
