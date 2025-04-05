@@ -29,7 +29,6 @@
    ::: details docker-compose.yml
 
    ```yaml [docker-compose.yml]
-   version: '3.8'
    services:
      watchtower: # 用于自动更新easytier镜像，若不需要请删除这部分
        command: --interval 3600 --cleanup --label-enable
