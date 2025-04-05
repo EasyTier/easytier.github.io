@@ -25,7 +25,6 @@
    ::: details docker-compose.yml
 
    ```yaml [docker-compose.yml]
-   version: '3.8'
    services:
      watchtower: # Used to automatically update the easytier image, delete this part if not needed
        command: --interval 3600 --cleanup --label-enable
