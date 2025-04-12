@@ -221,7 +221,7 @@ exit
 2. 按照提示输入配置信息：
    - 网络名称 (必填)
    - 网络密钥 (必填)
-   - 中继节点 (默认: tcp://public.easytier.cn:11010,udp://public.easytier.cn:11010)
+   - 中继节点 (默认: tcp://public.easytier.cn:11010)
    - TUN设备名称 (默认: EasyTierNET)
 3. 选择可选功能：
    - 低延迟优先模式
