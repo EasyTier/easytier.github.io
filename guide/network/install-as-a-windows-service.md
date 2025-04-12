@@ -33,7 +33,7 @@
 
 在当前目录下创建`install.cmd`文件并写入以下内容：
 
-```Batch
+```powershell
 @echo off
 @chcp 65001 > nul
 cd /d "%~dp0"
