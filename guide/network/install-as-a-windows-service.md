@@ -84,47 +84,118 @@ $SERVICE_NAME = "EasyTierService"
 # 网络名称验证
 do {
     $NETWORK_NAME = Read-Host "请输入网络名称(必填)"
-} while ([string]::IsNullOrWhiteSpace($NETWORK_NAME))
+    if ([string]::IsNullOrWhiteSpace($NETWORK_NAME)) {
+        Write-Host "名称不能为空！" -ForegroundColor Red
+    }
+    elseif ($NETWORK_NAME -match '\s') {
+        # 检查包含空格
+        Write-Host "名称不能包含空格！" -ForegroundColor Red
+    }
+} while ([string]::IsNullOrWhiteSpace($NETWORK_NAME) -or ($NETWORK_NAME -match '\s'))
 
 # 网络密钥验证
 do {
     $NETWORK_SECRET = Read-Host "请输入网络密钥(必填)"
-} while ([string]::IsNullOrWhiteSpace($NETWORK_SECRET))
+    if ([string]::IsNullOrWhiteSpace($NETWORK_SECRET)) {
+        Write-Host "密钥不能为空！" -ForegroundColor Red
+    }
+    elseif ($NETWORK_SECRET -match '\s') {
+        # 检查包含空格
+        Write-Host "密钥不能包含空格！" -ForegroundColor Red
+    }
+} while ([string]::IsNullOrWhiteSpace($NETWORK_SECRET) -or ($NETWORK_SECRET -match '\s'))
 
-# 中继节点处理
-$PEERS = Read-Host "请输入中继节点(多个节点用英文逗号分隔，默认tcp://public.easytier.cn:11010)"
-$PEERS = if ([string]::IsNullOrWhiteSpace($PEERS)) { "tcp://public.easytier.cn:11010" } else { $PEERS }
-$PEERS_PARAMS = ($PEERS -split ',' | ForEach-Object { "--peers $($_.Trim())" }) -join ' '
-
-# 设备名称设置
-$DEV_NAME = Read-Host "请输入TUN设备名称(默认EasyTierNET)"
-$DEV_NAME = if ([string]::IsNullOrEmpty($DEV_NAME)) { "EasyTierNET" } else { $DEV_NAME }
-
-# 功能选项配置
+# 配置选项
 $OPTIONS = @()
-if ((Read-Host "是否启用低延迟优先模式[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--latency-first" }
-if ((Read-Host "是否启用多线程模式[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--multi-thread" }
-if ((Read-Host "是否启用KCP代理[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--enable-kcp-proxy" }
-if ((Read-Host "是否启用系统代理转发[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--proxy-forward-by-system" }
+
+# 公共节点处理
+if ((Read-Host "是否指定公共节点？(默认使用【tcp://public.easytier.cn:11010】，如需指定请按Y)[y/N]") -match '^[Yy]$') {
+    do {
+        $EXTERNAL_NODE = Read-Host "请输入公共节点地址(必填)"
+        if ([string]::IsNullOrWhiteSpace($EXTERNAL_NODE)) {
+            Write-Host "公共节点地址不能为空！" -ForegroundColor Red
+        }
+        elseif ($EXTERNAL_NODE -match '\s') {
+            Write-Host "公共节点地址不能包含空格！" -ForegroundColor Red
+        }
+    } while ([string]::IsNullOrWhiteSpace($EXTERNAL_NODE) -or ($EXTERNAL_NODE -match '\s'))
+    $OPTIONS += "--external-node $EXTERNAL_NODE"
+}
+else {
+    $OPTIONS += "--external-node tcp://public.easytier.cn:11010"
+}
+
+# 对等节点处理
+if ((Read-Host "是否添加对等节点？(默认添加【tcp://public.easytier.cn:11010】，如需添加请按Y)[y/N]") -match '^[Yy]$') {
+    do {
+        $PEERS = Read-Host "请输入对等节点地址(必填)"
+        if ([string]::IsNullOrWhiteSpace($PEERS)) {
+            Write-Host "对等节点地址不能为空！" -ForegroundColor Red
+        }
+        elseif ($PEERS -match '\s') {
+            Write-Host "对等节点地址不能包含空格！" -ForegroundColor Red
+        }
+    } while ([string]::IsNullOrWhiteSpace($PEERS) -or ($PEERS -match '\s'))
+    $OPTIONS += ($PEERS -split ',' | ForEach-Object { "--peers $($_.Trim())" }) -join ' '
+}
+else {
+    $OPTIONS += "--peers tcp://public.easytier.cn:11010"
+}
+
+# 当前节点名称处理
+if ((Read-Host "是否指定当前节点名称？(默认使用计算机名，如需指定请按Y)[y/N]") -match '^[Yy]$') {
+    do {
+        $HOSTNAME = Read-Host "请输入节点名称(必填)"
+        if ([string]::IsNullOrWhiteSpace($HOSTNAME)) {
+            Write-Host "节点名称不能为空！" -ForegroundColor Red
+        }
+        elseif ($HOSTNAME -match '\s') {
+            Write-Host "节点名称不能包含空格！" -ForegroundColor Red
+        }
+    } while ([string]::IsNullOrWhiteSpace($HOSTNAME) -or ($HOSTNAME -match '\s'))
+    $OPTIONS += "--hostname $HOSTNAME"
+}
+
+if ((Read-Host "是否使用自动分配地址？(默认使用自动分配地址，如需指定地址请按Y)[Y/n]") -match '^[Yy]$') {
+    # 当前节点IP地址验证
+    do {
+        $IP = Read-Host "请输入节点IP地址(必填)"
+        if ([string]::IsNullOrWhiteSpace($IP)) {
+            Write-Host "节点IP地址不能为空！" -ForegroundColor Red
+        }
+        elseif ($IP -match '\s') {
+            # 检查包含空格
+            Write-Host "节点IP地址不能包含空格！" -ForegroundColor Red
+        }
+    } while ([string]::IsNullOrWhiteSpace($IP) -or ($IP -match '\s'))
+    $OPTIONS += "--ipv4 $IP"
+}
+else {
+    $OPTIONS += "--dhcp"
+}
+
+if ((Read-Host "是否启用低延迟优先模式？[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--latency-first" }
+if ((Read-Host "是否启用多线程模式？[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--multi-thread" }
+if ((Read-Host "是否启用KCP代理？[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--enable-kcp-proxy" }
+if ((Read-Host "是否启用系统代理转发？[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--proxy-forward-by-system" }
 
 # 服务安装部分
 try {
     $nssm = Join-Path $ScriptRoot "nssm.exe"
-    
-    # 创建服务
-    & $nssm install $SERVICE_NAME (Join-Path $ScriptRoot "easytier-core.exe")
-    
+
     # 配置服务参数
     $arguments = @(
-        "-d",
-        "--dev-name $DEV_NAME",
+        "--dev-name EasyTier_NET",
         "--no-listener",
-        $OPTIONS,
         "--network-name $NETWORK_NAME",
-        "--network-secret $NETWORK_SECRET",
-        $PEERS_PARAMS
-    ) -join ' '
+        "--network-secret $NETWORK_SECRET"
+    ) + $OPTIONS -join ' '
     
+    Write-Host "`n$arguments`n"
+    Pause -Text "请确认以上配置是否正确，按任意键继续..."
+
+    # 创建服务
+    & $nssm install $SERVICE_NAME (Join-Path $ScriptRoot "easytier-core.exe")
     & $nssm set $SERVICE_NAME AppParameters $arguments
     & $nssm set $SERVICE_NAME Description "EasyTier 核心服务"
     & $nssm set $SERVICE_NAME AppDirectory $ScriptRoot
