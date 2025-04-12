@@ -26,145 +26,205 @@
 
 ```Batch
 @echo off
-chcp 65001 >nul
-setlocal enabledelayedexpansion
+@chcp 65001 > nul
+cd /d "%~dp0"
+title 正在启动脚本...
+where /q powershell 
+if %ERRORLEVEL% NEQ 0 echo PowerShell is not installed. && pause > nul && exit
+powershell -command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#powershell#'); if ($mainIndex -le 0) {throw 'PowerShell script not found.'}; $content = $content.Substring($mainIndex + '#powershell#'.Length); $content = [ScriptBlock]::Create($content); Invoke-Command -ScriptBlock $content -ArgumentList (('%*' -split ' ') + @((Get-Location).Path));"
+exit
+#powershell#
+function Pause {
+    param (
+        [string]$Text = "按任意键继续..."
+    )
+    Write-Host $Text -ForegroundColor Yellow
+    [System.Console]::ReadKey($true) > $null
+}
 
-:: 检查管理员权限
-fltmc >nul 2>&1 || (
-    echo 请使用管理员权限运行！
-    pause
-    exit /b
-)
+# 初始化路径
+Set-Location -Path $args[-1]
+$ScriptRoot = (Get-Location).Path
 
-:: 交互式输入配置
-echo 正在创建EasyTier服务配置...
+# 修改标题
+$host.ui.rawui.WindowTitle = "安装EasyTierService"
 
-set /p SERVICE_NAME=请输入服务名称(默认EasyTierService): 
-if "%SERVICE_NAME%"=="" set SERVICE_NAME=EasyTierService
+# 检查管理员权限
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Host "请使用管理员权限运行！" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
 
-set /p DEV_NAME=请输入设备名称(默认EasyTierNET): 
-if "%DEV_NAME%"=="" set DEV_NAME=EasyTierNET
+# 必要文件检查
+$RequiredFiles = @("nssm.exe", "easytier-core.exe", "easytier-cli.exe")
+foreach ($file in $RequiredFiles) {
+    if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
+        Write-Host "缺少必要文件: $file" -ForegroundColor Red
+        Pause -Text "按任意键退出..."
+        exit 1
+    }
+}
 
-:network_input
-set /p NETWORK_NAME=请输入网络名称(必填): 
-if "%NETWORK_NAME%"=="" (
-    echo 错误：网络名称不能为空
-    goto network_input
-)
+# 交互式配置部分
+Write-Host "`n正在创建EasyTier服务配置...`n" -ForegroundColor Cyan
 
-:secret_input
-set /p NETWORK_SECRET=请输入网络密钥(必填): 
-if "%NETWORK_SECRET%"=="" (
-    echo 错误：网络密钥不能为空
-    goto secret_input
-)
+# 服务名称设置
+$SERVICE_NAME = "EasyTierService"
 
-set /p PEERS=请输入中继节点(多个节点用英文逗号[,]分隔，默认tcp://public.easytier.cn:11010,udp://public.easytier.cn:11010): 
-if "%PEERS%"=="" set PEERS=tcp://public.easytier.cn:11010,udp://public.easytier.cn:11010
+# 网络名称验证
+do {
+    $NETWORK_NAME = Read-Host "请输入网络名称(必填)"
+} while ([string]::IsNullOrWhiteSpace($NETWORK_NAME))
 
-:: 可选功能配置
-set OPTIONS=
-set /p ENABLE_LATENCY=是否启用低延迟优先模式[Y/n]: 
-if /i "!ENABLE_LATENCY!"=="Y" set OPTIONS=!OPTIONS! --latency-first
+# 网络密钥验证
+do {
+    $NETWORK_SECRET = Read-Host "请输入网络密钥(必填)"
+} while ([string]::IsNullOrWhiteSpace($NETWORK_SECRET))
 
-set /p ENABLE_MULTI_THREAD=是否启用多线程模式[Y/n]: 
-if /i "!ENABLE_MULTI_THREAD!"=="Y" set OPTIONS=!OPTIONS! --multi-thread
+# 中继节点处理
+$PEERS = Read-Host "请输入中继节点(多个节点用英文逗号分隔，默认tcp://public.easytier.cn:11010)"
+$PEERS = if ([string]::IsNullOrWhiteSpace($PEERS)) { "tcp://public.easytier.cn:11010" } else { $PEERS }
+$PEERS_PARAMS = ($PEERS -split ',' | ForEach-Object { "--peers $($_.Trim())" }) -join ' '
 
-set /p ENABLE_KCP=是否启用KCP代理[Y/n]: 
-if /i "!ENABLE_KCP!"=="Y" set OPTIONS=!OPTIONS! --enable-kcp-proxy
+# 设备名称设置
+$DEV_NAME = Read-Host "请输入TUN设备名称(默认EasyTierNET)"
+$DEV_NAME = if ([string]::IsNullOrEmpty($DEV_NAME)) { "EasyTierNET" } else { $DEV_NAME }
 
-set /p ENABLE_PROXY=是否启用系统代理转发[Y/n]: 
-if /i "!ENABLE_PROXY!"=="Y" set OPTIONS=!OPTIONS! --proxy-forward-by-system
+# 功能选项配置
+$OPTIONS = @()
+if ((Read-Host "是否启用低延迟优先模式[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--latency-first" }
+if ((Read-Host "是否启用多线程模式[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--multi-thread" }
+if ((Read-Host "是否启用KCP代理[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--enable-kcp-proxy" }
+if ((Read-Host "是否启用系统代理转发[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--proxy-forward-by-system" }
 
-:: 转换PEERS为nssm需要的格式
-set PEERS_PARAMS=
-for %%p in (%PEERS%) do (
-    set PEERS_PARAMS=!PEERS_PARAMS! --peers %%p
-)
-
-:: 安装服务
-echo 正在安装服务 %SERVICE_NAME%...
-"%~dp0nssm.exe" install %SERVICE_NAME% "easytier-core.exe"
-"%~dp0nssm.exe" set %SERVICE_NAME% AppParameters "-d --dev-name %DEV_NAME% --no-listener !OPTIONS! --network-name %NETWORK_NAME% --network-secret %NETWORK_SECRET% %PEERS_PARAMS%"
-
-:: 设置服务描述
-"%~dp0nssm.exe" set %SERVICE_NAME% Description "EasyTier 核心服务"
-
-:: 设置工作目录为当前目录
-"%~dp0nssm.exe" set %SERVICE_NAME% AppDirectory %~dp0
-
-:: 设置服务启动类型为自动
-"%~dp0nssm.exe" set %SERVICE_NAME% Start SERVICE_AUTO_START
-
-:: 启动服务
-echo 正在启动服务 %SERVICE_NAME%...
-"%~dp0nssm.exe" start %SERVICE_NAME%
-
-echo 服务 %SERVICE_NAME% 安装完成
-
-:: 保存服务名称供卸载脚本使用
-echo %SERVICE_NAME% > "%~dp0service_name.txt"
-
-:: 显示节点信息
-"%~dp0easytier-cli.exe" node
-pause
+# 服务安装部分
+try {
+    $nssm = Join-Path $ScriptRoot "nssm.exe"
+    
+    # 创建服务
+    & $nssm install $SERVICE_NAME (Join-Path $ScriptRoot "easytier-core.exe")
+    
+    # 配置服务参数
+    $arguments = @(
+        "-d",
+        "--dev-name $DEV_NAME",
+        "--no-listener",
+        $OPTIONS,
+        "--network-name $NETWORK_NAME",
+        "--network-secret $NETWORK_SECRET",
+        $PEERS_PARAMS
+    ) -join ' '
+    
+    & $nssm set $SERVICE_NAME AppParameters $arguments
+    & $nssm set $SERVICE_NAME Description "EasyTier 核心服务"
+    & $nssm set $SERVICE_NAME AppDirectory $ScriptRoot
+    & $nssm set $SERVICE_NAME Start SERVICE_AUTO_START
+    
+    # 启动服务
+    & $nssm start $SERVICE_NAME
+    
+    Write-Host "`n服务安装完成，如需查看节点信息请执行：easytier-cli.exe node" -ForegroundColor Green
+}
+catch {
+    Write-Host "`n安装过程中发生错误: $_" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
+Pause -Text "按任意键退出..."
+exit
 ```
 
 在`EasyTier`所在的本地目录创建`uninstall.cmd`文件并写入以下内容：
 
 ```Batch
 @echo off
-chcp 65001 >nul
-setlocal
+@chcp 65001 > nul
+cd /d "%~dp0"
+title 正在启动脚本...
+where /q powershell 
+if %ERRORLEVEL% NEQ 0 echo PowerShell is not installed. && pause > nul && exit
+powershell -command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#powershell#'); if ($mainIndex -le 0) {throw 'PowerShell script not found.'}; $content = $content.Substring($mainIndex + '#powershell#'.Length); $content = [ScriptBlock]::Create($content); Invoke-Command -ScriptBlock $content -ArgumentList (('%*' -split ' ') + @((Get-Location).Path));"
+exit
+#powershell#
+function Pause {
+    param (
+        [string]$Text = "按任意键继续..."
+    )
+    Write-Host $Text -ForegroundColor Yellow
+    [System.Console]::ReadKey($true) > $null
+}
 
-:: 检查管理员权限
-fltmc >nul 2>&1 || (
-    echo 请使用管理员权限运行！
-    pause
-    exit /b
-)
+# 初始化路径
+Set-Location -Path $args[-1]
+$ScriptRoot = (Get-Location).Path
 
-:: 检查服务名称文件是否存在
-if not exist "%~dp0service_name.txt" (
-    echo 错误：找不到service_name.txt文件！
-    echo 请检查是否正确安装。
-    pause
-    exit /b 1
-)
+# 修改标题
+$host.ui.rawui.WindowTitle = "卸载EasyTier服务"
 
-:: 读取服务名称
-set /p SERVICE_NAME=<"%~dp0service_name.txt"
+# 检查管理员权限
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Host "请使用管理员权限运行！" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
 
-:: 停止并删除服务
-echo 正在停止服务 %SERVICE_NAME%...
-"%~dp0nssm.exe" stop %SERVICE_NAME%
-"%~dp0nssm.exe" remove %SERVICE_NAME% confirm
+# 必要文件检查
+$RequiredFiles = @("nssm.exe", "easytier-core.exe", "easytier-cli.exe")
+foreach ($file in $RequiredFiles) {
+    if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
+        Write-Host "缺少必要文件: $file" -ForegroundColor Red
+        Pause -Text "按任意键退出..."
+        exit 1
+    }
+}
 
-echo 服务 %SERVICE_NAME% 已卸载
-pause
+$SERVICE_NAME = "EasyTierService"
+# 服务卸载部分
+try {
+    $nssm = Join-Path $ScriptRoot "nssm.exe"
+    
+	# 停止服务
+	Write-Host "正在停止服务 $SERVICE_NAME ..."
+	& $nssm stop $SERVICE_NAME
 
+	# 删除服务（自动确认）
+	Write-Host "正在移除服务 $SERVICE_NAME ..."
+	& $nssm remove $SERVICE_NAME confirm
+
+	Write-Host "`n服务 $SERVICE_NAME 已卸载" -ForegroundColor Green
+}
+catch {
+    Write-Host "`n卸载过程中发生错误: $_" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
+
+Pause -Text "按任意键退出..."
+exit
 ```
 
 ## 二、准备工作
 
 1. 确保当前目录下包含以下文件：
+   - `install.cmd` (安装脚本)
+   - `uninstall.cmd` (卸载脚本)
    - `easytier-core.exe` (核心程序)
    - `easytier-cli.exe` (命令行工具)
    - `nssm.exe` (服务管理工具)
-   - `install.cmd` (安装脚本)
-   - `uninstall.cmd` (卸载脚本)
+   - `Packet.dll` (运行库)
+   - `wintun.dll` (运行库)
 
-2. 建议将整个文件夹放在固定位置。
+3. 建议将整个文件夹放在固定位置。
 
 ## 三、安装服务
 
 1. **以管理员身份**运行`install.cmd`
 2. 按照提示输入配置信息：
-   - 服务名称 (默认: EasyTierService)
-   - STUN设备名称 (默认: EasyTierNET)
    - 网络名称 (必填)
    - 网络密钥 (必填)
    - 中继节点 (默认: tcp://public.easytier.cn:11010,udp://public.easytier.cn:11010)
+   - TUN设备名称 (默认: EasyTierNET)
 3. 选择可选功能：
    - 低延迟优先模式
    - 多线程模式  
@@ -181,7 +241,6 @@ pause
 
 1. 安装/卸载必须使用管理员权限
 2. 安装后不要移动程序文件位置
-3. 服务配置保存在`service_name.txt`中，请不要手动修改
 
 ## 六、常见问题
 
