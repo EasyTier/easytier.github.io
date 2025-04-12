@@ -2,110 +2,245 @@
 
 > 感谢 北辰℃ 提供的教程
 
-在 Windows 系统中，将某些应用程序安装为服务可以使其在后台自动运行，无需用户手动干预，极大地提高了应用的运行稳定性和便捷性。本教程将以使用 NSSM（Non-Sucking Service Manager）工具将 easytier 应用安装为 Windows 服务为例，详细介绍整个操作流程。
+在 Windows 系统中，将某些应用程序安装为服务可以使其在后台自动运行，无需用户手动干预，极大地提高了应用的运行稳定性和便捷性。本教程将以使用 NSSM（Non-Sucking Service Manager）工具将 EasyTier 应用安装为 Windows 服务为例，详细介绍整个操作流程。
 
 ## 一、前期准备
 
+**下载 EasyTier 应用**：
+
+下载最新版本的`Windows`操作系统的`命令行程序`压缩包。
+
+下载完成后，将该压缩包解压到本地目录，比如`D:\EasyTier`。
+
 **下载 NSSM**：
 
-打开浏览器，访问 NSSM 官网 \[[ht](https://nssm.cc/download)[tps:/](https://nssm.cc/download)[/nssm](https://nssm.cc/download)[.cc/d](https://nssm.cc/download)[ownlo](https://nssm.cc/download)[ad](https://nssm.cc/download)]。
+打开浏览器，访问 NSSM 官网 [https://nssm.cc/](https://nssm.cc/download)。
 
 在官网页面中找到适用于你系统的版本（通常是最新版本），点击下载链接将其下载到本地。
 
-下载完成后，将压缩包解压到你指定的本地目录，例如`D:\NSSM`。
+下载完成后，找到对应您设备架构的版本（如：`win64`），将其中的`nssm.exe`解压到`EasyTier`所在的本地目录。
 
-**下载 easytier 应用**：
+## 二、准备工作
 
-找到最新版本的`easytier-windows-x86_64-v2.2.0.zip`文件下载链接，将其下载到本地。
+1. 确保当前目录下包含以下文件：
+   - `easytier-core.exe` (核心程序)
+   - `easytier-cli.exe` (命令行工具)
+   - `nssm.exe` (服务管理工具)
+   - `Packet.dll` (运行库)
+   - `wintun.dll` (运行库)
 
-下载完成后，将该压缩包解压到本地目录，比如`D:\Program Files\EasyTier`。
+2. 创建脚本工具
 
-## 二、安装为 Windows 服务
+在当前目录下创建`install.cmd`文件并写入以下内容：
 
-**打开命令提示符或 PowerShell**：
+```Batch
+@echo off
+@chcp 65001 > nul
+cd /d "%~dp0"
+title 正在启动脚本...
+where /q powershell 
+if %ERRORLEVEL% NEQ 0 echo PowerShell is not installed. && pause > nul && exit
+powershell -command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#powershell#'); if ($mainIndex -le 0) {throw 'PowerShell script not found.'}; $content = $content.Substring($mainIndex + '#powershell#'.Length); $content = [ScriptBlock]::Create($content); Invoke-Command -ScriptBlock $content -ArgumentList (('%*' -split ' ') + @((Get-Location).Path));"
+exit
+#powershell#
+function Pause {
+    param (
+        [string]$Text = "按任意键继续..."
+    )
+    Write-Host $Text -ForegroundColor Yellow
+    [System.Console]::ReadKey($true) > $null
+}
 
-按下`Win + R`组合键，打开 “运行” 对话框。
+# 初始化路径
+Set-Location -Path $args[-1]
+$ScriptRoot = (Get-Location).Path
 
-在对话框中输入`cmd`（打开命令提示符）或`powershell`（打开 PowerShell），然后点击 “确定” 按钮。
+# 修改标题
+$host.ui.rawui.WindowTitle = "安装EasyTierService"
 
-**切换到 NSSM 解压目录**：
+# 检查管理员权限
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Host "请使用管理员权限运行！" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
 
-在命令提示符或 PowerShell 中，使用`cd`命令切换到 NSSM 解压后的目录。例如，如果 NSSM 解压到了`D:\NSSM`，则输入`cd D:\NSSM`，然后按下回车键。
+# 必要文件检查
+$RequiredFiles = @("nssm.exe", "easytier-core.exe", "easytier-cli.exe")
+foreach ($file in $RequiredFiles) {
+    if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
+        Write-Host "缺少必要文件: $file" -ForegroundColor Red
+        Pause -Text "按任意键退出..."
+        exit 1
+    }
+}
 
-**安装服务**：
+# 交互式配置部分
+Write-Host "`n正在创建EasyTier服务配置...`n" -ForegroundColor Cyan
 
-在命令提示符或 PowerShell 中输入`nssm.exe install easytier_service`，然后按下回车键。此时会弹出一个 NSSM 配置窗口。
+# 服务名称设置
+$SERVICE_NAME = "EasyTierService"
 
-## 三、配置服务参数
+# 网络名称验证
+do {
+    $NETWORK_NAME = Read-Host "请输入网络名称(必填)"
+} while ([string]::IsNullOrWhiteSpace($NETWORK_NAME))
 
-**设置 Path**：
+# 网络密钥验证
+do {
+    $NETWORK_SECRET = Read-Host "请输入网络密钥(必填)"
+} while ([string]::IsNullOrWhiteSpace($NETWORK_SECRET))
 
-在 NSSM 配置窗口中，找到 “Path” 字段。
+# 中继节点处理
+$PEERS = Read-Host "请输入中继节点(多个节点用英文逗号分隔，默认tcp://public.easytier.cn:11010)"
+$PEERS = if ([string]::IsNullOrWhiteSpace($PEERS)) { "tcp://public.easytier.cn:11010" } else { $PEERS }
+$PEERS_PARAMS = ($PEERS -split ',' | ForEach-Object { "--peers $($_.Trim())" }) -join ' '
 
-将`easytier-core.exe`的完整路径填入该字段。例如，如果`easytier-core.exe`位于`D:\Program Files\EasyTier`目录下，则填写`D:\Program Files\EasyTier\easytier-core.exe`。
+# 设备名称设置
+$DEV_NAME = Read-Host "请输入TUN设备名称(默认EasyTierNET)"
+$DEV_NAME = if ([string]::IsNullOrEmpty($DEV_NAME)) { "EasyTierNET" } else { $DEV_NAME }
 
-**设置 Startup directory**：
+# 功能选项配置
+$OPTIONS = @()
+if ((Read-Host "是否启用低延迟优先模式[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--latency-first" }
+if ((Read-Host "是否启用多线程模式[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--multi-thread" }
+if ((Read-Host "是否启用KCP代理[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--enable-kcp-proxy" }
+if ((Read-Host "是否启用系统代理转发[Y/n]") -match '^[Yy]?$') { $OPTIONS += "--proxy-forward-by-system" }
 
-找到 “Startup directory” 字段。
+# 服务安装部分
+try {
+    $nssm = Join-Path $ScriptRoot "nssm.exe"
+    
+    # 创建服务
+    & $nssm install $SERVICE_NAME (Join-Path $ScriptRoot "easytier-core.exe")
+    
+    # 配置服务参数
+    $arguments = @(
+        "-d",
+        "--dev-name $DEV_NAME",
+        "--no-listener",
+        $OPTIONS,
+        "--network-name $NETWORK_NAME",
+        "--network-secret $NETWORK_SECRET",
+        $PEERS_PARAMS
+    ) -join ' '
+    
+    & $nssm set $SERVICE_NAME AppParameters $arguments
+    & $nssm set $SERVICE_NAME Description "EasyTier 核心服务"
+    & $nssm set $SERVICE_NAME AppDirectory $ScriptRoot
+    & $nssm set $SERVICE_NAME Start SERVICE_AUTO_START
+    
+    # 启动服务
+    & $nssm start $SERVICE_NAME
+    
+    Write-Host "`n服务安装完成，如需查看节点信息请执行：easytier-cli.exe node" -ForegroundColor Green
+}
+catch {
+    Write-Host "`n安装过程中发生错误: $_" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
+Pause -Text "按任意键退出..."
+exit
+```
 
-填入`easytier-core.exe`所在的目录，即`D:\Program Files\EasyTier`。
+在当前目录下创建`uninstall.cmd`文件并写入以下内容：
 
-**设置 Arguments**：
+```Batch
+@echo off
+@chcp 65001 > nul
+cd /d "%~dp0"
+title 正在启动脚本...
+where /q powershell 
+if %ERRORLEVEL% NEQ 0 echo PowerShell is not installed. && pause > nul && exit
+powershell -command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#powershell#'); if ($mainIndex -le 0) {throw 'PowerShell script not found.'}; $content = $content.Substring($mainIndex + '#powershell#'.Length); $content = [ScriptBlock]::Create($content); Invoke-Command -ScriptBlock $content -ArgumentList (('%*' -split ' ') + @((Get-Location).Path));"
+exit
+#powershell#
+function Pause {
+    param (
+        [string]$Text = "按任意键继续..."
+    )
+    Write-Host $Text -ForegroundColor Yellow
+    [System.Console]::ReadKey($true) > $null
+}
 
-在 “Arguments” 字段中，填入你需要的启动参数。例如`-i 10.10.10.2 --network-name easytier --network-secret easytier --peers tcp://public.easytier.top:11010`。这些参数根据你的实际需求进行配置。
+# 初始化路径
+Set-Location -Path $args[-1]
+$ScriptRoot = (Get-Location).Path
 
-![easytier nssm](/assets/win-service.png)
+# 修改标题
+$host.ui.rawui.WindowTitle = "卸载EasyTier服务"
 
-**保存配置并关闭窗口**：
+# 检查管理员权限
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Host "请使用管理员权限运行！" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
 
-完成上述参数设置后，点击 NSSM 配置窗口中的 “Edit service” 按钮，保存配置并关闭窗口。此时，`easytier_service`服务已经安装并配置完成。
+# 必要文件检查
+$RequiredFiles = @("nssm.exe", "easytier-core.exe", "easytier-cli.exe")
+foreach ($file in $RequiredFiles) {
+    if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
+        Write-Host "缺少必要文件: $file" -ForegroundColor Red
+        Pause -Text "按任意键退出..."
+        exit 1
+    }
+}
 
-## 四、删除服务
+$SERVICE_NAME = "EasyTierService"
+# 服务卸载部分
+try {
+    $nssm = Join-Path $ScriptRoot "nssm.exe"
+    
+	# 停止服务
+	Write-Host "正在停止服务 $SERVICE_NAME ..."
+	& $nssm stop $SERVICE_NAME
 
-如果需要删除已安装的服务，可以按照以下步骤操作：
+	# 删除服务（自动确认）
+	Write-Host "正在移除服务 $SERVICE_NAME ..."
+	& $nssm remove $SERVICE_NAME confirm
 
-**打开命令提示符或 PowerShell**：
+	Write-Host "`n服务 $SERVICE_NAME 已卸载" -ForegroundColor Green
+}
+catch {
+    Write-Host "`n卸载过程中发生错误: $_" -ForegroundColor Red
+    Pause -Text "按任意键退出..."
+    exit 1
+}
 
-按下`Win + R`组合键，打开 “运行” 对话框。
+Pause -Text "按任意键退出..."
+exit
+```
 
-在对话框中输入`cmd`（打开命令提示符）或`powershell`（打开 PowerShell），然后点击 “确定” 按钮。
+3. 将整个文件夹放在固定位置。
 
-**切换到 NSSM 解压目录**：
+## 三、安装服务
 
-使用`cd`命令切换到 NSSM 解压后的目录。例如，如果 NSSM 解压到了`D:\NSSM`，则输入`cd D:\NSSM`，然后按下回车键。
+1. **以管理员身份**运行`install.cmd`
+2. 按照提示输入配置信息：
+   - 网络名称 (必填)
+   - 网络密钥 (必填)
+   - 中继节点 (默认: tcp://public.easytier.cn:11010)
+   - TUN设备名称 (默认: EasyTierNET)
+3. 选择可选功能：
+   - 低延迟优先模式
+   - 多线程模式  
+   - KCP代理
+   - 系统代理转发
+4. 安装完成后会自动启动服务。
 
-**删除服务**：
+## 四、卸载服务
 
-在命令提示符或 PowerShell 中输入`nssm.exe remove easytier_service`，然后按下回车键。根据提示完成服务的删除操作。
+1. **以管理员身份**运行`uninstall.cmd`
+2. 脚本会自动停止并删除服务
 
-## 五、查看连接情况
+## 五、注意事项
 
-为了方便执行`easytier-cli.exe`查看连接情况，可以采用以下两种方法：
+1. 安装/卸载必须使用管理员权限
+2. 安装后不要移动程序文件位置
 
-**注册到环境变量**：
+## 六、常见问题
 
-右键点击 “此电脑”，选择 “属性”。
-
-在弹出的窗口中，点击左侧的 “高级系统设置”。
-
-在 “系统属性” 窗口中，点击 “高级” 选项卡，然后点击 “环境变量” 按钮。
-
-在 “环境变量” 窗口中，找到 “系统变量” 下的 “Path” 变量，点击 “编辑”。
-
-在弹出的 “编辑环境变量” 窗口中，点击 “新建”，然后将`easytier-cli.exe`所在的目录路径添加进去。例如，如果`easytier-cli.exe`位于`D:\Program Files\EasyTier`目录下，则添加`D:\Program Files\EasyTier`。
-
-点击 “确定” 按钮保存设置，关闭所有窗口。
-
-**存放到指定目录**：
-
-将`easytier-cli.exe`文件复制到`C:\Users\Administrator`目录下（`Administrator`请替换为你自己的 Windows 用户名）。
-
-打开任意一个命令提示符或 PowerShell 窗口，输入`easytier-cli.exe peer`，按下回车键即可查看连接情况。
-
-## 六、注意事项
-
-注册成服务后，程序（指`easytier-core.exe`）不能随意修改、删除或移动。如果需要进行这些操作，需要先删除服务，然后重新注册或修改 Windows 注册表。
-
-在配置服务参数时，确保参数的正确性，否则可能导致服务无法正常启动。
-
-在设置环境变量时，要小心操作，避免误删或误改其他重要的环境变量。
+**Q: 如何修改服务配置？**
+A: 先卸载服务，然后重新安装
