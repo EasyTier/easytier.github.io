@@ -272,15 +272,15 @@ $SERVICE_NAME = "EasyTierService"
 try {
     $nssm = Join-Path $ScriptRoot "nssm.exe"
     
-	# 停止服务
-	Write-Host "正在停止服务 $SERVICE_NAME ..."
-	& $nssm stop $SERVICE_NAME
+    # 停止服务
+    Write-Host "正在停止服务 $SERVICE_NAME ..."
+    & $nssm stop $SERVICE_NAME
 
-	# 删除服务（自动确认）
-	Write-Host "正在移除服务 $SERVICE_NAME ..."
-	& $nssm remove $SERVICE_NAME confirm
+    # 删除服务（自动确认）
+    Write-Host "正在移除服务 $SERVICE_NAME ..."
+    & $nssm remove $SERVICE_NAME confirm
 
-	Write-Host "`n服务 $SERVICE_NAME 已卸载" -ForegroundColor Green
+    Write-Host "`n服务 $SERVICE_NAME 已卸载" -ForegroundColor Green
 }
 catch {
     Write-Host "`n卸载过程中发生错误: $_" -ForegroundColor Red
