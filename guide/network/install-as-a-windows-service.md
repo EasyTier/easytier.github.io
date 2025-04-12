@@ -2,7 +2,9 @@
 
 > 感谢 北辰℃ 提供的教程，以及由 dawn-lc 实现的一键安装/卸载服务脚本。
 
-在 Windows 系统中，将某些应用程序安装为服务可以使其在后台自动运行，无需用户手动干预，极大地提高了应用的运行稳定性和便捷性。本教程将以使用 NSSM（Non-Sucking Service Manager）工具将 EasyTier 应用安装为 Windows 服务为例，详细介绍整个操作流程。
+在 Windows 系统中，将某些应用程序安装为服务可以使其在后台自动运行，无需用户手动干预，极大地提高了应用的运行稳定性和便捷性。
+
+本教程将以使用 NSSM（Non-Sucking Service Manager）工具将 EasyTier 应用安装为 Windows 服务为例，详细介绍整个操作流程。
 
 ## 一、前期准备
 
@@ -10,7 +12,13 @@
 
 下载最新版本的`Windows`操作系统的`命令行程序`压缩包。
 
-下载完成后，将该压缩包解压到本地目录，比如`D:\EasyTier`。
+下载完成后，将该压缩包解压到本地目录，例如`D:\EasyTier`。
+
+此时当前目录下应至少包含以下文件：
+   - `easytier-core.exe` (核心程序)
+   - `easytier-cli.exe` (命令行工具)
+   - `Packet.dll` (运行库)
+   - `wintun.dll` (运行库)
 
 **下载 NSSM**：
 
@@ -22,7 +30,7 @@
 
 ## 二、准备工作
 
-1. 确保当前目录下包含以下文件：
+1. 确保当前目录下至少包含以下文件：
    - `easytier-core.exe` (核心程序)
    - `easytier-cli.exe` (命令行工具)
    - `nssm.exe` (服务管理工具)
@@ -33,7 +41,7 @@
 
 在当前目录下创建`install.cmd`文件并写入以下内容：
 
-```powershell
+```PowerShell
 @echo off
 @chcp 65001 > nul
 cd /d "%~dp0"
@@ -217,7 +225,7 @@ exit
 
 在当前目录下创建`uninstall.cmd`文件并写入以下内容：
 
-```Batch
+```PowerShell
 @echo off
 @chcp 65001 > nul
 cd /d "%~dp0"
