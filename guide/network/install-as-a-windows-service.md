@@ -66,7 +66,7 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 
 # 必要文件检查
-$RequiredFiles = @("nssm.exe", "easytier-core.exe", "easytier-cli.exe")
+$RequiredFiles = @("easytier-core.exe", "easytier-cli.exe", "nssm.exe", "Packet.dll", "wintun.dll")
 foreach ($file in $RequiredFiles) {
     if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
         Write-Host "缺少必要文件: $file" -ForegroundColor Red
@@ -179,7 +179,7 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 
 # 必要文件检查
-$RequiredFiles = @("nssm.exe", "easytier-core.exe", "easytier-cli.exe")
+$RequiredFiles = @("nssm.exe")
 foreach ($file in $RequiredFiles) {
     if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
         Write-Host "缺少必要文件: $file" -ForegroundColor Red
