@@ -56,7 +56,7 @@ Set-Location -Path $args[-1]
 $ScriptRoot = (Get-Location).Path
 
 # 修改标题
-$host.ui.rawui.WindowTitle = "安装EasyTierService"
+$host.ui.rawui.WindowTitle = "安装EasyTier服务"
 
 # 检查管理员权限
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
