@@ -237,7 +237,7 @@ else {
             $protoChoice = Show-MultipleChoicePrompt -Message "请选择默认协议" `
                 -Options @("TCP", "UDP", "WebSocket", "WireGuard") `
                 -Helps @("可靠传输，适合高延迟网络", "低延迟，适合稳定网络", "穿透性强，适合受限网络", "高性能VPN协议") `
-                -DefaultIndex 3
+                -DefaultIndex 0
             $protocols = @("tcp", "udp", "ws", "wg")
             $OPTIONS += "--default-protocol $($protocols[$protoChoice])"
         }
