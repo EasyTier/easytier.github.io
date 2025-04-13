@@ -70,18 +70,14 @@ function Show-YesNoPrompt {
         [string[]]$Labels = @("&Yes", "&No"),
         [string[]]$Helps = @("是", "否")
     )
-
     if ($Labels.Count -ne $Helps.Count) {
         throw "Labels 和 Helps 的数量必须相同。"
     }
-
     $choices = for ($i = 0; $i -lt $Labels.Count; $i++) {
         [System.Management.Automation.Host.ChoiceDescription]::new($Labels[$i], $Helps[$i])
     }
-
     return $Host.UI.PromptForChoice($Title, $Message, $choices, $DefaultIndex) -eq 0
 }
-
 function Show-MultipleChoicePrompt {
     param(
         [Parameter(Mandatory = $true)]
@@ -92,26 +88,20 @@ function Show-MultipleChoicePrompt {
         [string]$Title = "",
         [int]$DefaultIndex = 0
     )
-
     if ($Helps.Count -eq 0) {
         $Helps = @("")
         for ($i = 1; $i -lt $Options.Count; $i++) {
             $Helps += ""
         }
     }
-
     if ($Options.Count -ne $Helps.Count) {
         throw "Options 和 Helps 的数量必须相同。"
     }
-
     $choices = for ($i = 0; $i -lt $Options.Count; $i++) {
         [System.Management.Automation.Host.ChoiceDescription]::new("&$i.$($Options[$i])", $Helps[$i])
     }
-
     return $Host.UI.PromptForChoice($Title, $Message, $choices, $DefaultIndex)
 }
-
-
 function Get-InputWithNoNullOrWhiteSpace {
     param(
         [string]$Prompt
@@ -126,7 +116,6 @@ function Get-InputWithNoNullOrWhiteSpace {
         }
     }
 }
-
 function Get-InputWithDefault {
     param(
         [Parameter(Mandatory = $true)]
@@ -135,30 +124,20 @@ function Get-InputWithDefault {
         [Parameter(Mandatory = $true)]
         [string]$DefaultValue
     )
-    
     $response = Read-Host "${Prompt}(默认: ${DefaultValue})"
     if ([string]::IsNullOrWhiteSpace($response)) {
         return $DefaultValue
     }
     return $response
 }
-#endregion
-
-# 初始化路径
 Set-Location -Path $args[-1]
 $ScriptRoot = (Get-Location).Path
-
-# 修改标题
 $host.ui.rawui.WindowTitle = "安装EasyTier服务"
-
-# 检查管理员权限
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "请使用管理员权限运行！" -ForegroundColor Red
     Show-Pause -Text "按任意键退出..."
     exit 1
 }
-
-# 必要文件检查
 $RequiredFiles = @("easytier-core.exe", "easytier-cli.exe", "nssm.exe", "Packet.dll", "wintun.dll")
 foreach ($file in $RequiredFiles) {
     if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
@@ -167,24 +146,17 @@ foreach ($file in $RequiredFiles) {
         exit 1
     }
 }
-
-# 交互式配置部分
 Write-Host "`n正在创建EasyTier服务配置...`n" -ForegroundColor Cyan
-
-# 服务名称设置
 $SERVICE_NAME = "EasyTierService"
-
 $OPTIONS = @()
 if (Show-YesNoPrompt -Message "是否使用配置文件方案？" -DefaultIndex 1) {
     $OPTIONS += "--config-file $(Get-InputWithNoNullOrWhiteSpace -Prompt "配置文件路径")"
+} 
+elseif (Show-YesNoPrompt -Message "是否使用配置服务器？" -DefaultIndex 1) {
+    $configServer = Get-InputWithDefault -Prompt "配置服务器地址（格式：协议://IP:端口/用户）" -DefaultValue "udp://127.0.0.1:22020/admin"
+    $OPTIONS += "--config-server $configServer"
 }
 else {
-    # 配置服务器地址
-    if (Show-YesNoPrompt -Message "是否使用配置服务器？" -DefaultIndex 1) {
-        $configServer = Get-InputWithDefault -Prompt "配置服务器地址（格式：协议://IP:端口/用户）" -DefaultValue "udp://127.0.0.1:22020/admin"
-        $OPTIONS += "--config-server $configServer"
-    }
-    
     $OPTIONS += "--network-name $(Get-InputWithNoNullOrWhiteSpace -Prompt "网络名称")"
     $OPTIONS += "--network-secret $(Get-InputWithNoNullOrWhiteSpace -Prompt "网络密钥")"
     if (Show-YesNoPrompt -Message "是否指定当前设备名称？" -DefaultIndex 1) {
@@ -202,8 +174,6 @@ else {
             $OPTIONS += ($peers | ForEach-Object { "--peers $($_.Trim())" }) -join ' '
         }
     }
-
-    # IP地址配置
     $ipChoice = Show-MultipleChoicePrompt -Message "请选择IP分配方式" `
         -Options @("手动指定IPv4", "自动DHCP", "不设置IP") `
         -Helps @("指定当前设备在网络中的IP地址", "自动分配网络中的地址", "将仅转发数据包，不会创建TUN设备") `
@@ -219,10 +189,7 @@ else {
         }
         2 { break }
     }
-
-    # 监听模式选择
     if (Show-YesNoPrompt -Message "是否启用端口监听？" -DefaultIndex 1) {
-        # 原有监听器配置
         $listeners = @()
         do {
             $listener = Get-InputWithDefault -Prompt "监听器地址（格式：协议://IP:端口）" -DefaultValue "11010"
@@ -238,7 +205,6 @@ else {
     else {
         $OPTIONS += "--no-listener"
     }
-
     if (Show-YesNoPrompt -Message "是否启用多线程运行？") {
         $OPTIONS += "--multi-thread"
     }
@@ -251,19 +217,13 @@ else {
     if (Show-YesNoPrompt -Message "是否启用KCP代理？") {
         $OPTIONS += "--enable-kcp-proxy"
     }
-
-    # 设备名称配置
     if (Show-YesNoPrompt -Message "是否指定TUN设备名称？" -DefaultIndex 1) {
         $OPTIONS += "--dev-name $(Get-InputWithNoNullOrWhiteSpace -Prompt "设备名称")"
     }
-
-    # 转发白名单配置
     if (Show-YesNoPrompt -Message "是否设置转发网络白名单？" -DefaultIndex 1) {
         $whitelist = Get-InputWithDefault -Prompt "白名单网络（空格分隔，*表示全部）" -DefaultValue "*"
         $OPTIONS += "--relay-network-whitelist `"$whitelist`""
     }
-
-    # 其他高级配置
     if (Show-YesNoPrompt -Message "是否调整高级选项？" -DefaultIndex 1) {
         if (Show-YesNoPrompt -Message "是否开启日志？" -DefaultIndex 1) {
             $logChoice = Show-MultipleChoicePrompt -Message "请选择日志级别" -Options @("DEBUG", "INFO", "WARN", "ERROR")
@@ -347,32 +307,25 @@ else {
         }
     }
 }
-# 服务安装部分
 try {
     $nssm = Join-Path $ScriptRoot "nssm.exe"
-
-    # 配置服务参数
     $arguments = $OPTIONS -join ' '
-    # 最终确认
-    Write-Host "`n生成的配置参数：" -ForegroundColor Yellow
+    Write-Host "`n生成的配置参数如下：" -ForegroundColor Yellow
     Write-Host ($OPTIONS -join " ") -ForegroundColor DarkGray
-
-    if (-not (Show-YesNoPrompt -Message "`n确认安装配置？" -DefaultIndex 1)) {
+    if (Show-YesNoPrompt -Message "`n确认安装配置？" -DefaultIndex 1) {
+        & $nssm install $SERVICE_NAME (Join-Path $ScriptRoot "easytier-core.exe")
+        & $nssm set $SERVICE_NAME AppParameters $arguments
+        & $nssm set $SERVICE_NAME Description "EasyTier 核心服务"
+        & $nssm set $SERVICE_NAME AppDirectory $ScriptRoot
+        & $nssm set $SERVICE_NAME Start SERVICE_AUTO_START
+        & $nssm start $SERVICE_NAME
+        Write-Host "`n服务安装完成，如需查看节点信息请执行：easytier-cli.exe node" -ForegroundColor Green
+    }
+    else {
         Write-Host "安装已取消。" -ForegroundColor Yellow
         Show-Pause -Text "按任意键退出..."
         exit
     }
-    # 创建服务
-    & $nssm install $SERVICE_NAME (Join-Path $ScriptRoot "easytier-core.exe")
-    & $nssm set $SERVICE_NAME AppParameters $arguments
-    & $nssm set $SERVICE_NAME Description "EasyTier 核心服务"
-    & $nssm set $SERVICE_NAME AppDirectory $ScriptRoot
-    & $nssm set $SERVICE_NAME Start SERVICE_AUTO_START
-    
-    # 启动服务
-    & $nssm start $SERVICE_NAME
-    
-    Write-Host "`n服务安装完成，如需查看节点信息请执行：easytier-cli.exe node" -ForegroundColor Green
 }
 catch {
     Write-Host "`n安装过程中发生错误: $_" -ForegroundColor Red
