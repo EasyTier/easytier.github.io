@@ -54,6 +54,7 @@
        environment:
          - TZ=Asia/Shanghai
        devices:
+         - /etc/machine-id:/etc/machine-id:ro # 映射宿主机机器码
          - /dev/net/tun:/dev/net/tun
        volumes:
          - /etc/easytier:/root
