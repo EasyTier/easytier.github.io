@@ -58,7 +58,7 @@ jobs:
           pnpm -r build
           cd ..
           mkdir -p public/web
-          cp EasyTier/easytier-web/frontend/dist/index.html public/web/index.html
+          cp -r EasyTier/easytier-web/frontend/dist/* public/web/
           rm -rf EasyTier
 
       - name: Setup Pages
