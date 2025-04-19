@@ -55,7 +55,7 @@ jobs:
         run: |
           cd EasyTier
           pnpm -r install
-          pnpm -r build
+          WEB_BASE_URL=/web pnpm -r build
           cd ..
           mkdir -p public/web
           cp -r EasyTier/easytier-web/frontend/dist/* public/web/
