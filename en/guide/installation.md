@@ -27,29 +27,33 @@
    ```yaml [docker-compose.yml]
    services:
      watchtower: # Used to automatically update the easytier image, delete this part if not needed
-       command: --interval 3600 --cleanup --label-enable
+       image: containrrr/watchtower
        container_name: watchtower
+       restart: unless-stopped
        environment:
          - TZ=Asia/Shanghai
          - WATCHTOWER_NO_STARTUP_MESSAGE
-       image: containrrr/watchtower
-       restart: always
        volumes:
          - /var/run/docker.sock:/var/run/docker.sock
+       command: --interval 3600 --cleanup --label-enable
      easytier:
-       restart: always
+       image: easytier/easytier:latest
+       hostname: easytier
+       container_name: easytier
        labels:
          com.centurylinklabs.watchtower.enable: 'true'
-       privileged: true
-       mem_limit: 0m
-       container_name: easytier
-       hostname: easytier
+       restart: unless-stopped
        network_mode: host
-       volumes:
-         - /etc/easytier:/root
+       cap_add:
+         - NET_ADMIN
+         - NET_RAW
        environment:
          - TZ=Asia/Shanghai
-       image: easytier/easytier:latest
+       devices:
+         - /etc/machine-id:/etc/machine-id:ro # Pass the host's machine id into container
+         - /dev/net/tun:/dev/net/tun
+       volumes:
+         - /etc/easytier:/root
        command: -i <ip> --network-name <user> --network-secret <password> -p tcp://<server_address>:11010
    ```
 

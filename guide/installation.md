@@ -31,29 +31,33 @@
    ```yaml [docker-compose.yml]
    services:
      watchtower: # 用于自动更新easytier镜像，若不需要请删除这部分
-       command: --interval 3600 --cleanup --label-enable
+       image: containrrr/watchtower
        container_name: watchtower
+       restart: unless-stopped
        environment:
          - TZ=Asia/Shanghai
          - WATCHTOWER_NO_STARTUP_MESSAGE
-       image: containrrr/watchtower
-       restart: always
        volumes:
          - /var/run/docker.sock:/var/run/docker.sock
+       command: --interval 3600 --cleanup --label-enable
      easytier:
-       restart: always
+       image: easytier/easytier:latest # 国内用户可以使用 m.daocloud.io/docker.io/easytier/easytier:latest
+       hostname: easytier
+       container_name: easytier
        labels:
          com.centurylinklabs.watchtower.enable: 'true'
-       privileged: true
-       mem_limit: 0m
-       container_name: easytier
-       hostname: easytier
+       restart: unless-stopped
        network_mode: host
-       volumes:
-         - /etc/easytier:/root
+       cap_add:
+         - NET_ADMIN
+         - NET_RAW
        environment:
          - TZ=Asia/Shanghai
-       image: easytier/easytier:latest # 国内用户可以使用 m.daocloud.io/docker.io/easytier/easytier:latest
+       devices:
+         - /etc/machine-id:/etc/machine-id:ro # 映射宿主机机器码
+         - /dev/net/tun:/dev/net/tun
+       volumes:
+         - /etc/easytier:/root
        command: -i <ip> --network-name <用户> --network-secret <密码> -p tcp://<服务器地址>:11010
    ```
 
