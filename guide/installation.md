@@ -54,10 +54,10 @@
        environment:
          - TZ=Asia/Shanghai
        devices:
-         - /etc/machine-id:/etc/machine-id:ro # 映射宿主机机器码
          - /dev/net/tun:/dev/net/tun
        volumes:
          - /etc/easytier:/root
+         - /etc/machine-id:/etc/machine-id:ro # 映射宿主机机器码
        command: -i <ip> --network-name <用户> --network-secret <密码> -p tcp://<服务器地址>:11010
    ```
 
