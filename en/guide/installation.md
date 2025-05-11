@@ -50,9 +50,9 @@
        environment:
          - TZ=Asia/Shanghai
        devices:
-         - /etc/machine-id:/etc/machine-id:ro # Pass the host's machine id into container
          - /dev/net/tun:/dev/net/tun
        volumes:
+         - /etc/machine-id:/etc/machine-id:ro # Pass the host's machine id into container
          - /etc/easytier:/root
        command: -i <ip> --network-name <user> --network-secret <password> -p tcp://<server_address>:11010
    ```
