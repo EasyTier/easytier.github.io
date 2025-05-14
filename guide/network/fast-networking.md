@@ -13,11 +13,13 @@
    sudo easytier-core -i 10.144.144.1 --network-name abc --network-secret abc -p tcp://public.easytier.cn:11010
    ```
 
-   > `-i` 代表指定虚拟网 IP 地址，默认 /24 网段;
-   >
+   > `-i` 代表指定虚拟网 IPv4 地址，默认 /24 网段;
+   > 例如：10.0.0.1/8  172.16.0.1/16  192.168.0.1/24；
+   > 请注意目前 Easytier 没有虚拟 IPv6 地址（意义不大）；
    > `--network-name` 和 `--network-secret` 代表网络名和网络密钥；
-   >
+   > 可以使用 Unicode 字符，例如 --network-name 测试 --network-secret 测试 ；
    > `-p` 代表指定节点地址，此处使用官方的共享节点。
+   > 也可使用其他地址，如 Easytier 公共服务器列表中的地址。
 
 2. 在节点 B 上执行
 
