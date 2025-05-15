@@ -9,24 +9,30 @@
 
 1. 在节点 A 上执行以下命令：
 
-::: warning 注意
-在 Easytier 中 network-name 的优先级是最高的，对于每一个节点来说，只能有一个名称相同的 network-name 。
-:::
-   
-   例如：我们在使用公共服务器进行组网时，如果你的 network-name (abc) 在公共服务器中被其他节点使用，那么 abc 这个网络名将无法被您所使用，除非您知道 abc 这个网络的密匙，即network-secret。
-
    ```sh
    sudo easytier-core -i 10.144.144.1 --network-name abc --network-secret abc -p tcp://public.easytier.cn:11010
    ```
 
-   > `-i` 为手动指定虚拟 IPv4 地址，默认为 /24 网段;
-   >
+   > '-i' 代表指定虚拟网 IPv4 地址，默认 /24 网段;
+   > 
+   > 例如：10.0.0.1/8 172.16.0.1/16 192.168.0.1/24；
+   > 
+   > 请注意目前 Easytier 没有虚拟 IPv6 地址（意义不大）;
+   > 
    > `--network-name` 和 `--network-secret` 为网络名和网络密钥；
+   > 
+   > 可以使用 Unicode 字符，例如 --network-name test --network-secret test ;
+   > 
+   > `-p` 代表指定节点地址，此处使用官方的共享节点。
+   > 
+   > 也可使用其他地址，如 Easytier 公共服务器列表中的地址。
    >
-   > `-p` 为指定对等节点地址，此处使用官方的共享节点，可理解为公共服务器。
-   >
+   
 ::: warning 注意
-由于默认使用的是 Easytier 官方的公共节点，服务器压力过大经常会造成延迟高、无法组网等问题，建议使用时使用其他公共节点来组网。其他公共节点：https://easytier.gd.nkbpal.cn/status/easytier
+由于默认使用的是 Easytier 官方的公共节点，服务器压力过大经常会造成延迟高、无法组网等问题，建议使用时使用其他公共节点来组网。
+其他公共节点：https://easytier.gd.nkbpal.cn/status/easytier
+此外在 Easytier 中 network-name 的优先级是最高的，对于每一个节点来说，只能有一个名称相同的 network-name 。 
+例如：我们在使用公共服务器进行组网时，如果你的 network-name (abc) 在公共服务器中被其他节点使用，那么 abc 这个网络名将无法被您所使用，除非您知道 abc 这个网络的密匙，即network-secret。
 :::
 
 3. 在节点 B 上执行
