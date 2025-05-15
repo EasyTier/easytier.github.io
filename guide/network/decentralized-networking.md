@@ -38,9 +38,9 @@ nodeA <-----> nodeB
    其中 `-d` 代表 DHCP 模式，EasyTier 会自动获取一个 IP 地址。
 
 ## 说明
-默认情况下， Easytier 会监听 IPv4 和 IPv6 的 TCP 和 UDP 的 11010、11011、11012（只有 TCP） 端口，其中 11010 为 TCP 和 UDP 协议， 11011 为 [Websocket](https://blog.csdn.net/aiwokache/article/details/117294920) 和 [Wireguard]
+默认情况下， Easytier 会监听 IPv4 和 IPv6 的 TCP 和 UDP 的 11010、11011、11012（只有 TCP） 端口，其中 11010 为 TCP 和 UDP 协议， 11011 为 [Websocket](https://websocket.xiniushu.com/introduction) 和 [Wireguard]
 
-(https://zh-wireguard.com/) 协议， 11012 为 [Websocket Security](https://blog.csdn.net/m0_61560439/article/details/130319370) 协议。
+(https://zh-wireguard.com) 协议， 11012 为 Websocket Security（通过SSL或TLS加密的Websocket）协议。
 
 注意：在使用 Easytier 组网时，上面提到的协议可以在防火墙只放行所需要的协议，例如节点 B 希望通过 UDP 协议连接节点 A ，那么节点 A 只需要在防护墙放行 UDP 11010 这个端口即可。
 
