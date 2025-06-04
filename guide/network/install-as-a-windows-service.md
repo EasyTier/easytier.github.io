@@ -6,6 +6,8 @@
 
 本教程将以使用 NSSM（Non-Sucking Service Manager）工具将 EasyTier 应用安装为 Windows 服务为例，详细介绍整个操作流程。
 
+一键安装/卸载脚本无法在 Windows 7 或 Windows Server 2008 以及 其他无法运行 PowerShell 3 的操作系统上工作，请升级您的系统或更新PowerShell。
+
 ## 一、前期准备
 
 **下载 EasyTier 应用**：
@@ -42,15 +44,13 @@
 在当前目录下创建`install.cmd`文件并写入以下内容：
 
 ```PowerShell
-@echo off
-@chcp 65001 > nul
-cd /d "%~dp0"
-title 正在启动脚本...
-where /q powershell 
-if %ERRORLEVEL% NEQ 0 echo PowerShell is not installed. && pause > nul && exit
-powershell -command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#powershell#'); if ($mainIndex -le 0) {throw 'PowerShell script not found.'}; $content = $content.Substring($mainIndex + '#powershell#'.Length); $content = [ScriptBlock]::Create($content); Invoke-Command -ScriptBlock $content -ArgumentList (('%*' -split ' ') + @((Get-Location).Path));"
-exit
-#powershell#
+@ECHO off
+TITLE Starting script...
+WHERE /q PowerShell 
+IF %ERRORLEVEL% NEQ 0 ECHO PowerShell is not installed. && PAUSE > NUL && EXIT
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#POWERSHELL#'); if ($mainIndex -lt 0) {throw 'PowerShell script not found.'}; $code = $content.Substring($mainIndex + '#POWERSHELL#'.Length); $script = [ScriptBlock]::Create($code); & $script @args -- %*"
+EXIT
+#POWERSHELL#
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
 function Show-Pause {
@@ -130,7 +130,7 @@ function Get-InputWithDefault {
     }
     return $response
 }
-Set-Location -Path $args[-1]
+Set-Location -Path $pwd
 $ScriptRoot = (Get-Location).Path
 $host.ui.rawui.WindowTitle = "安装EasyTier服务"
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -211,7 +211,7 @@ else {
     if (Show-YesNoPrompt -Message "是否启用延迟优先模式？") {
         $OPTIONS += "--latency-first"
     }
-    if (Show-YesNoPrompt -Message "是否通过系统内核转发？") {
+    if (Show-YesNoPrompt -Message "是否通过系统内核转发？" -DefaultIndex 1) {
         $OPTIONS += "--proxy-forward-by-system"
     }
     if (Show-YesNoPrompt -Message "是否启用KCP代理？") {
@@ -339,25 +339,25 @@ exit
 在当前目录下创建`uninstall.cmd`文件并写入以下内容：
 
 ```PowerShell
-@echo off
-@chcp 65001 > nul
-cd /d "%~dp0"
-title 正在启动脚本...
-where /q powershell 
-if %ERRORLEVEL% NEQ 0 echo PowerShell is not installed. && pause > nul && exit
-powershell -command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#powershell#'); if ($mainIndex -le 0) {throw 'PowerShell script not found.'}; $content = $content.Substring($mainIndex + '#powershell#'.Length); $content = [ScriptBlock]::Create($content); Invoke-Command -ScriptBlock $content -ArgumentList (('%*' -split ' ') + @((Get-Location).Path));"
-exit
-#powershell#
-function Pause {
-    param (
-        [string]$Text = "按任意键继续..."
+@ECHO off
+TITLE Starting script...
+WHERE /q PowerShell 
+IF %ERRORLEVEL% NEQ 0 ECHO PowerShell is not installed. && PAUSE > NUL && EXIT
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#POWERSHELL#'); if ($mainIndex -lt 0) {throw 'PowerShell script not found.'}; $code = $content.Substring($mainIndex + '#POWERSHELL#'.Length); $script = [ScriptBlock]::Create($code); & $script @args -- %*"
+EXIT
+#POWERSHELL#
+[System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
+[System.Threading.Thread]::CurrentThread.CurrentUICulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
+function Show-Pause {
+    param(
+        [string]$Text = "按任意键继续...",
+        [string]$Color = "Cyan"
     )
-    Write-Host $Text -ForegroundColor Yellow
+    Write-Host "`n$Text" -ForegroundColor $Color
     [System.Console]::ReadKey($true) > $null
 }
-
 # 初始化路径
-Set-Location -Path $args[-1]
+Set-Location -Path $pwd
 $ScriptRoot = (Get-Location).Path
 
 # 修改标题
@@ -366,7 +366,7 @@ $host.ui.rawui.WindowTitle = "卸载EasyTier服务"
 # 检查管理员权限
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "请使用管理员权限运行！" -ForegroundColor Red
-    Pause -Text "按任意键退出..."
+    Show-Pause -Text "按任意键退出..."
     exit 1
 }
 
@@ -375,7 +375,7 @@ $RequiredFiles = @("nssm.exe")
 foreach ($file in $RequiredFiles) {
     if (-not (Test-Path (Join-Path $ScriptRoot $file))) {
         Write-Host "缺少必要文件: $file" -ForegroundColor Red
-        Pause -Text "按任意键退出..."
+        Show-Pause -Text "按任意键退出..."
         exit 1
     }
 }
@@ -397,11 +397,11 @@ try {
 }
 catch {
     Write-Host "`n卸载过程中发生错误: $_" -ForegroundColor Red
-    Pause -Text "按任意键退出..."
+    Show-Pause -Text "按任意键退出..."
     exit 1
 }
 
-Pause -Text "按任意键退出..."
+Show-Pause -Text "按任意键退出..."
 exit
 ```
 
