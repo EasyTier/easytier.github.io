@@ -45,10 +45,21 @@
 
 ```PowerShell
 @ECHO off
-TITLE Starting script...
+SETLOCAL EnableDelayedExpansion
+TITLE Initializing Script...
+<NUL SET /p="Checking system requirements ... "
 WHERE /q PowerShell 
-IF %ERRORLEVEL% NEQ 0 ECHO PowerShell is not installed. && PAUSE > NUL && EXIT
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#POWERSHELL#'); if ($mainIndex -lt 0) {throw 'PowerShell script not found.'}; $code = $content.Substring($mainIndex + '#POWERSHELL#'.Length); $script = [ScriptBlock]::Create($code); & $script @args -- %*"
+IF !ERRORLEVEL! NEQ 0 (ECHO PowerShell is not installed. & PAUSE & EXIT)
+PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 3) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (ECHO Requires PowerShell 3.0 or later. & PAUSE & EXIT)
+PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; if ($content.LastIndexOf('#POWERSHELL#') -le 0) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (ECHO Embedded script section not found. & PAUSE & EXIT)
+ECHO OK
+FOR /f %%a IN ('PowerShell -Command "[guid]::NewGuid().ToString('n')"') do set "GUID=%%a"
+SET "TempScriptPath=!TEMP!\tmp_!GUID!.ps1"
+PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; Set-Content -Encoding UTF8 -Path '!TempScriptPath!' -Value $content.Substring($content.LastIndexOf('#POWERSHELL#') + '#POWERSHELL#'.Length);"
+PowerShell -NoProfile -ExecutionPolicy Bypass -File "!TempScriptPath!" %*
+DEL /f /q "!TempScriptPath!"
 EXIT
 #POWERSHELL#
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
@@ -340,10 +351,21 @@ exit
 
 ```PowerShell
 @ECHO off
-TITLE Starting script...
+SETLOCAL EnableDelayedExpansion
+TITLE Initializing Script...
+<NUL SET /p="Checking system requirements ... "
 WHERE /q PowerShell 
-IF %ERRORLEVEL% NEQ 0 ECHO PowerShell is not installed. && PAUSE > NUL && EXIT
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "if ($PSVersionTable.PSVersion.Major -lt 3) {throw 'Requires PowerShell 3.0 or higher.'}; $content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; $mainIndex = $content.LastIndexOf('#POWERSHELL#'); if ($mainIndex -lt 0) {throw 'PowerShell script not found.'}; $code = $content.Substring($mainIndex + '#POWERSHELL#'.Length); $script = [ScriptBlock]::Create($code); & $script @args -- %*"
+IF !ERRORLEVEL! NEQ 0 (ECHO PowerShell is not installed. & PAUSE & EXIT)
+PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 3) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (ECHO Requires PowerShell 3.0 or later. & PAUSE & EXIT)
+PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; if ($content.LastIndexOf('#POWERSHELL#') -le 0) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (ECHO Embedded script section not found. & PAUSE & EXIT)
+ECHO OK
+FOR /f %%a IN ('PowerShell -Command "[guid]::NewGuid().ToString('n')"') do set "GUID=%%a"
+SET "TempScriptPath=!TEMP!\tmp_!GUID!.ps1"
+PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; Set-Content -Encoding UTF8 -Path '!TempScriptPath!' -Value $content.Substring($content.LastIndexOf('#POWERSHELL#') + '#POWERSHELL#'.Length);"
+PowerShell -NoProfile -ExecutionPolicy Bypass -File "!TempScriptPath!" %*
+DEL /f /q "!TempScriptPath!"
 EXIT
 #POWERSHELL#
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
