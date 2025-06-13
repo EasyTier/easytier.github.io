@@ -723,7 +723,7 @@ ECHO OK
 FOR /f %%a IN ('PowerShell -Command "[guid]::NewGuid().ToString('n')"') do set "GUID=%%a"
 SET "TempScriptPath=!TEMP!\tmp_!GUID!.ps1"
 PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; Set-Content -Encoding UTF8 -Path '!TempScriptPath!' -Value $content.Substring($content.LastIndexOf('#POWERSHELL#') + '#POWERSHELL#'.Length);"
-PowerShell -NoProfile -ExecutionPolicy Bypass -File "!TempScriptPath!" %*
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Set-Location -Path '%~dp0'; & '!TempScriptPath!' %*"
 DEL /f /q "!TempScriptPath!"
 EXIT
 #POWERSHELL#
@@ -734,11 +734,10 @@ function Show-Pause {
         [string]$Text = "按任意键继续...",
         [string]$Color = "Cyan"
     )
-    Write-Host "`n$Text" -ForegroundColor $Color
+    Write-Host $Text -ForegroundColor $Color
     [System.Console]::ReadKey($true) > $null
 }
 # 初始化路径
-Set-Location -Path $pwd
 $ScriptRoot = (Get-Location).Path
 
 # 修改标题
