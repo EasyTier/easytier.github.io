@@ -500,7 +500,9 @@ function Get-EasyTierConfig {
             if (Show-YesNoPrompt -Message "是否使用自定义管理服务器？" -DefaultIndex 1) {
                 $configServer = Get-InputWithNoNullOrWhiteSpace -Prompt "自定义管理服务器（格式：协议://IP:端口/用户）" 
             }
-            $configServer = Get-InputWithNoNullOrWhiteSpace -Prompt "官方服务器用户名"
+            else {
+                $configServer = Get-InputWithNoNullOrWhiteSpace -Prompt "官方服务器用户名"
+            }
             $options += "--config-server $configServer"
         }
     }
