@@ -49,18 +49,22 @@
 SETLOCAL EnableDelayedExpansion
 TITLE Initializing Script...
 CD /d %~dp0
+<NUL SET /p="Checking PowerShell ... "
 WHERE /q PowerShell 
 IF !ERRORLEVEL! NEQ 0 (
     ECHO PowerShell is not installed.
     PAUSE
     EXIT
 )
-PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 7) { exit 1 }"
+ECHO OK
+<NUL SET /p="Checking PowerShell version ... "
+PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 3) { exit 1 }"
 IF !ERRORLEVEL! NEQ 0 (
-    ECHO Requires PowerShell 7 or later. 
+    ECHO Requires PowerShell 3 or later. 
     PAUSE 
     EXIT
 )
+ECHO OK
 PowerShell -Command "if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { exit 1 }"
 IF !ERRORLEVEL! NEQ 0 (
     SET args=%*
@@ -734,18 +738,22 @@ exit
 SETLOCAL EnableDelayedExpansion
 TITLE Initializing Script...
 CD /d %~dp0
+<NUL SET /p="Checking PowerShell ... "
 WHERE /q PowerShell 
 IF !ERRORLEVEL! NEQ 0 (
     ECHO PowerShell is not installed.
     PAUSE
     EXIT
 )
-PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 7) { exit 1 }"
+ECHO OK
+<NUL SET /p="Checking PowerShell version ... "
+PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 3) { exit 1 }"
 IF !ERRORLEVEL! NEQ 0 (
-    ECHO Requires PowerShell 7 or later. 
+    ECHO Requires PowerShell 3 or later. 
     PAUSE 
     EXIT
 )
+ECHO OK
 PowerShell -Command "if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { exit 1 }"
 IF !ERRORLEVEL! NEQ 0 (
     SET args=%*
