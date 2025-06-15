@@ -44,24 +44,42 @@
 在当前目录下创建`install.cmd`文件并写入以下内容：
 
 ```PowerShell
+::BATCH_START
 @ECHO off
 SETLOCAL EnableDelayedExpansion
 TITLE Initializing Script...
-<NUL SET /p="Checking system requirements ... "
+CD /d %~dp0
 WHERE /q PowerShell 
-IF !ERRORLEVEL! NEQ 0 (ECHO PowerShell is not installed. & PAUSE & EXIT)
-PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 3) { exit 1 }"
-IF !ERRORLEVEL! NEQ 0 (ECHO Requires PowerShell 3.0 or later. & PAUSE & EXIT)
-PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; if ($content.LastIndexOf('#POWERSHELL#') -le 0) { exit 1 }"
-IF !ERRORLEVEL! NEQ 0 (ECHO Embedded script section not found. & PAUSE & EXIT)
-ECHO OK
-FOR /f %%a IN ('PowerShell -Command "[guid]::NewGuid().ToString('n')"') do set "GUID=%%a"
-SET "TempScriptPath=!TEMP!\tmp_!GUID!.ps1"
-PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; Set-Content -Encoding UTF8 -Path '!TempScriptPath!' -Value $content.Substring($content.LastIndexOf('#POWERSHELL#') + '#POWERSHELL#'.Length);"
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Set-Location -Path '%~dp0'; & '!TempScriptPath!' %*"
-DEL /f /q "!TempScriptPath!"
+IF !ERRORLEVEL! NEQ 0 (
+    ECHO PowerShell is not installed.
+    PAUSE
+    EXIT
+)
+PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 7) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (
+    ECHO Requires PowerShell 7 or later. 
+    PAUSE 
+    EXIT
+)
+PowerShell -Command "if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (
+    SET args=%*
+    IF DEFINED args (
+        SET args=!args:"=^\"!
+    )
+    PowerShell -Command "Start-Process cmd.exe -Verb RunAs -ArgumentList '/k CD /d %~dp0 && "%~f0" !args!'"
+    EXIT
+)
+PowerShell -Command "$content = (Get-Content -Path '%~f0' -Encoding UTF8 | Out-String) -replace '(?s)' + [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('OjpCQVRDSF9TVEFSVA==')) + '.*?' + [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('OjpCQVRDSF9FTkQ=')); Set-Content -Path '%~f0.ps1' -Value $content -Encoding UTF8"
+IF !ERRORLEVEL! NEQ 0 (
+    ECHO Embedded script section not found.
+    PAUSE
+    EXIT
+)
+PowerShell -NoProfile -ExecutionPolicy Bypass -File "%~f0.ps1" %*
+DEL /f /q "%~f0.ps1"
 EXIT
-#POWERSHELL#
+::BATCH_END
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
 
@@ -711,24 +729,42 @@ exit
 在当前目录下创建`uninstall.cmd`文件并写入以下内容：
 
 ```PowerShell
+::BATCH_START
 @ECHO off
 SETLOCAL EnableDelayedExpansion
 TITLE Initializing Script...
-<NUL SET /p="Checking system requirements ... "
+CD /d %~dp0
 WHERE /q PowerShell 
-IF !ERRORLEVEL! NEQ 0 (ECHO PowerShell is not installed. & PAUSE & EXIT)
-PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 3) { exit 1 }"
-IF !ERRORLEVEL! NEQ 0 (ECHO Requires PowerShell 3.0 or later. & PAUSE & EXIT)
-PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; if ($content.LastIndexOf('#POWERSHELL#') -le 0) { exit 1 }"
-IF !ERRORLEVEL! NEQ 0 (ECHO Embedded script section not found. & PAUSE & EXIT)
-ECHO OK
-FOR /f %%a IN ('PowerShell -Command "[guid]::NewGuid().ToString('n')"') do set "GUID=%%a"
-SET "TempScriptPath=!TEMP!\tmp_!GUID!.ps1"
-PowerShell -Command "$content = Get-Content -Path '%~f0' -Raw -Encoding UTF8; Set-Content -Encoding UTF8 -Path '!TempScriptPath!' -Value $content.Substring($content.LastIndexOf('#POWERSHELL#') + '#POWERSHELL#'.Length);"
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Set-Location -Path '%~dp0'; & '!TempScriptPath!' %*"
-DEL /f /q "!TempScriptPath!"
+IF !ERRORLEVEL! NEQ 0 (
+    ECHO PowerShell is not installed.
+    PAUSE
+    EXIT
+)
+PowerShell -Command "if ($PSVersionTable.PSVersion.Major -lt 7) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (
+    ECHO Requires PowerShell 7 or later. 
+    PAUSE 
+    EXIT
+)
+PowerShell -Command "if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { exit 1 }"
+IF !ERRORLEVEL! NEQ 0 (
+    SET args=%*
+    IF DEFINED args (
+        SET args=!args:"=^\"!
+    )
+    PowerShell -Command "Start-Process cmd.exe -Verb RunAs -ArgumentList '/k CD /d %~dp0 && "%~f0" !args!'"
+    EXIT
+)
+PowerShell -Command "$content = (Get-Content -Path '%~f0' -Encoding UTF8 | Out-String) -replace '(?s)' + [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('OjpCQVRDSF9TVEFSVA==')) + '.*?' + [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('OjpCQVRDSF9FTkQ=')); Set-Content -Path '%~f0.ps1' -Value $content -Encoding UTF8"
+IF !ERRORLEVEL! NEQ 0 (
+    ECHO Embedded script section not found.
+    PAUSE
+    EXIT
+)
+PowerShell -NoProfile -ExecutionPolicy Bypass -File "%~f0.ps1" %*
+DEL /f /q "%~f0.ps1"
 EXIT
-#POWERSHELL#
+::BATCH_END
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = [System.Globalization.CultureInfo]::GetCultureInfo("zh-CN")
 function Show-Pause {
