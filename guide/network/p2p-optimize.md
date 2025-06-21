@@ -24,7 +24,7 @@ EasyTier 支持节点间通过 IPv4 进行 P2P 通信，默认 EasyTier 会监�
 
 如果您的节点是普通家庭宽带，无公网 IPv4 ，需要修改 NAT 类型来提高 P2P 的成功几率，分为以下几种情况：（如何修改 NAT 类型可自行百度搜索方法）
 
-有关 NAT 类型的知识可参考这篇文章：[各种 NAT 类型的解释](https://easytier.gd.nkbpal.cn/status/easytier](https://nacldragon.top/2023/NAT-Type)
+有关 NAT 类型的知识可参考这篇文章：[各种 NAT 类型的解释](https://nacldragon.top/2023/NAT-Type/)
 
 **NAT1（在 RFC3489 中为：Full Cone NAT / 完全锥型 NAT ；在 RFC5780 中为：端点无关映射+端点无关过滤 ）**
 
