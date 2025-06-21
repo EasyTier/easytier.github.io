@@ -21,3 +21,13 @@ EasyTier can avoid forwarding network packets for other virtual networks and onl
 ```
 easytier-core --relay-network-whitelist --relay-all-peer-rpc
 ```
+
+## Private Mode
+
+If you want EasyTier to only provide services in your virtual network and don't want nodes from other virtual networks to connect to your node, you can start EasyTier with the `--private-mode true` parameter.
+
+```
+sudo easytier-core --private-mode true --network-name my-network --network-secret my-secret
+```
+
+This will only allow nodes with network name `my-network` and key `my-secret` to connect to this EasyTier node.

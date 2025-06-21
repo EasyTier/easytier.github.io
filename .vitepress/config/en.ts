@@ -13,26 +13,31 @@ export const en = defineConfig({
         items: [
           { text: 'Introduction', link: '/en/guide/introduction' },
           { text: 'Download', link: '/en/guide/download' },
-          { text: 'Installation', link: '/en/guide/installation' },
+          { text: 'Installation CLI', link: '/en/guide/installation' },
+          { text: 'Installation GUI', link: '/en/guide/installation_gui' },
+          { text: 'FAQ', link: '/en/guide/faq' },
         ],
       },
       {
         text: 'Command Line Networking',
         link: '/en/guide/networking',
         items: [
-          { text: 'Quick Networking', link: '/en/guide/network/fast-networking' },
+          { text: 'Quick Networking', link: '/en/guide/network/quick-networking' },
           { text: 'Decentralized Networking', link: '/en/guide/network/decentralized-networking' },
           { text: 'Networking with Web Console', link: '/en/guide/network/web-console' },
           { text: 'Using WireGuard Client', link: '/en/guide/network/use-easytier-with-wireguard-client' },
           { text: 'Subnet Proxy (Point-to-Network)', link: '/en/guide/network/point-to-networking' },
+          { text: 'Bandwidth and Latency Optimization (KCP Proxy)', link: '/en/guide/network/kcp-proxy' },
           { text: 'Advanced Features', collapsed: true, items: [
             { text: 'Network-to-Network', link: '/en/guide/network/network-to-network' },
             { text: 'No TUN Mode (No Root Required)', link: '/en/guide/network/no-root' },
             { text: 'SOCKS5', link: '/en/guide/network/socks5' },
             { text: 'Hosting Public Server', link: '/en/guide/network/host-public-server' },
             { text: 'P2P Optimization', link: '/en/guide/network/p2p-optimize' },
+            { text: 'Magic DNS', link: '/en/guide/network/magic-dns' },
           ] },
           { text: 'Autostart (Register Service)', collapsed: true, items: [
+            { text: 'One-Click Install Service', link: '/en/guide/network/oneclick-install-as-service' },
             { text: 'Install as Windows Service', link: '/en/guide/network/install-as-a-windows-service' },
             { text: 'Install as Linux systemd Service', link: '/en/guide/network/install-as-a-systemd-service' },
             { text: 'Install as macOS Service', link: '/en/guide/network/install-as-a-macos-service' },

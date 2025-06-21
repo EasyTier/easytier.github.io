@@ -4,85 +4,94 @@ You can use `easytier-core --help` to view all configuration options.
 
 ## Basic Settings
 
-- **Startup and Version**
+### Configuration Server
 
-  - `-h, --help`: Print help information.
-  - `-V, --version`: Print version information.
+| Parameter             | Description                                                                                                                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-w, --config-server` | Configuration server address. Allowed formats:                                                                                                                                                                       |
+|                       | - Full URL: `--config-server udp://127.0.0.1:22020/admin`                                                                                                                                                            |
+|                       | - Username only: `--config-server admin`, will use the official server                                                                                                                                               |
+|                       | [env: ET_CONFIG_SERVER=]                                                                                                                                                                                             |
+| `--machine-id`        | Web configuration server identifies machines through machine id, used for configuration recovery after disconnection and reconnection, must be unique and fixed. Default obtained from system. [env: ET_MACHINE_ID=] |
+| `-c, --config-file`   | Configuration file path, note: options configured in command line will override options in configuration file [env: ET_CONFIG_FILE=]                                                                                 |
 
-- **Configuration File**
+### Network Settings
 
-  - `-c, --config-file <CONFIG_FILE>`: Path to the configuration file. If this option is set, all other options will be ignored.
+| Parameter              | Description                                                                                                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--network-name`       | Network name used to identify this VPN network [env: ET_NETWORK_NAME=]                                                                                                                                  |
+| `--network-secret`     | Network secret, used to verify that this node belongs to the VPN network [env: ET_NETWORK_SECRET=]                                                                                                      |
+| `-i, --ipv4`           | IPv4 address of this VPN node. If empty, this node will only forward packets and will not create a TUN device [env: ET_IPV4=]                                                                           |
+| `-d, --dhcp`           | Automatically determine and set IP address by Easytier, default starts from 10.0.0.1. Warning: When using DHCP, if IP conflicts occur in the network, IP will be automatically changed. [env: ET_DHCP=] |
+| `-p, --peers`          | Peer nodes to connect to initially [env: ET_PEERS=]                                                                                                                                                     |
+| `-e, --external-node`  | Use public shared nodes to discover peer nodes [env: ET_EXTERNAL_NODE=]                                                                                                                                 |
+| `-n, --proxy-networks` | Export local network to other peer nodes in VPN, e.g.: `10.0.0.0/24`. Supports mapping to other CIDR, e.g.: `10.0.0.0/24->192.168.0.0/24` [env: ET_PROXY_NETWORKS=]                                     |
 
-- **Instance Identification**
-  - `--hostname <HOSTNAME>`: Hostname to identify this device.
-  - `-m, --instance-name <INSTANCE_NAME>`: Instance name, default is `default`.
+### RPC Settings
 
-## Network Configuration
+| Parameter                | Description                                                                                                                                     |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-r, --rpc-portal`       | RPC portal address for management. Supports the following formats:                                                                              |
+|                          | - `0` means random port                                                                                                                         |
+|                          | - `12345` means listen on localhost:12345                                                                                                       |
+|                          | - `0.0.0.0:12345` means listen on all interfaces:12345                                                                                          |
+|                          | Default is `0`, first try `15888`                                                                                                               |
+|                          | [env: ET_RPC_PORTAL=]                                                                                                                           |
+| `--rpc-portal-whitelist` | RPC portal whitelist, only allow these addresses to access RPC portal, e.g.: `127.0.0.1/32,127.0.0.0/8,::1/128` [env: ET_RPC_PORTAL_WHITELIST=] |
 
-- **Server and Network**
+### Listener Settings
 
-  - `-w, --config-server <CONFIG_SERVER>`: Configuration server address.
-  - `--network-name <NETWORK_NAME>`: Network name, default is `default`.
-  - `--network-secret <NETWORK_SECRET>`: Network secret, default is empty.
+| Parameter            | Description                                                                                                                                                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-l, --listeners`    | Listeners for accepting connections, supports the following formats:                                                                                                                                  |
+|                      | - Port number: `<11010>`, means tcp/udp will listen on port 11010, ws/wss will listen on ports 11010 and 11011, wg will listen on port 11011.                                                         |
+|                      | - URL: `<tcp://0.0.0.0:11010>`, where tcp can be tcp, udp, ring, wg, ws, wss protocols.                                                                                                               |
+|                      | - Protocol and port pair: `<proto:port>`, e.g. wg:11011, means use WireGuard protocol to listen on port 11011.                                                                                        |
+|                      | [env: ET_LISTENERS=]                                                                                                                                                                                  |
+| `--mapped-listeners` | Manually specify the public address of the listener, other nodes can use this address to connect to this node. E.g.: `tcp://123.123.123.123:11223`, can specify multiple. [env: ET_MAPPED_LISTENERS=] |
+| `--no-listener`      | Don't listen on any port, only connect to peer nodes [env: ET_NO_LISTENER=]                                                                                                                           |
 
-- **IP Configuration**
-  - `-i, --ipv4 <IPV4>`: IPv4 address of this node, empty means only forwarding packets.
-  - `-d, --dhcp`: Automatically set IP address, default starts from 10.0.0.1.
-  - `--dev-name <DEV_NAME>`: Optional TUN interface name.
-  - `--mtu <MTU>`: MTU of the TUN device, default is 1380 for non-encrypted, 1360 for encrypted.
+### Other Settings
 
-## Connection Management
+| Parameter                     | Description                                                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--hostname`                  | Hostname used to identify this device [env: ET_HOSTNAME=]                                                                                                                |
+| `-m, --instance-name`         | Instance name, used to identify this VPN node on the same machine [env: ET_INSTANCE_NAME=]                                                                               |
+| `--vpn-portal`                | Define the URL of the VPN portal, allowing other VPN clients to connect. E.g.: `wg://0.0.0.0:11010/10.14.14.0/24` [env: ET_VPN_PORTAL=]                                  |
+| `--default-protocol`          | Default protocol used when connecting to peer nodes [env: ET_DEFAULT_PROTOCOL=]                                                                                          |
+| `-u, --disable-encryption`    | Disable encryption for peer node communication, default is false, must be the same as peer nodes [env: ET_DISABLE_ENCRYPTION=]                                           |
+| `--multi-thread`              | Use multi-threaded runtime, default is single-threaded [env: ET_MULTI_THREAD=]                                                                                           |
+| `--disable-ipv6`              | Don't use IPv6 [env: ET_DISABLE_IPV6=]                                                                                                                                   |
+| `--dev-name`                  | Optional TUN interface name [env: ET_DEV_NAME=]                                                                                                                          |
+| `--mtu`                       | MTU of TUN device, default is 1380 when not encrypted, 1360 when encrypted [env: ET_MTU=]                                                                                |
+| `--latency-first`             | Latency priority mode, will try to use the lowest latency path to forward traffic, default uses shortest path [env: ET_LATENCY_FIRST=]                                   |
+| `--exit-nodes`                | Exit nodes for forwarding all traffic, virtual IPv4 addresses, priority determined by list order [env: ET_EXIT_NODES=]                                                   |
+| `--enable-exit-node`          | Allow this node to become an exit node [env: ET_ENABLE_EXIT_NODE=]                                                                                                       |
+| `--proxy-forward-by-system`   | Forward subnet proxy packets through system kernel, disable built-in NAT [env: ET_PROXY_FORWARD_BY_SYSTEM=]                                                              |
+| `--no-tun`                    | Don't create TUN device, can use subnet proxy to access nodes [env: ET_NO_TUN=]                                                                                          |
+| `--use-smoltcp`               | Enable smoltcp stack for subnet proxy and KCP proxy [env: ET_USE_SMOLTCP=]                                                                                               |
+| `--manual-routes`             | Manually assign route CIDR, will disable subnet proxy and wireguard routes propagated from peer nodes. E.g.: `192.168.0.0/16` [env: ET_MANUAL_ROUTES=]                   |
+| `--relay-network-whitelist`   | Only forward traffic from whitelisted networks, supports wildcard strings. Multiple network names can be separated by English spaces. [env: ET_RELAY_NETWORK_WHITELIST=] |
+| `--disable-p2p`               | Disable P2P communication, only forward packets through nodes specified by `--peers` [env: ET_DISABLE_P2P=]                                                              |
+| `--disable-udp-hole-punching` | Disable UDP hole punching function [env: ET_DISABLE_UDP_HOLE_PUNCHING=]                                                                                                  |
+| `--relay-all-peer-rpc`        | Forward RPC packets from all peer nodes, even if peer nodes are not in the relay network whitelist. [env: ET_RELAY_ALL_PEER_RPC=]                                        |
+| `--socks5`                    | Enable socks5 server, allowing socks5 clients to access virtual network. Format: `<port>`, e.g.: `1080` [env: ET_SOCKS5=]                                                |
+| `--compression`               | Compression algorithm to use, supports `none`, `zstd`. Default is `none` [env: ET_COMPRESSION=]                                                                          |
+| `--bind-device`               | Bind the connector's socket to a physical device to avoid routing issues. [env: ET_BIND_DEVICE=]                                                                         |
+| `--enable-kcp-proxy`          | Use KCP proxy for TCP streams, improving latency and throughput on UDP packet loss networks. [env: ET_ENABLE_KCP_PROXY=]                                                 |
+| `--disable-kcp-input`         | Don't allow other nodes to use KCP proxy TCP streams to this node. [env: ET_DISABLE_KCP_INPUT=]                                                                          |
+| `--enable-quic-proxy`         | Use QUIC proxy for TCP streams, improving latency and throughput on UDP packet loss networks. [env: ET_ENABLE_QUIC_PROXY=]                                               |
+| `--disable-quic-input`        | Don't allow other nodes to use QUIC proxy TCP streams to this node. [env: ET_DISABLE_QUIC_INPUT=]                                                                        |
+| `--port-forward`              | Forward local ports to remote ports in virtual network. E.g.: `udp://0.0.0.0:12345/10.126.126.1:23456` [env: ET_PORT_FORWARD=]                                           |
+| `--accept-dns`                | If true, enable Magic DNS. With Magic DNS, you can use domain names to access other nodes, e.g.: `<hostname>.et.net` [env: ET_ACCEPT_DNS=]                               |
+| `--private-mode`              | If true, don't allow nodes using different network names and passwords from this network to handshake or relay through this node [env: ET_PRIVATE_MODE=]                 |
+| `--foreign-relay-bps-limit`   | Limit bandwidth for relayed traffic [env: ET_FOREIGN_RELAY_BPS_LIMIT=]                                                                                                   |
+| `--console-log-level`         | Console log level [env: ET_CONSOLE_LOG_LEVEL=]                                                                                                                           |
+| `--file-log-level`            | File log level [env: ET_FILE_LOG_LEVEL=]                                                                                                                                 |
+| `--file-log-dir`              | Directory to store log files [env: ET_FILE_LOG_DIR=]                                                                                                                     |
 
-- **Listeners and Portals**
+---
 
-  - `-l, --listeners [<LISTENERS>...]`: Listeners to accept connections.
-  - `--mapped-listeners [<MAPPED_LISTENERS>...]`: Specify public addresses for listeners.
-  - `--no-listener`: Do not listen on any port.
-  - `--vpn-portal <VPN_PORTAL>`: Define the URL of the VPN portal.
-  - `--rpc-portal <RPC_PORTAL>`: Management RPC portal address, default is 15888.
+For more configuration options, please refer to the output of `easytier-core --help`.
 
-- **Nodes and Routing**
-  - `-p, --peers [<PEERS>...]`: Initial peers to connect to.
-  - `-e, --external-node <EXTERNAL_NODE>`: Use public shared nodes to discover peers.
-  - `--exit-nodes [<EXIT_NODES>...]`: Exit nodes to forward all traffic.
-  - `--enable-exit-node`: Allow this node to become an exit node.
-  - `--manual-routes [<MANUAL_ROUTES>...]`: Manually assign route CIDR.
-  - `--relay-network-whitelist [<RELAY_NETWORK_WHITELIST>...]`: Only forward traffic for whitelisted networks.
-
-## Logging and Debugging
-
-- **Log Level**
-
-  - `--console-log-level <CONSOLE_LOG_LEVEL>`: Console log level.
-  - `--file-log-level <FILE_LOG_LEVEL>`: File log level.
-
-- **Log Storage**
-  - `--file-log-dir <FILE_LOG_DIR>`: Directory to store log files.
-
-## Advanced Features
-
-- **Performance Optimization**
-
-  - `--latency-first`: Latency first mode.
-  - `--multi-thread`: Run with multi-threading.
-  - `--disable-udp-hole-punching`: Disable UDP hole punching.
-
-- **Security and Privacy**
-
-  - `-u, --disable-encryption`: Disable encryption, default is false.
-  - `--disable-ipv6`: Do not use IPv6.
-  - `--compression <COMPRESSION>`: Compression algorithm to use, default is `none`.
-
-- **Proxy and Forwarding**
-
-  - `--proxy-networks <PROXY_NETWORKS>`: Export local networks to other peers.
-  - `--socks5 <SOCKS5>`: Enable socks5 server.
-  - `--ipv6-listener <IPV6_LISTENER>`: IPv6 listener URL.
-  - `--no-tun`: Do not create TUN device.
-  - `--use-smoltcp`: Enable smoltcp stack.
-  - `--bind-device <BIND_DEVICE>`: Bind socket to physical device.
-  - `--relay-all-peer-rpc`: Forward all peer RPC packets.
-
-- **Communication Restrictions**
-  - `--disable-p2p`: Disable P2P communication.
-  - `--no-tun`: Do not create TUN device to use subnet proxy to access nodes.
+---

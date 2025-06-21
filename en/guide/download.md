@@ -37,7 +37,7 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-x86_64-v{}.zip'
         },
-        comment: "Support Windows 8 and above, Windows 7 only supports EasyTier v2.1.2 and below."
+        comment: "Windows 7 needs to be SP1 and above, and you need to install the two patches KB3063858 and KB4474419, and disable QUIC input."
     },
     {
         os: "Windows",
@@ -48,17 +48,6 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-arm64-v{}.zip'
         },
-    },
-    {
-        os: 'Windows 7',
-        arch: 'x86_64',
-        gui_pkg_tmpl: {
-            "exe": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-gui_2.1.2_x64-setup.exe'
-        },
-        cli_pkg_tmpl: {
-            "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-windows-x86_64-v2.1.2.zip'
-        },
-        comment: "Windows 7 needs to be SP1 and above, and you need to install the two patches KB3063858 and KB4474419. This version is EasyTier v2.1.2."
     },
     {
         os: "Linux",
@@ -114,6 +103,14 @@ const packages = ref<Package[]>([
         comment: "If you encounter abnormal display issues, please try upgrading WebView"
     },
     {
+        os: "Android Magisk Module",
+        arch: "aarch64",
+        gui_pkg_tmpl: {},
+        cli_pkg_tmpl: {
+            "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/Easytier-Magisk-v{}.zip'
+        },
+    },
+    {
         os: "FreeBSD 13.2",
         arch: "x86_64",
         gui_pkg_tmpl: {},
@@ -144,11 +141,12 @@ function renderUrlTmpl(url_tmpl: string): string {
 
 You can directly go to the [GitHub Release page](https://github.com/EasyTier/EasyTier/releases) to view the download links for all versions, or use the table below to find the version that suits you.
 
-The command line program package includes three executables:
+The command line program package includes four executables:
 
 - `easytier-core`: The core program of EasyTier
 - `easytier-cli`: EasyTier management program, after starting easytier-core, you can use easytier-cli to view virtual network information
 - `easytier-web`: Used for self-hosting the EasyTier Web console backend, generally no need to self-host, you can use the official Web console
+- `easytier-web-embed`: Same functionality as `easytier-web`, but includes the Web frontend.
 
 ## <a :href="url + version">EasyTier v{{ version }}</a> { #latest }
 
