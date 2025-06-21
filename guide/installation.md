@@ -1,6 +1,6 @@
 # 安装 (命令行程序) {#installation}
 
-本章节组仅介绍安装方式，阅读 [快速组网](/guide/network/fast-networking) 文档以了解参数含义和使用方法。
+本章节组仅介绍安装方式，阅读 [快速组网](/guide/network/quick-networking) 文档以了解参数含义和使用方法。
 
 ## 安装方式
 
@@ -8,18 +8,19 @@
 
    访问 [⬇️下载页面](./download) 下载适用于您操作系统和硬件架构的 EasyTier 命令行程序。下载后为 ZIP 压缩包，解压后既可直接使用。
 
+   ::: code-group
 
-    ::: code-group
-    ```bash [Linux / MacOS / FreeBSD]
-    ./easytier-core --version
-    ```
+   ```bash [Linux / MacOS / FreeBSD]
+   ./easytier-core --version
+   ```
 
-    ```powershell [Windows]
-    .\easytier-core.exe --version
-    ```
-    :::
+   ```powershell [Windows]
+   .\easytier-core.exe --version
+   ```
 
-    ---
+   :::
+
+   ***
 
 2. **DockerHub**
 
@@ -37,7 +38,7 @@
 
    请继续阅读 [快速组网](/guide/network/quick-networking) 文档以了解参数含义和使用方法。
 
-   ---
+   ***
 
 3. **通过Docker Compose安装**
 
@@ -78,7 +79,7 @@
 
    :::
 
-   ---
+   ***
 
 4. **一键安装脚本（仅 Linux）**
 
@@ -98,7 +99,7 @@
    systemctl start easytier@default
    ```
 
-   ---
+   ***
 
 5. **通过源码安装**
 
