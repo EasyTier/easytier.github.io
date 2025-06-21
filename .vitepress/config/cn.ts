@@ -13,14 +13,16 @@ export const cn = defineConfig({
         items: [
           { text: '功能简介', link: '/guide/introduction' },
           { text: '下载', link: '/guide/download' },
-          { text: '安装', link: '/guide/installation' },
+          { text: '安装 CLI', link: '/guide/installation' },
+          { text: '安装 GUI', link: '/guide/installation_gui' },
+          { text: '常见问题', link: '/guide/faq' },
         ],
       },
       {
         text: '命令行工具组网',
         link: '/guide/networking',
         items: [
-          { text: '快速组网', link: '/guide/network/fast-networking' },
+          { text: '快速组网', link: '/guide/network/quick-networking' },
           { text: '去中心组网', link: '/guide/network/decentralized-networking' },
           { text: '使用 Web 控制台组网', link: '/guide/network/web-console' },
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wireguard-client' },
@@ -32,8 +34,10 @@ export const cn = defineConfig({
             { text: 'SOCKS5', link: '/guide/network/socks5' },
             { text: '搭建共享节点', link: '/guide/network/host-public-server' },
             { text: '改善 P2P', link: '/guide/network/p2p-optimize' },
+            { text: '魔法 DNS', link: '/guide/network/magic-dns' },
           ] },
           { text: '开机自启（注册服务）', collapsed: true, items: [
+            { text: '一键安装服务', link: '/guide/network/oneclick-install-as-service' },
             { text: '安装为 Windows 服务', link: '/guide/network/install-as-a-windows-service' },
             { text: '安装为 Linux systemd 服务', link: '/guide/network/install-as-a-systemd-service' },
             { text: '安装为 macOS 服务', link: '/guide/network/install-as-a-macos-service' },

@@ -37,7 +37,7 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-x86_64-v{}.zip'
         },
-        comment: "支持 Windows 8 及以上版本，Windows 7 仅支持 EasyTier v2.1.2 以下版本。"
+        comment: "Windows 7 需要是 SP1 及以上, 并且需要安装 KB3063858、KB4474419 这两个补丁，并关闭 QUIC 输入。"
     },
     {
         os: "Windows",
@@ -48,17 +48,6 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/easytier-windows-arm64-v{}.zip'
         },
-    },
-    {
-        os: 'Windows 7',
-        arch: 'x86_64',
-        gui_pkg_tmpl: {
-            "exe": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-gui_2.1.2_x64-setup.exe'
-        },
-        cli_pkg_tmpl: {
-            "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v2.1.2/easytier-windows-x86_64-v2.1.2.zip'
-        },
-        comment: "Windows 7 需要是 SP1 及以上, 并且需要安装 KB3063858、KB4474419 这两个补丁。此版本为 EasyTier v2.1.2 版本。"
     },
     {
         os: "Linux",
@@ -114,6 +103,14 @@ const packages = ref<Package[]>([
         comment: "遇到显示界面显示异常，请尝试升级 WebView"
     },
     {
+        os: "Android Magisk 面具模块",
+        arch: "aarch64",
+        gui_pkg_tmpl: {},
+        cli_pkg_tmpl: {
+            "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/Easytier-Magisk-v{}.zip'
+        },
+    },
+    {
         os: "FreeBSD 13.2",
         arch: "x86_64",
         gui_pkg_tmpl: {},
@@ -144,11 +141,12 @@ function renderUrlTmpl(url_tmpl: string): string {
 
 您可以直接前往 [GitHub Release 页面](https://github.com/EasyTier/EasyTier/releases) 查看所有版本的下载链接，或者使用下面的表格查找适合您的版本。
 
-命令行程序的压缩包中包含三个可执行程序：
+命令行程序的压缩包中包含四个可执行程序：
 
 - `easytier-core`：EasyTier 的核心程序
 - `easytier-cli`：EasyTier 管理程序，启动 easytier-core 后，可以使用 easytier-cli 查看虚拟网信息
 - `easytier-web`: 用于自建 EasyTier 的 Web 控制台后端，一般情况下无需自建，使用官方提供的 Web 控制台即可
+- `easytier-web-embed`: 与 `easytier-web` 功能相同，但内置了 Web 前端。
 
 ## <a :href="url + version">EasyTier v{{ version }}</a> { #latest }
 

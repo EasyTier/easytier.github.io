@@ -4,10 +4,11 @@
 
 ## IPv6
 
-EasyTier 支持节点间通过 IPv6 进行 P2P 通信，默认 EasyTier 会随机监听一个 IPv6 UDP 端口。
+EasyTier 支持节点间通过 IPv6 进行 P2P 通信，默认 EasyTier 在每个监听器上同时监听 IPv4 和 IPv6 地址。
 
-在某些情况下，指定监听 IPv6 地址和端口可能更有利于节点间的 P2P 通信。
-可以使用 `-l` 配置 IPv6 的监听器。 例如：
+只要监听器监听地址为 `0.0.0.0` EasyTier 就会自动监听 IPv6 地址，该行为可以通过 `--disable-ipv6` 参数禁用。
+
+也可以手动配置仅监听 IPv6 地址。 例如：
 
 ```sh
 easytier-core -l 'tcp://[::]:12345' -l 'udp://[::]:12345'

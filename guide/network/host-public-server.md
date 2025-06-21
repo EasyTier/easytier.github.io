@@ -21,3 +21,13 @@ EasyTier 可以做到不转发其他虚拟网的网络包，而是只帮助他�
 ```
 easytier-core --relay-network-whitelist --relay-all-peer-rpc
 ```
+
+## 私有模式
+
+如果你希望 EasyTier 仅在你的虚拟网络中提供服务，而不希望其他虚拟网的节点连接到你的节点，可以使用 `--private-mode true` 参数启动 EasyTier。
+
+```
+sudo easytier-core --private-mode true --network-name my-network --network-secret my-secret
+```
+
+这会仅允许网络名为 `my-network` 且密钥为 `my-secret` 的节点连接到该 EasyTier 节点。
