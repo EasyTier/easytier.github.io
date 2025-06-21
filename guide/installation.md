@@ -6,13 +6,7 @@
 
    访问 [⬇️下载页面](./download) 下载适用于您操作系统的二进制文件或安装包。
 
-2. **通过 crates.io 安装**
-
-   ```sh [cargo]
-   cargo install easytier
-   ```
-
-3. **DockerHub**
+2. **DockerHub**
 
    [DockerHub 镜像地址](https://hub.docker.com/layers/easytier/easytier)
 
@@ -24,7 +18,7 @@
    docker pull m.daocloud.io/docker.io/easytier/easytier:latest
    ```
 
-4. **通过Docker Compose安装**
+3. **通过Docker Compose安装**
 
    ::: details docker-compose.yml
 
@@ -58,18 +52,20 @@
        volumes:
          - /etc/easytier:/root
          - /etc/machine-id:/etc/machine-id:ro # 映射宿主机机器码
-       command: -i <ip> --network-name <用户> --network-secret <密码> -p tcp://<服务器地址>:11010
+       command: -d --network-name <用户> --network-secret <密码> -p tcp://public.easytier.cn:11010
    ```
 
    :::
 
-5. **一键安装脚本 （仅 Linux）**
+4. **一键安装脚本 （仅 Linux）**
 
    ```bash
    wget -O /tmp/easytier.sh "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.sh" && bash /tmp/easytier.sh install
    ```
 
-6. **通过源码安装**
+   一键脚本依赖 `unzip`，请提前下载并安装。
+
+5. **通过源码安装**
 
    ```sh [cargo]
    cargo install --git https://github.com/EasyTier/EasyTier.git easytier
@@ -79,6 +75,7 @@
 
 - [EasyTier Game ( Windows )](/guide/gui/easytier-game)
 - [EasyTier Manager ( Windows )](/guide/gui/easytier-manager)
+- [Astral Game ( Windows / Android / Linux )](/guide/gui/astral_ET)
 - [luci-app-easytier ( OpenWrt )](https://github.com/EasyTier/luci-app-easytier)
 
 ## 常见问题 {#faq}

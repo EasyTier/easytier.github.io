@@ -26,35 +26,32 @@ hero:
 
 features:
   - title: 去中心化
-    details: 不区分客户端 / 服务端，无需依赖中心化服务，节点平等且独立。
+    details: 节点平等独立，无需中心化服务。<br>不区分客户端/服务端。
     link: /guide/network/decentralized-networking
   - title: 易用
-    details: |
-      支持通过 网页 / 客户端 / 命令行 多种方式使用，操作简单。
-      </br>
-      支持使用共享节点一键组网。
+    details: 网页、客户端、命令行多方式操作<br>支持一键组网
     link: /guide/network/web-console
   - title: 跨平台
-    details: |
-      支持 Windows / MacOS / Linux / FreeBSD / Android 等系统。
-      </br>
-      支持 X86 / ARM / MIPS 等硬件架构。
+    details: 支持 Win / MacOS / Linux / FreeBSD / Android<br>兼容 X86 / ARM / MIPS 架构
     link: /guide/download
   - title: 安全
-    details: 支持 AES-GCM 或 WireGuard 加密保护中转流量，免受中间人攻击。
+    details: AES-GCM 或 WireGuard 加密<br>防止中间人攻击
     link: /
   - title: 高效 NAT 穿透
-    details: 支持基于 UDP 的 NAT 穿透和 IPV6 穿透，在某些情况下可以打通 NAT4-NAT4 的网络。
+    details: 支持 UDP、IPv6 穿透<br>可打通 NAT4-NAT4 网络
     link: /
   - title: 子网代理
-    details: 节点可以将其可访问的网段转发到虚拟网，允许其他节点通过该节点访问这些子网。
+    details: 节点可共享子网供其他节点访问。
     link: /guide/network/point-to-networking
   - title: 智能路由
-    details: 支持延迟优先模式，自动选择最优路径，提供最佳的网络体验。
+    details: 延迟优先，自动选路<br>提供最佳网络体验
     link: /guide/network/configurations
   - title: 高性能
-    details: 全链路零拷贝，性能与主流组网软件相当。</br> 节点间通信支持 TCP / UDP / QUIC / WG 等多种协议。
+    details: 全链路零拷贝<br>支持 TCP / UDP / QUIC / WG 等协议
     link: /guide/perf
+  - title: 抗 UDP 丢包
+    details: KCP / QUIC 代理<br>优化高丢包环境下的延迟和带宽
+    link: /guide/network/kcp-proxy
 ---
 
 ## 相关链接
@@ -64,15 +61,28 @@ features:
 - QQ 群：[949700262](https://qm.qq.com/q/wFoTUChqZW)
 - Telegram：https://t.me/easytier
 
+## 鸣谢
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
+  <a href="https://langlangy.cn/?i26c5a5" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; border: 1px solid var(--vp-c-divider); border-radius: 28px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-align: center; width: 250px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); background-color: rgba(215, 230, 240, 0.81);">
+    <img src="https://langlangy.cn/home/img/logo.png" alt="浪浪云" style="height: 60px;">
+    <span style="font-size: 0.95rem; color: black;">赞助的公共服务器</span>
+  </a>
+</div>
+
 ## 赞助 {#sponsor}
 
 如果您觉得 EasyTier 对您有所帮助，欢迎赞助我们。
 
 软件的开发和维护需要大量的时间和精力，您的赞助将帮助我们更好地维护和改进 EasyTier。
 
-<div align="center">
-  <img src="/assets/weixin.png" alt="微信" width="300" style="display: inline-block" />
-  <img src="/assets/zhifubao.png" alt="支付宝" width="300" style="display: inline-block; margin-left: 2em"/>
+<div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <img src="/assets/wechat.png" alt="微信" style="width: 250px; max-width: 100%; border-radius: 28px;" />
+  </div>
+  <div style="text-align: center;">
+    <img src="/assets/alipay.png" alt="支付宝" style="width: 250px; max-width: 100%; border-radius: 28px;" />
+  </div>
 </div>
 
 <Home />
