@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /guide/installation
+      link: /guide/introduction
     - theme: alt
       text: 下载
       link: /guide/download
@@ -47,7 +47,7 @@ features:
     details: 延迟优先，自动选路<br>提供最佳网络体验
     link: /guide/network/configurations
   - title: 高性能
-    details: 全链路零拷贝<br>支持 TCP / UDP / QUIC / WG 等协议
+    details: 全链路零拷贝<br>支持 TCP / UDP / WSS / WG 等协议
     link: /guide/perf
   - title: 抗 UDP 丢包
     details: KCP / QUIC 代理<br>优化高丢包环境下的延迟和带宽

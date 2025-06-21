@@ -103,6 +103,14 @@ const packages = ref<Package[]>([
         comment: "遇到显示界面显示异常，请尝试升级 WebView"
     },
     {
+        os: "Android Magisk 面具模块",
+        arch: "aarch64",
+        gui_pkg_tmpl: {},
+        cli_pkg_tmpl: {
+            "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/Easytier-Magisk-v{}.zip'
+        },
+    },
+    {
         os: "FreeBSD 13.2",
         arch: "x86_64",
         gui_pkg_tmpl: {},
@@ -138,7 +146,7 @@ function renderUrlTmpl(url_tmpl: string): string {
 - `easytier-core`：EasyTier 的核心程序
 - `easytier-cli`：EasyTier 管理程序，启动 easytier-core 后，可以使用 easytier-cli 查看虚拟网信息
 - `easytier-web`: 用于自建 EasyTier 的 Web 控制台后端，一般情况下无需自建，使用官方提供的 Web 控制台即可
-- `easytier-web-embde`: 与 `easytier-web` 功能相同，但内置了 Web 前端。
+- `easytier-web-embed`: 与 `easytier-web` 功能相同，但内置了 Web 前端。
 
 ## <a :href="url + version">EasyTier v{{ version }}</a> { #latest }
 
