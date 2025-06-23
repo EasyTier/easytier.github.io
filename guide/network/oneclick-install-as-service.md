@@ -15,10 +15,20 @@ sudo ./easytier-cli service install -w abc
 # 假设 EasyTier 的启动参数为 -w abc
 .\easytier-cli.exe service install -w abc
 ```
-
 :::
 
 `install` 后的部分会作为 `easytier-core` 的启动参数。
+
+参数选项
+```bash
+easytier-cli service install \
+    --description "自定义服务描述" \        # 可选，默认使用包描述
+    --display-name "显示名称" \            # 可选，服务显示名称
+    --disable-autostart \                 # 可选，禁用开机自启（默认启用）
+    --core-path /path/to/easytier-core \  # 可选，指定二进制路径
+    --service-work-dir /工作目录路径 \     # 可选，指定工作目录
+    额外的运行时参数                       # 可选，传递给 easytier-core 的参数
+```
 
 服务安装成功后，可以使用以下命令对服务进行管理：
 
