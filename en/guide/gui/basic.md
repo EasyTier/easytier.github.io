@@ -1,6 +1,6 @@
 # Public Server Networking
 
-Currently, a small bandwidth public server is provided to facilitate networking for friends without a public server. In most cases, P2P tunneling can be successful. If P2P tunneling fails, the bandwidth between nodes may be relatively low.
+The GUI defaults to using official shared nodes for networking, which is convenient for friends without public IPs. In most cases, P2P tunneling can be successful. If P2P tunneling fails, the bandwidth between nodes may be relatively low.
 
 The configuration method is shown in the figure.
 

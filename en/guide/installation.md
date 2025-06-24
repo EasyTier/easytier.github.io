@@ -1,32 +1,52 @@
-# Installation {#installation}
+# Installation (Command Line Program) {#installation}
+
+This section only introduces installation methods. Please read the [Quick Networking](/en/guide/network/quick-networking) documentation to understand parameter meanings and usage methods.
 
 ## Installation Methods
 
-1. **Download Precompiled Binaries (Recommended)**
+1. **Manual Download of Command Line Program**
 
-   Visit the [⬇️Download Page](./download) to download the binaries or installation packages for your operating system.
+   Visit the [⬇️Download Page](./download) to download the EasyTier command line program suitable for your operating system and hardware architecture. After downloading, it's a ZIP compressed package that can be used directly after extraction.
 
-2. **Install via crates.io**
+   ::: code-group
 
-   ```sh [cargo]
-   cargo install easytier
+   ```bash [Linux / MacOS / FreeBSD]
+   ./easytier-core --version
    ```
 
-3. **DockerHub**
+   ```powershell [Windows]
+   .\easytier-core.exe --version
+   ```
 
-   [DockerHub Image](https://hub.docker.com/layers/easytier/easytier)
+   :::
+
+   ***
+
+2. **DockerHub**
+
+   [DockerHub Image Address](https://hub.docker.com/r/easytier/easytier)
 
    ```sh [docker]
+   # docker.io image
    docker pull easytier/easytier:latest
+   docker run -d --privileged --network host easytier/easytier:latest
+
+   # Domestic users can use DaoCloud image
+   docker pull m.daocloud.io/docker.io/easytier/easytier:latest
+   docker run -d --privileged --network host m.daocloud.io/docker.io/easytier/easytier:latest
    ```
 
-4. **Install via Docker Compose**
+   Please continue reading the [Quick Networking](/en/guide/network/quick-networking) documentation to understand parameter meanings and usage methods.
+
+   ***
+
+3. **Install via Docker Compose**
 
    ::: details docker-compose.yml
 
    ```yaml [docker-compose.yml]
    services:
-     watchtower: # Used to automatically update the easytier image, delete this part if not needed
+     watchtower: # Used to automatically update easytier image, delete this part if not needed
        image: containrrr/watchtower
        container_name: watchtower
        restart: unless-stopped
@@ -37,7 +57,7 @@
          - /var/run/docker.sock:/var/run/docker.sock
        command: --interval 3600 --cleanup --label-enable
      easytier:
-       image: easytier/easytier:latest
+       image: easytier/easytier:latest # Domestic users can use m.daocloud.io/docker.io/easytier/easytier:latest
        hostname: easytier
        container_name: easytier
        labels:
@@ -52,53 +72,39 @@
        devices:
          - /dev/net/tun:/dev/net/tun
        volumes:
-         - /etc/machine-id:/etc/machine-id:ro # Pass the host's machine id into container
          - /etc/easytier:/root
-       command: -i <ip> --network-name <user> --network-secret <password> -p tcp://<server_address>:11010
+         - /etc/machine-id:/etc/machine-id:ro # Map host machine code
+       command: -d --network-name <user> --network-secret <password> -p tcp://public.easytier.cn:11010
    ```
 
    :::
 
-5. **One-Click Installation Script (Linux Only)**
+   ***
+
+4. **One-Click Installation Script (Linux Only)**
+
+   Note: The one-click script depends on `unzip`, please download and install it in advance.
 
    ```bash
-   wget -O /tmp/easytier.sh "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.sh" && bash /tmp/easytier.sh install
+   wget -O /tmp/easytier.sh "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.sh" && sudo bash /tmp/easytier.sh install --gh-proxy https://ghfast.top/
    ```
 
-6. **Install from Source**
+   After the script executes successfully, EasyTier's binary programs will be installed in the `/opt/easytier` directory, and the configuration file is located at `/opt/easytier/config/default.conf`.
+
+   The configuration file can be generated through the [Configuration File Generator](https://easytier.cn/web/index.html#/config_generator).
+
+   EasyTier will be registered as a system service and can be managed with the following commands:
+
+   ```bash
+   systemctl start easytier@default
+   ```
+
+   ***
+
+5. **Install from Source**
 
    ```sh [cargo]
    cargo install --git https://github.com/EasyTier/EasyTier.git easytier
    ```
 
-## Third-Party Tools
-
-- [EasyTier Game (Windows)](/guide/gui/easytier-game)
-- [EasyTier Manager (Windows)](/guide/gui/easytier-manager)
-- [luci-app-easytier (OpenWrt)](https://github.com/EasyTier/luci-app-easytier)
-
-## FAQ {#faq}
-
-### Question 1
-
-Q: Unable to create a network on Windows 7, the program crashes or reports an error that it cannot create a virtual network.
-
-A: Windows 7 requires SP1 or above, and the installation of [KB3063858](https://www.microsoft.com/en-us/download/details.aspx?id=47409) and [KB4474419](https://www.catalog.update.microsoft.com/search.aspx?q=KB4474419) patches.
-
-### Question 2
-
-Q: The Linux command line help is in English, how to change it to Chinese?
-
-A: You need to set the environment variable LANG=zh_CN, command: `export LANG=zh_CN`
-
-### Question 3
-
-Q: TunError is prompted after startup.
-
-A: Ensure that the TUN driver is correctly loaded and the `/dev/net/tun` file exists. If using Docker, make sure to enable privileged mode. The method to load the Linux TUN driver is:
-
-```bash
-modprobe tun
-mkdir /dev/net
-sudo mknod /dev/net/tun c 10 200
-```
+   Source installation requires Rust environment and LLVM installation.
