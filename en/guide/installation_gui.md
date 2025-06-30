@@ -31,9 +31,9 @@ EasyTier Manager is a desktop application used to manage the EasyTier core. It p
 
 ---
 
-### [Astral Game (Windows / Android / Linux)](/guide/gui/astral_ET)
+### [Astral Game (Windows / Android / Linux)](/guide/gui/astral-game)
 
-Astral is a cross-platform network application based on EasyTier, providing simple and easy-to-use P2P network connections and VPN services. Built with Flutter, its modern interface allows users to easily create and manage virtual networks.
+AstralGame is a cross-platform network application based on EasyTier, providing simple and easy-to-use P2P network connections and VPN services. Built with Flutter, its modern interface allows users to easily create and manage virtual networks.
 
 ---
 

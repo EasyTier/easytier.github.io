@@ -31,9 +31,9 @@
 
 ---
 
-### [Astral Game ( Windows / Android / Linux )](/guide/gui/astral_ET)
+### [Astral Game ( Windows / Android / Linux )](/guide/gui/astral-game)
 
-  Astral 是一个基于 EasyTier 的跨平台网络应用，提供简单易用的 P2P 网络连接和 VPN 服务。通过 Flutter 构建的现代化界面，让用户能够轻松创建和管理虚拟网络。
+  AstralGame 是一个基于 EasyTier 的跨平台网络应用，提供简单易用的 P2P 网络连接和 VPN 服务。通过 Flutter 构建的现代化界面，让用户能够轻松创建和管理虚拟网络。
 
 ---
 
