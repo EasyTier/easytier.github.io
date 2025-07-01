@@ -1,7 +1,6 @@
 # AstralGame 游戏联机工具
-
 [![GitHub](https://img.shields.io/badge/GitHub-AstralET-blue)](https://github.com/ldoubil/astral)
-[![AstralGame](https://img.shields.io/badge/wiki-AstralGame-blue)]([https://github.com/ldoubil/astral](https://astral.fan/))
+[![AstralGame](https://img.shields.io/badge/wiki-AstralGame-blue)](https://astral.fan/)
 
 ## 预览
 ![manage-step1](/assets/AstralET1.png)
