@@ -52,6 +52,6 @@
   注意： 由于政策问题，您需要切换到外区应用商店才能够下载HomoTier，如使用ClashBox的全局模式，或者切换外区账号，来切换到外区应用商店。
   <div align="left">
   	<a href="https://appgallery.huawei.com/app/detail?id=top.frankhan.et4hm&channelId=SHARE" target="_blank">
-      	<img  src="https://github.com/user-attachments/assets/3771ff62-a619-42f6-8e84-fc5a778a2357"  width="204" height="51"  />
+      	<img  src="../assets/HomoTier_AppGallery.png"  width="204" height="51"  />
   	</a>
   </div>
