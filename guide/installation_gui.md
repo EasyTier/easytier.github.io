@@ -42,3 +42,16 @@
   EasyTier 的 OpenWrt 插件，提供了在 OpenWrt 路由器上安装和配置 EasyTier 内核的方法。
 
   插件支持在 OpenWrt 的 LuCI 界面内完成 EasyTier 内核的安装、配置和管理。用户可以方便地通过 LuCI 界面进行配置内核、查看运行日志、重启内核等操作。
+
+---
+
+### [HomoTier ( HarmonyOS 5.0 )](https://appgallery.huawei.com/app/detail?id=top.frankhan.et4hm&channelId=SHARE)
+
+  HomoTier 是一个基于 EasyTier 进行二次开发的鸿蒙原生应用，使用 ArkTS 实现现代化UI，提供 VPN 服务以及基本的配置管理，并依托于鸿蒙分布式设计能够跨设备共享配置。
+  
+  注意： 由于政策问题，您需要切换到外区应用商店才能够下载HomoTier，如使用ClashBox的全局模式，或者切换外区账号，来切换到外区应用商店。
+  <div align="left">
+  	<a href="https://appgallery.huawei.com/app/detail?id=top.frankhan.et4hm&channelId=SHARE" target="_blank">
+      	<img  src="/assets/HomoTier_AppGallery.png"  width="204" height="51"  />
+  	</a>
+  </div>
