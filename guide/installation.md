@@ -108,3 +108,11 @@
    ```
 
    源码安装需要 Rust 环境，并且安装 LLVM。
+
+6. **(可选)安装 Shell 补全功能**
+
+   ```fish
+   # Fish 补全
+   easytier-core --gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
+   easytier-cli gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
+   ```
