@@ -76,9 +76,7 @@ connection error. local: udp://0.0.0.0:11010, remote: udp://***.***.***.***:1494
 
 此时建议配置 `fail2ban`，以阻止这样的用户访问节点，可以有效的降低服务器的连接数，提高用户的访问质量。
 
-配置方法如下：
-
-以 Fedora 42 为例：
+以 Fedora 42 为例，配置方法如下：
 
 ```shell
 # install fail2ban
@@ -100,7 +98,6 @@ failregex = remote: \S+://<HOST>:\d+, err: wait resp error:.+
 
 ```ini
 # cat /etc/fail2ban/jail.local
-
 [easytier]
 enabled = true
 filter  = easytier
@@ -139,7 +136,7 @@ Status for the jail: easytier
    `- Banned IP list:   ***
 ```
 
-此时服务器连接数应该明显降低：
+此时服务器连接数应该明显降低（可能需要等待一会儿才能看到效果）：
 
 ```shell
 netstat -ntp | grep easytier
