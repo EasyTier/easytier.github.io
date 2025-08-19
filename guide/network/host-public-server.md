@@ -109,7 +109,7 @@ findtime = 600
 banaction = nftables-multiport
 ```
 
-此处的策略代表：`findtime=600s` 尝试 `maxretry=3` 次失败，则会被关进小黑屋（阻止访问）`bantime=3600s` 一小时。
+此处的策略代表：`findtime=600s` 内尝试 `maxretry=3` 次失败，则会被关进小黑屋（阻止访问）`bantime=3600s` 一小时。
 
 配置好后，重载 `fail2ban`
 
