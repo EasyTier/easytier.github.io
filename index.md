@@ -57,9 +57,9 @@ features:
 ## 相关链接
 
 - [社区文档](https://doc.oee.icu)：由社区志愿者维护，白话版 EasyTier 的使用指南，实时更新。
-- [公共服务器节点列表](https://easytier.gd.nkbpal.cn/status/easytier)：由社区志愿者维护，提供公共服务器节点列表及状态查询。
 - QQ 群：[949700262](https://qm.qq.com/q/wFoTUChqZW)
 - Telegram：https://t.me/easytier
+- Discord：https://discord.gg/yRCkdu8brx
 
 ## 鸣谢
 
