@@ -57,9 +57,9 @@ features:
 ## Related Links
 
 - [Community Documentation](https://doc.oee.icu): Maintained by community volunteers, a plain language guide to using EasyTier, updated in real-time.
-- [Public Server Node List](https://easytier.gd.nkbpal.cn/status/easytier): Maintained by community volunteers, provides a list of public server nodes and status queries.
 - QQ Group: [949700262](https://qm.qq.com/q/wFoTUChqZW)
 - Telegram: https://t.me/easytier
+- Discord：https://discord.gg/yRCkdu8brx
 
 ## Acknowledgments
 
