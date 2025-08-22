@@ -57,7 +57,10 @@ features:
 ## 相关链接
 
 - [社区文档](https://doc.oee.icu)：由社区志愿者维护，白话版 EasyTier 的使用指南，实时更新。
-- QQ 群：[949700262](https://qm.qq.com/q/wFoTUChqZW)
+- QQ 群：
+  - 一群 [949700262](https://qm.qq.com/q/wFoTUChqZW)
+  - 二群 [837676408](https://qm.qq.com/q/4V33DrfgHe)
+  - 三群 [717219236](https://qm.qq.com/q/m1nmqk8IlU)
 - Telegram：https://t.me/easytier
 - Discord：https://discord.gg/yRCkdu8brx
 
