@@ -56,7 +56,6 @@ features:
 
 ## Related Links
 
-- [Community Documentation](https://doc.oee.icu): Maintained by community volunteers, a plain language guide to using EasyTier, updated in real-time.
 - QQ Group: [949700262](https://qm.qq.com/q/wFoTUChqZW)
 - Telegram: https://t.me/easytier
 - Discord：https://discord.gg/yRCkdu8brx
