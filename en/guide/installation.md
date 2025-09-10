@@ -74,7 +74,7 @@ This section only introduces installation methods. Please read the [Quick Networ
        volumes:
          - /etc/easytier:/root
          - /etc/machine-id:/etc/machine-id:ro # Map host machine code
-       command: -d --network-name <user> --network-secret <password> -p tcp://public.easytier.cn:11010
+       command: -d --network-name abc --network-secret abc -p tcp://public.easytier.cn:11010
    ```
 
    :::
