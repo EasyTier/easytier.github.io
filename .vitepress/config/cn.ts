@@ -35,6 +35,7 @@ export const cn = defineConfig({
             { text: '搭建共享节点', link: '/guide/network/host-public-server' },
             { text: '改善 P2P', link: '/guide/network/p2p-optimize' },
             { text: '魔法 DNS', link: '/guide/network/magic-dns' },
+            { text: 'ACL', link: '/guide/config/acl' },
           ] },
           { text: '开机自启（注册服务）', collapsed: true, items: [
             { text: '一键安装服务', link: '/guide/network/oneclick-install-as-service' },
