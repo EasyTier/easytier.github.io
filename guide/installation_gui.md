@@ -55,3 +55,11 @@
       	<img  src="/assets/HomoTier_AppGallery.png"  width="204" height="51"  />
   	</a>
   </div>
+
+---
+
+### [Terracotta | 陶瓦联机 ( Windows / Android / Linux )](https://github.com/burningtnt/Terracotta)
+
+  Terracotta | 陶瓦联机时为 Minecraft 玩家提供开箱即用的联机功能。陶瓦联机基于 EasyTier 开发，针对 MC 做出了大量优化，尽量降低了操作门槛。
+
+  目前已接入 HMCL 启动器，可在最新版本体验程序功能，也可下载本程序体验。
