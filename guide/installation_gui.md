@@ -57,7 +57,7 @@
 
 ---
 
-### [EasyTier ( HarmonyOS 5-最新 )]([https://appgallery.huawei.com/link/invite-test-wap?taskId=5279964495502566d0f704390bdba314&invitationCode=AcmyBG3xwJr])
+### [EasyTier ( HarmonyOS 5-最新 )](https://appgallery.huawei.com/link/invite-test-wap?taskId=5279964495502566d0f704390bdba314&invitationCode=AcmyBG3xwJr)
 
   EasyTier 是一个基于 EasyTier 进行二次开发的鸿蒙原生应用，使用 ArkTS 实现现代化UI，提供 VPN 服务以及配置管理，且能够快捷导入社区共享节点，并支持碰一碰等鸿蒙新特性。
 
