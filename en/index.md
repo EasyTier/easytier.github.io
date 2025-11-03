@@ -72,6 +72,16 @@ features:
     <img src="https://app.rainyun.com/img/logo.d193755d.png" alt="Langlang Cloud" style="height: 60px;">
     <span style="font-size: 0.95rem; color: black;">Sponsored Public Server</span>
   </a>
+
+  <a href="https://corn.baby/aff/lQplE9fA" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; border: 1px solid var(--vp-c-divider); border-radius: 28px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-align: center; width: 250px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); background-color: rgba(215, 230, 240, 0.81);">
+    <img src="https://framerusercontent.com/images/QeaHcBgKDCP2Cd2xzaMtHlew8Mk.png?scale-down-to=512&width=583&height=228" alt="ComCorn Cloud" style="height: 60px;">
+    <span style="font-size: 0.95rem; color: black;">Sponsored Public Server</span>
+  </a>
+
+  <a href="https://www.dkdun.cn/aff/RZGBFYSW" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; border: 1px solid var(--vp-c-divider); border-radius: 28px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-align: center; width: 250px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); background-color: rgba(215, 230, 240, 0.81);">
+    <img src="https://www.dkdun.cn/themes/web/www/upload/local68c2dbb2ab148.png" alt="LinFengCloud" style="height: 60px;">
+    <span style="font-size: 0.95rem; color: black;">Sponsored Public Server</span>
+  </a>
 </div>
 
 ## Sponsor {#sponsor}
