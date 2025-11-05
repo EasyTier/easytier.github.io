@@ -45,26 +45,14 @@
 
 ---
 
-### [HomoTier ( HarmonyOS 5.0 )](https://appgallery.huawei.com/app/detail?id=top.frankhan.et4hm&channelId=SHARE)
-
-  HomoTier 是一个基于 EasyTier 进行二次开发的鸿蒙原生应用，使用 ArkTS 实现现代化UI，提供 VPN 服务以及基本的配置管理，并依托于鸿蒙分布式设计能够跨设备共享配置。
-  
-  <div align="left">
-  	<a href="https://appgallery.huawei.com/app/detail?id=top.frankhan.et4hm&channelId=SHARE" target="_blank">
-      	<img  src="/assets/HomoTier_AppGallery.png"  width="204" height="51"  />
-  	</a>
-  </div>
-
----
-
-### [EasyTier鸿蒙版 ( HarmonyOS 5-最新 )](https://appgallery.huawei.com/link/invite-test-wap?taskId=5279964495502566d0f704390bdba314&invitationCode=AcmyBG3xwJr)
+### [EasyTier鸿蒙版 ( HarmonyOS 5-最新 )](https://appgallery.huawei.com/link/invite-test-wap?taskId=d82a2ab3a591a16193106908b87bd307&invitationCode=81qNwMKWxIY)
 
   EasyTier鸿蒙版 是一个基于 EasyTier 进行二次开发的鸿蒙原生应用，使用 ArkTS 实现现代化UI，提供 VPN 服务以及配置管理，且能够快捷导入社区共享节点，并支持碰一碰等鸿蒙新特性。
 
   需要注意的是，在将来可能会放弃HarmonyOS 5(API18-)兼容，以便减少兼容代码，且尽可能保持HarmonyOS 6(API20+)及以上的兼容性。
   
   <div align="left">
-  	<a href="https://appgallery.huawei.com/link/invite-test-wap?taskId=5279964495502566d0f704390bdba314&invitationCode=AcmyBG3xwJr" target="_blank">
+  	<a href="https://appgallery.huawei.com/link/invite-test-wap?taskId=d82a2ab3a591a16193106908b87bd307&invitationCode=81qNwMKWxIY" target="_blank">
       	<img  src="/assets/HomoTier_AppGallery.png"  width="204" height="51"  />
   	</a>
   </div>
