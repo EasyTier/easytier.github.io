@@ -74,14 +74,6 @@ export const cn = defineConfig({
     ],
     nav: [
       {
-        text: '<iconify-icon icon="grommet-icons:nodes" style="margin-right:0.25rem;color:#27AE60;"></iconify-icon>社区共享节点',
-        link: 'https://uptime.easytier.cn/',
-      },
-      {
-        text: '<iconify-icon icon="fa6-solid:gears" style="margin-right:0.25rem;color:#3498db;"></iconify-icon>Web 控制台',
-        link: 'https://easytier.cn/web',
-      },
-      {
         text: '<iconify-icon icon="fa6-solid:bug" style="margin-right:0.25rem;color:#FF4500;" alt="bug"></iconify-icon>提交反馈',
         link: 'https://github.com/EasyTier/EasyTier/issues',
       },

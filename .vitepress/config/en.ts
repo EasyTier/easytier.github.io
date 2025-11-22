@@ -72,14 +72,6 @@ export const en = defineConfig({
     ],
     nav: [
       {
-        text: '<iconify-icon icon="grommet-icons:nodes" style="margin-right:0.25rem;color:#27AE60;"></iconify-icon>Public Shared Nodes',
-        link: 'https://uptime.easytier.cn/',
-      },
-      {
-        text: '<iconify-icon icon="fa6-solid:gears" style="margin-right:0.25rem;color:#3498db;"></iconify-icon>Web Console',
-        link: 'https://easytier.cn/web',
-      },
-      {
         text: '<iconify-icon icon="fa6-solid:bug" style="margin-right:0.25rem;color:#FF4500;" alt="bug"></iconify-icon>Submit Feedback',
         link: 'https://github.com/EasyTier/EasyTier/issues',
       },

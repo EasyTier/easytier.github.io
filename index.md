@@ -17,9 +17,6 @@ hero:
     - theme: alt
       text: 下载
       link: /guide/download
-    - theme: alt
-      text: Web 控制台
-      link: https://easytier.cn/web
     - theme: sponsor
       text: 💚 赞助
       link: /#sponsor
@@ -30,7 +27,6 @@ features:
     link: /guide/network/decentralized-networking
   - title: 易用
     details: 网页、客户端、命令行多方式操作<br>支持一键组网
-    link: /guide/network/web-console
   - title: 跨平台
     details: 支持 Win / MacOS / Linux / FreeBSD / Android<br>兼容 X86 / ARM / MIPS 架构
     link: /guide/download
