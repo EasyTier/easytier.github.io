@@ -1,9 +1,9 @@
-# [EasyTier 鸿蒙版](https://appgallery.huawei.com/link/invite-test-wap?taskId=d82a2ab3a591a16193106908b87bd307&invitationCode=81qNwMKWxIY)
+# [EasyTier 鸿蒙版](https://appgallery.huawei.com/app/detail?id=top.frankhan.easytier&channelId=SHARE&source=appshare)
 
 ## 下载
 
   <div align="left">
-  	<a href="https://appgallery.huawei.com/link/invite-test-wap?taskId=d82a2ab3a591a16193106908b87bd307&invitationCode=81qNwMKWxIY" target="_blank">
+  	<a href="https://appgallery.huawei.com/app/detail?id=top.frankhan.easytier&channelId=SHARE&source=appshare" target="_blank">
       	<img  src="/assets/HomoTier_AppGallery.png"  width="204" height="51"  />
   	</a>
   </div>
