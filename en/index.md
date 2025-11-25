@@ -17,9 +17,6 @@ hero:
     - theme: alt
       text: Download
       link: /en/guide/download
-    - theme: alt
-      text: Web Console
-      link: https://easytier.cn/web
     - theme: sponsor
       text: 💚 Sponsor
       link: /#sponsor
@@ -30,7 +27,6 @@ features:
     link: /en/guide/network/decentralized-networking
   - title: Easy to Use
     details: Web, client, command line multiple operation methods<br>Supports one-click networking
-    link: /en/guide/network/web-console
   - title: Cross-Platform
     details: Supports Win / MacOS / Linux / FreeBSD / Android<br>Compatible with X86 / ARM / MIPS architectures
     link: /en/guide/download
