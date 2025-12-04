@@ -68,7 +68,7 @@ EasyTier 支持自建 Web 控制台来管理 EasyTier 节点，EasyTier Web 控�
 
 其中，web前端与web api后端默认绑定在同一端口，配置下发端则是web api后端的一部分。
 
-Easytier的web控制台有2个版本
+EasyTier的web控制台有2个版本
 - `easytier-web`（仅web api后端）
 - `easytier-web-embed`（web前端 + web api后端）
 
