@@ -94,12 +94,11 @@ Easytier的web控制台有2个版本
 
 之后打开 Web 控制台 `http://127.0.0.1:11211`就可以看到这个页面。
 
-<img width="508" height="618" alt="image" src="https://github.com/user-attachments/assets/099e8ef8-cb71-438b-bc10-4dc5ffe3970b" />
+![alt text](/assets/web-api-host-config.png)
 
 点击`Register`注册一个账户，若刷新不出验证码则说明你`--api-host`设置有误。
 
-<img width="508" height="769" alt="image" src="https://github.com/user-attachments/assets/ca66a3c7-878a-4412-8aa3-a9f24ef0e488" />
-
+![alt text](/assets/web-no-captcha.png)
 
 ::: tip 提示
 
