@@ -102,7 +102,7 @@ EasyTier的web控制台有2个版本
 
 ::: tip 提示
 
-你可以用Easytier官方前端`https://easytier.cn/web`访问你的Web API后端，无需自建前端。
+你可以用EasyTier官方前端`https://easytier.cn/web`访问你的Web API后端，无需自建前端。
 
 :::
 
