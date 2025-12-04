@@ -94,11 +94,11 @@ Here are the descriptions of common parameters for `easytier-web-embed`:
 
 After that, open the web console at `http://127.0.0.1:11211` to see the page.
 
-<img width="508" height="618" alt="image" src="https://github.com/user-attachments/assets/099e8ef8-cb71-438b-bc10-4dc5ffe3970b" />
+![alt text](/assets/web-api-host-config.png)
 
 Click `Register` to create an account. If the verification code fails to load, your `--api-host` setting is incorrect.
 
-<img width="508" height="769" alt="image" src="https://github.com/user-attachments/assets/ca66a3c7-878a-4412-8aa3-a9f24ef0e488" />
+![alt text](/assets/web-no-captcha.png)
 
 ::: tip Note
 
@@ -111,7 +111,7 @@ You can use the official EasyTier frontend `https://easytier.cn/web` to access y
 Previously, we set up the web console locally with the configuration delivery port 22020 and UDP protocol. The command for EasyTier to connect to the self-hosted console is:
 
 ```sh
-./easytier-core -w udp://127.0.0.1:22020/<your_sername_on_the_self-hosted_web_console>
+./easytier-core -w udp://127.0.0.1:22020/<your_username_on_the_self-hosted_web_console>
 ```
 
 Subsequent usage is the same as the official console.
