@@ -22,7 +22,6 @@ easytier-core -c ./config.yaml
 easytier-core -c ./config1.yaml -c ./config2.yaml
 ```
 
-
 ## 配置文件生成工具
 
 官网提供了配置文件生成工具，可以通过访问 <a target="_blank" href="https://easytier.cn/web/index.html#config_generator">配置文件生成工具</a> 来生成配置文件。

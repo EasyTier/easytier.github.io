@@ -31,21 +31,23 @@ nodeA <-----> nodeB
 
    After startup, this node will listen on the following ports by default:
 
-   | Protocol      | Default Port |
-   | ------------- | ------------ |
-   | TCP           | 11010 (TCP)  |
-   | UDP           | 11010 (UDP)  |
-   | WebSocket     | 11011 (TCP)  |
-   | WebSocket SSL | 11012 (TCP)  |
-   | WireGuard     | 11013 (UDP)  |
+| Protocol      | Default Port |
+| ------------- | ------------ |
+| TCP           | 11010 (TCP)  |
+| UDP           | 11010 (UDP)  |
+| WebSocket     | 11011 (TCP)  |
+| WebSocket SSL | 11012 (TCP)  |
+| WireGuard     | 11011 (UDP)  |
+| QUIC          | 11012 (UDP)  |
+| FakeTCP       | 11013        |
 
-   You can specify listening ports through the `-l` parameter, for example:
+You can specify listening ports through the `-l` parameter, for example:
 
-   | Parameter Example           | Description                                                                                                                               |
-   | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-   | `-l 12345`                  | Change the base port to 12345, then listening ports are: TCP: 12345, UDP: 12345, WebSocket: 12346, WebSocket SSL: 12347, WireGuard: 12348 |
-   | `-l tcp:11010 -l udp:11011` | Change TCP port to 11010, UDP port to 11011, only listen on these two ports. Supported protocols are `tcp`, `udp`, `ws`, `wss`, `wg`      |
-   | `--no-listener`             | Disable port listening, which will affect the establishment of non-hole-punching connections.                                             |
+| Parameter Example           | Description                                                                                                                                                            |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-l 12345`                  | Change the base port to 12345, then listening ports are: TCP: 12345, UDP: 12345, WebSocket: 12346, WebSocket SSL: 12347, WireGuard: 12348, QUIC: 12349, FakeTCP: 12350 |
+| `-l tcp:11010 -l udp:11011` | Change TCP port to 11010, UDP port to 11011, only listen on these two ports. Supported protocols are `tcp`, `udp`, `ws`, `wss`, `wg`                                   |
+| `--no-listener`             | Disable port listening, which will affect the establishment of non-hole-punching connections.                                                                          |
 
 2. Run the following command on Node B:
 

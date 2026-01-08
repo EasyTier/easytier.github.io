@@ -4,6 +4,16 @@ EasyTier typically uses the UDP protocol to transmit IP packets within the virtu
 
 To address this issue, EasyTier provides a KCP proxy feature that can proxy TCP connections in the virtual network and convert them to KCP for transmission. Thanks to KCP's more aggressive retransmission mechanism, it effectively reduces packet loss and improves TCP transmission speeds within the virtual network.
 
+::: danger Warning
+KCP proxy has a security vulnerability in versions **2.4.5 and earlier**. Please upgrade to **2.5.0 or later** to stay secure.
+
+Fixed in [PR #1435](https://github.com/EasyTier/EasyTier/pull/1435).
+
+If you cannot upgrade yet, disable KCP inbound traffic with `--disable-kcp-input` and turn off `--enable-kcp-proxy`.
+
+_(QUIC proxy does not have this issue.)_
+:::
+
 ## Network Topology
 
 Assume the network topology is as follows:

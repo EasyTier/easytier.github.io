@@ -4,6 +4,16 @@ EasyTier 一般使用 UDP 协议进行数据传输虚拟网的 IP 数据包。�
 
 为了解决此问题，EasyTier 提供 KCP 代理功能，可以代理虚拟网内的 TCP 链接，并转换为 KCP 协议进行传输。由于 KCP 有更激进的重传机制，可以有效降低丢包率，提高虚拟网内的 TCP 传输速度。
 
+::: danger 风险提示
+KCP 代理在**2.4.5及之前的版本**中存在安全漏洞，建议升级到**2.5.0及以上版本**以确保安全性。
+
+修复于 [PR #1435](https://github.com/EasyTier/EasyTier/pull/1435)
+
+若暂时无法更新，也请使用 `--disable-kcp-input` 参数禁用 KCP 入站流量，并关闭 `--enable-kcp-proxy` 参数。
+
+_(QUIC 代理没有这个问题)_
+:::
+
 ## 网络拓扑
 
 假设网络拓扑如下：
@@ -40,7 +50,6 @@ sudo easytier-core --enable-kcp-proxy
 
 KCP 代理会保证版本兼容性，如果发现对端节点不支持 KCP 代理，会自动切换回 TCP 协议。
 
-
 ### 切换到用户态网络栈
 
 KCP 代理默认使用内核的网络栈，可能由于系统防火墙设置导致无法正常工作。可以尝试结合 `--use-smoltcp` 参数，切换到用户态网络栈。
@@ -50,7 +59,6 @@ sudo easytier-core --enable-kcp-proxy --use-smoltcp
 ```
 
 - `--use-smoltcp` 切换到用户态网络栈。
-
 
 ### 禁用 KCP 入站
 
@@ -66,7 +74,6 @@ sudo easytier-core --disable-kcp-input
 
 这样即使 A 节点启用了 KCP 代理，A 节点发往 B 节点的流量依然使用 TCP 协议。
 
-
 ## 网对网 KCP 支持
 
 假设节点 A 是路由器，A 下的子网访问 EasyTier 其他节点本身或者其他代理子网时，也可以使用 KCP 代理，但是需要 A 节点使用用户态网络栈即 `--use-smoltcp` 参数。
@@ -76,7 +83,6 @@ sudo easytier-core --enable-kcp-proxy --use-smoltcp
 ```
 
 否则仍会使用 TCP 协议。
-
 
 ## 查看 KCP 代理状态
 
