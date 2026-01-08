@@ -58,10 +58,13 @@ export const en = defineConfig({
           { text: 'EasyTier Manager', link: '/en/guide/gui/easytier-manager' },
           { text: 'EasyTier Game Launcher', link: '/en/guide/gui/easytier-game' },
           { text: 'Astral Game Connection Tool', link: '/en/guide/gui/astral-game' },
+          { text: 'EasyTier for HarmonyOS', link: '/en/guide/gui/easytier-harmonyos' },
         ],
       },
       {
+        text: 'Others',
         items: [
+          { text: 'About P2P', link: '/en/guide/aboutp2p' },
           { text: 'Performance Testing', link: '/en/guide/perf' },
           { text: 'Roadmap', link: '/en/guide/roadmap' },
           { text: 'Community and Contribution', link: '/en/guide/community-and-contribution' },

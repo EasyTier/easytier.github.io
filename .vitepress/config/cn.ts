@@ -62,6 +62,7 @@ export const cn = defineConfig({
         ],
       },
       {
+        text: '其它',
         items: [
           { text: '关于 P2P', link: '/guide/aboutp2p' },
           { text: '性能测试', link: '/guide/perf' },
