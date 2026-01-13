@@ -30,7 +30,7 @@ EasyTier 是一款简单、安全、去中心化的内网穿透和异地组网�
 
 - **KCP / QUIC 代理**: 支持将 TCP 流量转为 KCP / QUIC 协议，提升高 UDP 丢包环境下的传输延迟和稳定性。
 - **非特权模式**：支持在非特权用户下运行，避免需要 root 权限。（仅可作为被访问端）
-- **WireGuard 接入**: 支持 WireGuard 客户端接入 EasyTIer 网络。
+- **WireGuard 接入**: 支持 WireGuard 客户端接入 EasyTier 网络。
 
 
 ## 图形界面（GUI）
