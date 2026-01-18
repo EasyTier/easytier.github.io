@@ -65,6 +65,7 @@ export const en = defineConfig({
           { text: 'Performance Testing', link: '/en/guide/perf' },
           { text: 'Roadmap', link: '/en/guide/roadmap' },
           { text: 'Community and Contribution', link: '/en/guide/community-and-contribution' },
+          { text: 'Privacy Policy', link: '/en/guide/privacy' },
           { text: 'License', link: '/en/guide/license' },
           { text: 'Contact', link: '/en/guide/contact' },
         ],

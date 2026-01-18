@@ -67,6 +67,7 @@ export const cn = defineConfig({
           { text: '性能测试', link: '/guide/perf' },
           { text: '路线图', link: '/guide/roadmap' },
           { text: '社区和贡献', link: '/guide/community-and-contribution' },
+          { text: '隐私条款', link: '/guide/privacy' },
           { text: '许可证', link: '/guide/license' },
           { text: '联系方式', link: '/guide/contact' },
         ],
