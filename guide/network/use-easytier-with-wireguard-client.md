@@ -1,7 +1,6 @@
 # 使用 WireGuard 客户端接入
 
-EasyTier 可以用作 WireGuard 服务端，让任意安装了 WireGuard 客户端的设备访问 EasyTier 网络。对于目前 EasyTier 不支持的平台（如 iOS），可以使用这种方式接入 EasyTier 网络。
-
+EasyTier 可以用作 WireGuard 服务端，让任意安装了 WireGuard 客户端的设备访问 EasyTier 网络。对于目前 EasyTier 不支持的平台，可以使用这种方式接入 EasyTier 网络。
 
 ## 网络拓扑
 
@@ -25,7 +24,6 @@ ios <-.-> nodea <--> nodeb <-.-> id1
 ```
 
 我们需要 iPhone 通过节点 A 访问 EasyTier 网络，则可进行如下配置。
-
 
 ## 配置步骤
 
@@ -60,7 +58,6 @@ connected_clients:
 []
 ```
 
-
 ## 使用客户端配置
 
 使用 Client Config 前，需要将以下字段修改为实际值：
@@ -70,11 +67,9 @@ connected_clients:
 
 将配置文件导入 WireGuard 客户端，即可访问 EasyTier 网络。
 
-
 ::: tip 提示
 如果需要支持多个客户端，可以在 `easytier-core` 的 `--vpn-portal` 参数中指定更大的网段，例如 `10.14.0.0/16`。
 :::
-
 
 ## 备注
 
