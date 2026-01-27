@@ -40,3 +40,33 @@ AstralGame is a cross-platform network application based on EasyTier, providing 
 ### [luci-app-easytier (OpenWrt)](https://github.com/EasyTier/luci-app-easytier)
 
 EasyTier's OpenWrt plugin provides methods for installing and configuring the EasyTier core on OpenWrt routers. The plugin supports completing the installation, configuration, and management of the EasyTier core within OpenWrt's LuCI interface. Users can conveniently configure the core, view running logs, restart the core, and perform other operations through the LuCI interface.
+
+---
+
+### [EasyTier HarmonyOS Edition (HarmonyOS 5 – Latest)](https://appgallery.huawei.com/app/detail?id=top.frankhan.easytier&channelId=SHARE&source=appshare)
+
+EasyTier HarmonyOS Edition is a native HarmonyOS app developed as a secondary project based on EasyTier. It uses ArkTS to implement a modern UI, provides VPN services and configuration management, allows quick importing of community-shared nodes, and supports new HarmonyOS features such as Tap-to-Share.
+
+Note that in the future, compatibility with HarmonyOS 5 (API18-) may be dropped in order to reduce compatibility code and keep the best possible compatibility with HarmonyOS 6 (API20+) and above.
+
+<div align="left">
+  <a href="https://appgallery.huawei.com/app/detail?id=top.frankhan.easytier&channelId=SHARE&source=appshare" target="_blank">
+	<img  src="/assets/HomoTier_AppGallery.png"  width="204" height="51"  />
+  </a>
+</div>
+
+---
+
+### [Terracotta | TaoWa Multiplayer (Windows / Android / Linux)](https://github.com/burningtnt/Terracotta)
+
+Terracotta | TaoWa Multiplayer provides Minecraft players with an out-of-the-box multiplayer experience. TaoWa Multiplayer is developed based on EasyTier and includes extensive optimizations specifically for MC, aiming to lower the barrier to entry as much as possible.
+
+It has now been integrated into the HMCL launcher—you can try the program features in the latest version, or download this program to experience it directly.
+
+---
+
+### [EasyTier iOS (iOS 16.0+)](https://github.com/EasyTier/EasyTier-iOS)
+
+The iOS client for EasyTier, offering a user-friendly interface for connecting to the EasyTier network on iOS devices, and implementing system-level VPN integration using the Network Extension framework.
+
+[TestFlight Invitation](https://testflight.apple.com/join/YWnDyJfM) (free, preview version, limited slots, periodically cleaned up)
