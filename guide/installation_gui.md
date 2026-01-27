@@ -64,3 +64,11 @@
   Terracotta | 陶瓦联机时为 Minecraft 玩家提供开箱即用的联机功能。陶瓦联机基于 EasyTier 开发，针对 MC 做出了大量优化，尽量降低了操作门槛。
 
   目前已接入 HMCL 启动器，可在最新版本体验程序功能，也可下载本程序体验。
+
+---
+
+### [EasyTier iOS ( iOS 16.0+ )](https://github.com/EasyTier/EasyTier-iOS)
+
+  EasyTier 的 iOS 客户端，提供友好的界面以在 iOS 设备上连接 EasyTier 网络，并使用 Network Extension 框架实现系统级 VPN 集成。
+
+  [TestFlight 邀请链接](https://testflight.apple.com/join/YWnDyJfM)（免费，预览版本，有人数限制，定期清理）
