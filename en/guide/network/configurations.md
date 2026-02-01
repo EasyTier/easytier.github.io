@@ -6,14 +6,16 @@ You can use `easytier-core --help` to view all configuration options.
 
 ### Configuration Server
 
-| Parameter             | Description                                                                                                                                                                                                          |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-w, --config-server` | Configuration server address. Allowed formats:                                                                                                                                                                       |
-|                       | - Full URL: `--config-server udp://127.0.0.1:22020/admin`                                                                                                                                                            |
-|                       | - Username only: `--config-server admin`, will use the official server                                                                                                                                               |
-|                       | [env: ET_CONFIG_SERVER=]                                                                                                                                                                                             |
-| `--machine-id`        | Web configuration server identifies machines through machine id, used for configuration recovery after disconnection and reconnection, must be unique and fixed. Default obtained from system. [env: ET_MACHINE_ID=] |
-| `-c, --config-file`   | Configuration file path, note: options configured in command line will override options in configuration file [env: ET_CONFIG_FILE=]                                                                                 |
+| Parameter               | Description                                                                                                                                                                                                          |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-w, --config-server`   | Configuration server address. Allowed formats:                                                                                                                                                                       |
+|                         | - Full URL: `--config-server udp://127.0.0.1:22020/admin`                                                                                                                                                            |
+|                         | - Username only: `--config-server admin`, will use the official server                                                                                                                                               |
+|                         | [env: ET_CONFIG_SERVER=]                                                                                                                                                                                             |
+| `--machine-id`          | Web configuration server identifies machines through machine id, used for configuration recovery after disconnection and reconnection, must be unique and fixed. Default obtained from system. [env: ET_MACHINE_ID=] |
+| `-c, --config-file`     | Configuration file path, note: options configured in command line will override options in configuration file [env: ET_CONFIG_FILE=]                                                                                 |
+| `--config-dir`          | Load all .toml files in the directory to start network instances, and store the received configurations in this directory. [env: ET_CONFIG_DIR=]                                                                     |
+| `--disable-env-parsing` | Disable environment variable parsing in config file [env: ET_DISABLE_ENV_PARSING=]                                                                                                                                   |
 
 ### Network Settings
 
