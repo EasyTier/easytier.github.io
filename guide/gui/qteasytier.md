@@ -7,6 +7,8 @@ QtEasyTier 是一个基于 Qt 框架开发的异地组网工具，用于创建�
 
 项目地址：https://gitee.com/viagrahuang/qt-easy-tier
 
+![QtEasyTier](https://gitee.com/viagrahuang/qt-easy-tier/raw/master/assets/show.png)
+
 ## 项目特点
 
 - 快速: 程序使用纯 Qt C++ 开发，系统原生渲染，不依赖 Chromium 或 Webview，日常使用前端占用不超过50MB，运行高效快速。
