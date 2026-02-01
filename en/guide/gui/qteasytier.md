@@ -7,7 +7,7 @@ It provides an intuitive graphical interface, helping users easily configure and
 
 Project Address: https://gitee.com/viagrahuang/qt-easy-tier
 
-![QtEasyTier](https://gitee.com/viagrahuang/qt-easy-tier/raw/master/assets/show.png)
+![QtEasyTier](/assets/qteasytier1.png)
 
 ## Features
 
