@@ -24,6 +24,7 @@
 | `--network-name`       | 用于标识此VPN网络的网络名称 [env: ET_NETWORK_NAME=]                                                                                         |
 | `--network-secret`     | 网络密钥，用于验证此节点属于VPN网络 [env: ET_NETWORK_SECRET=]                                                                               |
 | `-i, --ipv4`           | 此VPN节点的IPv4地址。如果为空，则此节点将仅转发数据包，不会创建TUN设备 [env: ET_IPV4=]                                                      |
+| `--ipv6`               | IPv6 address of this VPN node, can be used together with ipv4 for dual-stack operation [env: ET_IPV6=]                                      |
 | `-d, --dhcp`           | 由Easytier自动确定并设置IP地址，默认从10.0.0.1开始。警告：在使用DHCP时，如果网络中出现IP冲突，IP将自动更改。 [env: ET_DHCP=]                |
 | `-p, --peers`          | 最初要连接的对等节点 [env: ET_PEERS=]                                                                                                       |
 | `-e, --external-node`  | 使用公共共享节点来发现对等节点 [env: ET_EXTERNAL_NODE=]                                                                                     |
