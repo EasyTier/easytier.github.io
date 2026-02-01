@@ -72,3 +72,16 @@
   EasyTier 的 iOS 客户端，提供友好的界面以在 iOS 设备上连接 EasyTier 网络，并使用 Network Extension 框架实现系统级 VPN 集成。
 
   [TestFlight 邀请链接](https://testflight.apple.com/join/YWnDyJfM)（免费，预览版本，有人数限制，定期清理）
+
+---
+
+### [QtEasyTier 组网工具 (Windows)](/guide/gui/qteasytier)
+
+  基于 Qt Widget 框架开发的 EasyTier 前端，界面美观，简单易用，功能强大。使用纯 Qt C++ 编写，系统原生渲染，不依赖 WebView 或者 Chromium 内核，简洁高效。
+  
+  QtEasyTier 支持配置文件的导出与导入，一键联机更方便。且支持多组网同时运行，软件主界面即可查看运行状态，工作，生活，娱乐一站式解决。
+
+  - 项目地址：[https://gitee.com/viagrahuang/qt-easy-tier](https://gitee.com/viagrahuang/qt-easy-tier)
+  - 宣传视频：[https://www.bilibili.com/video/BV1ST6nBzE1k](https://www.bilibili.com/video/BV1ST6nBzE1k)
+
+
