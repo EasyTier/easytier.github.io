@@ -31,19 +31,19 @@ features:
     details: 支持 Win / MacOS / Linux / FreeBSD / Android<br>兼容 X86 / ARM / MIPS 架构
     link: /guide/download
   - title: 安全
-    details: AES-GCM 或 WireGuard 加密<br>防止中间人攻击
-    link: /
+    details: 支持 AES-GCM 等多种加密算法 或 WireGuard 加密<br>防止中间人攻击
+    link: /guide/network/configurations#:~:text=加密算法&text=ET_ENCRYPTION_ALGORITHM
   - title: 高效 NAT 穿透
     details: 支持 UDP、IPv6 穿透<br>可打通 NAT4-NAT4 网络
-    link: /
+    link: /guide/aboutp2p
   - title: 子网代理
     details: 节点可共享子网供其他节点访问。
     link: /guide/network/point-to-networking
   - title: 智能路由
     details: 延迟优先，自动选路<br>提供最佳网络体验
-    link: /guide/network/configurations
+    link: /guide/network/configurations#:~:text=延迟优先模式&text=ET_LATENCY_FIRST
   - title: 高性能
-    details: 全链路零拷贝<br>支持 TCP / UDP / WSS / WG 等协议
+    details: 全链路零拷贝<br>支持 TCP / UDP / WS / WSS / WG / QUIC / FakeTCP 等协议
     link: /guide/perf
   - title: 抗 UDP 丢包
     details: KCP / QUIC 代理<br>优化高丢包环境下的延迟和带宽
