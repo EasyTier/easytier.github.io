@@ -102,9 +102,16 @@ You can use `easytier-core --help` to view all configuration options.
 | `--enable-relay-foreign-network-kcp` | If true, allow relay KCP packets from foreign network. Default is false [env: ET_ENABLE_RELAY_FOREIGN_NETWORK_KCP=]                                                                     |
 | `--stun-servers`                     | Override default STUN servers; If configured but empty, STUN servers are not used [env: ET_STUN_SERVERS=]                                                                               |
 | `--stun-servers-v6`                  | Override default STUN servers, IPv6; If configured but empty, IPv6 STUN servers are not used [env: ET_STUN_SERVERS_V6=]                                                                 |
-| `--console-log-level`                | Console log level [env: ET_CONSOLE_LOG_LEVEL=]                                                                                                                                          |
-| `--file-log-level`                   | File log level [env: ET_FILE_LOG_LEVEL=]                                                                                                                                                |
-| `--file-log-dir`                     | Directory to store log files [env: ET_FILE_LOG_DIR=]                                                                                                                                    |
+
+### Logging Settings
+
+| Parameter             | Description                                                        |
+| --------------------- | ------------------------------------------------------------------ |
+| `--console-log-level` | Console log level [env: ET_CONSOLE_LOG_LEVEL=]                     |
+| `--file-log-level`    | File log level [env: ET_FILE_LOG_LEVEL=]                           |
+| `--file-log-dir`      | Directory to store log files [env: ET_FILE_LOG_DIR=]               |
+| `--file-log-size`     | Per file log size in MB, default is 100MB [env: ET_FILE_LOG_SIZE=] |
+| `--file-log-count`    | Max file log count, default is 10 [env: ET_FILE_LOG_COUNT=]        |
 
 ---
 

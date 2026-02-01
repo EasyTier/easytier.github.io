@@ -102,9 +102,16 @@
 | `--enable-relay-foreign-network-kcp` | 如果为true，则作为共享节点时也可以转发其他网络的 KCP 数据包。默认值为false（不转发） [env: ET_ENABLE_RELAY_FOREIGN_NETWORK_KCP=]                                                       |
 | `--stun-servers`                     | 覆盖内置的默认 STUN server 列表；如果设置了但是为空，则不使用 STUN servers；如果没设置，则使用默认 STUN server 列表 [env: ET_STUN_SERVERS=]                                            |
 | `--stun-servers-v6`                  | 覆盖内置的默认 IPv6 STUN server 列表；如果设置了但是为空，则不使用 IPv6 STUN servers；如果没设置，则使用默认 IPv6 STUN server 列表 [env: ET_STUN_SERVERS_V6=]                          |
-| `--console-log-level`                | 控制台日志级别 [env: ET_CONSOLE_LOG_LEVEL=]                                                                                                                                            |
-| `--file-log-level`                   | 文件日志级别 [env: ET_FILE_LOG_LEVEL=]                                                                                                                                                 |
-| `--file-log-dir`                     | 存储日志文件的目录 [env: ET_FILE_LOG_DIR=]                                                                                                                                             |
+
+### 日志设置
+
+| 参数                  | 说明                                                               |
+| --------------------- | ------------------------------------------------------------------ |
+| `--console-log-level` | 控制台日志级别 [env: ET_CONSOLE_LOG_LEVEL=]                        |
+| `--file-log-level`    | 文件日志级别 [env: ET_FILE_LOG_LEVEL=]                             |
+| `--file-log-dir`      | 存储日志文件的目录 [env: ET_FILE_LOG_DIR=]                         |
+| `--file-log-size`     | 单个文件日志大小，单位 MB，默认值为 100MB [env: ET_FILE_LOG_SIZE=] |
+| `--file-log-count`    | 最大文件日志数量，默认值为 10 [env: ET_FILE_LOG_COUNT=]            |
 
 ---
 
