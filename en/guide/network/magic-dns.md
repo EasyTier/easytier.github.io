@@ -15,3 +15,7 @@ Hostnames support Chinese characters.
 ::: tip Note
 Currently, Magic DNS only supports automatic configuration of system DNS on Windows and macOS. On Linux, you need to manually configure the DNS server to `100.100.100.101` for normal use.
 :::
+
+## Specify the Top-Level DNS Zone
+
+Use `--tld-dns-zone <zone name>` to specify the top-level DNS zone for Magic DNS. The default zone name is `et.net.`.

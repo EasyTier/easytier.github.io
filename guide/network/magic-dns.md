@@ -15,3 +15,7 @@ ping node-a.et.net
 ::: tip 注意
 魔法 DNS 目前仅支持在 Windows 和 MacOS 上自动配置系统 DNS，Linux 上需要手动配置 DNS 服务器为 `100.100.100.101` 才可正常使用。
 :::
+
+## 指定魔法DNS的顶级域名区域
+
+使用`--tld-dns-zone <区域名称>`参数可以指定魔法DNS的顶级域名区域，默认区域名称为`et.net.`。
