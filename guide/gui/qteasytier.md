@@ -47,9 +47,11 @@ Breeze 是 KDE Plasma 桌面环境的默认主题，本程序移植了其适用�
 - 官网：[https://kde.org/](https://kde.org/)
 
 ## 联系作者
-- 项目地址：https://gitee.com/viagrahuang/qt-easy-tier
+- 项目地址：[https://gitee.com/viagrahuang/qt-easy-tier](https://gitee.com/viagrahuang/qt-easy-tier)
 - 问题反馈：欢迎提交 Issue 和 PR
-- 交流方式：作者混迹于EasyTier支持3群，欢迎加入交流：957189589
+- 交流方式：
+  - 作者混迹于EasyTier支持3群，欢迎加入交流：957189589
+  - B站空间：[space.bilibili.com/558600071](https://space.bilibili.com/558600071)       
 
 ## 许可证
 
@@ -58,6 +60,8 @@ Breeze 是 KDE Plasma 桌面环境的默认主题，本程序移植了其适用�
 ## 赞助与支持
 
 软件开发不易, 您的赞助与支持是对本项目持续开发和维护的重要动力，也是对作者持续努力的认可。
-如果您认为本项目对您有帮助，请考虑赞助本项目。
+如果您认为本项目对您有帮助，请考虑通过以下方式赞助本项目。
 
-[点击前往赞助详情页面](assets/donate.md)
+1. 贡献公共服务器：邮件联系viagrahuang@88.com
+2. 帮助修复BUG、添加功能、多平台移植等：[项目地址](https://gitee.com/viagrahuang/qt-easy-tier)
+3. Buy me a coffee:[点击前往赞助详情页面](assets/donate.md)
