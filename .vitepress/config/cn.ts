@@ -59,6 +59,7 @@ export const cn = defineConfig({
           { text: 'EasyTier 游戏联机启动器', link: '/guide/gui/easytier-game' },
           { text: 'AstralGame 联机工具', link: '/guide/gui/astral-game' },
           { text: 'EasyTier 鸿蒙版', link: '/guide/gui/easytier-harmonyos' },
+          { text: 'QtEasyTier', link: '/guide/gui/qteasytier' },
         ],
       },
       {
