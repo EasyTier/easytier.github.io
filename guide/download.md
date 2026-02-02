@@ -109,6 +109,7 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/Easytier-Magisk-v{}.zip'
         },
+        comment: "支持 Magisk/KernelSU/Apatch。会在开机后启动一个 easytier-core 实例，配置位于 /data/adb/modules/easytier_magisk/config/ 目录下"
     },
     {
         os: "FreeBSD 13.2",
@@ -124,7 +125,7 @@ const all_archs = new Set(packages.value.map(pkg => pkg.arch))
 const all_os = new Set(packages.value.map(pkg => pkg.os))
 const all_proxy = new Set(data.github_accels)
 
-const version = ref(data.easytier_latest_version)
+const channel = ref('easytier_latest_version')
 
 const url = 'https://github.com/EasyTier/EasyTier/releases/tag/v'
 const filter_os = ref('')
@@ -132,7 +133,7 @@ const filter_arch = ref('')
 const accel_proxy = ref('')
 
 function renderUrlTmpl(url_tmpl: string): string {
-    return accel_proxy.value + url_tmpl.replace(/\{\}/g, version.value)
+    return accel_proxy.value + url_tmpl.replace(/\{\}/g, data[channel.value])
 }
 
 </script>
@@ -148,11 +149,20 @@ function renderUrlTmpl(url_tmpl: string): string {
 - `easytier-web`: 用于自建 EasyTier 的 Web 控制台后端，一般情况下无需自建，使用官方提供的 Web 控制台即可
 - `easytier-web-embed`: 与 `easytier-web` 功能相同，但内置了 Web 前端。
 
-## <a :href="url + version">EasyTier v{{ version }}</a> { #latest }
+## 切换下载通道 { #channel }
+
+<div>
+    <select name="channel-select" id="channel-select" v-model="channel" class="filter-select">
+        <option value="easytier_latest_version"> 稳定版(v{{ data.easytier_latest_version }}) </option>
+        <option value="easytier_pre_release_version"> 预发布版(v{{ data.easytier_pre_release_version }}) </option>
+    </select>
+</div>
+
+## <a :href="url + data[channel]">EasyTier v{{ data[channel] }}</a> { #latest }
 
 - Github 加速
     <div>
-        <select name="pets" id="gh-accel-select" v-model="accel_proxy" class="filter-select">
+        <select name="gh-accel-select" id="gh-accel-select" v-model="accel_proxy" class="filter-select">
             <option value=""> 直连 </option>
             <option v-for="p in all_proxy" :value="p"> {{ p }} </option>
         </select>
@@ -160,7 +170,7 @@ function renderUrlTmpl(url_tmpl: string): string {
 
 - 根据操作系统筛选
     <div>
-        <select name="pets" id="os-select" v-model="filter_os" class="filter-select">
+        <select name="os-select" id="os-select" v-model="filter_os" class="filter-select">
             <option value=""> 全部 </option>
             <option v-for="os in all_os" :value="os"> {{ os }} </option>
         </select>
@@ -168,7 +178,7 @@ function renderUrlTmpl(url_tmpl: string): string {
 
 - 根据硬件架构筛选
     <div>
-        <select name="pets" id="arch-select" v-model="filter_arch" class="filter-select">
+        <select name="arch-select" id="arch-select" v-model="filter_arch" class="filter-select">
             <option value=""> 全部 </option>
             <option v-for="arch in all_archs" :value="arch"> {{ arch }} </option>
         </select>

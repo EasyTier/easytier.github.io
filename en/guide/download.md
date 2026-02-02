@@ -109,6 +109,7 @@ const packages = ref<Package[]>([
         cli_pkg_tmpl: {
             "zip": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/Easytier-Magisk-v{}.zip'
         },
+        comment: "Supports Magisk/KernelSU/Apatch. Will start an easytier-core instance on boot. Config located at /data/adb/modules/easytier_magisk/config/"
     },
     {
         os: "FreeBSD 13.2",
@@ -124,7 +125,7 @@ const all_archs = new Set(packages.value.map(pkg => pkg.arch))
 const all_os = new Set(packages.value.map(pkg => pkg.os))
 const all_proxy = new Set(data.github_accels)
 
-const version = ref(data.easytier_latest_version)
+const channel = ref('easytier_latest_version')
 
 const url = 'https://github.com/EasyTier/EasyTier/releases/tag/v'
 const filter_os = ref('')
@@ -132,7 +133,7 @@ const filter_arch = ref('')
 const accel_proxy = ref('')
 
 function renderUrlTmpl(url_tmpl: string): string {
-    return accel_proxy.value + url_tmpl.replace(/\{\}/g, version.value)
+    return accel_proxy.value + url_tmpl.replace(/\{\}/g, data[channel.value])
 }
 
 </script>
@@ -148,11 +149,20 @@ The command line program package includes four executables:
 - `easytier-web`: Used for self-hosting the EasyTier Web console backend, generally no need to self-host, you can use the official Web console
 - `easytier-web-embed`: Same functionality as `easytier-web`, but includes the Web frontend.
 
-## <a :href="url + version">EasyTier v{{ version }}</a> { #latest }
+## Switch Download Channel { #channel }
+
+<div>
+    <select name="channel-select" id="channel-select" v-model="channel" class="filter-select">
+        <option value="easytier_latest_version"> Stable Version(v{{ data.easytier_latest_version }}) </option>
+        <option value="easytier_pre_release_version"> Pre-release Version(v{{ data.easytier_pre_release_version }}) </option>
+    </select>
+</div>
+
+## <a :href="url + data[channel]">EasyTier v{{ data[channel] }}</a> { #latest }
 
 - GitHub Acceleration
     <div>
-        <select name="pets" id="gh-accel-select" v-model="accel_proxy" class="filter-select">
+        <select name="gh-accel-select" id="gh-accel-select" v-model="accel_proxy" class="filter-select">
             <option value=""> Direct </option>
             <option v-for="p in all_proxy" :value="p"> {{ p }} </option>
         </select>
@@ -160,7 +170,7 @@ The command line program package includes four executables:
 
 - Filter by Operating System
     <div>
-        <select name="pets" id="os-select" v-model="filter_os" class="filter-select">
+        <select name="os-select" id="os-select" v-model="filter_os" class="filter-select">
             <option value=""> All </option>
             <option v-for="os in all_os" :value="os"> {{ os }} </option>
         </select>
@@ -168,7 +178,7 @@ The command line program package includes four executables:
 
 - Filter by Hardware Architecture
     <div>
-        <select name="pets" id="arch-select" v-model="filter_arch" class="filter-select">
+        <select name="arch-select" id="arch-select" v-model="filter_arch" class="filter-select">
             <option value=""> All </option>
             <option v-for="arch in all_archs" :value="arch"> {{ arch }} </option>
         </select>

@@ -125,15 +125,27 @@ footer.VPFooter {
 
 .download-link-span {
   display: inline-block;
-  margin: 0.1rem;
-  color: #666 !important;
-  border: 1px solid #666;
-  padding: 0.1rem 0.3rem;
-  background-color: #f0f0f0;
+  margin: 0.25rem 0.15rem;
+  color: #fff !important;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  background: linear-gradient(135deg, #05b08e 0%, #048a6f 100%);
   text-decoration: none !important;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(5, 176, 142, 0.2);
 }
 
 .download-link-span:hover {
-  background-color: #e0e0e0;
+  background: linear-gradient(135deg, #048a6f 0%, #036b59 100%);
+  box-shadow: 0 4px 12px rgba(5, 176, 142, 0.35);
+  transform: translateY(-2px);
+}
+
+.download-link-span:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(5, 176, 142, 0.2);
 }
 </style>
