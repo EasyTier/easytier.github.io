@@ -57,7 +57,6 @@ Configure
 
 The subsequent configuration steps are the same as configuring a program with a GUI.
 
-
 # Self-Hosted Web Console
 
 EasyTier supports self-hosting a web console for managing EasyTier nodes. The EasyTier Web Console adopts a separated front-end and back-end architecture, consisting of 3 services in design:
@@ -69,6 +68,7 @@ EasyTier supports self-hosting a web console for managing EasyTier nodes. The Ea
 The web frontend and web API backend are bound to the same port by default, and the configuration delivery service is part of the web API backend.
 
 EasyTier's web console has 2 versions:
+
 - `easytier-web` (web API backend only)
 - `easytier-web-embed` (web frontend + web API backend)
 
@@ -85,10 +85,11 @@ Below is an example of deploying both front-end and back-end using `easytier-web
 If no content is displayed after running, the deployment is successful.
 
 Here are the descriptions of common parameters for `easytier-web-embed`:
+
 - `--api-server-port`: Port for the web front-end and back-end
 - `--api-host`: Specify the access address of the web API backend in the web frontend. Without this setting, you can only manually specify the API backend address in the web frontend.
 - `--config-server-port`: Port of the configuration delivery service for easytier-core connection
-- `--config-server-protocol`: Protocol of the configuration delivery service for easytier-core connection (tested to support tcp, udp, ws)
+- `--config-server-protocol`: Protocol of the configuration delivery service for easytier-core connection (support tcp, udp, ws)
 - `--web-server-port`: Additional port for listening to the web frontend (note: this setting is not affected by --no-web)
 - `--no-web`: Do not run the web frontend (disable the front-end function on the --api-server-port)
 
@@ -111,6 +112,8 @@ You can use the official EasyTier frontend `https://easytier.cn/web` to access y
 Previously, we set up the web console locally with the configuration delivery port 22020 and UDP protocol. The command for EasyTier to connect to the self-hosted console is:
 
 ```sh
+# ./easytier-core -w <protocol>://<host>:<port>/<username_on_your_self-hosted_web_console>
+# protocol: udp, tcp, ws, wss
 ./easytier-core -w udp://127.0.0.1:22020/<your_username_on_the_self-hosted_web_console>
 ```
 
@@ -122,3 +125,6 @@ The web console has two default accounts. The usernames and passwords are `admin
 
 :::
 
+::: tip Note
+When the listening protocol is set to `ws` and is reverse-proxied as `wss`, set the protocol to `wss` when connecting.
+:::
