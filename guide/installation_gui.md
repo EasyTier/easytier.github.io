@@ -77,7 +77,7 @@
 
 ### [QtEasyTier 组网工具 (Windows)](/guide/gui/qteasytier)
 
-  基于 Qt Widget 框架开发的 EasyTier 前端，界面美观，简单易用，功能强大。使用纯 Qt C++ 编写，系统原生渲染，不依赖 WebView 或者 Chromium 内核，简洁高效。
+  基于 Qt Widget 框架开发的 EasyTier 前端，界面美观，简单易用，功能强大。使用纯 Qt C++ 编写，系统原生渲染，不依赖 WebView 或者 Chromium 内核，内存占用低。
   
   QtEasyTier 支持配置文件的导出与导入，一键联机更方便。且支持多组网同时运行，软件主界面即可查看运行状态，工作，生活，娱乐一站式解决。
 
