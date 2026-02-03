@@ -70,3 +70,14 @@ It has now been integrated into the HMCL launcher—you can try the program feat
 The iOS client for EasyTier, offering a user-friendly interface for connecting to the EasyTier network on iOS devices, and implementing system-level VPN integration using the Network Extension framework.
 
 [TestFlight Invitation](https://testflight.apple.com/join/YWnDyJfM) (free, preview version, limited slots, periodically cleaned up)
+
+---
+
+### [QtEasyTier (Windows)](/guide/gui/qteasytier)
+
+A powerful and user-friendly EasyTier frontend developed with Qt Widgets. Built with pure Qt C++ and native rendering, it is efficient and does not rely on WebView or Chromium.
+
+QtEasyTier simplifies setup with one-click import/export of configurations and supports running multiple networks simultaneously. Its main interface provides a clear overview of all network statuses.
+
+  - Project: [https://gitee.com/viagrahuang/qt-easy-tier](https://gitee.com/viagrahuang/qt-easy-tier)
+  - Demo Video: [https://www.bilibili.com/video/BV1ST6nBzE1k](https://www.bilibili.com/video/BV1ST6nBzE1k)
