@@ -76,7 +76,7 @@ Otherwise, the TCP protocol will still be used.
 
 ## Checking KCP Proxy Status
 
-You can check the status of KCP proxy connections using the EasyTier CLI tool.
+You can check all active proxied connections using the EasyTier CLI tool.
 
 ```bash
 $ easytier-cli proxy
@@ -108,7 +108,7 @@ QUIC proxy on the receiving end can be disabled using the `--disable-quic-input`
 sudo easytier-core --disable-quic-input
 ```
 
-Both the sender and receiver can check the QUIC proxy connection status using the `easytier-cli proxy` command.
+Both the sender and receiver can check all active connections proxied by QUIC using the `easytier-cli proxy` command.
 
 ```bash
 $ easytier-cli proxy
