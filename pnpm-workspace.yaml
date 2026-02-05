@@ -1,0 +1,3 @@
+packages:
+  - .
+  - .vitepress/third_party/lumen/src

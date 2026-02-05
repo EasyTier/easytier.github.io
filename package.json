@@ -1,12 +1,27 @@
 {
   "name": "easytier-doc",
+  "type": "module",
   "version": "0.0.0",
   "description": "",
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "git submodule update --init --recursive"
   },
-  "keywords": [],
-  "author": ""
+  "dependencies": {
+    "@theojs/lumen": "workspace:*",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "3.14.0",
+    "eslint": "9.33.0",
+    "eslint-plugin-format": "1.0.1",
+    "markdown-it-task-lists": "2.1.1",
+    "mermaid": "11.12.0",
+    "vitepress": "1.6.3",
+    "vitepress-plugin-mermaid": "2.0.17"
+  }
 }

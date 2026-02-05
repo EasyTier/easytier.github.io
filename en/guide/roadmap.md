@@ -1,6 +1,8 @@
 # Roadmap
 
-- [ ] Improve documentation and user guides.
-- [ ] Support features such as encryption, TCP hole punching,etc.
-- [ ] Support Android, IOS and other mobile platforms.
-- [ ] Support Web configuration management.
+- [ ] Support for optimizing P2P transmission using KCP / FEC.
+- [ ] Support for UPnP.
+- [x] Support for iOS.
+- [x] Support for TCP hole punching.
+- [x] Support for Web configuration management.
+- [x] Improve documentation and user guides.

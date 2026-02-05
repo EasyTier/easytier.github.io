@@ -1,0 +1,124 @@
+import fs from 'node:fs'
+import { defineConfig } from 'vitepress'
+
+export const en = defineConfig({
+  title: 'EasyTier - A Simple, Secure, Decentralized SD-WAN Solution',
+  lang: 'en',
+  description: 'A simple, secure, decentralized SD-WAN solution for intranet penetration, implemented using Rust and the Tokio framework',
+
+  themeConfig: {
+    sidebar: [
+      {
+        text: 'Getting Started',
+        items: [
+          { text: 'Introduction', link: '/en/guide/introduction' },
+          { text: 'Installation CLI', link: '/en/guide/installation' },
+          { text: 'Installation GUI', link: '/en/guide/installation_gui' },
+          { text: 'FAQ', link: '/en/guide/faq' },
+        ],
+      },
+      {
+        text: 'Command Line Networking',
+        link: '/en/guide/networking',
+        items: [
+          { text: 'Decentralized Networking', link: '/en/guide/network/decentralized-networking' },
+          { text: 'Networking with Web Console', link: '/en/guide/network/web-console' },
+          { text: 'Using WireGuard Client', link: '/en/guide/network/use-easytier-with-wireguard-client' },
+          { text: 'Subnet Proxy (Point-to-Network)', link: '/en/guide/network/point-to-networking' },
+          { text: 'Bandwidth and Latency Optimization (KCP Proxy)', link: '/en/guide/network/kcp-proxy' },
+          { text: 'Advanced Features', collapsed: true, items: [
+            { text: 'Network-to-Network', link: '/en/guide/network/network-to-network' },
+            { text: 'No TUN Mode (No Root Required)', link: '/en/guide/network/no-root' },
+            { text: 'SOCKS5', link: '/en/guide/network/socks5' },
+            { text: 'Hosting Public Server', link: '/en/guide/network/host-public-server' },
+            { text: 'P2P Optimization', link: '/en/guide/network/p2p-optimize' },
+            { text: 'Magic DNS', link: '/en/guide/network/magic-dns' },
+            { text: 'ACL', link: '/en/guide/config/acl' },
+          ] },
+          { text: 'Autostart (Register Service)', collapsed: true, items: [
+            { text: 'One-Click Install Service', link: '/en/guide/network/oneclick-install-as-service' },
+            { text: 'Install as Windows Service', link: '/en/guide/network/install-as-a-windows-service' },
+            { text: 'Install as Linux systemd Service', link: '/en/guide/network/install-as-a-systemd-service' },
+            { text: 'Install as macOS Service', link: '/en/guide/network/install-as-a-macos-service' },
+          ] },
+          { text: 'Other Configurations', link: '/en/guide/network/configurations' },
+          { text: 'Configuration File', link: '/en/guide/network/config-file' },
+        ],
+      },
+      {
+        text: 'GUI Networking',
+        link: '/en/guide/gui/index',
+        items: [
+          { text: 'Manual Networking', link: '/en/guide/gui/manual' },
+          { text: 'WireGuard Access', link: '/en/guide/gui/vpn_portal' },
+          { text: 'Subnet Proxy', link: '/en/guide/gui/subnet_proxy' },
+          { text: 'EasyTier Manager', link: '/en/guide/gui/easytier-manager' },
+          { text: 'EasyTier Game Launcher', link: '/en/guide/gui/easytier-game' },
+          { text: 'Astral Game Connection Tool', link: '/en/guide/gui/astral-game' },
+          { text: 'QtEasyTier', link: '/en/guide/gui/qteasytier' },
+        ],
+      },
+      {
+        items: [
+          { text: 'Performance Testing', link: '/en/guide/perf' },
+          { text: 'Roadmap', link: '/en/guide/roadmap' },
+          { text: 'Community and Contribution', link: '/en/guide/community-and-contribution' },
+          { text: 'Privacy Policy', link: '/en/guide/privacy' },
+          { text: 'License', link: '/en/guide/license' },
+          { text: 'Contact', link: '/en/guide/contact' },
+        ],
+      },
+    ],
+    nav: [
+    ],
+    footer: {
+      message: 'Released under the Apache License 2.0',
+      copyright: 'Copyright © 2024-present EasyTier | '
+        + '<a href="https://beian.miit.gov.cn/">'
+        + '<img src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="ICP Record" style="width: 16px; height: 16px; display: inline-block; margin-bottom: -4px;">'
+        + 'Zhejiang ICP No. 2024137671-1</a>',
+    },
+    editLink: {
+      pattern: 'https://github.com/EasyTier/easytier.github.io/edit/main/:path',
+      text: 'Edit this page on GitHub',
+    },
+    docFooter: {
+      prev: 'Previous Page',
+      next: 'Next Page',
+    },
+    outline: {
+      label: 'Page Navigation',
+    },
+    lastUpdated: {
+      text: 'Last Updated',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+      },
+    },
+    langMenuLabel: 'Languages',
+    returnToTopLabel: 'Back to Top',
+    sidebarMenuLabel: 'Menu',
+    darkModeSwitchLabel: 'Theme',
+    lightModeSwitchTitle: 'Switch to Light Mode',
+    darkModeSwitchTitle: 'Switch to Dark Mode',
+  },
+})
+
+export const enSearch = {
+  translations: {
+    button: {
+      buttonText: 'Search Docs',
+      buttonAriaLabel: 'Search Docs',
+    },
+    modal: {
+      noResultsText: 'No results found',
+      resetButtonTitle: 'Clear search query',
+      footer: {
+        selectText: 'Select',
+        navigateText: 'Navigate',
+        closeText: 'Close',
+      },
+    },
+  },
+}

@@ -1,6 +1,7 @@
 # Networking
-::: tip 注意
-The following text only describes the use of the command-line tool; the GUI program can be configured by referring to the following concepts.
+
+::: warning Note
+The following only describes the use of command-line tools. For graphical interface programs, you can refer to the concepts below for configuration, or refer to [Graphical Interface GUI Networking](/guide/gui/index).
 :::
 
-Make sure EasyTier is installed according to the [Installation Guide](/guide/installation), and both easytier-core and easytier-cli commands are available.
+Make sure you have installed EasyTier according to the [Installation Guide](/guide/installation), and that both the easytier-core and easytier-cli commands are available.
