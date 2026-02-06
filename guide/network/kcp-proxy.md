@@ -80,7 +80,7 @@ sudo easytier-core --enable-kcp-proxy --use-smoltcp
 
 ## 查看 KCP 代理状态
 
-可以通过 EasyTier CLI 工具查看 KCP 代理的链接状态。
+可以通过 EasyTier CLI 工具查看所有已建立的活跃连接。
 
 ```bash
 $ easytier-cli proxy
@@ -112,7 +112,7 @@ sudo easytier-core --enable-quic-proxy
 sudo easytier-core --disable-quic-input
 ```
 
-发送端和接收端可以通过 `easytier-cli proxy` 命令查看 QUIC 代理的链接状态。
+发送端和接收端可以通过 `easytier-cli proxy` 命令查看所有通过 QUIC 代理建立的活跃连接。
 
 ```bash
 $ easytier-cli proxy
