@@ -34,6 +34,7 @@ export const cn = defineConfig({
             { text: '改善 P2P', link: '/guide/network/p2p-optimize' },
             { text: '魔法 DNS', link: '/guide/network/magic-dns' },
             { text: 'ACL', link: '/guide/config/acl' },
+            { text: '服务管理与混合模式', link: '/guide/network/service-mode' },
           ] },
           { text: '开机自启（注册服务）', collapsed: true, items: [
             { text: '一键安装服务', link: '/guide/network/oneclick-install-as-service' },
@@ -49,6 +50,9 @@ export const cn = defineConfig({
         text: '图形界面 GUI 组网',
         link: 'guide/gui/index',
         items: [
+          { text: '运行模式', link: '/guide/gui/modes' },
+          { text: '公共服务器组网', link: '/guide/gui/basic' },
+          { text: '使用 Web 控制台组网', link: '/guide/gui/web-console' },
           { text: '手动组网', link: '/guide/gui/manual' },
           { text: 'WireGuard 接入', link: '/guide/gui/vpn_portal' },
           { text: '子网代理', link: '/guide/gui/subnet_proxy' },

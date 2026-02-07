@@ -1,5 +1,11 @@
 # Install as a macOS Service
 
+::: tip Recommended Method
+Starting from v2.5.0, it is recommended to use the `easytier-cli service install` command to register the service with one click. See [One-Click Register Service](./oneclick-install-as-service) for details.
+:::
+
+The following is the manual installation method using the third-party tool `serviceman`:
+
 Download and install [serviceman](https://webinstall.dev/serviceman).
 
 Open Terminal and run the following commands to register the service:

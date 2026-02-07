@@ -24,6 +24,6 @@ After successful execution, Node A can access Node B via the virtual IP `10.144.
 
 `--ipv4 x.x.x.x` can be replaced with `-d` to enable DHCP functionality, allowing EasyTier to automatically allocate the IP address of this node based on other existing virtual IPs within the virtual network.
 
-Nodes can connect to multiple public servers. If one public server fails, nodes can still communicate using other active public servers. Simply specify multiple `-p` parameters, such as `-p tcp://1.1.1.1:11010 -p udp://1.1.1.2:11011`. Note that each node in the virtual network must specify the same list of public servers; otherwise, networking may not function properly.
+Nodes can connect to multiple public servers. If one public server fails, nodes can still communicate using other active public servers. Simply specify multiple `-p` parameters, such as `-p tcp://1.1.1.1:11010 -p udp://1.1.1.2:11010`. Note that each node in the virtual network must specify the same list of public servers; otherwise, networking may not function properly.
 
 ---

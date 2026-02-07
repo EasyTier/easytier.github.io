@@ -13,9 +13,10 @@ You can use `easytier-core --help` to view all configuration options.
 |                         | - Username only: `--config-server admin`, will use the official server                                                                                                                                               |
 |                         | [env: ET_CONFIG_SERVER=]                                                                                                                                                                                             |
 | `--machine-id`          | Web configuration server identifies machines through machine id, used for configuration recovery after disconnection and reconnection, must be unique and fixed. Default obtained from system. [env: ET_MACHINE_ID=] |
-| `-c, --config-file`     | Configuration file path, note: options configured in command line will override options in configuration file [env: ET_CONFIG_FILE=]                                                                                 |
+| `-c, --config-file`     | Configuration file path. Supports specifying multiple configuration files (separated by commas or by using this parameter multiple times). Options configured in command line will override options in configuration file [env: ET_CONFIG_FILE=] |
 | `--config-dir`          | Load all .toml files in the directory to start network instances, and store the received configurations in this directory. [env: ET_CONFIG_DIR=]                                                                     |
-| `--disable-env-parsing` | Disable environment variable parsing in config file [env: ET_DISABLE_ENV_PARSING=]                                                                                                                                   |
+| `--daemon`              | Run in daemon mode. The process will not exit automatically even if no network instances are running. [env: ET_DAEMON=]                                                                                             |
+| `--disable-env-parsing` | Disable environment variable parsing in the configuration file. Useful when the configuration contains many `$` symbols and you do not wish to use escape sequences. [env: ET_DISABLE_ENV_PARSING=] |
 
 ### Network Settings
 
@@ -30,7 +31,11 @@ You can use `easytier-core --help` to view all configuration options.
 | `-e, --external-node`  | Use public shared nodes to discover peer nodes [env: ET_EXTERNAL_NODE=]                                                                                                                                 |
 | `-n, --proxy-networks` | Export local network to other peer nodes in VPN, e.g.: `10.0.0.0/24`. Supports mapping to other CIDR, e.g.: `10.0.0.0/24->192.168.0.0/24` [env: ET_PROXY_NETWORKS=]                                     |
 
-### RPC Settings
+### RPC Settings (Global Parameters)
+
+::: tip Note
+RPC settings are global and apply to the entire `easytier-core` process. When running multiple network instances in a single process, all instances share the same RPC portal. These parameters can generally only be set via command-line arguments or environment variables.
+:::
 
 | Parameter                | Description                                                                                                                                     |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |

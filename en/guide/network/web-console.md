@@ -29,7 +29,7 @@ Please ensure the machine code is unique and unchanged across all devices. **It 
 :::
 
 ::: danger Note
-Only one EasyTier process on a machine can be managed by the Web Console. Having multiple processes may cause unexpected issues.
+Only one EasyTier process can be managed by the Web console on a single machine. If you need to run multiple virtual networks, please start them within the same process by loading multiple configuration files (using multiple `-c` parameters), or use the more advanced [Config Directory Mode](service-mode.md).
 :::
 
 ::: tip Note
@@ -56,6 +56,10 @@ Configure
 ![alt text](/assets/web-device-run-network.png)
 
 The subsequent configuration steps are the same as configuring a program with a GUI.
+
+::: tip Note
+If you prefer to use a graphical interface to connect to the Web Console, please refer to [Networking with Web Console (GUI)](/en/guide/gui/web-console).
+:::
 
 # Self-Hosted Web Console
 
