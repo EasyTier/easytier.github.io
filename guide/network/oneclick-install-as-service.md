@@ -1,12 +1,12 @@
 # 一键注册服务
 
-EasyTier Cli 提供注册服务命令，可以在大部分系统上一键将 EasyTier 注册为系统服务。注册后，EasyTier 会在系统启动时自动启动，并在后台运行。
+EasyTier Cli 提供注册服务命令，可以在大部分系统（Windows, Linux, macOS）上一键将 EasyTier 注册为系统服务。注册后，EasyTier 会在系统启动时自动启动，并在后台运行。
 
 使用该命令需要 `easytier-core` 和 `easytier-cli` 在同一目录下。进入该目录后，运行以下命令：
 
 ::: code-group
 
-```sh [Linux]
+```sh [Linux / macOS]
 # 假设 EasyTier 的启动参数为 -w abc
 sudo ./easytier-cli service install -w abc
 ```
@@ -22,7 +22,7 @@ sudo ./easytier-cli service install -w abc
 完整示例:
 ::: code-group
 
-```sh [Linux]
+```sh [Linux / macOS]
 # 假设 EasyTier 的启动参数为 -w abc
 sudo ./easytier-cli service install \
     --description "自定义服务描述" \    # 可选，默认使用包描述
@@ -51,7 +51,7 @@ sudo ./easytier-cli service install \
 
   ::: code-group
 
-  ```sh [Linux]
+  ```sh [Linux / macOS]
   sudo ./easytier-cli service start
   ```
 
@@ -65,7 +65,7 @@ sudo ./easytier-cli service install \
 
   ::: code-group
 
-  ```sh [Linux]
+  ```sh [Linux / macOS]
   sudo ./easytier-cli service stop
   ```
 
@@ -79,7 +79,7 @@ sudo ./easytier-cli service install \
 
   ::: code-group
 
-  ```sh [Linux]
+  ```sh [Linux / macOS]
   sudo ./easytier-cli service status
   ```
 
@@ -93,7 +93,7 @@ sudo ./easytier-cli service install \
 
   ::: code-group
 
-  ```sh [Linux]
+  ```sh [Linux / macOS]
   sudo ./easytier-cli service uninstall
   ```
 
