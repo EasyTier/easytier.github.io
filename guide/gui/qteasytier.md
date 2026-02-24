@@ -5,11 +5,11 @@
 QtEasyTier 是一个基于 Qt 框架开发的异地组网工具，使用 EasyTier 作为后端，用于创建和管理虚拟网络连接。
 它提供了直观的图形界面，帮助用户轻松配置和管理虚拟网络，实现跨网络设备的安全通信。
 
-- 软件官网：(qtet.070219.xyz)[https://qtet.070219.xyz]
+- 软件官网：[qtet.070219.xyz](https://qtet.070219.xyz)
 
 ### 项目地址：
- - (Gitee: gitee.com/viagrahuang/qt-easy-tier)[https://gitee.com/viagrahuang/qt-easy-tier]
- - (GitHub: github.com/myqfeng/qt-easy-tier)[https://github.com/myqfeng/qt-easy-tier]
+ - [Gitee: gitee.com/viagrahuang/qt-easy-tier](https://gitee.com/viagrahuang/qt-easy-tier)
+ - [GitHub: github.com/myqfeng/qt-easy-tier](https://github.com/myqfeng/qt-easy-tier)
 
 ### 示例图片
 ![QtEasyTier](/assets/qteasytier0.png)
