@@ -34,6 +34,7 @@ export const en = defineConfig({
             { text: 'P2P Optimization', link: '/en/guide/network/p2p-optimize' },
             { text: 'Magic DNS', link: '/en/guide/network/magic-dns' },
             { text: 'ACL', link: '/en/guide/config/acl' },
+            { text: 'Service Management & Hybrid Mode', link: '/en/guide/network/service-mode' },
           ] },
           { text: 'Autostart (Register Service)', collapsed: true, items: [
             { text: 'One-Click Install Service', link: '/en/guide/network/oneclick-install-as-service' },
@@ -49,6 +50,9 @@ export const en = defineConfig({
         text: 'GUI Networking',
         link: '/en/guide/gui/index',
         items: [
+          { text: 'Running Modes', link: '/en/guide/gui/modes' },
+          { text: 'Public Server Networking', link: '/en/guide/gui/basic' },
+          { text: 'Networking with Web Console', link: '/en/guide/gui/web-console' },
           { text: 'Manual Networking', link: '/en/guide/gui/manual' },
           { text: 'WireGuard Access', link: '/en/guide/gui/vpn_portal' },
           { text: 'Subnet Proxy', link: '/en/guide/gui/subnet_proxy' },

@@ -112,3 +112,33 @@
    easytier-core --gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
    easytier-cli gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
    ```
+
+***
+
+## 命令行管理工具 (easytier-cli)
+
+`easytier-cli` 用于管理正在运行的 `easytier-core` 进程。它默认连接到 `127.0.0.1:15888`。
+
+### 基本用法
+
+```bash
+# 查看节点信息
+easytier-cli node
+# 查看对等节点
+easytier-cli peer list
+# 查看路由表
+easytier-cli route list
+```
+
+### 多实例管理
+
+如果一个 `easytier-core` 进程中运行了多个网络实例（例如通过加载多个配置文件），你可以使用 `-n` 或 `-i` 参数指定操作目标：
+
+```bash
+# 通过实例名称管理（在配置文件或命令行中使用 -m 指定）
+easytier-cli -n my_net_1 node
+# 通过实例 ID 管理
+easytier-cli -i <UUID> node
+```
+
+如果进程中仅有一个实例，`easytier-cli` 会自动选择该实例。
