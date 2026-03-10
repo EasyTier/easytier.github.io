@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://mctier.pmhs.top/images/MCTierIcon.png" alt="MCTier Logo" width="150" height="150">
+<img src="https://gitee.com/peng-minghang/mctier/raw/master/public/MCTierIcon.png" alt="MCTier Logo" width="150" height="150">
 
 # **MCTier**
 
