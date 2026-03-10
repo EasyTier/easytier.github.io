@@ -1,5 +1,5 @@
 <div align="center">
-<img src="../../../../assets/MCTierIcon.png" alt="MCTier Logo" width="150" height="150">
+<img src="../../assets/MCTierIcon.png" alt="MCTier Logo" width="150" height="150">
 
 # **MCTier**
 
