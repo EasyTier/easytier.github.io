@@ -57,6 +57,7 @@ export const cn = defineConfig({
           { text: 'AstralGame 联机工具', link: '/guide/gui/astral-game' },
           { text: 'EasyTier 鸿蒙版', link: '/guide/gui/easytier-harmonyos' },
           { text: 'QtEasyTier 组网工具', link: '/guide/gui/qteasytier' },
+          { text: 'MCTier 多功能快速组网', link: '/guide/gui/mctier' },
         ],
       },
       {
