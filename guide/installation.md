@@ -110,5 +110,5 @@
    ```fish
    # Fish 补全
    easytier-core --gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
-   easytier-cli gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
+   easytier-cli gen-autocomplete fish > ~/.config/fish/completions/easytier-cli.fish
    ```
