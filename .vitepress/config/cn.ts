@@ -60,6 +60,14 @@ export const cn = defineConfig({
         ],
       },
       {
+        text: 'RPC 调用',
+        items: [
+          { text: '协议介绍', link: '/guide/rpc/Introduction' },
+          { text: 'python示例', link: '/guide/rpc/python-example' },
+          { text: '方法列表', link: '/guide/rpc/method-tables' },
+        ],
+      },
+      {
         items: [
           { text: '关于 P2P', link: '/guide/aboutp2p' },
           { text: '性能测试', link: '/guide/perf' },
