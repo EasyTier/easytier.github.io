@@ -29,13 +29,11 @@ On the official website page, find the version suitable for your system (usually
 
 After downloading, find the version corresponding to your device architecture (such as: `win64`), and extract the `nssm.exe` from it to the local directory where `EasyTier` is located.
 
-**Download Install/Uninstall Script**:
+**Download the Install Script**:
 
 Start PowerShell in the current directory and execute the following commands:
 
 `iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/install.cmd" -OutFile "install.cmd"`
-
-`iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/uninstall.cmd" -OutFile "uninstall.cmd"`
 
 ## 2. Preparation Work
 
@@ -47,7 +45,6 @@ Start PowerShell in the current directory and execute the following commands:
    - `Packet.dll` (runtime library)
    - `wintun.dll` (runtime library)
    - `install.cmd` (install script)
-   - `uninstall.cmd` (uninstall script)
 
 2. Place the entire folder in a fixed location.
 
@@ -59,7 +56,7 @@ Start PowerShell in the current directory and execute the following commands:
 
 ## 4. Uninstall Service
 
-1. Run `uninstall.cmd`
+1. Run `install.cmd -Uninstall`
 2. The script will automatically stop and delete the service.
 
 ## 5. Notes

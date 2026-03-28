@@ -29,13 +29,11 @@
 下载完成后，找到对应您设备架构的版本（如：`win64`），将其中的`nssm.exe`解压到`EasyTier`所在的本地目录。
 
 
-**下载 安装/卸载 脚本**：
+**下载安装脚本**：
 
 在当前目录下启动PowerShell并执行以下命令:
 
 `iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/install.cmd" -OutFile "install.cmd"`
-
-`iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/uninstall.cmd" -OutFile "uninstall.cmd"`
 
 ## 二、准备工作
 
@@ -46,7 +44,6 @@
    - `Packet.dll` (运行库)
    - `wintun.dll` (运行库)
    - `install.cmd` (安装脚本)
-   - `uninstall.cmd` (卸载脚本)
 
 2. 将整个文件夹放在固定位置。
 
@@ -58,7 +55,7 @@
 
 ## 四、卸载服务
 
-1. 运行`uninstall.cmd`
+1. 运行`install.cmd -Uninstall`
 2. 脚本会自动停止并删除服务。
 
 ## 五、注意事项
