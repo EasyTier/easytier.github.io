@@ -31,7 +31,9 @@ id2 -.无需 EasyTier 访问对方子网.-> id1
 
 节点 A
 
-```bash
+::: code-group
+
+```bash [命令行参数]
 # 启动 EasyTier 并代理 192.168.1.0/24 网段，并使用公共服务器帮助组网
 easytier-core -i 10.144.144.1 -n 192.168.1.0/24 -p tcp://<共享节点IP>:11010 --network-name n2n_test
 
@@ -41,9 +43,47 @@ iptables -A FORWARD -s 192.168.1.0/24 -j ACCEPT
 iptables -A FORWARD -d 192.168.1.0/24 -j ACCEPT
 ```
 
+```toml [配置文件]
+ipv4 = "10.144.144.1"
+
+[network_identity]
+network_name = "n2n_test"
+network_secret = ""
+
+[[proxy_network]]
+cidr = "192.168.1.0/24"
+
+[[peer]]
+uri = "tcp://<共享节点IP>:11010"
+```
+
+:::
+
+将上面的 EasyTier 配置保存为 `node-a.toml` 后，可通过 `easytier-core -c ./node-a.toml` 启动；`sysctl` 和 `iptables` 命令仍需单独执行。
+
 节点 B
 
-```bash
+::: code-group
+
+```bash [命令行参数]
 # 启动 EasyTier 并代理 10.1.1.0/24 网段，并使用公共服务器帮助组网
 easytier-core -i 10.144.144.2 -n 10.1.1.0/24 -p tcp://<共享节点IP>:11010 --network-name n2n_test
 ```
+
+```toml [配置文件]
+ipv4 = "10.144.144.2"
+
+[network_identity]
+network_name = "n2n_test"
+network_secret = ""
+
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+
+[[peer]]
+uri = "tcp://<共享节点IP>:11010"
+```
+
+:::
+
+将上面的配置保存为 `node-b.toml` 后，可通过 `easytier-core -c ./node-b.toml` 启动。

@@ -31,10 +31,24 @@ We need the iPhone to access the EasyTier network through node A, and the config
 
 In the `easytier-core` command on node A, add the `--vpn-portal` parameter to specify the port WireGuard listens on and the subnet used by the WireGuard network.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 # The following parameters mean: listen on 0.0.0.0:11013 port, WireGuard uses the 10.14.14.0/24 subnet
 sudo easytier-core --ipv4 10.144.144.1 --vpn-portal wg://0.0.0.0:11013/10.14.14.0/24
 ```
+
+```toml [Config File]
+ipv4 = "10.144.144.1"
+
+[vpn_portal_config]
+client_cidr = "10.14.14.0/24"
+wireguard_listen = "0.0.0.0:11013"
+```
+
+:::
+
+Save the configuration above as `node-a.toml`, then start it with `sudo easytier-core -c ./node-a.toml`.
 
 ### 2. Get WireGuard Client Configuration
 

@@ -10,15 +10,49 @@ For example, with two nodes:
 
 Node A executes:
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core -i 10.144.144.1 --network-name abc --network-secret abc -p tcp://<Shared Node IP>:11010
 ```
 
+```toml [Config File]
+ipv4 = "10.144.144.1"
+
+[network_identity]
+network_name = "abc"
+network_secret = "abc"
+
+[[peer]]
+uri = "tcp://<Shared Node IP>:11010"
+```
+
+:::
+
+Save the configuration above as `node-a.toml`, then start it with `sudo easytier-core -c ./node-a.toml`.
+
 Node B executes:
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --ipv4 10.144.144.2 --network-name abc --network-secret abc -p tcp://<Shared Node IP>:11010
 ```
+
+```toml [Config File]
+ipv4 = "10.144.144.2"
+
+[network_identity]
+network_name = "abc"
+network_secret = "abc"
+
+[[peer]]
+uri = "tcp://<Shared Node IP>:11010"
+```
+
+:::
+
+Save the configuration above as `node-b.toml`, then start it with `sudo easytier-core -c ./node-b.toml`.
 
 After successful execution, Node A can access Node B via the virtual IP `10.144.144.2`.
 

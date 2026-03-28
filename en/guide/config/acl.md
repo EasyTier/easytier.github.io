@@ -25,13 +25,13 @@ Understanding the following key concepts is essential for configuring ACL:
 
 ## 🔧 Configuration Details
 
-ACL configuration must be added to Easytier's configuration file `config.yaml`.
+ACL configuration must be added to Easytier's configuration file `config.toml`.
 
 ### 1. Define Groups and Secrets
 
 This is the most critical step. Each node needs to declare which groups it belongs to in its configuration and configure the shared secrets for all related groups.
 
-```yaml
+```toml
 # This section defines the groups this node will join (for generating identity proof)
 [acl.acl_v1.group]
 members = ["admin", "web-server"]  # This node's identity: both an administrator and a web server
@@ -65,7 +65,7 @@ group_secret = "guest-secret-key"
 
 Rule chains determine how traffic is handled.
 
-```yaml
+```toml
 # Define an inbound chain
 [[acl.acl_v1.chains]]
 name = "my_acl_policy"    # Chain name
@@ -81,7 +81,7 @@ default_action = 2        # Default action: 1(Allow) 2(Deny)
 
 Rules are the core of the policy and are defined within chains.
 
-```yaml
+```toml
 # List of rules within the chain defined above
 [[acl.acl_v1.chains.rules]]
 name = "allow_admin_rdp"
@@ -121,7 +121,7 @@ stateful = true              # Enable connection tracking
 
 **Configuration**:
 
-```yaml
+```toml
 [acl.acl_v1.group]
 members = ["my-net"]  # All devices join the same group
 
@@ -161,7 +161,7 @@ enabled = true
 
 **ACL Rules on the Database Server**:
 
-```yaml
+```toml
 [[acl.acl_v1.chains]]
 name = "db_server_policy"
 chain_type = 1

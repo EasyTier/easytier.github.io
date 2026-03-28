@@ -25,13 +25,13 @@
 
 ## 🔧 配置详解
 
-ACL 配置需添加到 Easytier 的配置文件 `config.yaml` 中。
+ACL 配置需添加到 Easytier 的配置文件 `config.toml` 中。
 
 ### 1. 定义组与密钥
 
 这是最关键的一步。每个节点需在配置中声明其所属的组，并配置所有相关组的共享密钥。
 
-```yaml
+```toml
 # 本节定义本节点要加入的组（用于生成身份证明）
 [acl.acl_v1.group]
 members = ["admin", "web-server"]  # 本节点身份：既是管理员，也是Web服务器
@@ -65,7 +65,7 @@ group_secret = "guest-secret-key"
 
 规则链决定了如何处理流量。
 
-```yaml
+```toml
 # 定义一个入站链
 [[acl.acl_v1.chains]]
 name = "my_acl_policy"    # 链名称
@@ -81,7 +81,7 @@ default_action = 2        # 默认动作：1(允许) 2(拒绝)
 
 规则是策略的核心，定义在链内部。
 
-```yaml
+```toml
 # 上面定义的链中的规则列表
 [[acl.acl_v1.chains.rules]]
 name = "allow_admin_rdp"
@@ -121,7 +121,7 @@ stateful = true              # 启用连接跟踪
 
 **配置**：
 
-```yaml
+```toml
 [acl.acl_v1.group]
 members = ["my-net"]  # 所有设备都加入同一个组
 
@@ -161,7 +161,7 @@ enabled = true
 
 **数据库服务器上的 ACL 规则**：
 
-```yaml
+```toml
 [[acl.acl_v1.chains]]
 name = "db_server_policy"
 chain_type = 1

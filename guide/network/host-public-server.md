@@ -2,9 +2,19 @@
 
 用户可以使用自己的公网节点自建用于无公网 IP 组网的公共共享节点，方便其他无公网 IP 的用户组网。 需要不带任何参数启动 EasyTier，该节点就可作为公共服务器使用（不需要 root 权限）：
 
-```shell
+::: code-group
+
+```shell [命令行参数]
 easytier-core
 ```
+
+```toml [配置文件]
+# 空配置即可作为共享节点启动
+```
+
+:::
+
+将空配置保存为 `config.toml` 后，可通过 `easytier-core -c ./config.toml` 启动。
 
 另外 EasyTier 支持共享节点集群。每个虚拟网络（通过相同的网络名称和密钥建链）都可以充当共享节点集群，其他网络的节点可以连接到共享节点集群中的任意节点，无需公共 IP 即可发现彼此。运行自建的公共服务器集群与运行虚拟网络完全相同，不过可以跳过配置 ipv4 地址。
 
@@ -18,17 +28,44 @@ easytier-core
 
 EasyTier 可以做到不转发其他虚拟网的网络包，而是只帮助他们建立 P2P 链接，只需将白名单置空，并设置仅转发 RPC 流量即可。参考命令为：
 
-```shell
+::: code-group
+
+```shell [命令行参数]
 easytier-core --relay-network-whitelist --relay-all-peer-rpc
 ```
+
+```toml [配置文件]
+[flags]
+relay_network_whitelist = ""
+relay_all_peer_rpc = true
+```
+
+:::
+
+将上面的配置保存为 `config.toml` 后，可通过 `easytier-core -c ./config.toml` 启动。
 
 ## 私有模式
 
 如果你希望 EasyTier 仅在你的虚拟网络中提供服务，而不希望其他虚拟网的节点连接到你的节点，可以使用 `--private-mode true` 参数启动 EasyTier。
 
-```shell
+::: code-group
+
+```shell [命令行参数]
 sudo easytier-core --private-mode true --network-name my-network --network-secret my-secret
 ```
+
+```toml [配置文件]
+[network_identity]
+network_name = "my-network"
+network_secret = "my-secret"
+
+[flags]
+private_mode = true
+```
+
+:::
+
+将上面的配置保存为 `config.toml` 后，可通过 `sudo easytier-core -c ./config.toml` 启动。
 
 这会仅允许网络名为 `my-network` 且密钥为 `my-secret` 的节点连接到该 EasyTier 节点。
 

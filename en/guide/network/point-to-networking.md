@@ -21,9 +21,22 @@ nodeA <--> nodeB <-.-> id1
 
 The startup parameters for node B's easytier are as follows (add the -n parameter)
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24
 ```
+
+```toml [Config File]
+ipv4 = "10.144.144.2"
+
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 The subnet proxy information will be automatically synchronized to each node in the virtual network, and each node will automatically configure the corresponding routes. Node A can check if the subnet proxy is effective with the following command.
 
@@ -46,9 +59,24 @@ The subnet proxy information will be automatically synchronized to each node in 
 ::: warning Note
 The -n parameter for subnet proxy can be specified multiple times to proxy multiple subnets; you can also set the mask to 32 to proxy a single IP address.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 easytier-core -n 10.1.1.0/24 -n 10.2.0.0/16 -n 10.3.3.3/32
 ```
+
+```toml [Config File]
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+
+[[proxy_network]]
+cidr = "10.2.0.0/16"
+
+[[proxy_network]]
+cidr = "10.3.3.3/32"
+```
+
+:::
 
 :::
 
@@ -80,9 +108,23 @@ This can simplify networking in most cases, but in some scenarios, users may not
 
 When using `--manual-routes`, only the segments configured with this parameter will enter the virtual network. If the list after this parameter is empty, EasyTier will not handle any traffic for non-virtual network segments. For example:
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24 --manual-routes 10.1.1.0/24
 ```
+
+```toml [Config File]
+ipv4 = "10.144.144.2"
+routes = ["10.1.1.0/24"]
+
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 `--manual-routes` can be specified multiple times to configure multiple segments, with the same format as the `-n` parameter.
 
@@ -94,13 +136,35 @@ Assume the following scenario: Both node A and node B have subnets of `192.168.1
 
 The following commands map `192.168.1.0/24` to `10.1.1.0/24` on node A, and `192.168.1.0/24` to `10.2.2.0/24` on node B.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 # Run on node A
 sudo easytier-core --ipv4 10.144.144.1 -n '192.168.1.0/24->10.1.1.0/24'
 
 # Run on node B
 sudo easytier-core --ipv4 10.144.144.2 -n '192.168.1.0/24->10.2.2.0/24'
 ```
+
+```toml [Config File]
+# Node A
+ipv4 = "10.144.144.1"
+
+[[proxy_network]]
+cidr = "192.168.1.0/24"
+mapped_cidr = "10.1.1.0/24"
+
+# Node B
+ipv4 = "10.144.144.2"
+
+[[proxy_network]]
+cidr = "192.168.1.0/24"
+mapped_cidr = "10.2.2.0/24"
+```
+
+:::
+
+Save the configurations for Node A and Node B into separate TOML files, then start them with `sudo easytier-core -c ./node-a.toml` and `sudo easytier-core -c ./node-b.toml`.
 
 Other nodes in the virtual network can access the `192.168.1.X` proxied by node A by accessing `10.1.1.X`; and access the `192.168.1.X` proxied by node B by accessing `10.2.2.X`.
 

@@ -2,6 +2,21 @@
 
 EasyTier supports a Magic DNS feature similar to Tailscale, allowing users to access other nodes via domain names without remembering virtual IP addresses. Simply add the `--accept-dns` parameter during startup to enable the Magic DNS feature.
 
+::: code-group
+
+```sh [CLI Flags]
+easytier-core --accept-dns true
+```
+
+```toml [Config File]
+[flags]
+accept_dns = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `easytier-core -c ./config.toml`.
+
 Magic DNS uses `100.100.100.101` as the default DNS server address. You can `ping` this address to test whether Magic DNS is successfully enabled.
 
 If Magic DNS is successfully enabled, and the hostname of Node A is `node-a`, other nodes can access Node A via `node-a.et.net`.

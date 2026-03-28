@@ -31,9 +31,11 @@ To achieve network to network, Node A needs to be the gateway for the 192.168.1.
 
 Node A
 
-```bash
+::: code-group
+
+```bash [CLI Flags]
 # Start EasyTier and proxy the 192.168.1.0/24 subnet, using a public server to help network
-easytier-core -i 10.144.144.1 -n 192.168.1.0/24 --network-name n2n_test
+easytier-core -i 10.144.144.1 -n 192.168.1.0/24 -p tcp://<Shared Node IP>:11010 --network-name n2n_test
 
 # Allow the gateway to forward traffic and configure the firewall to allow traffic forwarding
 sysctl -w net.ipv4.ip_forward=1
@@ -41,9 +43,47 @@ iptables -A FORWARD -s 192.168.1.0/24 -j ACCEPT
 iptables -A FORWARD -d 192.168.1.0/24 -j ACCEPT
 ```
 
+```toml [Config File]
+ipv4 = "10.144.144.1"
+
+[network_identity]
+network_name = "n2n_test"
+network_secret = ""
+
+[[proxy_network]]
+cidr = "192.168.1.0/24"
+
+[[peer]]
+uri = "tcp://<Shared Node IP>:11010"
+```
+
+:::
+
+Save the EasyTier configuration above as `node-a.toml`, then start it with `easytier-core -c ./node-a.toml`; the `sysctl` and `iptables` commands still need to be run separately.
+
 Node B
 
-```bash
+::: code-group
+
+```bash [CLI Flags]
 # Start EasyTier and proxy the 10.1.1.0/24 subnet, using a public server to help network
-easytier-core -i 10.144.144.2 -n 10.1.1.0/24 --network-name n2n_test
+easytier-core -i 10.144.144.2 -n 10.1.1.0/24 -p tcp://<Shared Node IP>:11010 --network-name n2n_test
 ```
+
+```toml [Config File]
+ipv4 = "10.144.144.2"
+
+[network_identity]
+network_name = "n2n_test"
+network_secret = ""
+
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+
+[[peer]]
+uri = "tcp://<Shared Node IP>:11010"
+```
+
+:::
+
+Save the configuration above as `node-b.toml`, then start it with `easytier-core -c ./node-b.toml`.

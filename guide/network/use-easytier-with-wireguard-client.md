@@ -31,10 +31,24 @@ ios <-.-> nodea <--> nodeb <-.-> id1
 
 在节点 A 的 `easytier-core` 命令中，加入 `--vpn-portal` 参数，指定 WireGuard 服务监听的端口，以及 WireGuard 网络使用的网段。
 
-```sh
+::: code-group
+
+```sh [命令行参数]
 # 以下参数的含义为：监听 0.0.0.0:11013 端口，WireGuard 使用 10.14.14.0/24 网段
 sudo easytier-core --ipv4 10.144.144.1 --vpn-portal wg://0.0.0.0:11013/10.14.14.0/24
 ```
+
+```toml [配置文件]
+ipv4 = "10.144.144.1"
+
+[vpn_portal_config]
+client_cidr = "10.14.14.0/24"
+wireguard_listen = "0.0.0.0:11013"
+```
+
+:::
+
+将上面的配置保存为 `node-a.toml` 后，可通过 `sudo easytier-core -c ./node-a.toml` 启动。
 
 ### 2. 获取 WireGuard 客户端配置
 
