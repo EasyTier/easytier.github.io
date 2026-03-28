@@ -10,45 +10,28 @@ To use the Web Console for the first time, you need to register an account. [Reg
 
 If you want the EasyTier node to be managed by the Web Console, you need to specify the `--config-server` or `-w` parameter when starting, for example:
 
-::: code-group
-
-```sh [CLI Flags]
+```sh
 sudo ./easytier-core -w <your username>
 ```
 
-```toml [Config File]
-[flags]
-config_server = "<your username>"
-```
-
-:::
-
-Save the configuration above as `config.toml`, then start it with `sudo ./easytier-core -c ./config.toml`.
-
 > Please replace `<your username>` with the username you registered on the Web Console.
+
+::: tip Note
+Currently, `config_server` does not take effect through `-c config.toml`, so connecting to the Web Console still needs to be configured through CLI flags.
+:::
 
 If the terminal shows messages like "Connection successful" or "Connected to server", it means Easytier Core has successfully connected to the Web Console server.
 
 ::: tip Note
 The Web backend identifies devices and persists configurations through machine unique codes. By default, EasyTier automatically obtains the machine unique code from the system. If the machine code acquisition fails, it may cause configuration loss after restart. It is recommended to use the `--machine-id` parameter to specify the machine code, for example:
 
-::: code-group
-
-```sh [CLI Flags]
+```sh
 sudo ./easytier-core -w <your username> --machine-id abc123
 ```
 
-```toml [Config File]
-[flags]
-config_server = "<your username>"
-machine_id = "abc123"
-```
-
-:::
-
-Save the configuration above as `config.toml`, then start it with `sudo ./easytier-core -c ./config.toml`.
-
 Please ensure the machine code is unique and unchanged across all devices. **It is strongly recommended to manually specify the machine code in Docker environments.**
+
+`machine_id` should also be passed through CLI flags here rather than relying on `-c config.toml`.
 :::
 
 ::: danger Note
@@ -62,7 +45,6 @@ You can specify the hostname displayed on the console using the `--hostname <cus
 The equivalent configuration file syntax is:
 
 ```toml
-[flags]
 hostname = "my-hostname"
 ```
 
@@ -141,22 +123,15 @@ You can use the official EasyTier frontend `https://easytier.cn/web` to access y
 
 Previously, we set up the web console locally with the configuration delivery port 22020 and UDP protocol. The command for EasyTier to connect to the self-hosted console is:
 
-::: code-group
-
-```sh [CLI Flags]
+```sh
 # ./easytier-core -w <protocol>://<host>:<port>/<username_on_your_self-hosted_web_console>
 # protocol: udp, tcp, ws, wss
 ./easytier-core -w udp://127.0.0.1:22020/<your_username_on_the_self-hosted_web_console>
 ```
 
-```toml [Config File]
-[flags]
-config_server = "udp://127.0.0.1:22020/<your_username_on_the_self-hosted_web_console>"
-```
-
+::: tip Note
+In the self-hosted-console case, `config_server` also needs to be passed through CLI flags; it should not be documented as a working `-c config.toml` setting.
 :::
-
-Save the configuration above as `config.toml`, then start it with `./easytier-core -c ./config.toml`.
 
 Subsequent usage is the same as the official console.
 

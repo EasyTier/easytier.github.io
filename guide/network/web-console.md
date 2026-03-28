@@ -10,45 +10,28 @@ EasyTier 支持使用 [Web 控制台](https://easytier.cn/web#/) 来管理 EasyT
 
 如果希望 EasyTier 节点可以被 Web 控制台管理，需要在启动时指定 `--config-server` 或 `-w` 参数，例如：
 
-::: code-group
-
-```sh [命令行参数]
+```sh
 sudo ./easytier-core -w <你的用户名>
 ```
 
-```toml [配置文件]
-[flags]
-config_server = "<你的用户名>"
-```
-
-:::
-
-将上面的配置保存为 `config.toml` 后，可通过 `sudo ./easytier-core -c ./config.toml` 启动。
-
 > 请将 `<你的用户名>` 替换为你在 Web 控制台注册的用户名。
+
+::: tip 提示
+当前 `config_server` 不会通过 `-c config.toml` 生效，因此接入 Web 控制台时仍需通过命令行参数传入。
+:::
 
 如果终端出现类似 “连接成功” 或 “已连接服务器” 的提示，则表示 Easytier Core 已成功连接到 Web 控制台的服务器。
 
 ::: tip 提示
 Web 后端通过机器唯一码来识别设备和持久化配置，默认情况下 EasyTier 会自动从系统中获取机器唯一码。若机器码获取失败会导致重启后配置丢失，建议使用 `--machine-id` 参数指定机器码，例如：
 
-::: code-group
-
-```sh [命令行参数]
+```sh
 sudo ./easytier-core -w <你的用户名> --machine-id abc123
 ```
 
-```toml [配置文件]
-[flags]
-config_server = "<你的用户名>"
-machine_id = "abc123"
-```
-
-:::
-
-将上面的配置保存为 `config.toml` 后，可通过 `sudo ./easytier-core -c ./config.toml` 启动。
-
 请确保机器码在所有设备中唯一且不变。 **强烈建议 Docker 环境下手动指定机器码。**
+
+当前 `machine_id` 也应通过命令行参数传入，不要依赖 `-c config.toml` 中的配置。
 :::
 
 ::: danger 注意
@@ -62,7 +45,6 @@ machine_id = "abc123"
 对应的配置文件写法为：
 
 ```toml
-[flags]
 hostname = "my-hostname"
 ```
 
@@ -141,22 +123,15 @@ EasyTier的web控制台有2个版本
 
 前面我们本地搭建好了web控制台，并且配置下发端口为22020，协议UDP，那么easytier接入自建控制台的指令就是
 
-::: code-group
-
-```sh [命令行参数]
+```sh
 # ./easytier-core -w <protocol>://<host>:<port>/<你在自建web控制台上的用户名>
 # protocol: udp, tcp, ws, wss
 ./easytier-core -w udp://127.0.0.1:22020/<你在自建web控制台上的用户名>
 ```
 
-```toml [配置文件]
-[flags]
-config_server = "udp://127.0.0.1:22020/<你在自建web控制台上的用户名>"
-```
-
+::: tip 提示
+自建控制台场景下的 `config_server` 同样需要通过命令行参数传入，当前不能依赖 `-c config.toml` 中的配置。
 :::
-
-将上面的配置保存为 `config.toml` 后，可通过 `./easytier-core -c ./config.toml` 启动。
 
 接下来的用法就和官方控制台一样了。
 
