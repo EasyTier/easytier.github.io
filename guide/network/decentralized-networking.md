@@ -23,9 +23,19 @@ nodeA <-----> nodeB
 
 1. 在节点 A 上运行以下命令：
 
-   ```sh
+   ::: code-group
+
+   ```sh [命令行参数]
    sudo easytier-core -i 10.144.144.1
    ```
+
+   ```toml [配置文件]
+   ipv4 = "10.144.144.1"
+   ```
+
+   :::
+
+   将上面的配置保存为 `node-a.toml` 后，可通过 `sudo easytier-core -c ./node-a.toml` 启动。
 
    - `-i` 指定虚拟网的 IP 地址。
 
@@ -51,9 +61,22 @@ nodeA <-----> nodeB
 
 2. 在节点 B 上运行以下命令：
 
-   ```sh
+   ::: code-group
+
+   ```sh [命令行参数]
    sudo easytier-core -d -p udp://22.1.1.1:11010
    ```
+
+   ```toml [配置文件]
+   dhcp = true
+
+   [[peer]]
+   uri = "udp://22.1.1.1:11010"
+   ```
+
+   :::
+
+   将上面的配置保存为 `node-b.toml` 后，可通过 `sudo easytier-core -c ./node-b.toml` 启动。
 
    - `-d` 表示 DHCP 模式，自动分配虚拟 IP。
    - `-p` 指定节点 A 的公网地址和端口。
@@ -83,9 +106,22 @@ nodeC <-----> nodeA
 
 1. 在节点 C 上运行以下命令：
 
-   ```sh
+   ::: code-group
+
+   ```sh [命令行参数]
    sudo easytier-core -d -p udp://22.1.1.1:11010
    ```
+
+   ```toml [配置文件]
+   dhcp = true
+
+   [[peer]]
+   uri = "udp://22.1.1.1:11010"
+   ```
+
+   :::
+
+   将上面的配置保存为 `node-c.toml` 后，可通过 `sudo easytier-core -c ./node-c.toml` 启动。
 
    - `-d` 表示 DHCP 模式，自动分配虚拟 IP。
    - `-p` 指定节点 A 的公网地址和端口。

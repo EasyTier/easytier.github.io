@@ -16,6 +16,10 @@ sudo ./easytier-core -w <你的用户名>
 
 > 请将 `<你的用户名>` 替换为你在 Web 控制台注册的用户名。
 
+::: tip 提示
+当前 `config_server` 不会通过 `-c config.toml` 生效，因此接入 Web 控制台时仍需通过命令行参数传入。
+:::
+
 如果终端出现类似 “连接成功” 或 “已连接服务器” 的提示，则表示 Easytier Core 已成功连接到 Web 控制台的服务器。
 
 ::: tip 提示
@@ -26,6 +30,8 @@ sudo ./easytier-core -w <你的用户名> --machine-id abc123
 ```
 
 请确保机器码在所有设备中唯一且不变。 **强烈建议 Docker 环境下手动指定机器码。**
+
+当前 `machine_id` 也应通过命令行参数传入，不要依赖 `-c config.toml` 中的配置。
 :::
 
 ::: danger 注意
@@ -35,6 +41,12 @@ sudo ./easytier-core -w <你的用户名> --machine-id abc123
 ::: tip 提示
 
 可以通过 `--hostname <自定义主机名>` 参数指定控制台上显示的主机名。
+
+对应的配置文件写法为：
+
+```toml
+hostname = "my-hostname"
+```
 
 :::
 
@@ -116,6 +128,10 @@ EasyTier的web控制台有2个版本
 # protocol: udp, tcp, ws, wss
 ./easytier-core -w udp://127.0.0.1:22020/<你在自建web控制台上的用户名>
 ```
+
+::: tip 提示
+自建控制台场景下的 `config_server` 同样需要通过命令行参数传入，当前不能依赖 `-c config.toml` 中的配置。
+:::
 
 接下来的用法就和官方控制台一样了。
 

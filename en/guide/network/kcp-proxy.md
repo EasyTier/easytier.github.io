@@ -32,9 +32,20 @@ graph LR
 
 To proxy TCP traffic on Node A to the KCP protocol, simply start EasyTier on Node A with the `--enable-kcp-proxy` parameter.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --enable-kcp-proxy
 ```
+
+```toml [Config File]
+[flags]
+enable_kcp_proxy = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 - `--enable-kcp-proxy` enables the KCP proxy feature.
 
@@ -44,9 +55,21 @@ The KCP proxy ensures version compatibility by automatically reverting to the TC
 
 By default, the KCP proxy uses the kernel's network stack, which may not work correctly due to system firewall settings. You can try using the `--use-smoltcp` parameter to switch to the user-space network stack.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --enable-kcp-proxy --use-smoltcp
 ```
+
+```toml [Config File]
+[flags]
+enable_kcp_proxy = true
+use_smoltcp = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 - `--use-smoltcp` switches to the user-space network stack.
 
@@ -56,9 +79,20 @@ If you do not want traffic destined for a specific node to use the KCP protocol,
 
 For example, if you do not want Node B to receive KCP traffic, start EasyTier on Node B with the following command:
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --disable-kcp-input
 ```
+
+```toml [Config File]
+[flags]
+disable_kcp_input = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 - `--disable-kcp-input` disables KCP inbound traffic.
 
@@ -68,9 +102,21 @@ In this case, even if Node A has enabled the KCP proxy, the traffic from Node A 
 
 If Node A is a router, and the subnet under A needs to access other EasyTier nodes or other proxied subnets, it can also use the KCP proxy. However, Node A must use the user-space network stack by specifying the `--use-smoltcp` parameter.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --enable-kcp-proxy --use-smoltcp
 ```
+
+```toml [Config File]
+[flags]
+enable_kcp_proxy = true
+use_smoltcp = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 Otherwise, the TCP protocol will still be used.
 
@@ -98,15 +144,37 @@ EasyTier v2.3.2 introduced support for QUIC proxy, which works similarly to KCP 
 
 QUIC proxy can be enabled on the connection initiator side using the `--enable-quic-proxy` parameter.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --enable-quic-proxy
 ```
 
+```toml [Config File]
+[flags]
+enable_quic_proxy = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
+
 QUIC proxy on the receiving end can be disabled using the `--disable-quic-input` parameter.
 
-```sh
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --disable-quic-input
 ```
+
+```toml [Config File]
+[flags]
+disable_quic_input = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 Both the sender and receiver can check the QUIC proxy connection status using the `easytier-cli proxy` command.
 

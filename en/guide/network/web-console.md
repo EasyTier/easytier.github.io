@@ -16,6 +16,10 @@ sudo ./easytier-core -w <your username>
 
 > Please replace `<your username>` with the username you registered on the Web Console.
 
+::: tip Note
+Currently, `config_server` does not take effect through `-c config.toml`, so connecting to the Web Console still needs to be configured through CLI flags.
+:::
+
 If the terminal shows messages like "Connection successful" or "Connected to server", it means Easytier Core has successfully connected to the Web Console server.
 
 ::: tip Note
@@ -26,6 +30,8 @@ sudo ./easytier-core -w <your username> --machine-id abc123
 ```
 
 Please ensure the machine code is unique and unchanged across all devices. **It is strongly recommended to manually specify the machine code in Docker environments.**
+
+`machine_id` should also be passed through CLI flags here rather than relying on `-c config.toml`.
 :::
 
 ::: danger Note
@@ -35,6 +41,12 @@ Only one EasyTier process on a machine can be managed by the Web Console. Having
 ::: tip Note
 
 You can specify the hostname displayed on the console using the `--hostname <custom hostname>` parameter.
+
+The equivalent configuration file syntax is:
+
+```toml
+hostname = "my-hostname"
+```
 
 :::
 
@@ -116,6 +128,10 @@ Previously, we set up the web console locally with the configuration delivery po
 # protocol: udp, tcp, ws, wss
 ./easytier-core -w udp://127.0.0.1:22020/<your_username_on_the_self-hosted_web_console>
 ```
+
+::: tip Note
+In the self-hosted-console case, `config_server` also needs to be passed through CLI flags; it should not be documented as a working `-c config.toml` setting.
+:::
 
 Subsequent usage is the same as the official console.
 

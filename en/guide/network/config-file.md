@@ -1,16 +1,16 @@
 # Configuration File
 
-Supports using the -c parameter to specify the configuration file path.
+Supports using the `-c` parameter to specify the TOML configuration file path.
 
 ```sh
-easytier-core -c ./config.yaml
+easytier-core -c ./config.toml
 ```
 
 ::: warning Note
 Note: Parameters in the configuration file can be overridden by command line parameters. For example, if `--hostname abc` is specified in the configuration file, but `--hostname xyz` is used in the command line, then the hostname parameter `xyz` from the command line will be used.
 :::
 
-Running with parameters can generate a configuration file with the corresponding parameters. The configuration file will be printed in the command line, and you can manually copy and save it as a toml file.
+Running with parameters can generate a configuration file with the corresponding parameters. The configuration file will be printed in the command line, and you can manually copy and save it as a TOML file.
 
 Running `easytier-core` directly without parameters will generate the minimal configuration file.
 
@@ -19,8 +19,10 @@ Running `easytier-core` directly without parameters will generate the minimal co
 You can specify multiple configuration files through the `-c` parameter. EasyTier will load multiple configuration files in one process and start multiple virtual networks.
 
 ```sh
-easytier-core -c ./config1.yaml -c ./config2.yaml
+easytier-core -c ./config1.toml -c ./config2.toml
 ```
+
+From the network tutorial pages in this section onward, any example that shows both CLI and configuration-file syntax uses TOML as the default config format.
 
 ## Configuration File Generator
 

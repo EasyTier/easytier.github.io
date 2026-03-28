@@ -21,9 +21,22 @@ nodeA <--> nodeB <-.-> id1
 
 则节点 B 的 easytier 启动参数为（新增 -n 参数）
 
-```sh
+::: code-group
+
+```sh [命令行参数]
 sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24
 ```
+
+```toml [配置文件]
+ipv4 = "10.144.144.2"
+
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+```
+
+:::
+
+将上面的配置保存为 `config.toml` 后，可通过 `sudo easytier-core -c ./config.toml` 启动。
 
 子网代理信息会自动同步到虚拟网络的每个节点，各个节点会自动配置相应的路由，节点 A 可以通过如下命令检查子网代理是否生效。
 
@@ -48,6 +61,17 @@ sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24
 
 ```sh
 easytier-core -n 10.1.1.0/24 -n 10.2.0.0/16 -n 10.3.3.3/32
+```
+
+```toml
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+
+[[proxy_network]]
+cidr = "10.2.0.0/16"
+
+[[proxy_network]]
+cidr = "10.3.3.3/32"
 ```
 
 :::
@@ -81,9 +105,23 @@ easytier-core -n 10.1.1.0/24 -n 10.2.0.0/16 -n 10.3.3.3/32
 
 使用 `--manual-routes` 后，只有该参数配置的网段才会进入虚拟网，如果该参数后的列表为空，则 EasyTier 不会处理任何非虚拟网网段的流量。例如：
 
-```sh
+::: code-group
+
+```sh [命令行参数]
 sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24 --manual-routes 10.1.1.0/24
 ```
+
+```toml [配置文件]
+ipv4 = "10.144.144.2"
+routes = ["10.1.1.0/24"]
+
+[[proxy_network]]
+cidr = "10.1.1.0/24"
+```
+
+:::
+
+将上面的配置保存为 `config.toml` 后，可通过 `sudo easytier-core -c ./config.toml` 启动。
 
 `--manual-routes` 可以多次指定，来配置多个网段，格式与 `-n` 参数相同。
 
@@ -95,13 +133,35 @@ sudo easytier-core --ipv4 10.144.144.2 -n 10.1.1.0/24 --manual-routes 10.1.1.0/2
 
 以下命令 A 节点将 `192.168.1.0/24` 映射到 `10.1.1.0/24`，B 节点将 `192.168.1.0/24` 映射到 `10.2.2.0/24`。
 
-```sh
+::: code-group
+
+```sh [命令行参数]
 # 在节点 A 上运行
 sudo easytier-core --ipv4 10.144.144.1 -n '192.168.1.0/24->10.1.1.0/24'
 
 # 在节点 B 上运行
 sudo easytier-core --ipv4 10.144.144.2 -n '192.168.1.0/24->10.2.2.0/24'
 ```
+
+```toml [节点 A 配置文件]
+ipv4 = "10.144.144.1"
+
+[[proxy_network]]
+cidr = "192.168.1.0/24"
+mapped_cidr = "10.1.1.0/24"
+```
+
+```toml [节点 B 配置文件]
+ipv4 = "10.144.144.2"
+
+[[proxy_network]]
+cidr = "192.168.1.0/24"
+mapped_cidr = "10.2.2.0/24"
+```
+
+:::
+
+将节点 A 和节点 B 的配置分别保存为不同的 TOML 文件，再使用 `sudo easytier-core -c ./node-a.toml` 和 `sudo easytier-core -c ./node-b.toml` 启动。
 
 虚拟网内其他节点，可以通过访问 `10.1.1.X` 来访问 A 节点代理的 `192.168.1.X`；通过访问 `10.2.2.X` 来访问 B 节点代理的 `192.168.1.X`。
 

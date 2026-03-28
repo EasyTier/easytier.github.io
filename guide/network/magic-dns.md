@@ -2,6 +2,21 @@
 
 EasyTier 支持类似 Tailscale 的魔法 DNS 功能，允许用户通过域名访问其他节点，无需记住虚拟 IP 地址。只要在启动时加入 `--accept-dns` 参数即可启用魔法 DNS 功能。
 
+::: code-group
+
+```sh [命令行参数]
+easytier-core --accept-dns true
+```
+
+```toml [配置文件]
+[flags]
+accept_dns = true
+```
+
+:::
+
+将上面的配置保存为 `config.toml` 后，可通过 `easytier-core -c ./config.toml` 启动。
+
 魔法 DNS 默认使用 `100.100.100.101` 作为 DNS 服务器地址，可以 `ping` 该地址测试魔法 DNS 是否成功启用。
 
 假设魔法 DNS 启用成功，节点 A 的主机名为 `node-a`，则其他节点可以通过 `node-a.et.net` 访问节点 A。

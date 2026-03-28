@@ -23,9 +23,19 @@ nodeA <-----> nodeB
 
 1. Run the following command on Node A:
 
-   ```sh
+   ::: code-group
+
+   ```sh [CLI Flags]
    sudo easytier-core -i 10.144.144.1
    ```
+
+   ```toml [Config File]
+   ipv4 = "10.144.144.1"
+   ```
+
+   :::
+
+   Save the configuration above as `node-a.toml`, then start it with `sudo easytier-core -c ./node-a.toml`.
 
    - `-i` specifies the virtual network IP address.
 
@@ -51,9 +61,22 @@ nodeA <-----> nodeB
 
 2. Run the following command on Node B:
 
-   ```sh
+   ::: code-group
+
+   ```sh [CLI Flags]
    sudo easytier-core -d -p udp://22.1.1.1:11010
    ```
+
+   ```toml [Config File]
+   dhcp = true
+
+   [[peer]]
+   uri = "udp://22.1.1.1:11010"
+   ```
+
+   :::
+
+   Save the configuration above as `node-b.toml`, then start it with `sudo easytier-core -c ./node-b.toml`.
 
    - `-d` represents DHCP mode, automatically assign virtual IP.
    - `-p` specifies the public address and port of Node A.
@@ -83,9 +106,22 @@ nodeC <-----> nodeA
 
 1. Run the following command on Node C:
 
-   ```sh
+   ::: code-group
+
+   ```sh [CLI Flags]
    sudo easytier-core -d -p udp://22.1.1.1:11010
    ```
+
+   ```toml [Config File]
+   dhcp = true
+
+   [[peer]]
+   uri = "udp://22.1.1.1:11010"
+   ```
+
+   :::
+
+   Save the configuration above as `node-c.toml`, then start it with `sudo easytier-core -c ./node-c.toml`.
 
    - `-d` represents DHCP mode, automatically assign virtual IP.
    - `-p` specifies the public address and port of Node A.

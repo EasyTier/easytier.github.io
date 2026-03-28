@@ -2,9 +2,19 @@
 
 Users can use their own public nodes to set up a public shared node for networking without a public IP, making it easier for other users without a public IP to network. Simply start EasyTier without any parameters, and the node can be used as a public server (no root privileges required):
 
-```
+::: code-group
+
+```sh [CLI Flags]
 easytier-core
 ```
+
+```toml [Config File]
+# An empty config file is enough to start a shared node
+```
+
+:::
+
+Save an empty file as `config.toml`, then start it with `easytier-core -c ./config.toml`.
 
 Additionally, EasyTier supports shared node clusters. Each virtual network (created with the same network name and key) can act as a shared node cluster, and nodes from other networks can connect to any node in the shared node cluster, discovering each other without a public IP. Running a self-built public server cluster is the same as running a virtual network, but you can skip configuring the IPv4 address.
 
@@ -18,16 +28,43 @@ To change this behavior, you can use the `--relay-network-whitelist` parameter t
 
 EasyTier can avoid forwarding network packets for other virtual networks and only help them establish P2P links by setting the whitelist to empty and configuring it to only forward RPC traffic. The reference command is:
 
-```
+::: code-group
+
+```sh [CLI Flags]
 easytier-core --relay-network-whitelist --relay-all-peer-rpc
 ```
+
+```toml [Config File]
+[flags]
+relay_network_whitelist = ""
+relay_all_peer_rpc = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `easytier-core -c ./config.toml`.
 
 ## Private Mode
 
 If you want EasyTier to only provide services in your virtual network and don't want nodes from other virtual networks to connect to your node, you can start EasyTier with the `--private-mode true` parameter.
 
-```
+::: code-group
+
+```sh [CLI Flags]
 sudo easytier-core --private-mode true --network-name my-network --network-secret my-secret
 ```
+
+```toml [Config File]
+[network_identity]
+network_name = "my-network"
+network_secret = "my-secret"
+
+[flags]
+private_mode = true
+```
+
+:::
+
+Save the configuration above as `config.toml`, then start it with `sudo easytier-core -c ./config.toml`.
 
 This will only allow nodes with network name `my-network` and key `my-secret` to connect to this EasyTier node.
