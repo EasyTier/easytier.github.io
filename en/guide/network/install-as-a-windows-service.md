@@ -1,14 +1,61 @@
 # Install as a Windows Service
 
+**One-click install command**
+
+```PowerShell
+iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd
+```
+
+If GitHub is not accessible, use this command instead:
+
+```PowerShell
+iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd -ughp
+```
+
+**Available parameters**
+
+    -H / -? / -Help
+        Display this help message and exit.
+
+    -U / -Update
+        Update EasyTier to the latest version.
+
+    -X / -Uninstall
+        Uninstall the EasyTier service.
+
+    -UGHP / -UseGitHubProxy
+        Download through a GitHub mirror proxy (default: $false).
+
+    -GHP / -GitHubProxy <proxy>
+        Specify the GitHub mirror proxy address (default: https://ghfast.top/).
+
+    -UP / -UseProxy
+        Use a custom proxy (default: $false).
+
+    -P / -Proxy <proxy>
+        Specify the custom proxy address (default: http://127.0.0.1:7890).
+
+    -C / -ConfigType <type>
+        Specify the configuration mode. Available values:
+        * File   Local config file
+        * Remote Centrally managed by a remote server
+        * CLI    Pass arguments directly on the command line
+
+    -N / -ServiceName <name>
+        Specify the installed service name (default: EasyTierService).
+
+    <other arguments...>
+        Used to pass custom arguments when CLI mode is selected.
+
+Original tutorial below.
+
 > Thanks to BeiChen℃ for providing the tutorial, and dawn-lc for providing the one-click install/uninstall script
 
 On Windows systems, installing certain applications as services allows them to run automatically in the background without manual intervention, greatly improving the stability and convenience of the application.
 
-This tutorial will use NSSM (Non-Sucking Service Manager) to install the EasyTier application as a Windows service as an example, and provide a detailed explanation of the entire operation process.
-
 ## 1. Preparation
 
-**Download EasyTier Application**:
+**Download EasyTier CLI**:
 
 Download the latest version of the `Windows` operating system `command line program` compressed package.
 
@@ -20,14 +67,6 @@ The current directory should contain at least the following files:
 - `easytier-cli.exe` (command line tool)
 - `Packet.dll` (runtime library)
 - `wintun.dll` (runtime library)
-
-**Download NSSM**:
-
-Open your browser and visit the NSSM official website [https://nssm.cc/](https://nssm.cc/download).
-
-On the official website page, find the version suitable for your system (usually the latest version), click the download link to download it locally.
-
-After downloading, find the version corresponding to your device architecture (such as: `win64`), and extract the `nssm.exe` from it to the local directory where `EasyTier` is located.
 
 **Download the Install Script**:
 
@@ -41,7 +80,6 @@ Start PowerShell in the current directory and execute the following commands:
 
    - `easytier-core.exe` (core program)
    - `easytier-cli.exe` (command line tool)
-   - `nssm.exe` (service management tool)
    - `Packet.dll` (runtime library)
    - `wintun.dll` (runtime library)
    - `install.cmd` (install script)
