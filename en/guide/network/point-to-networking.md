@@ -146,15 +146,15 @@ sudo easytier-core --ipv4 10.144.144.1 -n '192.168.1.0/24->10.1.1.0/24'
 sudo easytier-core --ipv4 10.144.144.2 -n '192.168.1.0/24->10.2.2.0/24'
 ```
 
-```toml [Config File]
-# Node A
+```toml [Node A Config File]
 ipv4 = "10.144.144.1"
 
 [[proxy_network]]
 cidr = "192.168.1.0/24"
 mapped_cidr = "10.1.1.0/24"
+```
 
-# Node B
+```toml [Node B Config File]
 ipv4 = "10.144.144.2"
 
 [[proxy_network]]

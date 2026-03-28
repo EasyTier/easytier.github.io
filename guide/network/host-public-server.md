@@ -83,7 +83,9 @@ LimitNOFILE=1048576
 
 配置好的 service unit 供参考：
 
-```shell
+::: code-group
+
+```ini [配置文件方式]
 # cat /etc/systemd/system/easytier.service
 
 [Unit]
@@ -93,7 +95,7 @@ Wants=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/easytier-core --hostname <your-hostname> --network-name <your-network> --network-secret <your-secret> 
+ExecStart=/usr/local/bin/easytier-core -c /etc/easytier/public-server.toml
 Restart=always
 RestartSec=3
 LimitNOFILE=1048576
@@ -101,6 +103,39 @@ Environment=TOKIO_CONSOLE=1
 
 [Install]
 WantedBy=multi-user.target
+```
+
+```ini [命令行参数方式]
+# cat /etc/systemd/system/easytier.service
+
+[Unit]
+Description=EasyTier Service
+After=network.target syslog.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/easytier-core --hostname <your-hostname> --network-name <your-network> --network-secret <your-secret>
+Restart=always
+RestartSec=3
+LimitNOFILE=1048576
+Environment=TOKIO_CONSOLE=1
+
+[Install]
+WantedBy=multi-user.target
+```
+
+:::
+
+如果使用配置文件方式，可将 EasyTier 配置保存为 `/etc/easytier/public-server.toml`：
+
+```toml
+[network_identity]
+network_name = "<your-network>"
+network_secret = "<your-secret>"
+
+[flags]
+hostname = "<your-hostname>"
 ```
 
 ## 配置 fail2ban
