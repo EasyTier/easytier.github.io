@@ -1,3 +1,6 @@
 packages:
   - .
   - .vitepress/third_party/lumen/src
+onlyBuiltDependencies:
+  - esbuild
+  - vue-demi
