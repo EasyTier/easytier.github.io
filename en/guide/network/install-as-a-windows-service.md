@@ -1,108 +1,115 @@
 # Install as a Windows Service
 
-**One-click install command**
+After EasyTier is installed as a Windows service, it can run in the background and start automatically with the system. This is useful for long-running or unattended deployments.
+
+The recommended approach is to use the official `install.cmd` script for installation, updates, and removal. You no longer need to prepare NSSM manually.
+
+> Thanks to BeiChen℃ for the original tutorial and dawn-lc for the one-click install/uninstall script.
+
+## Quick Start
+
+Open PowerShell in your EasyTier directory and run:
 
 ```PowerShell
 iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd
 ```
 
-If GitHub is not accessible, use this command instead:
+If GitHub is not accessible, use the mirror proxy command instead:
 
 ```PowerShell
 iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd -ughp
 ```
 
-**Available parameters**
+The script will guide you through the setup and start the service automatically after installation succeeds.
 
-    -H / -? / -Help
-        Display this help message and exit.
+## Before You Start
 
-    -U / -Update
-        Update EasyTier to the latest version.
+1. Download the latest Windows command line package.
+2. Extract it to a fixed directory such as `D:\EasyTier`.
+3. Download `install.cmd` into the same directory:
 
-    -X / -Uninstall
-        Uninstall the EasyTier service.
+   ```PowerShell
+   iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"
+   ```
 
-    -UGHP / -UseGitHubProxy
-        Download through a GitHub mirror proxy (default: $false).
+4. Make sure the directory contains at least these files:
 
-    -GHP / -GitHubProxy <proxy>
-        Specify the GitHub mirror proxy address (default: https://ghfast.top/).
+   - `easytier-core.exe`
+   - `easytier-cli.exe`
+   - `Packet.dll`
+   - `wintun.dll`
+   - `install.cmd`
 
-    -UP / -UseProxy
-        Use a custom proxy (default: $false).
+Do not move this directory after installation, or the service path configuration may break.
 
-    -P / -Proxy <proxy>
-        Specify the custom proxy address (default: http://127.0.0.1:7890).
+## Installation Steps
 
-    -C / -ConfigType <type>
-        Specify the configuration mode. Available values:
-        * File   Local config file
-        * Remote Centrally managed by a remote server
-        * CLI    Pass arguments directly on the command line
+1. Open PowerShell in the EasyTier directory.
+2. Run the install script:
 
-    -N / -ServiceName <name>
-        Specify the installed service name (default: EasyTierService).
+   ```PowerShell
+   .\install.cmd
+   ```
 
-    <other arguments...>
-        Used to pass custom arguments when CLI mode is selected.
+3. Choose a configuration mode and provide the required values when prompted.
+4. After the script finishes, the Windows service is created and started automatically.
 
-Original tutorial below.
+## Configuration Modes
 
-> Thanks to BeiChen℃ for providing the tutorial, and dawn-lc for providing the one-click install/uninstall script
+- `File`: use a local configuration file. Best when you already have a config file prepared.
+- `Remote`: use centralized management from a remote server. Best for managing multiple devices.
+- `CLI`: pass parameters directly on the command line. Best for quick testing or custom startup arguments.
 
-On Windows systems, installing certain applications as services allows them to run automatically in the background without manual intervention, greatly improving the stability and convenience of the application.
+## Common Commands
 
-## 1. Preparation
+- Install the service:
 
-**Download EasyTier CLI**:
+  ```PowerShell
+  .\install.cmd
+  ```
 
-Download the latest version of the `Windows` operating system `command line program` compressed package.
+- Uninstall the service:
 
-After downloading, extract the compressed package to a local directory, such as `D:\EasyTier`.
+  ```PowerShell
+  .\install.cmd -Uninstall
+  ```
 
-The current directory should contain at least the following files:
+- Update EasyTier:
 
-- `easytier-core.exe` (core program)
-- `easytier-cli.exe` (command line tool)
-- `Packet.dll` (runtime library)
-- `wintun.dll` (runtime library)
+  ```PowerShell
+  .\install.cmd -Update
+  ```
 
-**Download the Install Script**:
+## Parameter Reference
 
-Start PowerShell in the current directory and execute the following commands:
+### Basic
 
-`iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/install.cmd" -OutFile "install.cmd"`
+- `-H` / `-?` / `-Help`: show help information and exit.
 
-## 2. Preparation Work
+### Service Actions
 
-1. Ensure the current directory contains the following files:
+- `-U` / `-Update`: update EasyTier to the latest version.
+- `-X` / `-Uninstall`: uninstall the EasyTier service.
 
-   - `easytier-core.exe` (core program)
-   - `easytier-cli.exe` (command line tool)
-   - `Packet.dll` (runtime library)
-   - `wintun.dll` (runtime library)
-   - `install.cmd` (install script)
+### Download Proxies
 
-2. Place the entire folder in a fixed location.
+- `-UGHP` / `-UseGitHubProxy`: download through a GitHub mirror proxy. Default: `$false`.
+- `-GHP` / `-GitHubProxy <proxy>`: specify the GitHub mirror proxy address. Default: `https://ghfast.top/`.
+- `-UP` / `-UseProxy`: use a custom proxy. Default: `$false`.
+- `-P` / `-Proxy <proxy>`: specify the custom proxy address. Default: `http://127.0.0.1:7890`.
 
-## 3. Install Service
+### Configuration and Service Name
 
-1. Run `install.cmd`
-2. Follow the prompts to enter configuration information.
-3. After installation is complete, the service will start automatically.
+- `-C` / `-ConfigType <type>`: set the configuration mode. Supported values: `File`, `Remote`, `CLI`.
+- `-N` / `-ServiceName <name>`: set the installed service name. Default: `EasyTierService`.
+- `<other arguments...>`: when `CLI` mode is used, any remaining arguments are passed to EasyTier.
 
-## 4. Uninstall Service
+## FAQ
 
-1. Run `install.cmd -Uninstall`
-2. The script will automatically stop and delete the service.
+**Q: How do I change the service configuration?**
 
-## 5. Notes
+A: First run `.\install.cmd -Uninstall`, then install the service again with the new configuration.
 
-1. Do not move the program file location after installation
+**Q: Why should I keep the directory in the same place after installation?**
 
-## 6. Common Questions
-
-**Q: How to modify service configuration?**
-
-A: First uninstall the service, then reinstall it
+A: The Windows service stores the paths to the EasyTier executables and script. If the directory moves, the service may fail to start.

@@ -1,106 +1,115 @@
 # 安装为 Windows 服务
 
-**一键安装指令**
+将 EasyTier 安装为 Windows 服务后，它可以在后台自动运行，并支持随系统启动，适合长期在线或无人值守的场景。
+
+当前推荐直接使用官方 `install.cmd` 脚本完成安装、更新和卸载，无需再手动准备 NSSM。
+
+> 感谢 北辰℃ 提供的教程，以及 dawn-lc 提供的一键安装/卸载脚本。
+
+## 快速开始
+
+推荐直接在 EasyTier 文件目录中打开 PowerShell，然后执行：
 
 ```PowerShell
 iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd
 ```
 
-无法访问GitHub请使用以下命令
+如果无法访问 GitHub，可以使用镜像代理：
+
 ```PowerShell
 iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd -ughp
 ```
 
-【可用参数】
+脚本会根据提示完成配置，并在安装成功后自动启动服务。
 
-    -H / -? / -Help
-        显示此帮助信息并退出。
+## 安装前准备
 
-    -U / -Update
-        更新 EasyTier 到最新版本
+1. 下载最新版本的 Windows 命令行程序压缩包。
+2. 将压缩包解压到固定目录，例如 `D:\EasyTier`。
+3. 在该目录中下载 `install.cmd`：
 
-    -X / -Uninstall
-        卸载 EasyTier 服务
+   ```PowerShell
+   iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"
+   ```
 
-    -UGHP / -UseGitHubProxy
-        使用 GitHub 镜像代理下载 (默认: $false)
+4. 确认目录中至少包含以下文件：
 
-    -GHP / -GitHubProxy <代理地址>
-        指定 GitHub 镜像代理地址 (默认: https://ghfast.top/)
+   - `easytier-core.exe`
+   - `easytier-cli.exe`
+   - `Packet.dll`
+   - `wintun.dll`
+   - `install.cmd`
 
-    -UP / -UseProxy
-        使用自定义代理 (默认: $false)
+安装完成后请不要移动该目录，否则服务配置中的路径会失效。
 
-    -P / -Proxy <代理地址>
-        指定自定义代理地址 (默认: http://127.0.0.1:7890)
+## 安装流程
 
-    -C / -ConfigType <类型>
-        指定配置模式，可选值: 
-        * File   本地配置文件
-        * Remote 远程服务器集中管理
-        * CLI    使用命令行直接传参
+1. 在 EasyTier 所在目录中打开 PowerShell。
+2. 运行安装脚本：
 
-    -N / -ServiceName <名称>
-        指定安装的服务名称 (默认: EasyTierService)
+   ```PowerShell
+   .\install.cmd
+   ```
 
-    <其他参数...>
-        当选择 CLI 模式时，用于传递自定义参数
+3. 根据提示选择配置模式，并填写所需参数。
+4. 安装完成后，脚本会自动创建并启动 Windows 服务。
 
+## 配置模式说明
 
-以下为原教程
+- `File`：使用本地配置文件，适合已经准备好配置文件的场景。
+- `Remote`：使用远程服务器集中管理，适合统一维护多台设备。
+- `CLI`：直接通过命令行传参启动，适合临时调试或自定义参数较多的场景。
 
-> 感谢 北辰℃ 提供的教程，以及由 dawn-lc 提供的一键安装/卸载脚本
+## 常用命令
 
-在 Windows 系统中，将某些应用程序安装为服务可以使其在后台自动运行，无需用户手动干预，极大地提高了应用的运行稳定性和便捷性。
+- 安装服务：
 
-## 一、前期准备
+  ```PowerShell
+  .\install.cmd
+  ```
 
-**下载 EasyTier CLI**：
+- 卸载服务：
 
-下载最新版本的 `Windows` 操作系统的 `命令行程序` 压缩包。
+  ```PowerShell
+  .\install.cmd -Uninstall
+  ```
 
-下载完成后，将该压缩包解压到本地目录，比如`D:\EasyTier`。
+- 更新 EasyTier：
 
-当前目录下应至少包含以下文件：
-   - `easytier-core.exe` (核心程序)
-   - `easytier-cli.exe` (命令行工具)
-   - `Packet.dll` (运行库)
-   - `wintun.dll` (运行库)
+  ```PowerShell
+  .\install.cmd -Update
+  ```
 
-**下载安装脚本**：
+## 参数参考
 
-在当前目录下启动PowerShell并执行以下命令:
+### 基础参数
 
-`iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/install.cmd" -OutFile "install.cmd"`
+- `-H` / `-?` / `-Help`：显示帮助信息并退出。
 
-## 二、准备工作
+### 服务操作
 
-1. 确保当前目录下包含以下文件：
-   - `easytier-core.exe` (核心程序)
-   - `easytier-cli.exe` (命令行工具)
-   - `Packet.dll` (运行库)
-   - `wintun.dll` (运行库)
-   - `install.cmd` (安装脚本)
+- `-U` / `-Update`：更新 EasyTier 到最新版本。
+- `-X` / `-Uninstall`：卸载 EasyTier 服务。
 
-2. 将整个文件夹放在固定位置。
+### 下载代理
 
-## 三、安装服务
+- `-UGHP` / `-UseGitHubProxy`：使用 GitHub 镜像代理下载，默认值为 `$false`。
+- `-GHP` / `-GitHubProxy <代理地址>`：指定 GitHub 镜像代理地址，默认值为 `https://ghfast.top/`。
+- `-UP` / `-UseProxy`：使用自定义代理，默认值为 `$false`。
+- `-P` / `-Proxy <代理地址>`：指定自定义代理地址，默认值为 `http://127.0.0.1:7890`。
 
-1. 运行`install.cmd`
-2. 按照提示输入配置信息。
-4. 安装完成后会自动启动服务。
+### 配置与服务名
 
-## 四、卸载服务
+- `-C` / `-ConfigType <类型>`：指定配置模式，可选值为 `File`、`Remote`、`CLI`。
+- `-N` / `-ServiceName <名称>`：指定安装后的服务名，默认值为 `EasyTierService`。
+- `<其他参数...>`：当使用 `CLI` 模式时，会作为额外参数传递给 EasyTier。
 
-1. 运行`install.cmd -Uninstall`
-2. 脚本会自动停止并删除服务。
-
-## 五、注意事项
-
-1. 安装后不要移动程序文件位置
-
-## 六、常见问题
+## 常见问题
 
 **Q: 如何修改服务配置？**
 
-A: 先卸载服务，然后重新安装
+A: 先执行 `.\install.cmd -Uninstall` 卸载服务，再使用新的配置重新安装。
+
+**Q: 为什么安装后不能移动目录？**
+
+A: Windows 服务会记录 EasyTier 可执行文件和脚本所在路径，移动目录后服务可能无法正常启动。
