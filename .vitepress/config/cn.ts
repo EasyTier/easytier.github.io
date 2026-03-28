@@ -61,7 +61,7 @@ export const cn = defineConfig({
       },
       {
         items: [
-           { text: '关于当前互联网状况', link: '/guide/aboutstateofInternet' },
+           { text: '运营商网络限制', link: '/guide/isp-network-limitations' },
           { text: '关于 P2P', link: '/guide/aboutp2p' },
           { text: '性能测试', link: '/guide/perf' },
           { text: '路线图', link: '/guide/roadmap' },
