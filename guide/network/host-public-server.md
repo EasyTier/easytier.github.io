@@ -130,12 +130,11 @@ WantedBy=multi-user.target
 如果使用配置文件方式，可将 EasyTier 配置保存为 `/etc/easytier/public-server.toml`：
 
 ```toml
+hostname = "<your-hostname>"
+
 [network_identity]
 network_name = "<your-network>"
 network_secret = "<your-secret>"
-
-[flags]
-hostname = "<your-hostname>"
 ```
 
 ## 配置 fail2ban
