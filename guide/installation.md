@@ -41,36 +41,41 @@
    ::: details docker-compose.yml
 
    ```yaml [docker-compose.yml]
-   services:
-     watchtower: # 用于自动更新easytier镜像，若不需要请删除这部分
-       image: containrrr/watchtower
-       container_name: watchtower
-       restart: unless-stopped
-       environment:
-         - TZ=Asia/Shanghai
-         - WATCHTOWER_NO_STARTUP_MESSAGE
-       volumes:
-         - /var/run/docker.sock:/var/run/docker.sock
-       command: --interval 3600 --cleanup --label-enable
-     easytier:
-       image: easytier/easytier:latest # 国内用户可以使用 m.daocloud.io/docker.io/easytier/easytier:latest
-       hostname: easytier
-       container_name: easytier
-       labels:
-         com.centurylinklabs.watchtower.enable: 'true'
-       restart: unless-stopped
-       network_mode: host
-       cap_add:
-         - NET_ADMIN
-         - NET_RAW
-       environment:
-         - TZ=Asia/Shanghai
-       devices:
-         - /dev/net/tun:/dev/net/tun
-       volumes:
-         - /etc/easytier:/root
-         - /etc/machine-id:/etc/machine-id:ro # 映射宿主机机器码
-       command: -d --network-name <用户> --network-secret <密码> -p tcp://<您的公网IP>:11010
+    services:
+      # watchtower 用于自动更新 EasyTier 镜像，若不需要可以删除此节
+      watchtower:
+        image: nickfedor/watchtower
+        container_name: watchtower
+        restart: unless-stopped
+        environment:
+          - TZ=Asia/Shanghai
+          - WATCHTOWER_NO_STARTUP_MESSAGE
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        command: --interval 3600 --cleanup --label-enable
+
+      easytier:
+        # 国内用户可以使用 daocloud.io 镜像
+        # image: m.daocloud.io/docker.io/easytier/easytier:latest
+        image: easytier/easytier:latest
+        hostname: easytier
+        container_name: easytier
+        labels:
+          com.centurylinklabs.watchtower.enable: 'true'
+        restart: unless-stopped
+        network_mode: host
+        cap_add:
+          - NET_ADMIN
+          - NET_RAW
+        environment:
+          - TZ=Asia/Shanghai
+        devices:
+          - /dev/net/tun:/dev/net/tun
+        volumes:
+          - /etc/machine-id:/etc/machine-id:ro
+        command: >
+          -d --network-name <用户> --network-secret <密码>
+          -p tcp://<其他对等节点 / 公共节点的公网 IP>:11010
    ```
 
    :::
