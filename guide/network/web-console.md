@@ -29,7 +29,7 @@ sudo ./easytier-core -w <你的用户名> --machine-id abc123
 :::
 
 ::: danger 注意
-一台机器只能有一个 EasyTier 进程被 Web 控制台管理，如果有多个进程可能会导致奇怪的问题。
+一台机器只能有一个 EasyTier 进程被 Web 控制台管理。如果您需要运行多个虚拟网络，请在同一个进程中通过加载多个配置文件（使用多个 `-c` 参数）来启动，或者使用更高级的[配置目录模式](service-mode.md)。
 :::
 
 ::: tip 提示
@@ -56,6 +56,10 @@ sudo ./easytier-core -w <你的用户名> --machine-id abc123
 ![alt text](/assets/web-device-run-network.png)
 
 接下来的配置步骤与之前配置带 GUI 的程序相同。
+
+::: tip 提示
+如果你更倾向于使用图形界面来连接 Web 控制台，请参考 [使用 Web 控制台组网 (GUI)](/guide/gui/web-console)。
+:::
 
 # 自建 Web 控制台
 

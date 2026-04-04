@@ -1,5 +1,11 @@
 # 安装为 macOS 服务
 
+::: tip 推荐方式
+从 v2.5.0 开始，推荐使用 `easytier-cli service install` 命令一键注册服务，详见 [一键注册服务](./oneclick-install-as-service)。
+:::
+
+以下是使用第三方工具 `serviceman` 的手动安装方式：
+
 下载并安装 [serviceman](https://webinstall.dev/serviceman)。
 
 打开终端，运行如下命令注册服务：

@@ -104,3 +104,33 @@ This section only introduces installation methods.
    ```
 
    Source installation requires Rust environment and LLVM installation.
+
+***
+
+## Command Line Management Tool (easytier-cli)
+
+`easytier-cli` is used to manage a running `easytier-core` process. It connects to `127.0.0.1:15888` by default.
+
+### Basic Usage
+
+```bash
+# View node info
+easytier-cli node
+# List peers
+easytier-cli peer list
+# List route table
+easytier-cli route list
+```
+
+### Multi-instance Management
+
+If multiple network instances are running in a single `easytier-core` process (e.g., by loading multiple configuration files), you can use the `-n` or `-i` parameters to specify the target:
+
+```bash
+# Manage via instance name (specified with -m in config or command line)
+easytier-cli -n my_net_1 node
+# Manage via instance ID
+easytier-cli -i <UUID> node
+```
+
+If only one instance is running in the process, `easytier-cli` will automatically select that instance.
