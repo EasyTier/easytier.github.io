@@ -2,6 +2,10 @@
 
 ## EasyTier GUI
 
+访问 [⬇️下载页面](./download) 下载适用于您操作系统和硬件架构的图形界面程序，并安装即可。
+
+安装成功后可阅读 [公共服务器组网](/guide/gui/basic) 文档以了解图形界面工具的使用方法。
+
 需要注意，EasyTier GUI 依赖 WebView，可能有以下常见问题：
 
 1. 在低版本 Windows 上 WebView 下载失败，由于国内网络环境问题，可能无法下载 WebView 组件。请手动安装 [WebView2](https://developer.microsoft.com/zh-CN/microsoft-edge/webview2/) 或 [Edge](https://www.microsoft.com/zh-cn/edge) 浏览器。

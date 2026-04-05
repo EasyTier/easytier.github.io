@@ -6,6 +6,7 @@ The software can be used via command line or graphical interface. It is ready to
 
 - [🛠️ CLI Installation Page](./installation) provides methods for installing the command-line tool.
 - [🖥️ GUI Installation Page](./installation_gui) provides methods for installing the graphical interface tool.
+- [⬇️ Download Page](./download) provides the latest EasyTier download links.
 
 ## Applicable Scenarios
 
@@ -19,7 +20,7 @@ The software can be used via command line or graphical interface. It is ready to
 - **Decentralized**: No reliance on central servers; all nodes are equal and independent, capable of forwarding and networking.
 - **Secure Encryption**: Supports WireGuard and AES-GCM encryption to ensure data security.
 - **Cross-Platform**: Supports MacOS, Linux, Windows, FreeBSD, Android, and will support iOS in the future.
-- **Networking Without Public IP**: Enables networking using shared public nodes.
+- **Networking Without Public IP**: Enables networking using shared public nodes, see [Configuration Guide](/guide/network/quick-networking).
 - **NAT Traversal**: Supports UDP NAT traversal for stable connections in complex network environments.
 - **Intelligent Routing**: Automatically selects the best link to reduce latency and increase throughput.
 - **High Availability**: Supports multipath and automatically switches to healthy links to improve stability.

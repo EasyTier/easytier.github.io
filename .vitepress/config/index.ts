@@ -33,14 +33,25 @@ export default withMermaid({
     },
     socialLinks: [
       {
+        icon: 'github',
+        link: 'https://github.com/EasyTier/Easytier',
+        ariaLabel: 'Github',
+      },
+      {
         icon: 'gmail',
-        link: 'mailto:sunsijie@buaa.edu.cn',
+        link: 'mailto:443152178@qq.com',
         ariaLabel: 'Email',
       },
       {
         icon: 'qq',
         link: 'https://qm.qq.com/q/wFoTUChqZW',
         ariaLabel: 'qq',
+      },
+      {
+        icon: {
+          svg: '<iconify-icon icon="twemoji:red-heart" style="font-size:1.2em" alt="Github Sponsors"></iconify-icon>',
+        },
+        link: '/#sponsor',
       },
     ],
   },
