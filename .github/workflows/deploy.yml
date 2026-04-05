@@ -44,23 +44,6 @@ jobs:
           node-version: 21
           cache: pnpm # 或 pnpm / yarn
 
-      # - name: Clone EasyTier
-      #   uses: GuillaumeFalourd/clone-github-repo-action@v2.3
-      #   with:
-      #     depth: 1
-      #     branch: 'main'
-      #     owner: 'EasyTier'
-      #     repository: 'EasyTier'
-      # - name: Build EasyTier Web
-      #   run: |
-      #     cd EasyTier
-      #     pnpm -r install
-      #     WEB_BASE_URL=/web pnpm -r build
-      #     cd ..
-      #     mkdir -p public/web
-      #     cp -r EasyTier/easytier-web/frontend/dist/* public/web/
-      #     rm -rf EasyTier
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies

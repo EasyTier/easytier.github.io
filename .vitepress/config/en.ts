@@ -12,6 +12,7 @@ export const en = defineConfig({
         text: 'Getting Started',
         items: [
           { text: 'Introduction', link: '/en/guide/introduction' },
+          { text: 'Download', link: '/en/guide/download' },
           { text: 'Installation CLI', link: '/en/guide/installation' },
           { text: 'Installation GUI', link: '/en/guide/installation_gui' },
           { text: 'FAQ', link: '/en/guide/faq' },
@@ -21,6 +22,7 @@ export const en = defineConfig({
         text: 'Command Line Networking',
         link: '/en/guide/networking',
         items: [
+          { text: 'Quick Networking', link: '/en/guide/network/quick-networking' },
           { text: 'Decentralized Networking', link: '/en/guide/network/decentralized-networking' },
           { text: 'Networking with Web Console', link: '/en/guide/network/web-console' },
           { text: 'Using WireGuard Client', link: '/en/guide/network/use-easytier-with-wireguard-client' },
@@ -49,6 +51,7 @@ export const en = defineConfig({
         text: 'GUI Networking',
         link: '/en/guide/gui/index',
         items: [
+          { text: 'Shared Node Networking', link: '/en/guide/gui/basic' },
           { text: 'Manual Networking', link: '/en/guide/gui/manual' },
           { text: 'WireGuard Access', link: '/en/guide/gui/vpn_portal' },
           { text: 'Subnet Proxy', link: '/en/guide/gui/subnet_proxy' },
@@ -70,6 +73,14 @@ export const en = defineConfig({
       },
     ],
     nav: [
+      {
+        text: '<iconify-icon icon="fa6-solid:bug" style="margin-right:0.25rem;color:#FF4500;" alt="bug"></iconify-icon>Submit Feedback',
+        link: 'https://github.com/EasyTier/EasyTier/issues',
+      },
+      {
+        text: '<iconify-icon icon="fa6-solid:clipboard-list" style="margin-right:0.25rem;color:#FF6347;" alt="clipboard"></iconify-icon>Changelog',
+        link: 'https://github.com/EasyTier/EasyTier/releases',
+      },
     ],
     footer: {
       message: 'Released under the Apache License 2.0',

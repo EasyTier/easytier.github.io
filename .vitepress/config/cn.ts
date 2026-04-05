@@ -12,6 +12,7 @@ export const cn = defineConfig({
         text: '开始',
         items: [
           { text: '功能简介', link: '/guide/introduction' },
+          { text: '下载', link: '/guide/download' },
           { text: '安装 CLI', link: '/guide/installation' },
           { text: '安装 GUI', link: '/guide/installation_gui' },
           { text: '常见问题', link: '/guide/faq' },
@@ -21,6 +22,7 @@ export const cn = defineConfig({
         text: '命令行工具组网',
         link: '/guide/networking',
         items: [
+          { text: '快速组网', link: '/guide/network/quick-networking' },
           { text: '去中心组网', link: '/guide/network/decentralized-networking' },
           { text: '使用 Web 控制台组网', link: '/guide/network/web-console' },
           { text: '使用 WireGuard 客户端接入', link: '/guide/network/use-easytier-with-wireguard-client' },
@@ -49,6 +51,7 @@ export const cn = defineConfig({
         text: '图形界面 GUI 组网',
         link: 'guide/gui/index',
         items: [
+          { text: '共享节点组网', link: '/guide/gui/basic' },
           { text: '手动组网', link: '/guide/gui/manual' },
           { text: 'WireGuard 接入', link: '/guide/gui/vpn_portal' },
           { text: '子网代理', link: '/guide/gui/subnet_proxy' },
@@ -73,6 +76,14 @@ export const cn = defineConfig({
       },
     ],
     nav: [
+      {
+        text: '<iconify-icon icon="fa6-solid:bug" style="margin-right:0.25rem;color:#FF4500;" alt="bug"></iconify-icon>提交反馈',
+        link: 'https://github.com/EasyTier/EasyTier/issues',
+      },
+      {
+        text: '<iconify-icon icon="fa6-solid:clipboard-list" style="margin-right:0.25rem;color:#FF6347;" alt="clipboard"></iconify-icon>变更日志',
+        link: 'https://github.com/EasyTier/EasyTier/releases',
+      },
     ],
     footer: {
       message: '基于 Apache License 2.0 许可发布',

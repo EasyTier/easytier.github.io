@@ -1,10 +1,12 @@
 # 安装 (命令行程序) {#installation}
 
-本章节组仅介绍安装方式。
+本章节组仅介绍安装方式，阅读 [快速组网](/guide/network/quick-networking) 文档以了解参数含义和使用方法。
 
 ## 安装方式
 
 1. **手动下载命令行程序**
+
+   访问 [⬇️下载页面](./download) 下载适用于您操作系统和硬件架构的 EasyTier 命令行程序。下载后为 ZIP 压缩包，解压后既可直接使用。
 
    ::: code-group
 
@@ -33,6 +35,8 @@
    docker pull m.daocloud.io/docker.io/easytier/easytier:latest
    docker run -d --privileged --network host m.daocloud.io/docker.io/easytier/easytier:latest
    ```
+
+   请继续阅读 [快速组网](/guide/network/quick-networking) 文档以了解参数含义和使用方法。
 
    ***
 
@@ -87,8 +91,6 @@
 
    脚本执行成功后，EasyTier 的二进程程序会安装到 `/opt/easytier` 目录下，配置文件位于 `/opt/easytier/config/default.conf`。
 
-   配置文件可通过 [配置文件生成器](https://easytier.cn/web/index.html#/config_generator) 生成。
-
    EasyTier 会被注册为系统服务，可以通过以下命令管理：
 
    ```bash
@@ -110,5 +112,5 @@
    ```fish
    # Fish 补全
    easytier-core --gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
-   easytier-cli gen-autocomplete fish > ~/.config/fish/completions/easytier-cli.fish
+   easytier-cli gen-autocomplete fish > ~/.config/fish/completions/easytier-core.fish
    ```

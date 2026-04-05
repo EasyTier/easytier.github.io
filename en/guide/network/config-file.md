@@ -21,7 +21,3 @@ You can specify multiple configuration files through the `-c` parameter. EasyTie
 ```sh
 easytier-core -c ./config1.yaml -c ./config2.yaml
 ```
-
-## Configuration File Generator
-
-The official website provides a configuration file generator, which you can access via <a target="_blank" href="https://easytier.cn/web/index.html#config_generator">Configuration File Generator</a> to generate configuration files.

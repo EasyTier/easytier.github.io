@@ -4,7 +4,7 @@
 
 | 软件名   | 版本   | 链接                                 |
 | -------- | ------ | ------------------------------------ |
-| EasyTier | 1.2.1  | https://easytier.cn |
+| EasyTier | 1.2.1  | https://github.com/EasyTier/EasyTier |
 | 某组网工具 A      | 2024.7 月版本 | |
 
 待测：

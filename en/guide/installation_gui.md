@@ -2,6 +2,10 @@
 
 ## EasyTier GUI
 
+Visit the [⬇️ Download Page](./download) to download the graphical interface program suitable for your operating system and hardware architecture, and install it directly.
+
+After successful installation, you can refer to the [Public Server Group Network](/guide/gui/basic) documentation to understand how to use the graphical interface tools.
+
 Please note that EasyTier GUI relies on WebView, and the following common issues may occur:
 
 1. On lower versions of Windows, WebView download may fail due to domestic network environment issues, making it impossible to download WebView components. Please manually install [WebView2](https://developer.microsoft.com/en-US/microsoft-edge/webview2/) or [Edge](https://www.microsoft.com/en-us/edge) browser.

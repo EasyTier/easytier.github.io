@@ -1,10 +1,12 @@
 # Installation (Command Line Program) {#installation}
 
-This section only introduces installation methods.
+This section only introduces installation methods. Please read the [Quick Networking](/en/guide/network/quick-networking) documentation to understand parameter meanings and usage methods.
 
 ## Installation Methods
 
 1. **Manual Download of Command Line Program**
+
+   Visit the [⬇️Download Page](./download) to download the EasyTier command line program suitable for your operating system and hardware architecture. After downloading, it's a ZIP compressed package that can be used directly after extraction.
 
    ::: code-group
 
@@ -33,6 +35,8 @@ This section only introduces installation methods.
    docker pull m.daocloud.io/docker.io/easytier/easytier:latest
    docker run -d --privileged --network host m.daocloud.io/docker.io/easytier/easytier:latest
    ```
+
+   Please continue reading the [Quick Networking](/en/guide/network/quick-networking) documentation to understand parameter meanings and usage methods.
 
    ***
 
@@ -86,8 +90,6 @@ This section only introduces installation methods.
    ```
 
    After the script executes successfully, EasyTier's binary programs will be installed in the `/opt/easytier` directory, and the configuration file is located at `/opt/easytier/config/default.conf`.
-
-   The configuration file can be generated through the [Configuration File Generator](https://easytier.cn/web/index.html#/config_generator).
 
    EasyTier will be registered as a system service and can be managed with the following commands:
 
