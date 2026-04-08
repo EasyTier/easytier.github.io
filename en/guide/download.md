@@ -3,8 +3,11 @@ home: hello
 ---
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { data } from '../../metadata.data.js'
+import { useLatestVersion } from '../../useLatestVersion.ts'
+
+const { latestVersion, prereleaseVersion, loading, error } = useLatestVersion()
 
 interface Package {
     os: string
@@ -132,8 +135,15 @@ const filter_os = ref('')
 const filter_arch = ref('')
 const accel_proxy = ref('')
 
+const vers = computed(() => ({
+    easytier_latest_version: (!loading.value && !error.value && latestVersion.value) ? latestVersion.value : data.easytier_latest_version,
+    easytier_pre_release_version: (!loading.value && !error.value && prereleaseVersion.value) ? prereleaseVersion.value : data.easytier_pre_release_version,
+}))
+
+const currentVersion = computed(() => vers.value[channel.value as keyof typeof vers.value])
+
 function renderUrlTmpl(url_tmpl: string): string {
-    return accel_proxy.value + url_tmpl.replace(/\{\}/g, data[channel.value])
+    return accel_proxy.value + url_tmpl.replace(/\{\}/g, currentVersion.value)
 }
 
 </script>
@@ -153,12 +163,12 @@ The command line program package includes four executables:
 
 <div>
     <select name="channel-select" id="channel-select" v-model="channel" class="filter-select">
-        <option value="easytier_latest_version"> Stable Version(v{{ data.easytier_latest_version }}) </option>
-        <option value="easytier_pre_release_version"> Pre-release Version(v{{ data.easytier_pre_release_version }}) </option>
+        <option value="easytier_latest_version"> Stable Version(v{{ vers.easytier_latest_version }}) </option>
+        <option value="easytier_pre_release_version"> Pre-release Version(v{{ vers.easytier_pre_release_version }}) </option>
     </select>
 </div>
 
-## <a :href="url + data[channel]">EasyTier v{{ data[channel] }}</a> { #latest }
+## <a :href="url + currentVersion">EasyTier v{{ currentVersion }}</a> { #latest }
 
 - GitHub Acceleration
     <div>
