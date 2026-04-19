@@ -19,16 +19,21 @@
 
 ### 网络设置
 
-| 参数                   | 说明                                                                                                                                        |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--network-name`       | 用于标识此VPN网络的网络名称 [env: ET_NETWORK_NAME=]                                                                                         |
-| `--network-secret`     | 网络密钥，用于验证此节点属于VPN网络 [env: ET_NETWORK_SECRET=]                                                                               |
-| `-i, --ipv4`           | 此VPN节点的IPv4地址。如果为空，则此节点将仅转发数据包，不会创建TUN设备 [env: ET_IPV4=]                                                      |
-| `--ipv6`               | 此VPN节点的IPv6地址，可与IPv4配合使用以实现双栈运行 [env: ET_IPV6=]                                      |
-| `-d, --dhcp`           | 由Easytier自动确定并设置IP地址，默认从10.0.0.1开始。警告：在使用DHCP时，如果网络中出现IP冲突，IP将自动更改。 [env: ET_DHCP=]                |
-| `-p, --peers`          | 最初要连接的对等节点 [env: ET_PEERS=]                                                                                                       |
-| `-e, --external-node`  | 使用公共共享节点来发现对等节点 [env: ET_EXTERNAL_NODE=]                                                                                     |
-| `-n, --proxy-networks` | 将本地网络导出到VPN中的其他对等节点，例如：`10.0.0.0/24`。支持映射到其他CIDR，例如：`10.0.0.0/24->192.168.0.0/24` [env: ET_PROXY_NETWORKS=] |
+| 参数                   | 说明                                                                                                                                                                 |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--network-name`       | 用于标识此VPN网络的网络名称 [env: ET_NETWORK_NAME=]                                                                                                                  |
+| `--network-secret`     | 网络密钥，用于验证此节点属于VPN网络 [env: ET_NETWORK_SECRET=]                                                                                                        |
+| `--secure-mode`        | 启用 secure mode。开启后，节点会使用新的 Noise 安全握手与认证路径。默认值为 false，详见 [Secure Mode（安全模式）](/guide/network/secure-mode) [env: ET_SECURE_MODE=] |
+| `--local-private-key`  | secure mode 使用的本地静态私钥（base64）。未提供时会随机生成，仅适合当前运行实例；共享节点建议显式固定该值。 [env: ET_LOCAL_PRIVATE_KEY=]                            |
+| `--local-public-key`   | secure mode 使用的本地静态公钥（base64）。通常可省略，由私钥自动派生。 [env: ET_LOCAL_PUBLIC_KEY=]                                                                   |
+| `--credential`         | 临时凭据私钥（base64）。用于不分发 `network_secret` 的临时节点接入；指定后会隐式启用 secure mode。 [env: ET_CREDENTIAL=]                                             |
+| `--credential-file`    | 管理节点 credential 持久化文件路径。用于在重启后保留已生成的凭据。 [env: ET_CREDENTIAL_FILE=]                                                                        |
+| `-i, --ipv4`           | 此VPN节点的IPv4地址。如果为空，则此节点将仅转发数据包，不会创建TUN设备 [env: ET_IPV4=]                                                                               |
+| `--ipv6`               | 此VPN节点的IPv6地址，可与IPv4配合使用以实现双栈运行 [env: ET_IPV6=]                                                                                                  |
+| `-d, --dhcp`           | 由Easytier自动确定并设置IP地址，默认从10.0.0.1开始。警告：在使用DHCP时，如果网络中出现IP冲突，IP将自动更改。 [env: ET_DHCP=]                                         |
+| `-p, --peers`          | 最初要连接的对等节点 [env: ET_PEERS=]                                                                                                                                |
+| `-e, --external-node`  | 使用公共共享节点来发现对等节点 [env: ET_EXTERNAL_NODE=]                                                                                                              |
+| `-n, --proxy-networks` | 将本地网络导出到VPN中的其他对等节点，例如：`10.0.0.0/24`。支持映射到其他CIDR，例如：`10.0.0.0/24->192.168.0.0/24` [env: ET_PROXY_NETWORKS=]                          |
 
 ### RPC 设置
 

@@ -1,4 +1,3 @@
-import fs from 'node:fs'
 import { defineConfig } from 'vitepress'
 
 export const cn = defineConfig({
@@ -29,6 +28,7 @@ export const cn = defineConfig({
           { text: '子网代理（点对网）', link: '/guide/network/point-to-networking' },
           { text: '带宽延迟优化（KCP 代理）', link: '/guide/network/kcp-proxy' },
           { text: '高级功能', collapsed: true, items: [
+            { text: 'Secure Mode（安全模式）', link: '/guide/network/secure-mode' },
             { text: '网对网', link: '/guide/network/network-to-network' },
             { text: '无 TUN 模式（免 Root 权限）', link: '/guide/network/no-root' },
             { text: 'SOCKS5', link: '/guide/network/socks5' },
