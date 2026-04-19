@@ -33,7 +33,7 @@ export const cn = defineConfig({
             { text: '无 TUN 模式（免 Root 权限）', link: '/guide/network/no-root' },
             { text: 'SOCKS5', link: '/guide/network/socks5' },
             { text: '搭建共享节点', link: '/guide/network/host-public-server' },
-            { text: '改善 P2P', link: '/guide/network/p2p-optimize' },
+            { text: 'P2P 优化', link: '/guide/network/p2p-optimize' },
             { text: '魔法 DNS', link: '/guide/network/magic-dns' },
             { text: 'ACL', link: '/guide/config/acl' },
           ] },
