@@ -8,7 +8,7 @@
 
 ## 快速开始
 
-推荐直接在 EasyTier 文件目录中打开 PowerShell，然后执行：
+推荐直接在希望安装 EasyTier 的目录中打开 PowerShell，然后执行：
 
 ```PowerShell
 iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd
@@ -22,29 +22,9 @@ iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main
 
 脚本会根据提示完成配置，并在安装成功后自动启动服务。
 
-## 安装前准备
-
-1. 下载最新版本的 Windows 命令行程序压缩包。
-2. 将压缩包解压到固定目录，例如 `D:\EasyTier`。
-3. 在该目录中下载 `install.cmd`：
-
-   ```PowerShell
-   iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"
-   ```
-
-4. 确认目录中至少包含以下文件：
-
-   - `easytier-core.exe`
-   - `easytier-cli.exe`
-   - `Packet.dll`
-   - `wintun.dll`
-   - `install.cmd`
-
-安装完成后请不要移动该目录，否则服务配置中的路径会失效。
-
 ## 安装流程
 
-1. 在 EasyTier 所在目录中打开 PowerShell。
+1. 在希望安装 EasyTier 的目录中打开 PowerShell。
 2. 运行安装脚本：
 
    ```PowerShell

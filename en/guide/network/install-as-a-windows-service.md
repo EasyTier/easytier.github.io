@@ -8,7 +8,7 @@ The recommended approach is to use the official `install.cmd` script for install
 
 ## Quick Start
 
-Open PowerShell in your EasyTier directory and run:
+Open PowerShell in the directory where you want to install EasyTier and run:
 
 ```PowerShell
 iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd
@@ -22,29 +22,9 @@ iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main
 
 The script will guide you through the setup and start the service automatically after installation succeeds.
 
-## Before You Start
-
-1. Download the latest Windows command line package.
-2. Extract it to a fixed directory such as `D:\EasyTier`.
-3. Download `install.cmd` into the same directory:
-
-   ```PowerShell
-   iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"
-   ```
-
-4. Make sure the directory contains at least these files:
-
-   - `easytier-core.exe`
-   - `easytier-cli.exe`
-   - `Packet.dll`
-   - `wintun.dll`
-   - `install.cmd`
-
-Do not move this directory after installation, or the service path configuration may break.
-
 ## Installation Steps
 
-1. Open PowerShell in the EasyTier directory.
+1. Open PowerShell in the directory where you want to install EasyTier.
 2. Run the install script:
 
    ```PowerShell
