@@ -45,36 +45,41 @@ This section only introduces installation methods. Please read the [Quick Networ
    ::: details docker-compose.yml
 
    ```yaml [docker-compose.yml]
-   services:
-     watchtower: # Used to automatically update easytier image, delete this part if not needed
-       image: containrrr/watchtower
-       container_name: watchtower
-       restart: unless-stopped
-       environment:
-         - TZ=Asia/Shanghai
-         - WATCHTOWER_NO_STARTUP_MESSAGE
-       volumes:
-         - /var/run/docker.sock:/var/run/docker.sock
-       command: --interval 3600 --cleanup --label-enable
-     easytier:
-       image: easytier/easytier:latest # Domestic users can use m.daocloud.io/docker.io/easytier/easytier:latest
-       hostname: easytier
-       container_name: easytier
-       labels:
-         com.centurylinklabs.watchtower.enable: 'true'
-       restart: unless-stopped
-       network_mode: host
-       cap_add:
-         - NET_ADMIN
-         - NET_RAW
-       environment:
-         - TZ=Asia/Shanghai
-       devices:
-         - /dev/net/tun:/dev/net/tun
-       volumes:
-         - /etc/easytier:/root
-         - /etc/machine-id:/etc/machine-id:ro # Map host machine code
-       command: -d --network-name <user> --network-secret <password> -p tcp://<your-public-ip>:11010
+    services:
+      # watchtower automatically updates the EasyTier image; remove this section if not needed
+      watchtower:
+        image: nickfedor/watchtower
+        container_name: watchtower
+        restart: unless-stopped
+        environment:
+          - TZ=Asia/Shanghai
+          - WATCHTOWER_NO_STARTUP_MESSAGE
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        command: --interval 3600 --cleanup --label-enable
+
+      easytier:
+        # Users in mainland China can use the DaoCloud mirror
+        # image: m.daocloud.io/docker.io/easytier/easytier:latest
+        image: easytier/easytier:latest
+        hostname: easytier
+        container_name: easytier
+        labels:
+          com.centurylinklabs.watchtower.enable: 'true'
+        restart: unless-stopped
+        network_mode: host
+        cap_add:
+          - NET_ADMIN
+          - NET_RAW
+        environment:
+          - TZ=Asia/Shanghai
+        devices:
+          - /dev/net/tun:/dev/net/tun
+        volumes:
+          - /etc/machine-id:/etc/machine-id:ro
+        command: >
+          -d --network-name <user> --network-secret <password>
+          -p tcp://<public-ip-of-other-peer-or-public-node>:11010
    ```
 
    :::
