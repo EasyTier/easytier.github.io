@@ -4,6 +4,7 @@ import { baiduAnalytics, HomeUnderline, trackPageview } from '@theojs/lumen'
 
 import DefaultTheme from 'vitepress/theme'
 import Layout from './layout.vue'
+import WebRedirect from '../components/WebRedirect.vue'
 
 import '@theojs/lumen/theme'
 import '@theojs/lumen/doc-blocks-border'
@@ -63,5 +64,6 @@ export default {
     }
 
     app.component('Home', HomeUnderline)
+    app.component('WebRedirect', WebRedirect)
   },
 } as any

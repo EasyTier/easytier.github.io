@@ -74,6 +74,10 @@ export const en = defineConfig({
     ],
     nav: [
       {
+        text: '<iconify-icon icon="fa6-solid:globe" style="margin-right:0.25rem;color:#05b08e;" alt="web"></iconify-icon>Web Console',
+        link: '/en/web',
+      },
+      {
         text: '<iconify-icon icon="fa6-solid:bug" style="margin-right:0.25rem;color:#FF4500;" alt="bug"></iconify-icon>Submit Feedback',
         link: 'https://github.com/EasyTier/EasyTier/issues',
       },
