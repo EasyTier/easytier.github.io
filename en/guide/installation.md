@@ -84,6 +84,38 @@ This section only introduces installation methods. Please read the [Quick Networ
 
    :::
 
+   To separate the configuration file from the container, create a `conf` directory next to `docker-compose.yml` and save the EasyTier configuration file as `./conf/easytier.toml`:
+
+   ::: details docker-compose.yml (start with configuration file)
+
+   ```yaml [docker-compose.yml]
+    services:
+      easytier:
+        # Users in mainland China can use the DaoCloud mirror
+        # image: m.daocloud.io/docker.io/easytier/easytier:latest
+        image: easytier/easytier:latest
+        hostname: easytier
+        container_name: easytier
+        restart: unless-stopped
+        network_mode: host
+        cap_add:
+          - NET_ADMIN
+          - NET_RAW
+        environment:
+          - TZ=Asia/Shanghai
+        devices:
+          - /dev/net/tun:/dev/net/tun
+        volumes:
+          - /etc/machine-id:/etc/machine-id:ro
+          - ./conf:/config
+        command: >
+          -c /config/easytier.toml
+   ```
+
+   :::
+
+   After modifying `./conf/easytier.toml`, run `docker compose restart easytier` to reload the configuration.
+
    ***
 
 4. **One-Click Installation Script (Linux Only)**
