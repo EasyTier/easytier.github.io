@@ -84,6 +84,38 @@
 
    :::
 
+   如果希望将配置文件与容器分离，可以在 `docker-compose.yml` 同级目录创建 `conf` 目录，并将 EasyTier 配置文件保存为 `./conf/easytier.toml`：
+
+   ::: details docker-compose.yml（使用配置文件启动）
+
+   ```yaml [docker-compose.yml]
+    services:
+      easytier:
+        # 国内用户可以使用 daocloud.io 镜像
+        # image: m.daocloud.io/docker.io/easytier/easytier:latest
+        image: easytier/easytier:latest
+        hostname: easytier
+        container_name: easytier
+        restart: unless-stopped
+        network_mode: host
+        cap_add:
+          - NET_ADMIN
+          - NET_RAW
+        environment:
+          - TZ=Asia/Shanghai
+        devices:
+          - /dev/net/tun:/dev/net/tun
+        volumes:
+          - /etc/machine-id:/etc/machine-id:ro
+          - ./conf:/config
+        command: >
+          -c /config/easytier.toml
+   ```
+
+   :::
+
+   修改 `./conf/easytier.toml` 后，执行 `docker compose restart easytier` 重新加载配置。
+
    ***
 
 4. **一键安装脚本（仅 Linux）**
