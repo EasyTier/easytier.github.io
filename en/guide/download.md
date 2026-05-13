@@ -98,9 +98,36 @@ const packages = ref<Package[]>([
     },
     {
         os: "Android",
-        arch: "universal",
+        arch: "arm64",
         gui_pkg_tmpl: {
-            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-universal-release.apk',
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-arm64-release.apk',
+        },
+        cli_pkg_tmpl: {},
+        comment: "Choose this version for new Android devices. If you encounter abnormal display issues, please try upgrading WebView"
+    },
+    {
+        os: "Android",
+        arch: "arm",
+        gui_pkg_tmpl: {
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-arm-release.apk',
+        },
+        cli_pkg_tmpl: {},
+        comment: "Choose this version for older Android devices. If you encounter abnormal display issues, please try upgrading WebView"
+    },
+    {
+        os: "Android",
+        arch: "x86_64",
+        gui_pkg_tmpl: {
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-x86_64-release.apk',
+        },
+        cli_pkg_tmpl: {},
+        comment: "If you encounter abnormal display issues, please try upgrading WebView"
+    },
+    {
+        os: "Android",
+        arch: "x86",
+        gui_pkg_tmpl: {
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-x86-release.apk',
         },
         cli_pkg_tmpl: {},
         comment: "If you encounter abnormal display issues, please try upgrading WebView"
