@@ -1,8 +1,8 @@
 export default {
   load() {
     return {
-      easytier_latest_version: '2.4.5',
-      easytier_pre_release_version: '2.6.0',
+      easytier_latest_version: '2.6.4',
+      easytier_pre_release_version: '2.6.3',
       github_accels: [
         'https://ghfast.top/',
         'https://v6.gh-proxy.org/',
