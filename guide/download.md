@@ -98,9 +98,36 @@ const packages = ref<Package[]>([
     },
     {
         os: "Android",
-        arch: "universal",
+        arch: "arm64",
         gui_pkg_tmpl: {
-            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-universal-release.apk',
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-arm64-release.apk',
+        },
+        cli_pkg_tmpl: {},
+        comment: "近十年内的安卓移动设备都可以选择此版本。遇到显示界面显示异常，请尝试升级 WebView"
+    },
+    {
+        os: "Android",
+        arch: "arm",
+        gui_pkg_tmpl: {
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-arm-release.apk',
+        },
+        cli_pkg_tmpl: {},
+        comment: "较旧的安卓设备可以选择此版本。遇到显示界面显示异常，请尝试升级 WebView"
+    },
+    {
+        os: "Android",
+        arch: "x86_64",
+        gui_pkg_tmpl: {
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-x86_64-release.apk',
+        },
+        cli_pkg_tmpl: {},
+        comment: "遇到显示界面显示异常，请尝试升级 WebView"
+    },
+    {
+        os: "Android",
+        arch: "x86",
+        gui_pkg_tmpl: {
+            "apk": 'https://github.com/EasyTier/EasyTier/releases/download/v{}/app-x86-release.apk',
         },
         cli_pkg_tmpl: {},
         comment: "遇到显示界面显示异常，请尝试升级 WebView"
