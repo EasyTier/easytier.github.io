@@ -51,8 +51,7 @@ export const cn = defineConfig({
         text: '图形界面 GUI 组网',
         link: 'guide/gui/index',
         items: [
-          { text: '共享节点组网', link: '/guide/gui/basic' },
-          { text: '手动组网', link: '/guide/gui/manual' },
+          { text: '快速组网', link: '/guide/gui/basic' },
           { text: 'WireGuard 接入', link: '/guide/gui/vpn_portal' },
           { text: '子网代理', link: '/guide/gui/subnet_proxy' },
           { text: 'EasyTier 管理器', link: '/guide/gui/easytier-manager' },

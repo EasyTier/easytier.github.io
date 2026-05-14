@@ -51,8 +51,7 @@ export const en = defineConfig({
         text: 'GUI Networking',
         link: '/en/guide/gui/index',
         items: [
-          { text: 'Shared Node Networking', link: '/en/guide/gui/basic' },
-          { text: 'Manual Networking', link: '/en/guide/gui/manual' },
+          { text: 'Quick Networking', link: '/en/guide/gui/basic' },
           { text: 'WireGuard Access', link: '/en/guide/gui/vpn_portal' },
           { text: 'Subnet Proxy', link: '/en/guide/gui/subnet_proxy' },
           { text: 'EasyTier Manager', link: '/en/guide/gui/easytier-manager' },
