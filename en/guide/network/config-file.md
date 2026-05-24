@@ -14,6 +14,14 @@ Running with parameters can generate a configuration file with the corresponding
 
 Running `easytier-core` directly without parameters will generate the minimal configuration file.
 
+## EasyTier Assistant
+
+If you do not want to write the configuration file manually, you can use [EasyTier Assistant](https://easytier.rs/assistant) to generate one, then load it with the `-c` parameter:
+
+```sh
+easytier-core -c ./config.toml
+```
+
 ## Multiple Configuration Files Startup
 
 You can specify multiple configuration files through the `-c` parameter. EasyTier will load multiple configuration files in one process and start multiple virtual networks.

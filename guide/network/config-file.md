@@ -14,6 +14,14 @@ easytier-core -c ./config.yaml
 
 在不使用参数的情况下直接运行 `easytier-core` 可以获得最小配置文件。
 
+## EasyTier 配置助手
+
+如果不想手动编写配置文件，可以访问 [EasyTier 配置助手](https://easytier.rs/assistant) 按需生成配置文件，然后通过 `-c` 参数加载：
+
+```sh
+easytier-core -c ./config.toml
+```
+
 ## 多配置文件启动
 
 可以通过 `-c` 参数指定多个配置文件，EasyTier 会在一个进程中加载多个配置文件并启动多个虚拟网络。
