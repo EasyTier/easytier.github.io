@@ -77,6 +77,10 @@ export const en = defineConfig({
         link: '/en/web',
       },
       {
+        text: '<iconify-icon icon="fa6-solid:wand-magic-sparkles" style="margin-right:0.25rem;color:#8B5CF6;" alt="assistant"></iconify-icon>Config assistant',
+        link: 'https://easytier.rs/assistant',
+      },
+      {
         text: '<iconify-icon icon="fa6-solid:bug" style="margin-right:0.25rem;color:#FF4500;" alt="bug"></iconify-icon>Submit Feedback',
         link: 'https://github.com/EasyTier/EasyTier/issues',
       },
