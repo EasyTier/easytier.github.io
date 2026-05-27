@@ -1,72 +1,95 @@
 # 安装为 Windows 服务
 
-> 感谢 北辰℃ 提供的教程，以及由 dawn-lc 提供的一键安装/卸载脚本
+将 EasyTier 安装为 Windows 服务后，它可以在后台自动运行，并支持随系统启动，适合长期在线或无人值守的场景。
 
-在 Windows 系统中，将某些应用程序安装为服务可以使其在后台自动运行，无需用户手动干预，极大地提高了应用的运行稳定性和便捷性。
+当前推荐直接使用官方 `install.cmd` 脚本完成安装、更新和卸载，无需再手动准备 NSSM。
 
-本教程将以使用 NSSM（Non-Sucking Service Manager）工具将 EasyTier 应用安装为 Windows 服务为例，详细介绍整个操作流程。
+> 感谢 北辰℃ 提供的教程，以及 dawn-lc 提供的一键安装/卸载脚本。
 
-## 一、前期准备
+## 快速开始
 
-**下载 EasyTier 应用**：
+推荐直接在希望安装 EasyTier 的目录中打开 PowerShell，然后执行：
 
-下载最新版本的 `Windows` 操作系统的 `命令行程序` 压缩包。
+```PowerShell
+iwr "https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd
+```
 
-下载完成后，将该压缩包解压到本地目录，比如`D:\EasyTier`。
+如果无法访问 GitHub，可以使用镜像代理：
 
-当前目录下应至少包含以下文件：
-   - `easytier-core.exe` (核心程序)
-   - `easytier-cli.exe` (命令行工具)
-   - `Packet.dll` (运行库)
-   - `wintun.dll` (运行库)
+```PowerShell
+iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.cmd" -OutFile "install.cmd"; .\install.cmd -ughp
+```
 
-**下载 NSSM**：
+脚本会根据提示完成配置，并在安装成功后自动启动服务。
 
-打开浏览器，访问 NSSM 官网 [https://nssm.cc/](https://nssm.cc/download)。
+## 安装流程
 
-在官网页面中找到适用于你系统的版本（通常是最新版本），点击下载链接将其下载到本地。
+1. 在希望安装 EasyTier 的目录中打开 PowerShell。
+2. 运行安装脚本：
 
-下载完成后，找到对应您设备架构的版本（如：`win64`），将其中的`nssm.exe`解压到`EasyTier`所在的本地目录。
+   ```PowerShell
+   .\install.cmd
+   ```
 
+3. 根据提示选择配置模式，并填写所需参数。
+4. 安装完成后，脚本会自动创建并启动 Windows 服务。
 
-**下载 安装/卸载 脚本**：
+## 配置模式说明
 
-在当前目录下启动PowerShell并执行以下命令:
+- `File`：使用本地配置文件，适合已经准备好配置文件的场景。
+- `Remote`：使用远程服务器集中管理，适合统一维护多台设备。
+- `CLI`：直接通过命令行传参启动，适合临时调试或自定义参数较多的场景。
 
-`iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/install.cmd" -OutFile "install.cmd"`
+## 常用命令
 
-`iwr "https://github.com/EasyTier/EasyTier/raw/refs/heads/main/script/uninstall.cmd" -OutFile "uninstall.cmd"`
+- 安装服务：
 
-## 二、准备工作
+  ```PowerShell
+  .\install.cmd
+  ```
 
-1. 确保当前目录下包含以下文件：
-   - `easytier-core.exe` (核心程序)
-   - `easytier-cli.exe` (命令行工具)
-   - `nssm.exe` (服务管理工具)
-   - `Packet.dll` (运行库)
-   - `wintun.dll` (运行库)
-   - `install.cmd` (安装脚本)
-   - `uninstall.cmd` (卸载脚本)
+- 卸载服务：
 
-2. 将整个文件夹放在固定位置。
+  ```PowerShell
+  .\install.cmd -Uninstall
+  ```
 
-## 三、安装服务
+- 更新 EasyTier：
 
-1. 运行`install.cmd`
-2. 按照提示输入配置信息。
-4. 安装完成后会自动启动服务。
+  ```PowerShell
+  .\install.cmd -Update
+  ```
 
-## 四、卸载服务
+## 参数参考
 
-1. 运行`uninstall.cmd`
-2. 脚本会自动停止并删除服务。
+### 基础参数
 
-## 五、注意事项
+- `-H` / `-?` / `-Help`：显示帮助信息并退出。
 
-1. 安装后不要移动程序文件位置
+### 服务操作
 
-## 六、常见问题
+- `-U` / `-Update`：更新 EasyTier 到最新版本。
+- `-X` / `-Uninstall`：卸载 EasyTier 服务。
+
+### 下载代理
+
+- `-UGHP` / `-UseGitHubProxy`：使用 GitHub 镜像代理下载，默认值为 `$false`。
+- `-GHP` / `-GitHubProxy <代理地址>`：指定 GitHub 镜像代理地址，默认值为 `https://ghfast.top/`。
+- `-UP` / `-UseProxy`：使用自定义代理，默认值为 `$false`。
+- `-P` / `-Proxy <代理地址>`：指定自定义代理地址，默认值为 `http://127.0.0.1:7890`。
+
+### 配置与服务名
+
+- `-C` / `-ConfigType <类型>`：指定配置模式，可选值为 `File`、`Remote`、`CLI`。
+- `-N` / `-ServiceName <名称>`：指定安装后的服务名，默认值为 `EasyTierService`。
+- `<其他参数...>`：当使用 `CLI` 模式时，会作为额外参数传递给 EasyTier。
+
+## 常见问题
 
 **Q: 如何修改服务配置？**
 
-A: 先卸载服务，然后重新安装
+A: 先执行 `.\install.cmd -Uninstall` 卸载服务，再使用新的配置重新安装。
+
+**Q: 为什么安装后不能移动目录？**
+
+A: Windows 服务会记录 EasyTier 可执行文件和脚本所在路径，移动目录后服务可能无法正常启动。
