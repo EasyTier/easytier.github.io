@@ -1,4 +1,3 @@
-import fs from 'node:fs'
 import { defineConfig } from 'vitepress'
 
 export const en = defineConfig({

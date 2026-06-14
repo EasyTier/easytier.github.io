@@ -3,8 +3,8 @@ import type { EnhanceAppContext } from 'vitepress'
 import { baiduAnalytics, HomeUnderline, trackPageview } from '@theojs/lumen'
 
 import DefaultTheme from 'vitepress/theme'
-import Layout from './layout.vue'
 import WebRedirect from '../components/WebRedirect.vue'
+import Layout from './layout.vue'
 
 import '@theojs/lumen/theme'
 import '@theojs/lumen/doc-blocks-border'
