@@ -1,11 +1,12 @@
 # Performance Testing
 
-Software and versions involved in the test (to avoid bias and for fair treatment, use "X" as a placeholder):
+Software and versions involved in the test (to avoid bias and for fair treatment, use
+“X” as a placeholder):
 
-| Software          | Version           | Link                                 |
-| ----------------- | ----------------- | ------------------------------------ |
-| EasyTier          | 1.2.1             | https://github.com/EasyTier/EasyTier |
-| Networking Tool A | July 2024 Version |                                      |
+| Software | Version | Link |
+| --- | --- | --- |
+| EasyTier | 1.2.1 | https://github.com/EasyTier/EasyTier |
+| Networking Tool A | July 2024 Version |  |
 
 To be tested:
 
@@ -15,32 +16,33 @@ To be tested:
 
 ## X86
 
-|               |                                              |
-| ------------- | -------------------------------------------- |
-| Machine Model | Alibaba Cloud ecs.ic5.2xlarge                |
-| vCPU          | 8 vCPU                                       |
-| RAM           | 8G                                           |
-| CPU Model     | Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz |
-| OS            | Ubuntu 22.04 64-bit                          |
+|  |  |
+| --- | --- |
+| Machine Model | Alibaba Cloud ecs.ic5.2xlarge |
+| vCPU | 8 vCPU |
+| RAM | 8G |
+| CPU Model | Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz |
+| OS | Ubuntu 22.04 64-bit |
 
 ## Test Results
 
-|     Software      |     Test Item     | Performance ( No -R / With -R ) Gbit/s |
-| :---------------: | :---------------: | :------------------------------------: |
-|  LoopBack Device  |                   |              28.3 / 28.3               |
-|     EasyTier      | UDP No Encryption |              1.43 / 1.46               |
-|     EasyTier      |  UDP AES-128-GCM  |              1.36 / 1.37               |
-|     EasyTier      | TCP No Encryption |              1.31 / 1.41               |
-|     EasyTier      |  TCP AES-128-GCM  |              1.42 / 1.41               |
-|                   |                   |                                        |
-| Networking Tool A | UDP No Encryption |              1.10 / 1.11               |
-| Networking Tool A |  UDP AES-128-GCM  |              0.93 / 0.98               |
+| Software | Test Item | Performance ( No -R / With -R ) Gbit/s |
+| :---: | :---: | :---: |
+| LoopBack Device |  | 28.3 / 28.3 |
+| EasyTier | UDP No Encryption | 1.43 / 1.46 |
+| EasyTier | UDP AES-128-GCM | 1.36 / 1.37 |
+| EasyTier | TCP No Encryption | 1.31 / 1.41 |
+| EasyTier | TCP AES-128-GCM | 1.42 / 1.41 |
+|  |  |  |
+| Networking Tool A | UDP No Encryption | 1.10 / 1.11 |
+| Networking Tool A | UDP AES-128-GCM | 0.93 / 0.98 |
 
 ## Reproduction Method
 
 ### Basic Preparation
 
-The test is based on Linux network namespace functionality and can be performed using Ubuntu virtual machines, physical machines, Docker containers, etc.
+The test is based on Linux network namespace functionality and can be performed using
+Ubuntu virtual machines, physical machines, Docker containers, etc.
 
 Initialization commands (execute with root privileges)
 
@@ -86,9 +88,11 @@ iptables --policy FORWARD ACCEPT
 nohup ip netns exec red iperf3 -s &
 ```
 
-Additionally, ensure that the programs to be tested are in the PATH environment variable.
+Additionally, ensure that the programs to be tested are in the PATH environment
+variable.
 
-The following iperf3 command does not include -R; in actual tests, data with -R will be measured.
+The following iperf3 command does not include -R; in actual tests, data with -R will be
+measured.
 
 ### LoopBack
 

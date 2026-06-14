@@ -34,7 +34,6 @@ launchctl load -w /Library/LaunchDaemons/easytier.plist
 sudo launchctl stop easytier
 # 卸载任务, -w选项会在下次登录/重新启动时不再执行。
 launchctl unload -w /Library/LaunchDaemons/easytier.plist
-
 ```
 
 查看运行日志：

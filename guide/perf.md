@@ -2,10 +2,10 @@
 
 参与测试的软件及其版本（为避嫌 + 公平待遇，用“某”代替）：
 
-| 软件名   | 版本   | 链接                                 |
-| -------- | ------ | ------------------------------------ |
-| EasyTier | 1.2.1  | https://github.com/EasyTier/EasyTier |
-| 某组网工具 A      | 2024.7 月版本 | |
+| 软件名 | 版本 | 链接 |
+| --- | --- | --- |
+| EasyTier | 1.2.1 | https://github.com/EasyTier/EasyTier |
+| 某组网工具 A | 2024.7 月版本 |  |
 
 待测：
 
@@ -13,29 +13,28 @@
 - TailScale
 - ZeroTier
 
-
 ## X86
 
-|          |                                              |
-| -------- | -------------------------------------------- |
-| 机器型号 | 阿里云 ecs.ic5.2xlarge                       |
-| vCPU     | 8 vCPU                                       |
-| RAM      | 8G                                           |
+|  |  |
+| --- | --- |
+| 机器型号 | 阿里云 ecs.ic5.2xlarge |
+| vCPU | 8 vCPU |
+| RAM | 8G |
 | CPU 型号 | Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz |
-| 操作系统 | Ubuntu 22.04 64位                            |
+| 操作系统 | Ubuntu 22.04 64位 |
 
 ## 测试结果
 
-|     软件      |    测试项目     | 性能 ( 无 -R / 带 -R ) Gbit/s |
-| :-----------: | :-------------: | :---------------------------: |
-| LoopBack 设备 |                 |          28.3 / 28.3          |
-|   EasyTier    |   UDP 无加密    |          1.43 / 1.46          |
-|   EasyTier    | UDP AES-128-GCM |          1.36 / 1.37          |
-|   EasyTier    |   TCP 无加密    |          1.31 / 1.41          |
-|   EasyTier    | TCP AES-128-GCM |          1.42 / 1.41          |
-|               |                 |                               |
-|      某组网工具 A      |   UDP 无加密    |          1.10 / 1.11          |
-|      某组网工具 A      | UDP AES-128-GCM |          0.93 / 0.98          |
+| 软件 | 测试项目 | 性能 ( 无 -R / 带 -R ) Gbit/s |
+| :---: | :---: | :---: |
+| LoopBack 设备 |  | 28.3 / 28.3 |
+| EasyTier | UDP 无加密 | 1.43 / 1.46 |
+| EasyTier | UDP AES-128-GCM | 1.36 / 1.37 |
+| EasyTier | TCP 无加密 | 1.31 / 1.41 |
+| EasyTier | TCP AES-128-GCM | 1.42 / 1.41 |
+|  |  |  |
+| 某组网工具 A | UDP 无加密 | 1.10 / 1.11 |
+| 某组网工具 A | UDP AES-128-GCM | 0.93 / 0.98 |
 
 ## 复现方式
 
@@ -100,13 +99,15 @@ ip netns exec green iperf3 -c 192.168.0.2
 ### EasyTier
 
 #### UDP 不带加密：
+
 ```bash
 ip netns exec red easytier-core -i 10.126.126.2 --multi-thread -u
 ip netns exec green easytier-core -i 10.126.126.3 -p udp://192.168.0.2:11010 --multi-thread -u
 ip netns exec green iperf3 -c 10.126.126.2
 ```
 
-#### UDP 加密： 
+#### UDP 加密：
+
 ```bash
 ip netns exec red easytier-core -i 10.126.126.2 --multi-thread
 ip netns exec green easytier-core -i 10.126.126.3 -p udp://192.168.0.2:11010 --multi-thread
@@ -131,7 +132,7 @@ ip netns exec green iperf3 -c 10.126.126.2
 
 ### 某组网工具 A
 
-#### UDP 无加密 
+#### UDP 无加密
 
 ```bash
 ip netns exec red xxx -k iperf -s 8.134.146.7:29872 --ip 10.26.0.2
@@ -139,7 +140,7 @@ ip netns exec green xxx -k iperf -s 8.134.146.7:29872 --ip 10.26.0.3
 ip netns exec green iperf3 -c 10.26.0.2
 ```
 
-#### UDP 带加密 
+#### UDP 带加密
 
 ```bash
 ip netns exec red xxx -k iperf -s 8.134.146.7:29872 -w 1234 --ip 10.26.0.2

@@ -2,8 +2,7 @@
 
 ## 下载
 
-Github
-Releases： [https://github.com/xlc520/easytier-manager/releases](https://github.com/xlc520/easytier-manager/releases)
+Github Releases： https://github.com/xlc520/easytier-manager/releases
 
 #### 各个包说明
 
@@ -72,4 +71,4 @@ EasyTier 管理器 整合Vue3 + Vite5 + Electron33 + Element-Plus， 是一个�
 
 ## 系统支持
 
-理论支持Windows 11 、Windows 10 、 Windows 7 
+理论支持Windows 11 、Windows 10 、 Windows 7
