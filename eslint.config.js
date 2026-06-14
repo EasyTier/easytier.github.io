@@ -8,5 +8,6 @@ export default antfu({
     'pnpm/yaml-enforce-settings': 'off',
     'style/eol-last': ['error', 'always'],
   },
+  // Markdown formatting is handled by Flowmark to avoid formatter conflicts.
   ignores: ['**/*.md'],
 })
