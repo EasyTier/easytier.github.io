@@ -25,6 +25,7 @@ iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main
 ## 安装流程
 
 1. 在希望安装 EasyTier 的目录中打开 PowerShell。
+
 2. 运行安装脚本：
 
    ```PowerShell
@@ -32,6 +33,7 @@ iwr "https://ghfast.top/https://raw.githubusercontent.com/EasyTier/EasyTier/main
    ```
 
 3. 根据提示选择配置模式，并填写所需参数。
+
 4. 安装完成后，脚本会自动创建并启动 Windows 服务。
 
 ## 配置模式说明

@@ -2,13 +2,12 @@
 
 ## 简介
 
-EasyTierGame 游戏联机启动器，由`nuxt3` `typescript` `rust` `tauri` 开发
-具有简易的界面，附带最新版 easytier 内核，联机游玩的时候无论是心理上和使用上都能给予您最舒服的体验，同时支持自定义配置文件启动，满足各种需求
+EasyTierGame 游戏联机启动器，由`nuxt3` `typescript` `rust` `tauri` 开发 具有简易的界面，附带最新版 easytier
+内核，联机游玩的时候无论是心理上和使用上都能给予您最舒服的体验，同时支持自定义配置文件启动，满足各种需求
 
 ## 下载
 
-Github
-Releases： [https://github.com/EasyTier/EasytierGame/releases](https://github.com/EasyTier/EasytierGame/releases)
+Github Releases： https://github.com/EasyTier/EasytierGame/releases
 
 - 只有绿色zip包，个人不喜欢安装包各种写注册表，解压即用就行，目录清爽干净
 
@@ -16,13 +15,11 @@ Releases： [https://github.com/EasyTier/EasytierGame/releases](https://github.c
 
 ## 使用教程
 
-- 第一次使用，输入一个“主机名”点击启动联机即可，后续可以自建服务器或者使用爱心群友提供的服务器
-  ![game-step2](/assets/game-step2.png)
+- 第一次使用，输入一个“主机名”点击启动联机即可，后续可以自建服务器或者使用爱心群友提供的服务器 ![game-step2](/assets/game-step2.png)
 
 ![game-step3](/assets/game-step3.png)
 
-- 高级选项里有一些特殊配置，可以自行选择
-  ![game-step4](/assets/game-step4.png)
+- 高级选项里有一些特殊配置，可以自行选择 ![game-step4](/assets/game-step4.png)
 
 - 如果还是无法满足您的需求，可以使用配置文件进行启动，具体如何配置，可以查看文档[配置文件](/guide/network/config-file.html)
   ![game-step5](/assets/game-step5.png)
