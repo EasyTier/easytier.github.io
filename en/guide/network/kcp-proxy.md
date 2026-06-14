@@ -120,9 +120,9 @@ $ easytier-cli proxy
 ```
 
 ::: tip Note
-QUIC and KCP proxies can be enabled simultaneously, and QUIC proxy takes precedence over KCP proxy.
+Starting from v2.6.0, QUIC and KCP proxies can be enabled simultaneously, and QUIC proxy takes precedence over KCP proxy.
 
 When both are enabled, KCP proxy will only take effect if the destination end doesn't allow QUIC input.
 
-For v2.5.0 and older, the priority is the inverse, i.e. KCP proxy takes precedence over QUIC proxy.
+In v2.5.0 and earlier versions, the priority is reversed, i.e. KCP proxy takes precedence over QUIC proxy.
 :::
