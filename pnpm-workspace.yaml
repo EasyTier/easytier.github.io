@@ -1,3 +1,6 @@
 packages:
   - .
   - .vitepress/third_party/lumen/src
+allowBuilds:
+  esbuild: true
+  vue-demi: true

@@ -5,8 +5,6 @@ import DefaultTheme from 'vitepress/theme'
 
 import { h, nextTick, provide } from 'vue'
 
-
-
 const { isDark } = useData()
 
 function enableTransitions() {
@@ -93,8 +91,9 @@ footer.VPFooter {
 
   min-width: 15rem;
 
-  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
-    linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
   background-position:
     calc(100% - 20px) calc(1em),
     calc(100% - 15px) calc(1em),
@@ -107,8 +106,9 @@ footer.VPFooter {
 }
 
 .filter-select:focus {
-  background-image: linear-gradient(45deg, green 50%, transparent 50%),
-    linear-gradient(135deg, transparent 50%, green 50%), linear-gradient(to right, #ccc, #ccc);
+  background-image:
+    linear-gradient(45deg, green 50%, transparent 50%), linear-gradient(135deg, transparent 50%, green 50%),
+    linear-gradient(to right, #ccc, #ccc);
   background-position:
     calc(100% - 15px) 1em,
     calc(100% - 20px) 1em,

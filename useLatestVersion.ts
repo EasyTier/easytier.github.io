@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 export function useLatestVersion() {
   const latestVersion = ref<string | null>(null)
@@ -10,7 +10,7 @@ export function useLatestVersion() {
     try {
       const [latestRes, releasesRes] = await Promise.all([
         fetch('https://api.github.com/repos/EasyTier/EasyTier/releases/latest'),
-        fetch('https://api.github.com/repos/EasyTier/EasyTier/releases?per_page=5')
+        fetch('https://api.github.com/repos/EasyTier/EasyTier/releases?per_page=5'),
       ])
 
       if (!latestRes.ok || !releasesRes.ok) {
@@ -18,18 +18,22 @@ export function useLatestVersion() {
       }
 
       const latestData = await latestRes.json() as { tag_name?: string }
-      const releases = await releasesRes.json() as Array<{ tag_name?: string; prerelease?: boolean }>
+      const releases = await releasesRes.json() as Array<{ tag_name?: string, prerelease?: boolean }>
 
       latestVersion.value = latestData.tag_name ?? null
-      prereleaseVersion.value = releases.find((item) => item.prerelease)?.tag_name ?? null
-    } catch (err) {
+      prereleaseVersion.value = releases.find(item => item.prerelease)?.tag_name ?? null
+    }
+    catch (err) {
       error.value = err instanceof Error ? err.message : 'Unknown error'
-    } finally {
+    }
+    finally {
       loading.value = false
     }
 
-    if (latestVersion.value?.startsWith('v')) latestVersion.value = latestVersion.value.slice(1)
-    if (prereleaseVersion.value?.startsWith('v')) prereleaseVersion.value = prereleaseVersion.value.slice(1)
+    if (latestVersion.value?.startsWith('v'))
+      latestVersion.value = latestVersion.value.slice(1)
+    if (prereleaseVersion.value?.startsWith('v'))
+      prereleaseVersion.value = prereleaseVersion.value.slice(1)
   })
 
   return { latestVersion, prereleaseVersion, loading, error }
