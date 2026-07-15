@@ -1,10 +1,12 @@
 # EasyTier Privacy Policy
 
-**Effective Date: January 18, 2026**
+**Effective Date: July 15, 2026**
 
-EasyTier is a simple, secure, decentralized tool for intranet penetration and remote networking. This Privacy Policy explains how we handle relevant privacy information during the installation and use of the EasyTier software.
+EasyTier is a simple, secure, decentralized tool for intranet penetration and remote networking. In this document, “EasyTier Official” and “we” refer to the development team of the open-source version of EasyTier, while “EasyTier” and “the software” refer to software officially distributed by EasyTier and its related services. This Privacy Policy explains how we handle relevant privacy information when you install and use EasyTier.
 
-_This policy applies only to first-party software released by EasyTier and officially maintained servers, and does not apply to any third-party services or software._
+_This policy applies only to first-party software officially distributed by EasyTier and services provided by EasyTier Official. It does not apply to any third-party services or software._
+
+_EasyTier Pro is a commercial version based on the EasyTier open-source project and is developed by Chengdu Yisitai Technology Co., Ltd. This policy does not apply to EasyTier Pro._
 
 _The original version of this policy is written in Chinese. In the event of any discrepancies in interpretation, the Chinese version shall prevail._
 
@@ -12,7 +14,7 @@ _The original version of this policy is written in Chinese. In the event of any 
 
 ### 1.1 Node Discovery Information
 
-In networking scenarios other than “Standalone” mode, in order to enable interconnection between devices across networks and perform NAT traversal, EasyTier will access networking servers manually specified by the user. When initiating a network or searching for peer nodes, the client program sends connection requests to the server. Such requests may include, but are not limited to, the local node’s network configuration parameters and virtual IP address. Based on these requests, the server identifies and returns the client’s public-facing IP address and port information, and announces the necessary metadata to authorized peer nodes whose network configurations are compatible.
+In networking scenarios other than “Standalone” mode, in order to enable interconnection between devices across networks and perform NAT traversal, the software will access networking servers manually specified by the user. When initiating a network or searching for peer nodes, the client program sends connection requests to the server. Such requests may include, but are not limited to, the local node’s network configuration parameters and virtual IP address. Based on these requests, the server identifies and returns the client’s public-facing IP address and port information, and announces the necessary metadata to authorized peer nodes whose network configurations are compatible.
 
 ### 1.2 Network Connection Information
 
@@ -26,21 +28,25 @@ The data described in this section may contain information capable of identifyin
 
 ### 2.1 Data Encryption
 
-EasyTier uses industry-standard symmetric encryption algorithms (such as AES-GCM or ChaCha20-Poly1305) by default to protect all transmitted traffic. Users are required to configure a consistent pre-shared key (PSK) among networking nodes. All data transmitted through this software is encrypted before leaving the sender, ensuring that only legitimate nodes holding the correct key can decrypt and read the communication content. We do not possess your private keys and therefore cannot access any of your communication data.
+The software uses industry-standard symmetric encryption algorithms (such as AES-GCM or ChaCha20-Poly1305) by default to protect all transmitted traffic. Users are required to configure a consistent pre-shared key (PSK) among networking nodes. All data transmitted through this software is encrypted before leaving the sender, ensuring that only legitimate nodes holding the correct key can decrypt and read the communication content. We do not possess your private keys and therefore cannot access any of your communication data.
 
 ### 2.2 Data Handling in Relay Mechanisms
 
 In complex network environments where direct P2P connections cannot be established, encrypted traffic may be forwarded through relay nodes. Even in such scenarios, the traffic remains symmetrically encrypted. Relay nodes are responsible only for packet forwarding and routing, do not have decryption capabilities, and cannot access or analyze the encrypted original data content.
 
-## 3. Servers
+### 2.3 End-to-End Encryption
 
-### 3.1 Public Servers
+EasyTier provides an optional end-to-end encryption feature that allows users to establish independent encrypted channels between nodes. When this feature is enabled, data is encrypted at the sender and decrypted at the recipient, preventing any intermediary relay or server from accessing the plaintext data. Users are responsible for managing their end-to-end encryption keys and configurations to ensure secure communications.
 
-To assist with NAT detection and hole punching, this software provides public EasyTier servers hosted by third-party service providers for user access. When the software interacts with these servers, your public IP address, port information, and basic network metadata may be exposed to those third-party service providers. The processing of such data is governed by the respective providers’ own privacy policies. We recommend that you review the relevant policies of those parties.
+## 3. Third-Party Services
 
-### 3.2 Third-Party Servers
+### 3.1 STUN Services
 
-This software allows users to specify and connect to networking servers or relay nodes operated by third parties. Users should be aware that connecting to such servers means that your connection metadata (such as IP address and network information) will be visible to the server operator. The developer assumes no responsibility for the security, data handling practices, or service stability of any third-party servers, nor any direct or indirect legal liability arising therefrom.
+To assist with NAT detection and hole punching, the software allows users to optionally use third-party STUN servers, all of whose addresses are disclosed in the relevant source code. When the software interacts with these servers, your public IP address, port information, and basic network metadata may be exposed to those third-party service providers. The processing of such data is governed by the respective providers’ own privacy policies. Please review the relevant policies of those parties.
+
+### 3.2 Third-Party Nodes
+
+The software allows users to specify and connect to EasyTier networking or relay nodes operated by third parties. Users should be aware that connecting to such servers means that your connection metadata (such as IP address and network information) will be visible to the server operator. We assume no responsibility for the security, data handling practices, or service stability of any third-party servers, nor any direct or indirect legal liability arising therefrom.
 
 ## 4. Data Retention and Storage
 
@@ -54,7 +60,7 @@ This software does not collect or transmit user operation logs, behavioral patte
 
 ### 4.3 Server-Side Data Storage
 
-For official public networking servers provided by us, we temporarily maintain node discovery and network connection information in memory only when necessary. Such data becomes invalid as soon as a node goes offline or a connection is established. Unless explicitly required by laws, regulations, or regulatory authorities, we do not persistently store such data, nor do we use it for any purpose other than connection establishment. For third-party servers specified by users, we cannot control their data storage policies and assume no responsibility for their storage practices.
+EasyTier Official does not provide or maintain any official EasyTier servers. It only distributes server-side source code and software that users may deploy themselves. Server software officially distributed by EasyTier temporarily maintains node discovery and network connection information in memory only when necessary. Such data becomes invalid as soon as a node goes offline or a connection is established. The software does not persistently store such data or use it for any purpose other than connection establishment. For third-party servers to which users connect, we cannot control their data storage policies and assume no responsibility for their storage practices.
 
 ## 5. Children’s Privacy Protection
 

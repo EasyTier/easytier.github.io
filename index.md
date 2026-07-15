@@ -17,6 +17,9 @@ hero:
     - theme: alt
       text: 下载
       link: /guide/download
+    - theme: alt
+      text: 隐私政策
+      link: /guide/privacy
     - theme: sponsor
       text: 💚 赞助
       link: /#sponsor
