@@ -22,6 +22,27 @@ The initial release supports CNI `1.0.0`, one IPv4 address, and a standalone Mul
 - At least one EasyTier peer reachable through every Pod's primary network.
 - An EasyTier image containing both `easytier-core` and `easytier-cni`.
 
+## Coexisting with Flannel
+
+EasyTier CNI does not replace or modify Flannel. Flannel continues to provide the Pod's primary `eth0` interface, while Multus invokes EasyTier for the secondary `net1` interface.
+
+An existing Flannel cluster does not need Flannel reinstalled. For a deployment created from the upstream Flannel manifest, use these commands to confirm that Flannel and all nodes are healthy. Use the actual namespace and DaemonSet name for distribution-managed or Helm deployments:
+
+```sh
+kubectl -n kube-flannel rollout status daemonset/kube-flannel-ds --timeout=5m
+kubectl wait node --all --for=condition=Ready --timeout=5m
+```
+
+Flannel still requires standard CNI plugins such as `bridge`, `host-local`, and `portmap`, together with the `br_netfilter` kernel module. EasyTier CNI does not install these Flannel prerequisites.
+
+After the primary network is healthy, install Multus, Whereabouts, and EasyTier CNI in that order. For a new cluster, [install Flannel](https://github.com/flannel-io/flannel#deploying-flannel-manually) and wait for the nodes to become Ready first. Multus auto-configuration selects the existing Flannel configuration as its default network; for a manual Multus configuration, set Flannel as the default delegate. Do not add EasyTier to the Flannel conflist. Attach EasyTier only through the `NetworkAttachmentDefinition` created later in this guide.
+
+When Flannel uses its default `10.244.0.0/16`, the example EasyTier range `10.200.0.0/24` can be used, provided it does not overlap any other network in the environment.
+
+::: tip Validated combination
+The three-node Kind test disables the default kindnet and uses Flannel `v0.28.9` as the only primary CNI, with Multus `v4.3.0` and Whereabouts `v0.9.4`. It verifies cross-node `net1` ping and HTTP between Pods on different workers, Service/DNS access through the Flannel primary network, MTU, deletion, and IPAM address release.
+:::
+
 ::: warning Security
 The node DaemonSet must enter Pod network namespaces and create TUN devices, so it uses privileged mode, hostPID, and the host `/run`. Pin production deployments to an EasyTier release that contains CNI support. Do not deploy a mutable `unstable` tag in production.
 :::

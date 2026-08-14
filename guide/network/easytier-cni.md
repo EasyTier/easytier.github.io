@@ -22,6 +22,27 @@ flowchart LR
 - 每个 Pod 的主网络都能访问至少一个 EasyTier peer。
 - EasyTier 镜像包含 `easytier-core` 和 `easytier-cni`。
 
+## 与 Flannel 共存
+
+EasyTier CNI 不会替换或修改 Flannel。Flannel 继续提供 Pod 的 `eth0` 主网卡，Multus 将 EasyTier 作为 `net1` 辅助网卡调用。
+
+已有 Flannel 集群不需要重新安装 Flannel。使用 Flannel 上游清单部署时，可通过以下命令确认 Flannel 和节点正常；发行版内置或 Helm 部署请使用实际的 namespace 和 DaemonSet 名称：
+
+```sh
+kubectl -n kube-flannel rollout status daemonset/kube-flannel-ds --timeout=5m
+kubectl wait node --all --for=condition=Ready --timeout=5m
+```
+
+Flannel 自身仍需要 `bridge`、`host-local`、`portmap` 等标准 CNI plugins 以及 `br_netfilter` 内核模块；EasyTier CNI 不负责安装这些 Flannel 前置依赖。
+
+确认主网络正常后，依次安装 Multus、Whereabouts 和 EasyTier CNI。新集群必须先按照 [Flannel 文档](https://github.com/flannel-io/flannel#deploying-flannel-manually)完成安装并等待节点 Ready。Multus 自动配置模式会选择已有的 Flannel 配置作为默认网络；手工配置 Multus 时也要把 Flannel 设为默认 delegate。不要把 EasyTier 配置加入 Flannel conflist，EasyTier 只通过本页后续创建的 `NetworkAttachmentDefinition` 接入。
+
+Flannel 默认使用 `10.244.0.0/16` 时，可以使用本页示例中的 EasyTier `10.200.0.0/24`，但仍需检查它是否与实际环境的其他网络重叠。
+
+::: tip 已验证组合
+三节点 Kind 测试关闭了默认 kindnet，以 Flannel `v0.28.9` 作为唯一主 CNI，并安装 Multus `v4.3.0` 和 Whereabouts `v0.9.4`。测试覆盖不同 worker 上 Pod 的 `net1` 跨节点 ping 和 HTTP、Flannel 主网络 Service/DNS、MTU、删除及 IPAM 地址回收。
+:::
+
 ::: warning 安全提示
 节点 DaemonSet 需要进入 Pod network namespace 并创建 TUN，因此会使用 privileged、hostPID 和宿主 `/run`。生产环境必须固定到包含 CNI 的正式 EasyTier 版本，不要直接使用可变的 `unstable` 标签。
 :::
