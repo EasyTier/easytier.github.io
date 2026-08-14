@@ -30,6 +30,7 @@ The software can be used via command line or graphical interface. It is ready to
 - **KCP / QUIC Proxy**: Converts TCP traffic to KCP / QUIC protocol, improving transmission latency and stability in high UDP packet loss environments.
 - **Non-Privileged Mode**: Supports running under non-privileged users, avoiding the need for root permissions (only as an accessed endpoint).
 - **WireGuard Access**: Supports WireGuard client access to the EasyTier network.
+- **Kubernetes Pod Networking**: Adds an EasyTier secondary network to Pods through [EasyTier CNI](/en/guide/network/easytier-cni).
 
 ## Graphical Interface (GUI)
 
