@@ -1,10 +1,12 @@
+---
+outline: deep
+---
+
 # Complete Configuration Options
 
 You can use `easytier-core --help` to view all configuration options.
 
-## Basic Settings
-
-### Configuration Server
+## Configuration Server
 
 | Parameter               | Description                                                                                                                                                                                                          |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -17,7 +19,7 @@ You can use `easytier-core --help` to view all configuration options.
 | `--config-dir`          | Load all .toml files in the directory to start network instances, and store the received configurations in this directory. [env: ET_CONFIG_DIR=]                                                                     |
 | `--disable-env-parsing` | Disable environment variable parsing in config file [env: ET_DISABLE_ENV_PARSING=]                                                                                                                                   |
 
-### Network Settings
+## Network Settings
 
 | Parameter              | Description                                                                                                                                                                                             |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -30,7 +32,7 @@ You can use `easytier-core --help` to view all configuration options.
 | `-e, --external-node`  | Use public shared nodes to discover peer nodes [env: ET_EXTERNAL_NODE=]                                                                                                                                 |
 | `-n, --proxy-networks` | Export local network to other peer nodes in VPN, e.g.: `10.0.0.0/24`. Supports mapping to other CIDR, e.g.: `10.0.0.0/24->192.168.0.0/24` [env: ET_PROXY_NETWORKS=]                                     |
 
-### RPC Settings
+## RPC Settings
 
 | Parameter                | Description                                                                                                                                     |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -42,7 +44,7 @@ You can use `easytier-core --help` to view all configuration options.
 |                          | [env: ET_RPC_PORTAL=]                                                                                                                           |
 | `--rpc-portal-whitelist` | RPC portal whitelist, only allow these addresses to access RPC portal, e.g.: `127.0.0.1/32,127.0.0.0/8,::1/128` [env: ET_RPC_PORTAL_WHITELIST=] |
 
-### Listener Settings
+## Listener Settings
 
 | Parameter            | Description                                                                                                                                                                                           |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -54,7 +56,7 @@ You can use `easytier-core --help` to view all configuration options.
 | `--mapped-listeners` | Manually specify the public address of the listener, other nodes can use this address to connect to this node. E.g.: `tcp://123.123.123.123:11223`, can specify multiple. [env: ET_MAPPED_LISTENERS=] |
 | `--no-listener`      | Don't listen on any port, only connect to peer nodes [env: ET_NO_LISTENER=]                                                                                                                           |
 
-### Other Settings
+## Other Settings
 
 | Parameter                            | Description                                                                                                                                                                                                                                                                |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -105,7 +107,7 @@ You can use `easytier-core --help` to view all configuration options.
 | `--stun-servers`                     | Override default STUN servers; If configured but empty, STUN servers are not used [env: ET_STUN_SERVERS=]                                                                                                                                                                  |
 | `--stun-servers-v6`                  | Override default STUN servers, IPv6; If configured but empty, IPv6 STUN servers are not used [env: ET_STUN_SERVERS_V6=]                                                                                                                                                    |
 
-### Logging Settings
+## Logging Settings
 
 | Parameter             | Description                                                        |
 | --------------------- | ------------------------------------------------------------------ |
