@@ -8,6 +8,9 @@ import { en } from './en'
 
 export default withMermaid({
   base: '/',
+  vite: {
+    optimizeDeps: { include: ['mermaid'] },
+  },
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/easytier.png' }],
