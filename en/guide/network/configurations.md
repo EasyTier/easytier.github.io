@@ -115,6 +115,58 @@ You can use `easytier-core --help` to view all configuration options.
 | `--file-log-size`     | Per file log size in MB, default is 100MB [env: ET_FILE_LOG_SIZE=] |
 | `--file-log-count`    | Max file log count, default is 10 [env: ET_FILE_LOG_COUNT=]        |
 
+Logging is process-level configuration, set via command-line flags or environment variables. It cannot be set in the `-c` config file: the logger is initialized at process startup, before any config files are loaded, and one process can host several network instances via multiple `-c` files, so logging options apply to the whole process.
+
+### Default Behavior
+
+By default EasyTier only prints `info`-level logs from the core module to the console, and file logging is disabled.
+
+### Console Log Level
+
+Set the console log level with `--console-log-level` (or the `ET_CONSOLE_LOG_LEVEL` environment variable). Valid values: `trace`, `debug`, `info`, `warn`, `error`, `off`.
+
+```sh
+easytier-core --console-log-level debug
+ET_CONSOLE_LOG_LEVEL=debug easytier-core
+```
+
+You can also use the `RUST_LOG` environment variable for fine-grained per-target control, e.g. debug for the core module and disabled for hyper:
+
+```sh
+RUST_LOG=warn,easytier_core=debug,hyper=off easytier-core
+```
+
+`RUST_LOG` overrides the console log level and also applies to file logging.
+
+### File Logging
+
+File logging is disabled by default. It is enabled as soon as you set `--file-log-level` (or the `ET_FILE_LOG_LEVEL` environment variable) to anything other than `off`, writing to `easytier.log` in the process working directory by default:
+
+```sh
+easytier-core --file-log-level info
+```
+
+The remaining options are optional:
+
+| Parameter             | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| `--file-log-dir`      | Directory for log files, default is the working directory |
+| `--file-log-size`     | Max size per file in MB, default is 100         |
+| `--file-log-count`    | Number of log files to keep, default is 10      |
+
+Log files rotate daily and are cleaned up automatically once the size or count limit is reached.
+
+### Adjusting the Log Level at Runtime
+
+While the process is running you can inspect or change the log level over RPC:
+
+```sh
+easytier-cli logger            # show the current configuration
+easytier-cli logger set debug  # set the level
+```
+
+`easytier-cli logger set` accepts `disabled`, `error`, `warning`, `info`, `debug`, `trace` and adjusts the file log level.
+
 ---
 
 For more configuration options, please refer to the output of `easytier-core --help`.

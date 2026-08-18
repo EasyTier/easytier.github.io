@@ -120,6 +120,58 @@
 | `--file-log-size`     | 单个文件日志大小，单位 MB，默认值为 100MB [env: ET_FILE_LOG_SIZE=] |
 | `--file-log-count`    | 最大文件日志数量，默认值为 10 [env: ET_FILE_LOG_COUNT=]            |
 
+日志配置属于进程级配置，通过命令行参数或环境变量设置，不支持写在 `-c` 指定的配置文件中。原因是日志系统在进程启动时、加载任何配置文件之前就已初始化，且同一个进程可以通过多个 `-c` 配置文件运行多个网络实例，因此日志选项只作用于整个进程。
+
+### 默认行为
+
+默认情况下，EasyTier 只向控制台输出 core 模块的 `info` 级别日志，文件日志处于关闭状态。
+
+### 控制台日志级别
+
+通过 `--console-log-level`（或环境变量 `ET_CONSOLE_LOG_LEVEL`）设置控制台日志级别，可选值：`trace`、`debug`、`info`、`warn`、`error`、`off`。
+
+```sh
+easytier-core --console-log-level debug
+ET_CONSOLE_LOG_LEVEL=debug easytier-core
+```
+
+也可以使用 `RUST_LOG` 环境变量按目标（target）精细控制日志，例如仅对 core 模块输出 debug、关闭 hyper 的日志：
+
+```sh
+RUST_LOG=warn,easytier_core=debug,hyper=off easytier-core
+```
+
+`RUST_LOG` 会覆盖控制台日志级别，同样作用于文件日志。
+
+### 文件日志
+
+文件日志默认关闭，设置 `--file-log-level`（或环境变量 `ET_FILE_LOG_LEVEL`）为除 `off` 之外的级别即会开启，默认写入进程工作目录下的 `easytier.log`：
+
+```sh
+easytier-core --file-log-level info
+```
+
+其余参数均为可选：
+
+| 参数                | 说明                                |
+| ------------------- | ----------------------------------- |
+| `--file-log-dir`    | 日志文件目录，默认当前目录          |
+| `--file-log-size`   | 单个日志文件大小上限（MB），默认 100 |
+| `--file-log-count`  | 保留的日志文件数量，默认 10         |
+
+日志文件按天滚动轮转，超过大小上限或数量限制后会自动清理旧文件。
+
+### 运行时调整日志级别
+
+进程运行期间可通过 RPC 查看或修改日志级别：
+
+```sh
+easytier-cli logger            # 查看当前配置
+easytier-cli logger set debug  # 设置级别
+```
+
+`easytier-cli logger set` 的合法值为 `disabled`、`error`、`warning`、`info`、`debug`、`trace`，调整的是文件日志级别。
+
 ---
 
 更多配置项请参考 `easytier-core --help` 输出。
