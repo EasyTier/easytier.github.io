@@ -31,6 +31,7 @@ export const en = defineConfig({
             { text: 'Network-to-Network', link: '/en/guide/network/network-to-network' },
             { text: 'No TUN Mode (No Root Required)', link: '/en/guide/network/no-root' },
             { text: 'SOCKS5', link: '/en/guide/network/socks5' },
+            { text: 'Port Forward', link: '/en/guide/network/port-forward' },
             { text: 'Hosting Public Server', link: '/en/guide/network/host-public-server' },
             { text: 'P2P Optimization', link: '/en/guide/network/p2p-optimize' },
             { text: 'Magic DNS', link: '/en/guide/network/magic-dns' },

@@ -4,4 +4,4 @@ Since creating a TUN device requires ROOT permissions, EasyTier provides a metho
 
 When using the no TUN mode for networking, nodes can be accessed via virtual IP (TCP, UDP, and ICMP are all supported), and can also act as subnet proxies (using the -n parameter). However, they cannot actively initiate access to other nodes.
 
-To actively access other nodes in no TUN mode, you can use EasyTier's [SOCKS5 server feature](/guide/network/socks5).
+To actively access other nodes in no TUN mode, you can use EasyTier's [SOCKS5 server feature](/guide/network/socks5), or use the [Port Forward](/en/guide/network/port-forward) feature to forward local port traffic to a destination address in the virtual network.
