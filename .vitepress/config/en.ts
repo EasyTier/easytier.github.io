@@ -44,6 +44,7 @@ export const en = defineConfig({
           ] },
           { text: 'Other Configurations', link: '/en/guide/network/configurations' },
           { text: 'Configuration File', link: '/en/guide/network/config-file' },
+          { text: 'Discovery URL', link: '/en/guide/network/discovery-url' },
         ],
       },
       {

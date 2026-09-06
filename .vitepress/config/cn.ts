@@ -45,6 +45,7 @@ export const cn = defineConfig({
           ] },
           { text: '其他配置', link: '/guide/network/configurations' },
           { text: '配置文件', link: '/guide/network/config-file' },
+          { text: '发现地址', link: '/guide/network/discovery-url' },
         ],
       },
       {
