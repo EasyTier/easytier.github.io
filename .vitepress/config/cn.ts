@@ -32,6 +32,7 @@ export const cn = defineConfig({
             { text: '网对网', link: '/guide/network/network-to-network' },
             { text: '无 TUN 模式（免 Root 权限）', link: '/guide/network/no-root' },
             { text: 'SOCKS5', link: '/guide/network/socks5' },
+            { text: '端口转发（Port Forward）', link: '/guide/network/port-forward' },
             { text: '搭建共享节点', link: '/guide/network/host-public-server' },
             { text: 'P2P 优化', link: '/guide/network/p2p-optimize' },
             { text: '魔法 DNS', link: '/guide/network/magic-dns' },
