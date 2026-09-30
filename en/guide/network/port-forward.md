@@ -83,15 +83,15 @@ sudo easytier-core \
 
 ## Configuring via Configuration File
 
-In addition to command-line parameters, port forward rules can be written into the configuration file, corresponding to the `port_forwards` field. Each rule has three fields: `bind_addr`, `dst_addr`, and `proto`:
+In addition to command-line parameters, port forward rules can be written into the configuration file, corresponding to the `port_forward` field. Each rule has three fields: `bind_addr`, `dst_addr`, and `proto`:
 
 ```toml
-[[port_forwards]]
+[[port_forward]]
 proto = "tcp"
 bind_addr = "127.0.0.1:5202"
 dst_addr = "10.144.0.20:5201"
 
-[[port_forwards]]
+[[port_forward]]
 proto = "udp"
 bind_addr = "127.0.0.1:5202"
 dst_addr = "10.144.0.20:5201"
