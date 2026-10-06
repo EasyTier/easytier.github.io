@@ -86,4 +86,18 @@
   - 项目地址：[https://github.com/qteasytier/qt-easy-tier](https://github.com/qteasytier/qt-easy-tier)
   - 宣传视频：[https://www.bilibili.com/video/BV1ST6nBzE1k](https://www.bilibili.com/video/BV1ST6nBzE1k)
 
+---
 
+### [EasyTierCompose (Android)](https://github.com/ECSDevs/EasyTierCompose)
+
+EasyTierCompose 是一个基于 Jetpack Compose 构建的现代化的采用 Material Design 3 Expressive 设计的 EasyTier Android 客户端。
+
+  - 全量 EasyTier 配置支持
+  - 全局配置文件 Override 功能
+  - 从文件导入/导出 EasyTier 配置文件
+  - 从网络拉取 EasyTier 配置文件
+  - Root TUN 模式，在该模式下允许和其他 TUN 共存（如 Mishka 等 TUN 及透明代理软件、NekoBoxForAndroid 等使用 VpnService 路由流量的软件）
+  - No TUN 模式，该模式下只提供 Socks / Wireguard 服务，具体取决于配置。
+  - 精美的状态卡片
+  - 多配置文件管理
+  - 再节点页查看节点名称、IP等信息，点击查看详细信息

@@ -85,3 +85,19 @@ QtEasyTier simplifies setup with one-click import/export of configurations and s
 
   - Project: [https://gitee.com/viagrahuang/qt-easy-tier](https://gitee.com/viagrahuang/qt-easy-tier)
   - Demo Video: [https://www.bilibili.com/video/BV1ST6nBzE1k](https://www.bilibili.com/video/BV1ST6nBzE1k)
+
+---
+
+### [EasyTierCompose (Android)](https://github.com/ECSDevs/EasyTierCompose)
+
+EasyTierCompose is a modern EasyTier Android client built with Jetpack Compose, featuring the Material Design 3 Expressive design language.
+
+- Full support for EasyTier configuration
+- Global configuration file override
+- Import/export EasyTier configuration files
+- Fetch EasyTier configuration files from the network
+- Root TUN mode, allowing coexistence with other TUN-based applications (such as Mishka, transparent proxy software, and NekoBoxForAndroid using `VpnService` for traffic routing)
+- No TUN mode, providing only Socks / WireGuard services depending on the configuration
+- Beautiful status cards
+- Multi-profile management
+- View node names, IP addresses, and other information on the Nodes page, with detailed information available by tapping a node
