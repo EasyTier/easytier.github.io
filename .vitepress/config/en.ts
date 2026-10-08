@@ -36,6 +36,7 @@ export const en = defineConfig({
             { text: 'P2P Optimization', link: '/en/guide/network/p2p-optimize' },
             { text: 'Magic DNS', link: '/en/guide/network/magic-dns' },
             { text: 'ACL', link: '/en/guide/config/acl' },
+            { text: 'EasyTier CNI (Kubernetes)', link: '/en/guide/network/easytier-cni' },
           ] },
           { text: 'Autostart (Register Service)', collapsed: true, items: [
             { text: 'One-Click Install Service', link: '/en/guide/network/oneclick-install-as-service' },
