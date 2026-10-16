@@ -30,12 +30,12 @@ A <-.->|P2P直连| B
 
 ```sh [Linux]
 # 管理员权限运行
-./easytier-core -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:1010
+./easytier-core -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:11010
 ```
 
 ```powershell [Windows]
 # 管理员权限运行
-.\easytier-core.exe -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:1010
+.\easytier-core.exe -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:11010
 ```
 
 :::
@@ -51,12 +51,12 @@ A <-.->|P2P直连| B
 
 ```sh [Linux]
 # 管理员权限运行
-./easytier-core -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:1010
+./easytier-core -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:11010
 ```
 
 ```powershell [Windows]
 # 管理员权限运行
-.\easytier-core.exe -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:1010
+.\easytier-core.exe -d --network-name abc --network-secret abc -p tcp://<共享节点 IP或域名>:11010
 ```
 
 :::
@@ -213,8 +213,8 @@ EasyTier 支持同一设备运行多个进程，每个进程加入不同虚拟�
 
 ```sh
 # 管理员权限运行
-./easytier-core --network-name net1 -p tcp://<共享节点 IP或域名>:1010 -l 11010
-./easytier-core --network-name net2 -p tcp://<共享节点 IP或域名>:1010 -l 21010
+./easytier-core --network-name net1 -p tcp://<共享节点 IP或域名>:11010 -l 11010
+./easytier-core --network-name net2 -p tcp://<共享节点 IP或域名>:11010 -l 21010
 ```
 
 - `-l` 指定监听端口。
