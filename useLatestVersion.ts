@@ -1,40 +1,42 @@
-import { onMounted, ref } from 'vue'
+import type { Release } from './releaseUtils'
+import { computed, onMounted, ref } from 'vue'
+import { findPrerelease } from './releaseUtils'
 
 export function useLatestVersion() {
-  const latestVersion = ref<string | null>(null)
-  const prereleaseVersion = ref<string | null>(null)
+  const latestRelease = ref<Release | null>(null)
+  const prereleaseRelease = ref<Release | null>(null)
+  const nightlyRelease = ref<Release | null>(null)
+  const latestVersion = computed(() => latestRelease.value?.tag_name.replace(/^v/, '') ?? null)
+  const prereleaseVersion = computed(() => prereleaseRelease.value?.tag_name.replace(/^v/, '') ?? null)
   const loading = ref(true)
   const error = ref<string | null>(null)
 
   onMounted(async () => {
-    try {
-      const [latestRes, releasesRes] = await Promise.all([
-        fetch('https://api.github.com/repos/EasyTier/EasyTier/releases/latest'),
-        fetch('https://api.github.com/repos/EasyTier/EasyTier/releases?per_page=5'),
-      ])
-
-      if (!latestRes.ok || !releasesRes.ok) {
+    async function fetchRelease<T>(path: string): Promise<T> {
+      const response = await fetch(`https://api.github.com/repos/EasyTier/EasyTier/releases${path}`, { signal: AbortSignal.timeout(10000) })
+      if (!response.ok)
         throw new Error('Failed to fetch releases from GitHub API')
-      }
-
-      const latestData = await latestRes.json() as { tag_name?: string }
-      const releases = await releasesRes.json() as Array<{ tag_name?: string, prerelease?: boolean }>
-
-      latestVersion.value = latestData.tag_name ?? null
-      prereleaseVersion.value = releases.find(item => item.prerelease)?.tag_name ?? null
-    }
-    catch (err) {
-      error.value = err instanceof Error ? err.message : 'Unknown error'
-    }
-    finally {
-      loading.value = false
+      return response.json()
     }
 
-    if (latestVersion.value?.startsWith('v'))
-      latestVersion.value = latestVersion.value.slice(1)
-    if (prereleaseVersion.value?.startsWith('v'))
-      prereleaseVersion.value = prereleaseVersion.value.slice(1)
+    const [latest, releases, nightly] = await Promise.allSettled([
+      fetchRelease<Release>('/latest'),
+      fetchRelease<Release[]>('?per_page=100'),
+      fetchRelease<Release>('/tags/nightly'),
+    ])
+
+    if (latest.status === 'fulfilled')
+      latestRelease.value = latest.value
+    if (releases.status === 'fulfilled')
+      prereleaseRelease.value = findPrerelease(releases.value)
+    if (nightly.status === 'fulfilled')
+      nightlyRelease.value = nightly.value
+
+    const failure = [latest, releases, nightly].find(result => result.status === 'rejected')
+    if (failure?.status === 'rejected')
+      error.value = failure.reason instanceof Error ? failure.reason.message : 'Unknown error'
+    loading.value = false
   })
 
-  return { latestVersion, prereleaseVersion, loading, error }
+  return { latestVersion, prereleaseVersion, latestRelease, prereleaseRelease, nightlyRelease, loading, error }
 }
