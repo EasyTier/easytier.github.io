@@ -86,12 +86,12 @@ sudo easytier-core \
 除命令行参数外，端口转发规则也可写入配置文件，对应字段为 `port_forwards`，每条规则含 `bind_addr`、`dst_addr` 与 `proto` 三个字段：
 
 ```toml
-[[port_forwards]]
+[[port_forward]]
 proto = "tcp"
 bind_addr = "127.0.0.1:5202"
 dst_addr = "10.144.0.20:5201"
 
-[[port_forwards]]
+[[port_forward]]
 proto = "udp"
 bind_addr = "127.0.0.1:5202"
 dst_addr = "10.144.0.20:5201"
