@@ -5,15 +5,16 @@ home: hello
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { data } from '../metadata.data.js'
+import { resolveDownloadUrl } from '../releaseUtils.ts'
 import { useLatestVersion } from '../useLatestVersion.ts'
 
-const { latestVersion, prereleaseVersion, loading, error } = useLatestVersion()
+const { latestVersion, prereleaseVersion, latestRelease, prereleaseRelease, nightlyRelease, loading } = useLatestVersion()
 
 interface Package {
     os: string
     arch: string
-    gui_pkg_tmpl: record<string, string>
-    cli_pkg_tmpl: record<string, string> // key: format, value: url
+    gui_pkg_tmpl: Record<string, string>
+    cli_pkg_tmpl: Record<string, string> // key: format, value: url
     comment?: string
 }
 
@@ -157,20 +158,30 @@ const all_proxy = new Set(data.github_accels)
 
 const channel = ref('easytier_latest_version')
 
-const url = 'https://github.com/EasyTier/EasyTier/releases/tag/v'
+const url = 'https://github.com/EasyTier/EasyTier/releases/tag/'
 const filter_os = ref('')
 const filter_arch = ref('')
 const accel_proxy = ref('')
 
 const vers = computed(() => ({
-    easytier_latest_version: (!loading.value && !error.value && latestVersion.value) ? latestVersion.value : data.easytier_latest_version,
-    easytier_pre_release_version: (!loading.value && !error.value && prereleaseVersion.value) ? prereleaseVersion.value : data.easytier_pre_release_version,
+    easytier_latest_version: latestVersion.value ?? data.easytier_latest_version,
+    easytier_pre_release_version: prereleaseVersion.value ?? data.easytier_pre_release_version,
 }))
 
 const currentVersion = computed(() => vers.value[channel.value as keyof typeof vers.value])
+const currentRelease = computed(() => {
+    if (channel.value === 'nightly')
+        return nightlyRelease.value
+    return channel.value === 'easytier_latest_version' ? latestRelease.value : prereleaseRelease.value
+})
+const currentTag = computed(() => channel.value === 'nightly' ? 'nightly' : currentRelease.value?.tag_name ?? `v${currentVersion.value}`)
+const currentTitle = computed(() => channel.value === 'nightly' ? 'Nightly' : currentTag.value)
 
-function renderUrlTmpl(url_tmpl: string): string {
-    return accel_proxy.value + url_tmpl.replace(/\{\}/g, currentVersion.value)
+function renderLinks(templates: Record<string, string>) {
+    return Object.entries(templates).flatMap(([format, template]) => {
+        const downloadUrl = resolveDownloadUrl(template, currentRelease.value, channel.value === 'nightly' ? undefined : currentVersion.value)
+        return downloadUrl ? [{ format, url: accel_proxy.value + downloadUrl }] : []
+    })
 }
 
 </script>
@@ -192,10 +203,18 @@ function renderUrlTmpl(url_tmpl: string): string {
     <select name="channel-select" id="channel-select" v-model="channel" class="filter-select">
         <option value="easytier_latest_version"> 稳定版(v{{ vers.easytier_latest_version }}) </option>
         <option value="easytier_pre_release_version"> 预发布版(v{{ vers.easytier_pre_release_version }}) </option>
+        <option value="nightly"> 开发版（Nightly） </option>
     </select>
 </div>
 
-## <a :href="url + currentVersion">EasyTier v{{ currentVersion }}</a> { #latest }
+<p v-if="channel === 'nightly'">Nightly 跟随 main 分支更新，适合测试最新功能，可能不稳定。</p>
+
+## <a :href="url + currentTag">EasyTier {{ currentTitle }}</a> { #latest }
+
+<p v-if="channel === 'nightly' && !nightlyRelease?.assets.length">
+    <span v-if="loading">正在加载 Nightly 下载文件…</span>
+    <span v-else>暂时无法获取 Nightly 下载文件，请前往 <a :href="url + 'nightly'">Nightly 发布页</a>。</span>
+</p>
 
 - Github 加速
     <div>
@@ -221,7 +240,7 @@ function renderUrlTmpl(url_tmpl: string): string {
         </select>
     </div>
 
-<table>
+<table v-if="channel !== 'nightly' || nightlyRelease?.assets.length">
 
 <thead>
 <tr>
@@ -239,14 +258,14 @@ function renderUrlTmpl(url_tmpl: string): string {
 <td> {{ pkg.arch }} </td>
 
 <td>
-<a v-for="(url_tmpl, format) in pkg.gui_pkg_tmpl" class="download-link-span" :href="renderUrlTmpl(url_tmpl)">
-{{format}}
+<a v-for="link in renderLinks(pkg.gui_pkg_tmpl)" :key="link.format" class="download-link-span" :href="link.url">
+{{link.format}}
 </a>
 </td>
 
 <td>
-<a v-for="(url_tmpl, format) in pkg.cli_pkg_tmpl" class="download-link-span" :href="renderUrlTmpl(url_tmpl)">
-{{format}}
+<a v-for="link in renderLinks(pkg.cli_pkg_tmpl)" :key="link.format" class="download-link-span" :href="link.url">
+{{link.format}}
 </a>
 </td>
 
