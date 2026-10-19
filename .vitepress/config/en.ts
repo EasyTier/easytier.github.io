@@ -14,6 +14,7 @@ export const en = defineConfig({
           { text: 'Download', link: '/en/guide/download' },
           { text: 'Installation CLI', link: '/en/guide/installation' },
           { text: 'Installation GUI', link: '/en/guide/installation_gui' },
+          { text: 'Install Espressif Component', link: '/en/guide/installation_esp' },
           { text: 'FAQ', link: '/en/guide/faq' },
         ],
       },
@@ -59,6 +60,15 @@ export const en = defineConfig({
           { text: 'EasyTier Game Launcher', link: '/en/guide/gui/easytier-game' },
           { text: 'Astral Game Connection Tool', link: '/en/guide/gui/astral-game' },
           { text: 'QtEasyTier', link: '/en/guide/gui/qteasytier' },
+        ],
+      },
+      {
+        text: 'Embedded Device Networking',
+        link: '/en/guide/embed/index',
+        items: [
+          { text: 'Quick Start', link: '/en/guide/embed/quick-start' },
+          { text: 'Requirements', link: '/en/guide/embed/requirements' },
+          { text: 'Supported Capabilities', link: '/en/guide/embed/capabilities' },
         ],
       },
       {

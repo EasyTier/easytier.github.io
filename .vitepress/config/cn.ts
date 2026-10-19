@@ -14,6 +14,7 @@ export const cn = defineConfig({
           { text: '下载', link: '/guide/download' },
           { text: '安装 CLI', link: '/guide/installation' },
           { text: '安装 GUI', link: '/guide/installation_gui' },
+          { text: '安装 Espressif 组件', link: '/guide/installation_esp' },
           { text: '常见问题', link: '/guide/faq' },
         ],
       },
@@ -62,6 +63,15 @@ export const cn = defineConfig({
           { text: 'EasyTier 鸿蒙版', link: '/guide/gui/easytier-harmonyos' },
           { text: 'QtEasyTier 组网工具', link: '/guide/gui/qteasytier' },
           { text: 'MCTier 多功能快速组网', link: '/guide/gui/mctier' },
+        ],
+      },
+      {
+        text: '嵌入式设备组网',
+        link: '/guide/embed/index',
+        items: [
+          { text: '快速上手', link: '/guide/embed/quick-start' },
+          { text: '使用环境要求', link: '/guide/embed/requirements' },
+          { text: '支持能力说明', link: '/guide/embed/capabilities' },
         ],
       },
       {
