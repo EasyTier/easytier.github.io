@@ -14,7 +14,6 @@ export const en = defineConfig({
           { text: 'Download', link: '/en/guide/download' },
           { text: 'Installation CLI', link: '/en/guide/installation' },
           { text: 'Installation GUI', link: '/en/guide/installation_gui' },
-          { text: 'Install Espressif Component', link: '/en/guide/installation_esp' },
           { text: 'FAQ', link: '/en/guide/faq' },
         ],
       },

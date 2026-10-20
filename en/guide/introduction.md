@@ -6,6 +6,7 @@ The software can be used via command line or graphical interface. It is ready to
 
 - [🛠️ CLI Installation Page](./installation) provides methods for installing the command-line tool.
 - [🖥️ GUI Installation Page](./installation_gui) provides methods for installing the graphical interface tool.
+- [🔌 Embedded Usage Page](./embed/index) provides methods for using the ESP32 component.
 - [⬇️ Download Page](./download) provides the latest EasyTier download links.
 
 ## Applicable Scenarios
@@ -36,3 +37,27 @@ The software can be used via command line or graphical interface. It is ready to
 EasyTier provides a simple and user-friendly graphical interface, suitable for beginners to get started quickly.
 
 <img src="/assets/gui-screenshot.png" alt="EasyTier GUI Screenshot" width="400">
+
+
+## [Espressif Component](./embed/index)
+
+**EasyTier-ESP** is a lightweight C++ implementation based on the EasyTier networking protocol and can be imported as a component in ESP-IDF.
+
+#### Import via the ESP-IDF Component Registry
+
+Add the dependency to your application's `main/idf_component.yml`:
+
+```yaml
+dependencies:
+  myqfeng/easytier-esp: "^0.0.1"
+  idf: ">=6.1"
+```
+
+Or use the command:
+
+```bash
+idf.py add-dependency "myqfeng/easytier-esp^0.0.1"
+idf.py build
+```
+
+The component will be downloaded to the project's `managed_components/` directory during the build.

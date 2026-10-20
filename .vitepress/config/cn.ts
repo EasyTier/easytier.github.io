@@ -14,7 +14,6 @@ export const cn = defineConfig({
           { text: '下载', link: '/guide/download' },
           { text: '安装 CLI', link: '/guide/installation' },
           { text: '安装 GUI', link: '/guide/installation_gui' },
-          { text: '安装 Espressif 组件', link: '/guide/installation_esp' },
           { text: '常见问题', link: '/guide/faq' },
         ],
       },
