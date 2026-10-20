@@ -31,7 +31,7 @@ features:
   - title: 易用
     details: 网页、客户端、命令行多方式操作
   - title: 跨平台
-    details: 支持 Win / MacOS / Linux / FreeBSD / Android<br>兼容 X86 / ARM / MIPS 架构
+    details: 支持 Win / MacOS / Linux / FreeBSD / Android<br>兼容 X86 / ARM / MIPS 架构<br>嵌入式设备支持（ESP）
     link: /guide/download
   - title: 安全
     details: 支持 AES-GCM 等多种加密算法 或 WireGuard 加密<br>防止中间人攻击

@@ -28,7 +28,7 @@ features:
   - title: Easy to Use
     details: Web, client, command line multiple operation methods<br>Supports one-click networking
   - title: Cross-Platform
-    details: Supports Win / MacOS / Linux / FreeBSD / Android<br>Compatible with X86 / ARM / MIPS architectures
+    details: Supports Win / MacOS / Linux / FreeBSD / Android<br>Compatible with X86 / ARM / MIPS architectures<br>Embedded device support (ESP)
     link: /en/guide/download
   - title: Secure
     details: Multiple encryption algorithms including AES-GCM or WireGuard encryption<br>Prevents man-in-the-middle attacks
