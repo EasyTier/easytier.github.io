@@ -65,6 +65,15 @@ export const cn = defineConfig({
         ],
       },
       {
+        text: '嵌入式设备组网',
+        link: '/guide/embed/index',
+        items: [
+          { text: '快速上手', link: '/guide/embed/quick-start' },
+          { text: '使用环境要求', link: '/guide/embed/requirements' },
+          { text: '支持能力说明', link: '/guide/embed/capabilities' },
+        ],
+      },
+      {
         items: [
           { text: '关于 P2P', link: '/guide/aboutp2p' },
           { text: '性能测试', link: '/guide/perf' },

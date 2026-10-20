@@ -62,6 +62,15 @@ export const en = defineConfig({
         ],
       },
       {
+        text: 'Embedded Device Networking',
+        link: '/en/guide/embed/index',
+        items: [
+          { text: 'Quick Start', link: '/en/guide/embed/quick-start' },
+          { text: 'Requirements', link: '/en/guide/embed/requirements' },
+          { text: 'Supported Capabilities', link: '/en/guide/embed/capabilities' },
+        ],
+      },
+      {
         items: [
           { text: 'Performance Testing', link: '/en/guide/perf' },
           { text: 'Roadmap', link: '/en/guide/roadmap' },
