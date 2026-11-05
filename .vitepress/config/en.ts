@@ -59,6 +59,7 @@ export const en = defineConfig({
           { text: 'EasyTier Game Launcher', link: '/en/guide/gui/easytier-game' },
           { text: 'Astral Game Connection Tool', link: '/en/guide/gui/astral-game' },
           { text: 'QtEasyTier', link: '/en/guide/gui/qteasytier' },
+          { text: 'LightTier', link: '/en/guide/gui/lighttier' },
         ],
       },
       {

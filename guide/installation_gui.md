@@ -101,3 +101,14 @@ EasyTierCompose 是一个基于 Jetpack Compose 构建的现代化的采用 Mate
   - 精美的状态卡片
   - 多配置文件管理
   - 再节点页查看节点名称、IP等信息，点击查看详细信息
+
+---
+
+### [LightTier 组网管理器 (Windows / Android)](/guide/gui/lighttier)
+
+LightTier 是一款基于 EasyTier 内核、使用 Vue 3 + Tauri 2 构建的可视化组网管理器，提供 Windows 桌面端与 Android 客户端。
+
+  - 表单 + TOML 双模式配置管理，支持导入配置与高级字段
+  - 一键启停，实时查看节点、Peer、流量与延迟趋势
+  - 按需下载与管理 EasyTier 内核版本
+  - 轻盈化界面：奶油 / 暗色内置主题 + 外部主题，中英双语，桌面与横竖屏自适应布局
