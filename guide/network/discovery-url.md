@@ -29,9 +29,9 @@ nodeA -->|3. 建立连接| nodeB
 
 | 前缀 | 说明 | 示例 |
 | --- | --- | --- |
-| `http://` / `https://` | 向该 URL 发起 HTTP 请求，从响应中提取候选地址 | `https://discovery.example.com/peer` |
-| `txt://` | 查询 DNS TXT 记录，从中提取候选地址 | `txt://my-network.example.com` |
-| `srv://` | 查询 DNS SRV 记录，按优先级选择主机与端口 | `srv://my-network.example.com` |
+| `http://` / `https://` | 向该 URL 发起 HTTP 请求，从响应中提取候选地址 | `https://example.com/peer` |
+| `txt://` | 查询 DNS TXT 记录，从中提取候选地址 | `txt://example.com` |
+| `srv://` | 查询 DNS SRV 记录，按优先级选择主机与端口 | `srv://example.com` |
 
 使用 `-p` 参数指定发现地址即可
 
@@ -70,13 +70,13 @@ ws://9.10.11.12:11011/
 
 ## TXT
 
-EasyTier 会查询 `my-network.example.com` 的 DNS TXT 记录，将记录内容按行拆分，逐行尝试解析为连接地址，取第一个有效结果。空记录或无可解析内容时视为发现失败。
+EasyTier 会查询 `example.com` 的 DNS TXT 记录，将记录内容按行拆分，逐行尝试解析为连接地址，取第一个有效结果。空记录或无可解析内容时视为发现失败。
 
 DNS TXT 记录示例：
 
 ```
-my-network.example.com.  IN  TXT  "tcp://1.2.3.4:11010"
-my-network.example.com.  IN  TXT  "quic://5.6.7.8:11010"
+example.com.  IN  TXT  "tcp://1.2.3.4:11010"
+example.com.  IN  TXT  "quic://5.6.7.8:11010"
 ```
 
 ## SRV
@@ -86,6 +86,6 @@ EasyTier 查询 SRV 记录后，会按照优先级和权重排序，从中选取
 DNS SRV 记录示例：
 
 ```
-_my-network._tcp.example.com.  IN  SRV  10 60 11010 node1.example.com.
-_my-network._tcp.example.com.  IN  SRV  20 40 11010 node2.example.com.
+_easytier._tcp.example.com.  IN  SRV  10 60 11010 node1.example.com.
+_easytier._tcp.example.com.  IN  SRV  20 40 11010 node2.example.com.
 ```
