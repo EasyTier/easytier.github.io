@@ -8,40 +8,41 @@ EasyTier Cli 提供注册服务命令，可以在大部分系统上一键将 Eas
 
 ```sh [Linux]
 # 假设 EasyTier 的启动参数为 -w abc
-sudo ./easytier-cli service install -w abc
+sudo ./easytier-cli service install --core-args -w abc
 ```
 
 ```powershell [Windows]
 # 假设 EasyTier 的启动参数为 -w abc
-.\easytier-cli.exe service install -w abc
+.\easytier-cli.exe service install --core-args -w abc
 ```
 :::
 
-`install` 后的部分会作为 `easytier-core` 的启动参数。
+需要向 `easytier-core` 传递启动参数时，将 `--core-args` 放在所有服务选项之后。它后面的参数都会传给 `easytier-core`。
 
-完整示例:
+以下示例自定义服务描述、显示名称、程序路径和工作目录，并禁用开机自启。请将路径替换为实际路径。
+
 ::: code-group
 
 ```sh [Linux]
 # 假设 EasyTier 的启动参数为 -w abc
 sudo ./easytier-cli service install \
-    --description "自定义服务描述" \    # 可选，默认使用包描述
-    --display-name "显示名称" \    # 可选，服务显示名称
-    --disable-autostart \    # 可选，禁用开机自启（默认启用）
-    --core-path /path/to/easytier-core \    # 可选，指定二进制路径
-    --service-work-dir /工作目录路径 \    # 可选，指定工作目录
-    -- -w abc    # 可选，传递给 easytier-core 的参数 
+    --description "自定义服务描述" \
+    --display-name "显示名称" \
+    --disable-autostart true \
+    --core-path /path/to/easytier-core \
+    --service-work-dir /path/to/workdir \
+    --core-args -w abc
 ```
 
 ```powershell [Windows]
 # 假设 EasyTier 的启动参数为 -w abc
 .\easytier-cli.exe service install `
-    --description "自定义服务描述" `    # 可选，默认使用包描述
-    --display-name "显示名称" `    # 可选，服务显示名称
-    --disable-autostart `    # 可选，禁用开机自启（默认启用）
-    --core-path /path/to/easytier-core `    # 可选，指定二进制路径
-    --service-work-dir /工作目录路径 `    # 可选，指定工作目录
-    -- -w abc    # 可选，传递给 easytier-core 的参数 
+    --description "自定义服务描述" `
+    --display-name "显示名称" `
+    --disable-autostart true `
+    --core-path "C:\EasyTier\easytier-core.exe" `
+    --service-work-dir "C:\EasyTier" `
+    --core-args -w abc
 ```
 :::
 
