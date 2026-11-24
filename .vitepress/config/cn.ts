@@ -104,10 +104,9 @@ export const cn = defineConfig({
       },
     ],
     footer: {
-      message: '基于 Apache License 2.0 许可发布',
+      message: 'EasyTier 软件基于 <a href="https://github.com/EasyTier/EasyTier/blob/main/LICENSE">LGPL-3.0</a> 许可发布',
       copyright: '版权所有 © 2024-present EasyTier | '
         + '<a href="https://beian.miit.gov.cn/">'
-        + '<img src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="ICP 备案" style="width: 16px; height: 16px; display: inline-block; margin-bottom: -4px;">'
         + '浙ICP备2024137671号-1</a>',
     },
     editLink: {
