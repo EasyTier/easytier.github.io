@@ -22,6 +22,26 @@ If you do not want to write the configuration file manually, you can use [EasyTi
 easytier-core -c ./config.toml
 ```
 
+## Assign public IPv6 addresses to peers
+
+If your ISP delegates a public IPv6 prefix to your OpenWrt router, the router can share addresses from that prefix with peers on the same EasyTier network. Add the settings below to each node's existing TOML file, before any table header such as `[network_identity]` or `[flags]`.
+
+**On the router** (the provider must run Linux), enable the TOML equivalent of `--ipv6-public-addr-provider`:
+
+```toml
+ipv6_public_addr_provider = true
+```
+
+EasyTier detects the prefix from system routes by default. If detection fails, add `ipv6_public_addr_prefix = "2001:db8:1234::/64"` in the same place. Replace the example with a prefix your ISP routes to the router and that is available for allocation.
+
+**On each peer that needs a public IPv6 address**, enable the TOML equivalent of `--ipv6-public-addr-auto`:
+
+```toml
+ipv6_public_addr_auto = true
+```
+
+Restart the EasyTier service on each node, or run `easytier-core -c ./config.toml` on each node with its own configuration file.
+
 ## Multiple Configuration Files Startup
 
 You can specify multiple configuration files through the `-c` parameter. EasyTier will load multiple configuration files in one process and start multiple virtual networks.
