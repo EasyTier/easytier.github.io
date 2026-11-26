@@ -101,3 +101,14 @@ EasyTierCompose is a modern EasyTier Android client built with Jetpack Compose, 
 - Beautiful status cards
 - Multi-profile management
 - View node names, IP addresses, and other information on the Nodes page, with detailed information available by tapping a node
+
+---
+
+### [LightTier (Windows / Android)](/en/guide/gui/lighttier)
+
+LightTier is a visual EasyTier manager built with Vue 3 + Tauri 2, available for Windows desktop and Android.
+
+- Form and TOML configuration editing, with configuration import and advanced fields
+- One-click start/stop with real-time node, peer, traffic, and latency monitoring
+- On-demand EasyTier kernel download and version management
+- Lightweight interface with Cream / Dark built-in themes, external themes, a bilingual UI, and layouts that adapt to desktop, portrait, and landscape

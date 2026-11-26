@@ -62,6 +62,7 @@ export const cn = defineConfig({
           { text: 'EasyTier 鸿蒙版', link: '/guide/gui/easytier-harmonyos' },
           { text: 'QtEasyTier 组网工具', link: '/guide/gui/qteasytier' },
           { text: 'MCTier 多功能快速组网', link: '/guide/gui/mctier' },
+          { text: 'LightTier 组网管理器', link: '/guide/gui/lighttier' },
         ],
       },
       {
