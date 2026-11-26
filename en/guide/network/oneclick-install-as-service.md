@@ -8,17 +8,17 @@ Using this command requires `easytier-core` and `easytier-cli` to be in the same
 
 ```sh [Linux]
 # Assuming EasyTier's startup parameters are -w abc
-sudo ./easytier-cli service install -w abc
+sudo ./easytier-cli service install --core-args -w abc
 ```
 
 ```powershell [Windows]
 # Assuming EasyTier's startup parameters are -w abc
-.\easytier-cli.exe service install -w abc
+.\easytier-cli.exe service install --core-args -w abc
 ```
 
 :::
 
-The part after `install` will be used as startup parameters for `easytier-core`.
+To pass startup arguments to `easytier-core`, put `--core-args` after all service options. Everything after `--core-args` is passed to `easytier-core`.
 
 After the service is successfully installed, you can use the following commands to manage the service:
 
